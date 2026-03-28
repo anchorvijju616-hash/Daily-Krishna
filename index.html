@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Daily Krishna">
+<meta name="application-name" content="Daily Krishna">
+<meta name="theme-color" content="#FF6B1A">
+<meta name="description" content="Daily motivational quotes from Lord Krishna and the Bhagavad Gita">
+<meta name="msapplication-TileColor" content="#1A3A6B">
+<meta name="msapplication-TileImage" content="icons/icon-144.png">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152.png">
+<link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
+<title>Daily Krishna</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;500;600&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --saffron: #FF6B1A;
+  --saffron-light: #FF8C42;
+  --gold: #D4A017;
+  --gold-light: #F0C040;
+  --royal-blue: #1A3A6B;
+  --peacock-blue: #006B8A;
+  --peacock-teal: #00A89D;
+  --cream: #FFF8EE;
+  --cream-dark: #F5E6CC;
+  --maroon: #8B1A1A;
+  --white: #FFFFFF;
+  --text-dark: #2C1810;
+  --text-mid: #5C3D2E;
+  --text-soft: #8B6E5A;
+  --shadow-gold: rgba(212,160,23,0.3);
+  --shadow-saffron: rgba(255,107,26,0.2);
+  --glow-divine: rgba(240,192,64,0.15);
+}
+
+[data-theme="dark"] {
+  --cream: #1A1008;
+  --cream-dark: #261508;
+  --white: #2A1A0A;
+  --text-dark: #F5E6CC;
+  --text-mid: #D4B896;
+  --text-soft: #A08060;
+  --glow-divine: rgba(240,192,64,0.08);
+  --shadow-gold: rgba(212,160,23,0.2);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--cream);
+  color: var(--text-dark);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background 0.4s, color 0.4s;
+}
+
+/* ===== PARTICLES ===== */
+#particles {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: floatParticle linear infinite;
+  opacity: 0;
+}
+@keyframes floatParticle {
+  0% { transform: translateY(100vh) rotate(0deg); opacity:0; }
+  10% { opacity:0.6; }
+  90% { opacity:0.3; }
+  100% { transform: translateY(-10vh) rotate(360deg); opacity:0; }
+}
+
+.feather-svg {
+  position: absolute;
+  animation: floatFeather ease-in-out infinite;
+  opacity: 0;
+}
+@keyframes floatFeather {
+  0% { transform: translateY(110vh) rotate(-20deg); opacity:0; }
+  15% { opacity:0.5; }
+  85% { opacity:0.3; }
+  100% { transform: translateY(-10vh) rotate(20deg); opacity:0; }
+}
+
+/* ===== LOGIN PAGE ===== */
+#loginPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  background: linear-gradient(135deg, #0D1B3E 0%, #1A3A6B 30%, #003344 60%, #1A0A00 100%);
+}
+
+.login-bg-glow {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 60% 40% at 30% 20%, rgba(255,107,26,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 70% 80%, rgba(212,160,23,0.15) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 50% 50%, rgba(0,107,138,0.1) 0%, transparent 70%);
+}
+
+.login-stars {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.star {
+  position: absolute;
+  width: 2px; height: 2px;
+  background: #F0C040;
+  border-radius: 50%;
+  animation: twinkle ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%,100% { opacity:0.2; transform:scale(1); }
+  50% { opacity:1; transform:scale(1.5); }
+}
+
+.login-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255,248,238,0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(212,160,23,0.3);
+  border-radius: 32px;
+  padding: 48px 40px;
+  text-align: center;
+  box-shadow:
+    0 0 60px rgba(212,160,23,0.12),
+    0 40px 80px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+  animation: cardEntrance 0.8s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes cardEntrance {
+  from { opacity:0; transform:translateY(40px) scale(0.95); }
+  to { opacity:1; transform:translateY(0) scale(1); }
+}
+
+.login-om {
+  font-family: 'Cinzel', serif;
+  font-size: 48px;
+  background: linear-gradient(135deg, #FF8C42, #F0C040, #FF6B1A);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 8px;
+  animation: omPulse 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(255,107,26,0.5));
+}
+@keyframes omPulse {
+  0%,100% { filter: drop-shadow(0 0 20px rgba(255,107,26,0.5)); }
+  50% { filter: drop-shadow(0 0 35px rgba(240,192,64,0.8)); }
+}
+
+.login-title {
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #F5E6CC;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+.login-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-style: italic;
+  color: rgba(240,192,64,0.8);
+  margin-bottom: 32px;
+}
+
+.login-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0;
+}
+.login-divider::before, .login-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,160,23,0.4), transparent);
+}
+.login-divider span {
+  font-size: 20px;
+}
+
+.login-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-style: italic;
+  color: rgba(245,230,204,0.6);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.btn-google {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, rgba(255,107,26,0.9), rgba(212,160,23,0.9));
+  border: 1px solid rgba(240,192,64,0.4);
+  border-radius: 16px;
+  color: #fff;
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 20px rgba(255,107,26,0.3);
+  position: relative;
+  overflow: hidden;
+}
+.btn-google::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.btn-google:hover::before { opacity:1; }
+.btn-google:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(255,107,26,0.4);
+}
+.btn-google:active { transform: translateY(0); }
+
+.google-icon {
+  width: 20px; height: 20px;
+  background: white;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.google-icon svg { width:14px; height:14px; }
+
+.login-peacock {
+  position: absolute;
+  opacity: 0.06;
+  pointer-events: none;
+}
+.login-peacock.top-right {
+  top: -20px; right: -20px;
+  font-size: 120px;
+  transform: rotate(30deg);
+  color: #00A89D;
+}
+.login-peacock.bottom-left {
+  bottom: -20px; left: -20px;
+  font-size: 100px;
+  transform: rotate(-20deg);
+  color: #FF8C42;
+}
+
+/* ===== MAIN APP ===== */
+#app { display: none; min-height: 100vh; position: relative; }
+
+/* ===== TOP NAV ===== */
+.top-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: rgba(var(--cream-rgb, 255,248,238),0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(212,160,23,0.15);
+}
+[data-theme="dark"] .top-nav {
+  background: rgba(26,16,8,0.85);
+}
+.nav-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--saffron), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 1px;
+}
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.nav-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  cursor: pointer;
+  object-fit: cover;
+  transition: transform 0.2s;
+}
+.nav-avatar:hover { transform: scale(1.05); }
+.nav-avatar-placeholder {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: linear-gradient(135deg, var(--saffron), var(--gold));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+.theme-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(212,160,23,0.3);
+  background: transparent;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  transition: all 0.2s;
+  color: var(--text-dark);
+}
+.theme-btn:hover { background: rgba(212,160,23,0.1); }
+
+/* ===== BOTTOM NAV ===== */
+.bottom-nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  background: rgba(255,248,238,0.92);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(212,160,23,0.15);
+  padding: 8px 0 12px;
+}
+[data-theme="dark"] .bottom-nav {
+  background: rgba(26,16,8,0.92);
+}
+.nav-tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  background: none;
+  color: var(--text-soft);
+}
+.nav-tab.active { color: var(--saffron); }
+.nav-tab-icon { font-size: 22px; line-height: 1; }
+.nav-tab-label { font-size: 10px; font-weight: 600; letter-spacing: 0.5px; }
+
+/* ===== PAGES ===== */
+.page {
+  display: none;
+  padding-top: 80px;
+  padding-bottom: 90px;
+  min-height: 100vh;
+}
+.page.active { display: block; }
+
+/* ===== HOME PAGE ===== */
+#homePage {
+  background: 
+    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(255,107,26,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 30% at 80% 100%, rgba(212,160,23,0.06) 0%, transparent 60%),
+    var(--cream);
+}
+
+.home-greeting {
+  padding: 20px 20px 0;
+  text-align: center;
+}
+.greeting-date {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--saffron);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.greeting-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  color: var(--text-soft);
+  font-style: italic;
+}
+.greeting-name span { color: var(--text-dark); font-style: normal; font-weight: 500; }
+
+.daily-banner {
+  margin: 16px 20px;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, rgba(255,107,26,0.1), rgba(212,160,23,0.08));
+  border: 1px solid rgba(212,160,23,0.2);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.banner-icon { font-size: 24px; flex-shrink: 0; }
+.banner-text { font-size: 13px; color: var(--text-mid); line-height: 1.4; }
+.banner-text strong { color: var(--saffron); display: block; font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; }
+
+/* CATEGORY CHIPS */
+.category-scroll {
+  display: flex;
+  gap: 8px;
+  padding: 12px 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.category-scroll::-webkit-scrollbar { display: none; }
+.cat-chip {
+  flex-shrink: 0;
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(212,160,23,0.25);
+  background: transparent;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Nunito', sans-serif;
+  color: var(--text-soft);
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.5px;
+}
+.cat-chip.active {
+  background: linear-gradient(135deg, var(--saffron), var(--gold));
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(255,107,26,0.25);
+}
+.cat-chip:hover:not(.active) {
+  border-color: var(--saffron);
+  color: var(--saffron);
+}
+
+/* QUOTE CARD */
+.quote-card-wrap {
+  padding: 8px 20px 16px;
+  animation: slideUp 0.6s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes slideUp {
+  from { opacity:0; transform:translateY(30px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+.quote-card {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1), 0 0 0 1px rgba(212,160,23,0.15);
+  background: var(--white);
+}
+[data-theme="dark"] .quote-card {
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(212,160,23,0.15);
+}
+
+.quote-card-header {
+  background: linear-gradient(135deg, #1A3A6B, #003344, #0D2244);
+  padding: 28px 28px 22px;
+  position: relative;
+  overflow: hidden;
+}
+.qch-glow {
+  position: absolute;
+  width: 150px; height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,107,26,0.2) 0%, transparent 70%);
+  top: -40px; right: -40px;
+}
+.qch-glow2 {
+  position: absolute;
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,160,23,0.15) 0%, transparent 70%);
+  bottom: -20px; left: 20px;
+}
+
+.quote-category-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(255,107,26,0.2);
+  border: 1px solid rgba(255,107,26,0.3);
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,140,66,0.9);
+  margin-bottom: 16px;
+}
+
+.quote-decoration {
+  font-size: 40px;
+  opacity: 0.15;
+  position: absolute;
+  top: 16px; right: 24px;
+  line-height: 1;
+}
+
+.quote-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.55;
+  color: #F5E6CC;
+  position: relative;
+  z-index: 1;
+}
+.quote-text::before {
+  content: '\201C';
+  font-size: 60px;
+  color: rgba(212,160,23,0.3);
+  position: absolute;
+  top: -20px; left: -8px;
+  font-family: 'Cormorant Garamond', serif;
+  line-height: 1;
+}
+
+.quote-source {
+  margin-top: 14px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(212,160,23,0.7);
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+.quote-card-body {
+  padding: 22px 28px;
+}
+
+.explanation-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--saffron);
+  margin-bottom: 8px;
+}
+.explanation-text {
+  font-size: 14px;
+  color: var(--text-mid);
+  line-height: 1.7;
+}
+
+.card-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,160,23,0.2), transparent);
+  margin: 18px 0;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 8px;
+  border-radius: 14px;
+  border: 1px solid rgba(212,160,23,0.2);
+  background: transparent;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Nunito', sans-serif;
+  color: var(--text-mid);
+  transition: all 0.2s;
+  letter-spacing: 0.3px;
+}
+.action-btn:hover {
+  background: rgba(212,160,23,0.08);
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-1px);
+}
+.action-btn.fav-active {
+  background: rgba(139,26,26,0.08);
+  border-color: var(--maroon);
+  color: var(--maroon);
+}
+.action-btn-icon { font-size: 16px; }
+
+.next-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  margin: 16px 20px 0;
+  width: calc(100% - 40px);
+  border-radius: 18px;
+  border: none;
+  background: linear-gradient(135deg, #1A3A6B, #003344);
+  color: #F5E6CC;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 8px 24px rgba(26,58,107,0.2);
+  position: relative;
+  overflow: hidden;
+}
+.next-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  transition: left 0.4s;
+}
+.next-btn:hover::before { left: 100%; }
+.next-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(26,58,107,0.3); }
+
+/* ===== FAVORITES PAGE ===== */
+#favPage { padding: 80px 20px 90px; }
+.page-title {
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  background: linear-gradient(135deg, var(--saffron), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.page-subtitle {
+  font-size: 13px;
+  color: var(--text-soft);
+  margin-bottom: 20px;
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+}
+.fav-empty {
+  text-align: center;
+  padding: 60px 20px;
+}
+.fav-empty-icon { font-size: 56px; margin-bottom: 16px; opacity: 0.4; }
+.fav-empty-text { font-size: 15px; color: var(--text-soft); font-style: italic; font-family: 'Cormorant Garamond', serif; }
+
+.fav-card {
+  background: var(--white);
+  border-radius: 20px;
+  border: 1px solid rgba(212,160,23,0.15);
+  padding: 18px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  animation: slideUp 0.4s both;
+}
+.fav-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.fav-tag {
+  padding: 3px 10px;
+  background: rgba(255,107,26,0.1);
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--saffron);
+}
+.fav-remove {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--text-soft);
+  padding: 2px;
+  transition: color 0.2s;
+}
+.fav-remove:hover { color: var(--maroon); }
+.fav-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+.fav-explanation {
+  font-size: 12px;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+/* ===== PROFILE PAGE ===== */
+#profilePage { padding: 80px 20px 90px; }
+.profile-hero {
+  text-align: center;
+  padding: 30px 20px;
+  background: linear-gradient(135deg, rgba(26,58,107,0.06), rgba(255,107,26,0.06));
+  border-radius: 24px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(212,160,23,0.12);
+}
+.profile-avatar-wrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 14px;
+}
+.profile-avatar {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  border: 3px solid var(--gold);
+  object-fit: cover;
+  box-shadow: 0 0 0 4px rgba(212,160,23,0.15);
+}
+.profile-avatar-placeholder {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  border: 3px solid var(--gold);
+  background: linear-gradient(135deg, var(--saffron), var(--gold));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 0 0 4px rgba(212,160,23,0.15);
+}
+.profile-name {
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+.profile-email {
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+.settings-section {
+  margin-bottom: 16px;
+}
+.settings-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--saffron);
+  margin-bottom: 8px;
+  padding-left: 4px;
+}
+.settings-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  background: var(--white);
+  border-radius: 16px;
+  border: 1px solid rgba(212,160,23,0.1);
+  margin-bottom: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.settings-item:hover { border-color: rgba(212,160,23,0.3); background: rgba(212,160,23,0.03); }
+.settings-item-left { display: flex; align-items: center; gap: 12px; }
+.settings-item-icon { font-size: 20px; width: 36px; text-align: center; }
+.settings-item-text { font-size: 14px; font-weight: 600; color: var(--text-dark); }
+.settings-item-sub { font-size: 12px; color: var(--text-soft); }
+.settings-item-arrow { font-size: 16px; color: var(--text-soft); }
+
+.toggle-switch {
+  position: relative;
+  width: 44px; height: 24px;
+}
+.toggle-switch input { opacity:0; width:0; height:0; }
+.toggle-slider {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: rgba(212,160,23,0.2);
+  cursor: pointer;
+  transition: 0.3s;
+}
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--text-soft);
+  top: 3px; left: 3px;
+  transition: 0.3s;
+}
+.toggle-switch input:checked + .toggle-slider {
+  background: linear-gradient(135deg, var(--saffron), var(--gold));
+}
+.toggle-switch input:checked + .toggle-slider::before {
+  transform: translateX(20px);
+  background: white;
+}
+
+.logout-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(139,26,26,0.2);
+  background: rgba(139,26,26,0.05);
+  color: var(--maroon);
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  margin-top: 8px;
+}
+.logout-btn:hover { background: rgba(139,26,26,0.1); }
+
+/* TOAST */
+.toast {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: linear-gradient(135deg, #1A3A6B, #003344);
+  color: #F5E6CC;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 1000;
+  opacity: 0;
+  transition: all 0.3s;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  border: 1px solid rgba(212,160,23,0.2);
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Loading overlay */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #0D1B3E, #1A3A6B);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  transition: opacity 0.5s;
+}
+.loading-om {
+  font-family: 'Cinzel', serif;
+  font-size: 64px;
+  background: linear-gradient(135deg, #FF8C42, #F0C040);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: omPulse 1.5s ease-in-out infinite;
+}
+.loading-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: rgba(245,230,204,0.6);
+  font-style: italic;
+  margin-top: 12px;
+  letter-spacing: 2px;
+}
+</style>
+</head>
+<body>
+
+<!-- LOADING -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-om">ॐ</div>
+  <div class="loading-text">Daily Krishna</div>
+</div>
+
+<!-- PARTICLES -->
+<div id="particles"></div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- ===================== LOGIN PAGE ===================== -->
+<div id="loginPage">
+  <div class="login-bg-glow"></div>
+  <div class="login-stars" id="loginStars"></div>
+
+  <div class="login-card">
+    <div class="login-peacock top-right">🦚</div>
+    <div class="login-peacock bottom-left">🪷</div>
+
+    <div class="login-om">ॐ</div>
+    <div class="login-title">Daily Krishna</div>
+    <div class="login-subtitle">Wisdom of the Bhagavad Gita</div>
+
+    <div class="login-divider"><span>🪔</span></div>
+
+    <div class="login-quote">
+      "You have the right to perform your actions, but you are not entitled to the fruits of your actions."
+      <br><br>— Bhagavad Gita
+    </div>
+
+    <button class="btn-google" onclick="signInWithGoogle()">
+      <div class="google-icon">
+        <svg viewBox="0 0 24 24">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+        </svg>
+      </div>
+      Continue with Google
+    </button>
+
+    <div style="margin-top:20px; font-size:11px; color:rgba(245,230,204,0.35); line-height:1.5;">
+      By continuing, you agree to receive daily Krishna wisdom 🙏
+    </div>
+  </div>
+</div>
+
+<!-- ===================== MAIN APP ===================== -->
+<div id="app">
+  <!-- TOP NAV -->
+  <nav class="top-nav">
+    <div class="nav-logo">🪷 Daily Krishna</div>
+    <div class="nav-right">
+      <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+      <div class="nav-avatar-placeholder" id="navAvatar" onclick="showPage('profilePage')">K</div>
+    </div>
+  </nav>
+
+  <!-- HOME PAGE -->
+  <div class="page active" id="homePage">
+    <div class="home-greeting">
+      <div class="greeting-date" id="dateDisplay"></div>
+      <div class="greeting-name">Jai Shri Krishna, <span id="userName">Devotee</span> 🙏</div>
+    </div>
+
+    <div class="daily-banner">
+      <div class="banner-icon">🌅</div>
+      <div class="banner-text">
+        <strong>Today's Wisdom</strong>
+        Start your day with Krishna's divine guidance
+      </div>
+    </div>
+
+    <div class="category-scroll" id="categoryScroll">
+      <button class="cat-chip active" onclick="filterCategory('All', this)">All</button>
+      <button class="cat-chip" onclick="filterCategory('Peace', this)">☮️ Peace</button>
+      <button class="cat-chip" onclick="filterCategory('Karma', this)">⚖️ Karma</button>
+      <button class="cat-chip" onclick="filterCategory('Courage', this)">🔥 Courage</button>
+      <button class="cat-chip" onclick="filterCategory('Devotion', this)">🙏 Devotion</button>
+      <button class="cat-chip" onclick="filterCategory('Mind', this)">🧘 Mind</button>
+    </div>
+
+    <div class="quote-card-wrap" id="quoteCardWrap">
+      <div class="quote-card">
+        <div class="quote-card-header">
+          <div class="qch-glow"></div>
+          <div class="qch-glow2"></div>
+          <div class="quote-decoration">🪷</div>
+          <div class="quote-category-tag" id="quoteCategory">Peace</div>
+          <div class="quote-text" id="quoteText">You have the right to perform your actions, but you are not entitled to the fruits of your actions.</div>
+          <div class="quote-source">— Bhagavad Gita 2.47</div>
+        </div>
+        <div class="quote-card-body">
+          <div class="explanation-label">✨ Krishna's Message</div>
+          <div class="explanation-text" id="quoteExplanation">Do your best work every day without worrying about results. When you let go of the need to control outcomes, you work with a free and peaceful heart. This is the secret to doing great things without stress or disappointment.</div>
+          <div class="card-divider"></div>
+          <div class="card-actions">
+            <button class="action-btn" id="favBtn" onclick="toggleFavorite()">
+              <span class="action-btn-icon">🤍</span> Save
+            </button>
+            <button class="action-btn" onclick="shareQuote()">
+              <span class="action-btn-icon">📤</span> Share
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="next-btn" onclick="nextQuote()">
+      🪷 Next Quote &nbsp; ›
+    </button>
+  </div>
+
+  <!-- FAVORITES PAGE -->
+  <div class="page" id="favPage">
+    <div class="page-title">My Favorites</div>
+    <div class="page-subtitle">Quotes that touched your heart</div>
+    <div id="favList">
+      <div class="fav-empty">
+        <div class="fav-empty-icon">🤍</div>
+        <div class="fav-empty-text">No saved quotes yet.<br>Save a quote from the home screen!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFILE PAGE -->
+  <div class="page" id="profilePage">
+    <div class="profile-hero">
+      <div class="profile-avatar-wrap">
+        <div class="profile-avatar-placeholder" id="profileAvatar">K</div>
+      </div>
+      <div class="profile-name" id="profileName">Krishna Devotee</div>
+      <div class="profile-email" id="profileEmail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="92f6f7e4fde6f7f7d2f9e0fbe1fafcf3bcf1fdff">[email&#160;protected]</a></div>
+    </div>
+
+    <div class="settings-section">
+      <div class="settings-label">Preferences</div>
+      <div class="settings-item" onclick="toggleTheme()">
+        <div class="settings-item-left">
+          <div class="settings-item-icon">🌙</div>
+          <div>
+            <div class="settings-item-text">Dark Mode</div>
+            <div class="settings-item-sub">Switch to night theme</div>
+          </div>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="darkToggle" onchange="toggleTheme()">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <div class="settings-label">About</div>
+      <div class="settings-item">
+        <div class="settings-item-left">
+          <div class="settings-item-icon">📖</div>
+          <div>
+            <div class="settings-item-text">Daily Krishna</div>
+            <div class="settings-item-sub">Bhagavad Gita Wisdom · Version 1.0</div>
+          </div>
+        </div>
+        <span class="settings-item-arrow">›</span>
+      </div>
+      <div class="settings-item">
+        <div class="settings-item-left">
+          <div class="settings-item-icon">🌸</div>
+          <div>
+            <div class="settings-item-text">Favorites</div>
+            <div class="settings-item-sub" id="favCount">0 quotes saved</div>
+          </div>
+        </div>
+        <span class="settings-item-arrow">›</span>
+      </div>
+    </div>
+
+    <button class="logout-btn" onclick="logout()">
+      🚪 Sign Out
+    </button>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <button class="nav-tab active" id="tab-home" onclick="showPage('homePage', 'tab-home')">
+      <div class="nav-tab-icon">🏠</div>
+      <div class="nav-tab-label">Home</div>
+    </button>
+    <button class="nav-tab" id="tab-fav" onclick="showPage('favPage', 'tab-fav')">
+      <div class="nav-tab-icon">🤍</div>
+      <div class="nav-tab-label">Saved</div>
+    </button>
+    <button class="nav-tab" id="tab-profile" onclick="showPage('profilePage', 'tab-profile')">
+      <div class="nav-tab-icon">👤</div>
+      <div class="nav-tab-label">Profile</div>
+    </button>
+  </nav>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ===== QUOTES DATA =====
+const quotes = [
+  { category: "Karma", text: "You have the right to perform your actions, but you are not entitled to the fruits of your actions.", source: "Bhagavad Gita 2.47", explanation: "Do your best every day without worrying about results. When you let go of needing to control outcomes, you work with a free and peaceful heart. This is the secret to doing great things without stress." },
+  { category: "Peace", text: "The soul is never born nor dies at any time. It has not come into being, does not come into being, and will not come into being. It is unborn, eternal, ever-existing, and primeval.", source: "Bhagavad Gita 2.20", explanation: "You are more than your body. You are an eternal soul that cannot be destroyed. This understanding removes the fear of death and helps you live with courage and peace every single day." },
+  { category: "Mind", text: "For one who has conquered the mind, the mind is the best of friends; but for one who has failed to do so, his very mind will be the greatest enemy.", source: "Bhagavad Gita 6.6", explanation: "Your mind can either be your biggest support or your worst obstacle. Train your mind with calm thoughts, good habits, and daily wisdom, and it will guide you toward happiness and success." },
+  { category: "Courage", text: "Never was there a time when I did not exist, nor you, nor all these beings; nor will there be any time when we will cease to exist.", source: "Bhagavad Gita 2.12", explanation: "Face every challenge knowing you are eternal and powerful. No difficulty lasts forever. Krishna reminds us that our true self is beyond all struggles, giving us the courage to keep going." },
+  { category: "Devotion", text: "Fix your mind on Me, be devoted to Me, worship Me, bow down to Me. So shall you come to Me. I promise you truly, for you are dear to Me.", source: "Bhagavad Gita 18.65", explanation: "When you put your faith and love in something higher than yourself, life becomes more meaningful. Devotion gives you strength, direction, and a deep inner peace that nothing can disturb." },
+  { category: "Peace", text: "A person who is not disturbed in mind even amidst the threefold miseries or elated when there is happiness, and who is free from attachment, fear, and anger, is called a sage of steady mind.", source: "Bhagavad Gita 2.56", explanation: "True peace means staying calm whether things go well or badly. When you don't get too excited in good times or too sad in bad times, you build a strong, peaceful mind that handles everything with grace." },
+  { category: "Karma", text: "Let right deeds be your motive, not the fruit which comes from them.", source: "Bhagavad Gita 2.47", explanation: "Do the right thing simply because it is right, not to get a reward or recognition. This attitude keeps your heart pure and your actions honest, and brings lasting satisfaction." },
+  { category: "Mind", text: "The mind is restless, turbulent, obstinate, and very strong. To subdue it, I think, is more difficult than controlling the wind.", source: "Bhagavad Gita 6.34", explanation: "Your mind wanders constantly — and that is completely normal. Krishna says the mind is like the wind. You do not need to stop it completely, just practice guiding it gently back with patience." },
+  { category: "Courage", text: "Do not yield to unmanliness, O Arjuna. It does not befit you. Shake off your faint-heartedness and arise.", source: "Bhagavad Gita 2.3", explanation: "When life feels overwhelming, Krishna tells us: rise. You are stronger than your fears. Your difficulties are not there to break you — they are there to show you the strength you already have inside." },
+  { category: "Devotion", text: "Whatever you do, whatever you eat, whatever you offer or give away, and whatever austerities you perform — do that as an offering to Me.", source: "Bhagavad Gita 9.27", explanation: "Turn every small action into an act of love and offering. When you cook, work, speak, or rest — do it with care and dedication. This is how ordinary life becomes extraordinary and divine." },
+  { category: "Peace", text: "The happiness which comes from long practice, which leads to the end of suffering, which at first is like poison, but at last like nectar — this kind of happiness arises from the serenity of one's own mind.", source: "Bhagavad Gita 18.37", explanation: "Real happiness takes time and effort to build. It may feel uncomfortable at first — like giving up bad habits or changing your mindset — but the peace and joy that come from inner growth are worth every effort." },
+  { category: "Karma", text: "Better is one's own dharma, though imperfectly performed, than the dharma of another well performed.", source: "Bhagavad Gita 3.35", explanation: "Be yourself fully. Walking your own path, even with mistakes, is better than copying someone else's life perfectly. Your unique journey is your greatest offering to the world." }
+];
+
+let currentIndex = 0;
+let currentCategory = 'All';
+let favorites = JSON.parse(localStorage.getItem('dk_favorites') || '[]');
+let user = null;
+let isDark = false;
+
+// ===== INIT =====
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loadingOverlay').style.opacity = '0';
+    setTimeout(() => {
+      document.getElementById('loadingOverlay').style.display = 'none';
+      checkAuth();
+    }, 500);
+  }, 1500);
+
+  createStars();
+  createParticles();
+  setDateDisplay();
+});
+
+function setDateDisplay() {
+  const now = new Date();
+  const opts = { weekday:'long', month:'long', day:'numeric', year:'numeric' };
+  document.getElementById('dateDisplay').textContent = now.toLocaleDateString('en-IN', opts);
+}
+
+// ===== AUTH =====
+function checkAuth() {
+  const savedUser = localStorage.getItem('dk_user');
+  if (savedUser) {
+    user = JSON.parse(savedUser);
+    showApp();
+  } else {
+    document.getElementById('loginPage').style.display = 'flex';
+  }
+}
+
+function signInWithGoogle() {
+  // Simulate Google sign-in for demo
+  const mockUsers = [
+    { name: 'Vijay Kanth', email: 'vijay@example.com', initial: 'V' },
+    { name: 'Arjuna Das', email: 'arjuna@example.com', initial: 'A' },
+    { name: 'Radha Devi', email: 'radha@example.com', initial: 'R' },
+  ];
+  user = mockUsers[0];
+  localStorage.setItem('dk_user', JSON.stringify(user));
+
+  document.getElementById('loginPage').style.opacity = '0';
+  document.getElementById('loginPage').style.transition = 'opacity 0.5s';
+  setTimeout(() => {
+    document.getElementById('loginPage').style.display = 'none';
+    showApp();
+  }, 500);
+}
+
+function showApp() {
+  document.getElementById('app').style.display = 'block';
+  updateUserUI();
+  renderQuote();
+  renderFavorites();
+}
+
+function updateUserUI() {
+  if (!user) return;
+  const firstName = user.name.split(' ')[0];
+  document.getElementById('userName').textContent = firstName;
+  document.getElementById('profileName').textContent = user.name;
+  document.getElementById('profileEmail').textContent = user.email;
+  document.getElementById('navAvatar').textContent = user.initial;
+  document.getElementById('profileAvatar').textContent = user.initial;
+}
+
+function logout() {
+  if (!confirm('Are you sure you want to sign out?')) return;
+  localStorage.removeItem('dk_user');
+  user = null;
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('loginPage').style.display = 'flex';
+  document.getElementById('loginPage').style.opacity = '1';
+}
+
+// ===== QUOTES =====
+function getFilteredQuotes() {
+  if (currentCategory === 'All') return quotes;
+  return quotes.filter(q => q.category === currentCategory);
+}
+
+function renderQuote() {
+  const filtered = getFilteredQuotes();
+  if (!filtered.length) return;
+  const q = filtered[currentIndex % filtered.length];
+
+  document.getElementById('quoteCategory').textContent = q.category;
+  document.getElementById('quoteText').textContent = q.text;
+  document.getElementById('quoteExplanation').textContent = q.explanation;
+
+  // Check if favorite
+  const isFav = favorites.some(f => f.text === q.text);
+  const favBtn = document.getElementById('favBtn');
+  if (isFav) {
+    favBtn.innerHTML = '<span class="action-btn-icon">❤️</span> Saved';
+    favBtn.classList.add('fav-active');
+  } else {
+    favBtn.innerHTML = '<span class="action-btn-icon">🤍</span> Save';
+    favBtn.classList.remove('fav-active');
+  }
+
+  // Animate
+  const wrap = document.getElementById('quoteCardWrap');
+  wrap.style.animation = 'none';
+  wrap.offsetHeight;
+  wrap.style.animation = 'slideUp 0.5s cubic-bezier(0.16,1,0.3,1) both';
+}
+
+function nextQuote() {
+  currentIndex++;
+  renderQuote();
+}
+
+function filterCategory(cat, btn) {
+  currentCategory = cat;
+  currentIndex = 0;
+  document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  renderQuote();
+}
+
+// ===== FAVORITES =====
+function toggleFavorite() {
+  const filtered = getFilteredQuotes();
+  const q = filtered[currentIndex % filtered.length];
+  const idx = favorites.findIndex(f => f.text === q.text);
+
+  if (idx >= 0) {
+    favorites.splice(idx, 1);
+    showToast('Removed from favorites');
+  } else {
+    favorites.push(q);
+    showToast('💛 Saved to favorites!');
+  }
+
+  localStorage.setItem('dk_favorites', JSON.stringify(favorites));
+  renderQuote();
+  renderFavorites();
+  updateFavCount();
+}
+
+function renderFavorites() {
+  const list = document.getElementById('favList');
+  updateFavCount();
+
+  if (!favorites.length) {
+    list.innerHTML = `<div class="fav-empty">
+      <div class="fav-empty-icon">🤍</div>
+      <div class="fav-empty-text">No saved quotes yet.<br>Save a quote from the home screen!</div>
+    </div>`;
+    return;
+  }
+
+  list.innerHTML = favorites.map((q, i) => `
+    <div class="fav-card" style="animation-delay:${i * 0.05}s">
+      <div class="fav-card-header">
+        <span class="fav-tag">${q.category}</span>
+        <button class="fav-remove" onclick="removeFavorite(${i})" title="Remove">✕</button>
+      </div>
+      <div class="fav-quote">"${q.text}"</div>
+      <div class="fav-explanation">${q.explanation.substring(0, 100)}...</div>
+    </div>
+  `).join('');
+}
+
+function removeFavorite(i) {
+  favorites.splice(i, 1);
+  localStorage.setItem('dk_favorites', JSON.stringify(favorites));
+  renderFavorites();
+  renderQuote();
+  showToast('Removed from favorites');
+}
+
+function updateFavCount() {
+  const el = document.getElementById('favCount');
+  if (el) el.textContent = `${favorites.length} quote${favorites.length !== 1 ? 's' : ''} saved`;
+}
+
+// ===== SHARE =====
+function shareQuote() {
+  const filtered = getFilteredQuotes();
+  const q = filtered[currentIndex % filtered.length];
+  const text = `"${q.text}"\n\n— ${q.source}\n\n🪷 Daily Krishna App`;
+
+  if (navigator.share) {
+    navigator.share({ title: 'Daily Krishna', text });
+  } else {
+    navigator.clipboard.writeText(text).then(() => showToast('📋 Quote copied!'));
+  }
+}
+
+// ===== NAVIGATION =====
+function showPage(pageId, tabId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
+  if (tabId) document.getElementById(tabId).classList.add('active');
+  if (pageId === 'favPage') renderFavorites();
+}
+
+// ===== THEME =====
+function toggleTheme() {
+  isDark = !isDark;
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : '');
+  document.getElementById('themeBtn').textContent = isDark ? '☀️' : '🌙';
+  document.getElementById('darkToggle').checked = isDark;
+}
+
+// ===== TOAST =====
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ===== STARS =====
+function createStars() {
+  const container = document.getElementById('loginStars');
+  for (let i = 0; i < 60; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.animationDuration = (2 + Math.random() * 4) + 's';
+    star.style.animationDelay = (Math.random() * 4) + 's';
+    star.style.opacity = Math.random() * 0.5;
+    container.appendChild(star);
+  }
+}
+
+// ===== PARTICLES =====
+function createParticles() {
+  const container = document.getElementById('particles');
+  const colors = ['rgba(212,160,23,0.4)','rgba(255,107,26,0.3)','rgba(0,107,138,0.3)','rgba(255,140,66,0.4)'];
+  const emojis = ['🪷','🌸','✨','🌟'];
+
+  for (let i = 0; i < 8; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = 4 + Math.random() * 6;
+    p.style.width = size + 'px';
+    p.style.height = size + 'px';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.background = colors[Math.floor(Math.random() * colors.length)];
+    p.style.animationDuration = (15 + Math.random() * 20) + 's';
+    p.style.animationDelay = (Math.random() * 20) + 's';
+    container.appendChild(p);
+  }
+
+  for (let i = 0; i < 4; i++) {
+    const f = document.createElement('div');
+    f.className = 'feather-svg';
+    f.textContent = emojis[i % emojis.length];
+    f.style.fontSize = (16 + Math.random() * 12) + 'px';
+    f.

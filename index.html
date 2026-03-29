@@ -1385,4 +1385,116 @@ function createParticles() {
     f.className = 'feather-svg';
     f.textContent = emojis[i % emojis.length];
     f.style.fontSize = (16 + Math.random() * 12) + 'px';
-    f.
+    <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyCN2SPmQivgiKTHdfJryw8_zqkOYdgdD6I",
+  authDomain: "daily-krishna-caf46.firebaseapp.com",
+  projectId: "daily-krishna-caf46",
+  storageBucket: "daily-krishna-caf46.firebasestorage.app",
+  messagingSenderId: "710960440877",
+  appId: "1:710960440877:web:f1bfe355819e3986aa7aa4"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+auth.getRedirectResult().then((result) => {
+  if (result && result.user) onUserLoggedIn(result.user);
+}).catch((error) => {
+  console.error("Redirect error:", error);
+  hideLoading();
+});
+
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    onUserLoggedIn(user);
+  } else {
+    hideLoading();
+    document.getElementById('loginPage').style.display = 'flex';
+    document.getElementById('app').style.display = 'none';
+  }
+});
+
+async function signInWithGoogle() {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  showLoading();
+  try {
+    const result = await auth.signInWithPopup(provider);
+    onUserLoggedIn(result.user);
+  } catch (error) {
+    console.log("Popup error:", error.code);
+    if (
+      error.code === 'auth/popup-blocked' ||
+      error.code === 'auth/popup-closed-by-user' ||
+      error.code === 'auth/cancelled-popup-request'
+    ) {
+      try {
+        await auth.signInWithRedirect(provider);
+      } catch (e) {
+        hideLoading();
+        showToast("Login failed. Try again 🙏");
+      }
+    } else {
+      hideLoading();
+      showToast("Login failed: " + error.message);
+    }
+  }
+}
+
+function onUserLoggedIn(user) {
+  hideLoading();
+  document.getElementById('loginPage').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  const firstName = user.displayName ? user.displayName.split(' ')[0] : 'Devotee';
+  const userNameEl = document.getElementById('userName');
+  if (userNameEl) userNameEl.textContent = firstName;
+  const avatar = document.getElementById('navAvatar');
+  if (avatar) {
+    if (user.photoURL) {
+      avatar.innerHTML = '<img src="' + user.photoURL + '" style="width:36px;height:36px;border-radius:50%;border:2px solid #D4A017;" />';
+    } else {
+      avatar.textContent = firstName[0].toUpperCase();
+    }
+  }
+  const profileName = document.getElementById('profileName');
+  const profileEmail = document.getElementById('profileEmail');
+  if (profileName) profileName.textContent = user.displayName || 'Krishna Devotee';
+  if (profileEmail) profileEmail.textContent = user.email || '';
+}
+
+function signOut() {
+  auth.signOut().then(() => {
+    document.getElementById('loginPage').style.display = 'flex';
+    document.getElementById('app').style.display = 'none';
+    showToast("Signed out 🙏");
+  });
+}
+
+function showLoading() {
+  const el = document.getElementById('loadingOverlay');
+  if (el) { el.style.display = 'flex'; el.style.opacity = '1'; }
+}
+
+function hideLoading() {
+  const el = document.getElementById('loadingOverlay');
+  if (el) { el.style.opacity = '0'; setTimeout(() => el.style.display = 'none', 500); }
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+</script>
+
+</body>
+</html>
+    

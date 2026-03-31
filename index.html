@@ -6,1752 +6,678 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#1a0533">
+<meta name="theme-color" content="#0a0118">
 <title>Daily Krishna</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Lottie Web Player -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+
 <style>
 /* ============================================================
-   DESIGN SYSTEM — Divine Krishna Theme
-   Aesthetic: Luxury spiritual · Gold on deep cosmic blue
-   Inspired by: Nataraja temples, Mughal miniature painting, 
-   Peacock feathers, Vrindavan moonlight
+   DIVINE DESIGN SYSTEM — Daily Krishna v6
+   Theme: Cosmic dark · Gold · Peacock teal · Sacred fire
 ============================================================ */
 :root {
-  --ink:#0a0118;
-  --deep:#120228;
-  --void:#1a0533;
-  --midnight:#210644;
-  --twilight:#2d0a5a;
-  --purple:#4a1a8a;
-  --blue:#1a3a8a;
-  --teal:#007a78;
-  --saffron:#e8570a;
-  --orange:#f07020;
-  --gold:#d4960e;
-  --gold2:#f0b830;
-  --gold3:#ffe080;
-  --cream:#fff8ee;
-  --ivory:#fdf0d0;
-  --white:#ffffff;
-  --peacock1:#006080;
-  --peacock2:#00a89d;
-  --peacock3:#40d8c8;
-  --r: rgba(212,150,14,0.15);
-  --rs: rgba(212,150,14,0.08);
+  --ink:#080112;
+  --deep:#100220;
+  --void:#180430;
+  --mid:#220848;
+  --purple:#3a1278;
+  --blue:#142866;
+  --teal:#006870;
+  --saffron:#d84808;
+  --orange:#e86818;
+  --gold:#c88c0c;
+  --gold2:#e0a820;
+  --gold3:#f8d860;
+  --cream:#fff4e0;
+  --ivory:#fce8c0;
+  --peacock1:#004858;
+  --peacock2:#009088;
+  --peacock3:#30c8b8;
+  --flame1:#ff6000;
+  --flame2:#ff9800;
+  --flame3:#ffcc02;
 }
 
-* { margin:0; padding:0; box-sizing:border-box; }
-
-body {
-  font-family: 'Nunito', sans-serif;
-  background: var(--ink);
-  color: var(--cream);
-  min-height: 100vh;
-  overflow-x: hidden;
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--ink);
+  color:var(--cream);
+  min-height:100vh;
+  overflow-x:hidden;
 }
 
-/* ============================
+/* =====================
    COSMIC BACKGROUND
-============================ */
-.cosmos {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.cosmos-gradient {
-  position: absolute;
-  inset: 0;
+===================== */
+.cosmos{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.cosmos-bg{
+  position:absolute;inset:0;
   background:
-    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(74,26,138,0.4) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 80% at 80% 90%, rgba(26,58,138,0.35) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(212,150,14,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 90% 70% at 15% 10%,rgba(58,18,120,0.45) 0%,transparent 55%),
+    radial-gradient(ellipse 70% 90% at 85% 90%,rgba(20,40,102,0.4) 0%,transparent 55%),
+    radial-gradient(ellipse 50% 50% at 50% 50%,rgba(200,140,12,0.05) 0%,transparent 65%),
     var(--ink);
 }
-
-.cosmos-star {
-  position: absolute;
-  background: white;
-  border-radius: 50%;
-  animation: twinkle ease-in-out infinite;
+.cosmos-ring{
+  position:absolute;border-radius:50%;
+  border:1px solid rgba(200,140,12,0.06);
+  top:50%;left:50%;
+  animation:ringRot linear infinite;
 }
+@keyframes ringRot{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+.star{position:absolute;border-radius:50%;background:#fff;animation:tw ease-in-out infinite;}
+@keyframes tw{0%,100%{opacity:.1;transform:scale(1)}50%{opacity:.85;transform:scale(1.5)}}
 
-@keyframes twinkle {
-  0%,100%{opacity:0.15;transform:scale(1);}
-  50%{opacity:0.9;transform:scale(1.4);}
-}
-
-.cosmos-mandala {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgba(212,150,14,0.06);
-  animation: mandalaSpin linear infinite;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-}
-
-@keyframes mandalaSpin {
-  from { transform: translate(-50%,-50%) rotate(0deg); }
-  to { transform: translate(-50%,-50%) rotate(360deg); }
-}
-
-/* ============================
+/* =====================
    FLOATING PARTICLES
-============================ */
-.particle {
-  position: fixed;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 1;
-  animation: particleFloat linear infinite;
+===================== */
+.fp{position:fixed;border-radius:50%;pointer-events:none;z-index:1;animation:fpFloat linear infinite;}
+@keyframes fpFloat{
+  0%{transform:translateY(105vh) rotate(0deg);opacity:0;}
+  8%{opacity:.7;}90%{opacity:.25;}
+  100%{transform:translateY(-8vh) rotate(360deg);opacity:0;}
 }
 
-@keyframes particleFloat {
-  0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
-  10% { opacity: 0.7; }
-  90% { opacity: 0.3; }
-  100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-}
-
-/* ============================
+/* =====================
    LOADING SCREEN
-============================ */
-#loading {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: var(--ink);
-  transition: opacity 0.8s, visibility 0.8s;
+===================== */
+#loadScreen{
+  position:fixed;inset:0;z-index:9999;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  background:var(--ink);
+  transition:opacity .8s ease,visibility .8s ease;
+}
+#loadScreen.gone{opacity:0;visibility:hidden;}
+
+.load-mandala{position:relative;width:180px;height:180px;margin-bottom:28px;}
+.load-ring{
+  position:absolute;border-radius:50%;
+  border:2px solid transparent;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  animation:lrSpin linear infinite;
+}
+.load-ring:nth-child(1){width:160px;height:160px;border-top-color:rgba(200,140,12,.9);animation-duration:3s;}
+.load-ring:nth-child(2){width:128px;height:128px;border-right-color:rgba(224,168,32,.7);animation-duration:2.2s;animation-direction:reverse;}
+.load-ring:nth-child(3){width:96px;height:96px;border-bottom-color:rgba(248,216,96,.6);animation-duration:1.6s;}
+.load-ring:nth-child(4){width:64px;height:64px;border-left-color:rgba(200,140,12,.5);animation-duration:1.2s;animation-direction:reverse;}
+@keyframes lrSpin{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+/* Lottie peacock in loading */
+#loadPeacock{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:80px;height:80px;
+  z-index:2;
 }
 
-#loading.hidden {
-  opacity: 0;
-  visibility: hidden;
+.load-om{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:'Cinzel Decorative',serif;
+  font-size:32px;
+  background:linear-gradient(135deg,#c88c0c,#f8d860,#e0a820);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:omGlow 2s ease-in-out infinite;
+  z-index:3;line-height:1;
+}
+@keyframes omGlow{
+  0%,100%{filter:drop-shadow(0 0 8px rgba(200,140,12,.6));transform:translate(-50%,-50%) scale(1);}
+  50%{filter:drop-shadow(0 0 24px rgba(248,216,96,1));transform:translate(-50%,-50%) scale(1.1);}
 }
 
-.load-mandala {
-  position: relative;
-  width: 160px;
-  height: 160px;
-  margin-bottom: 32px;
-}
+.load-title{font-family:'Cinzel',serif;font-size:20px;letter-spacing:5px;background:linear-gradient(135deg,#c88c0c,#f8d860);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px;}
+.load-sub{font-family:'EB Garamond',serif;font-size:13px;color:rgba(252,232,192,.4);letter-spacing:2px;font-style:italic;}
+.load-bar-wrap{width:220px;height:1px;background:rgba(200,140,12,.12);border-radius:1px;margin-top:24px;overflow:hidden;}
+.load-bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold3));animation:lbFill 2.8s ease-out forwards;}
+@keyframes lbFill{from{width:0}to{width:100%}}
 
-.load-ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 1.5px solid transparent;
-  top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  animation: loadSpin linear infinite;
-}
-
-.load-ring:nth-child(1) { width:140px;height:140px;border-top-color:rgba(212,150,14,0.8);animation-duration:3s; }
-.load-ring:nth-child(2) { width:110px;height:110px;border-right-color:rgba(240,184,48,0.6);animation-duration:2s;animation-direction:reverse; }
-.load-ring:nth-child(3) { width:80px;height:80px;border-bottom-color:rgba(255,224,128,0.5);animation-duration:1.5s; }
-
-@keyframes loadSpin {
-  from { transform: translate(-50%,-50%) rotate(0deg); }
-  to { transform: translate(-50%,-50%) rotate(360deg); }
-}
-
-.load-om {
-  position: absolute;
-  top:50%; left:50%;
-  transform: translate(-50%,-50%);
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 40px;
-  background: linear-gradient(135deg, #d4960e, #ffe080, #f0b830);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: omPulse 2s ease-in-out infinite;
-}
-
-@keyframes omPulse {
-  0%,100%{ filter: drop-shadow(0 0 12px rgba(212,150,14,0.6)); transform: translate(-50%,-50%) scale(1); }
-  50%{ filter: drop-shadow(0 0 28px rgba(240,184,48,1)); transform: translate(-50%,-50%) scale(1.08); }
-}
-
-.load-title {
-  font-family: 'Cinzel', serif;
-  font-size: 22px;
-  letter-spacing: 4px;
-  background: linear-gradient(135deg, #d4960e, #ffe080);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 8px;
-}
-
-.load-sub {
-  font-family: 'EB Garamond', serif;
-  font-size: 14px;
-  color: rgba(255,248,238,0.45);
-  letter-spacing: 2px;
-  font-style: italic;
-}
-
-.load-progress {
-  width: 200px;
-  height: 1px;
-  background: rgba(212,150,14,0.15);
-  border-radius: 1px;
-  margin-top: 28px;
-  overflow: hidden;
-}
-
-.load-bar {
-  height: 100%;
-  background: linear-gradient(90deg, var(--gold), var(--gold3));
-  border-radius: 1px;
-  animation: loadFill 2.5s ease-out forwards;
-}
-
-@keyframes loadFill { from{width:0} to{width:100%} }
-
-/* ============================
+/* =====================
    LOGIN PAGE
-============================ */
-#loginPage {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+===================== */
+#loginPg{
+  position:fixed;inset:0;z-index:100;
+  display:flex;align-items:center;justify-content:center;padding:20px;
 }
 
-.login-bg {
-  position: absolute;
-  inset: 0;
+.login-bg{
+  position:absolute;inset:0;
   background:
-    radial-gradient(ellipse 70% 80% at 20% 20%, rgba(74,26,138,0.5) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 60% at 80% 80%, rgba(26,58,138,0.4) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 80% at 20% 20%,rgba(58,18,120,.55) 0%,transparent 60%),
+    radial-gradient(ellipse 70% 70% at 80% 80%,rgba(20,40,102,.45) 0%,transparent 60%),
     var(--deep);
 }
 
-/* Krishna image in login */
-.login-krishna-wrap {
-  position: absolute;
-  bottom: 0;
-  right: -20px;
-  width: 280px;
-  height: 420px;
-  opacity: 0.18;
-  pointer-events: none;
-  overflow: hidden;
+/* Lottie peacock behind login card */
+.login-peacock-bg{
+  position:absolute;right:-40px;bottom:0;
+  width:320px;height:420px;
+  opacity:.12;pointer-events:none;
+  animation:pkBreath 6s ease-in-out infinite;
 }
+@keyframes pkBreath{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-12px) scale(1.03);}}
 
-.login-krishna-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  filter: saturate(0.4) brightness(1.2);
-  animation: krishnaBreath 6s ease-in-out infinite;
+.login-card{
+  position:relative;z-index:2;
+  width:100%;max-width:430px;
+  background:rgba(16,2,32,.82);
+  backdrop-filter:blur(36px);
+  border:1px solid rgba(200,140,12,.22);
+  border-radius:30px;
+  padding:40px 36px 34px;
+  text-align:center;
+  box-shadow:0 0 0 1px rgba(200,140,12,.07),0 40px 90px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,244,224,.04);
+  animation:cardRise .9s cubic-bezier(.16,1,.3,1) both;
 }
+@keyframes cardRise{from{opacity:0;transform:translateY(50px) scale(.93)}to{opacity:1;transform:translateY(0) scale(1)}}
 
-@keyframes krishnaBreath {
-  0%,100%{ transform: translateY(0) scale(1); }
-  50%{ transform: translateY(-8px) scale(1.02); }
-}
+/* Gold shimmer line on top of card */
+.login-card::before{content:'';position:absolute;top:0;left:20%;width:60%;height:1px;background:linear-gradient(90deg,transparent,rgba(200,140,12,.7),transparent);}
 
-.login-card {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: 420px;
-  background: rgba(18,2,40,0.75);
-  backdrop-filter: blur(32px);
-  border: 1px solid rgba(212,150,14,0.25);
-  border-radius: 28px;
-  padding: 44px 38px 36px;
-  text-align: center;
-  box-shadow:
-    0 0 0 1px rgba(212,150,14,0.08),
-    0 32px 80px rgba(0,0,0,0.6),
-    inset 0 1px 0 rgba(255,248,238,0.05);
-  animation: cardRise 0.9s cubic-bezier(0.16,1,0.3,1) both;
+/* Lottie peacock — large, center focus */
+.login-lottie-peacock{
+  width:160px;height:160px;
+  margin:0 auto 8px;
+  animation:lottieScale 4s ease-in-out infinite;
+  filter:drop-shadow(0 0 20px rgba(200,140,12,.4));
 }
+@keyframes lottieScale{0%,100%{transform:scale(1);}50%{transform:scale(1.06);}}
 
-@keyframes cardRise {
-  from { opacity:0; transform:translateY(50px) scale(0.94); }
-  to { opacity:1; transform:translateY(0) scale(1); }
-}
+.login-om{font-family:'Cinzel Decorative',serif;font-size:40px;background:linear-gradient(135deg,#c88c0c,#f8d860,#e0a820);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:6px;animation:omGlow 3s ease-in-out infinite;}
+.login-title{font-family:'Cinzel',serif;font-size:24px;font-weight:600;color:var(--ivory);letter-spacing:3px;margin-bottom:4px;}
+.login-tagline{font-family:'EB Garamond',serif;font-size:13px;font-style:italic;color:rgba(200,140,12,.7);letter-spacing:1px;margin-bottom:4px;}
+.login-mod-sub{font-size:9px;color:rgba(255,244,224,.3);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;}
 
-/* Gold border glow top */
-.login-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 50%;
-  transform: translateX(-50%);
-  width: 60%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(212,150,14,0.8), transparent);
+/* Lottie diya — in divider */
+.login-diya-row{
+  display:flex;align-items:center;gap:10px;
+  margin:14px 0;
 }
+.login-diya-row::before,.login-diya-row::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(200,140,12,.28),transparent);}
 
-.login-avatar {
-  width: 88px;
-  height: 88px;
-  border-radius: 50%;
-  margin: 0 auto 16px;
-  border: 2px solid rgba(212,150,14,0.4);
-  overflow: hidden;
-  position: relative;
-  animation: avatarGlow 3s ease-in-out infinite;
-  background: linear-gradient(135deg, var(--twilight), var(--blue));
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.login-diya-lottie{
+  width:52px;height:52px;
+  flex-shrink:0;
+  filter:drop-shadow(0 0 14px rgba(255,150,0,.7)) drop-shadow(0 0 28px rgba(255,100,0,.4));
+  animation:diyaFloat 3s ease-in-out infinite;
 }
-
-.login-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-}
-
-@keyframes avatarGlow {
-  0%,100%{ box-shadow: 0 0 0 4px rgba(212,150,14,0.1), 0 0 20px rgba(212,150,14,0.2); }
-  50%{ box-shadow: 0 0 0 6px rgba(212,150,14,0.15), 0 0 40px rgba(212,150,14,0.4); }
-}
-
-.login-om {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 44px;
-  background: linear-gradient(135deg, #d4960e, #ffe080, #f0b830);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: omPulse 3s ease-in-out infinite;
-  line-height: 1;
-  margin-bottom: 8px;
-}
-
-.login-title {
-  font-family: 'Cinzel', serif;
-  font-size: 26px;
-  font-weight: 600;
-  color: var(--ivory);
-  letter-spacing: 3px;
-  margin-bottom: 4px;
-}
-
-.login-tagline {
-  font-family: 'EB Garamond', serif;
-  font-size: 14px;
-  font-style: italic;
-  color: rgba(212,150,14,0.7);
-  letter-spacing: 1px;
-  margin-bottom: 6px;
-}
-
-.login-module-sub {
-  font-size: 10px;
-  color: rgba(255,248,238,0.35);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 24px;
-}
+@keyframes diyaFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
 
 /* Module selector */
-.mod-select {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 22px;
+.mod-sel{display:flex;gap:10px;margin-bottom:18px;}
+.mod-opt{
+  flex:1;padding:11px 7px;border-radius:15px;
+  border:1px solid rgba(200,140,12,.16);
+  background:transparent;cursor:pointer;text-align:center;transition:all .3s;
+}
+.mod-opt.on{border-color:rgba(200,140,12,.5);background:rgba(200,140,12,.07);box-shadow:0 0 18px rgba(200,140,12,.09);}
+.mod-opt-ico{font-size:20px;margin-bottom:3px;}
+.mod-opt-nm{font-family:'Cinzel',serif;font-size:9px;color:var(--ivory);font-weight:600;letter-spacing:.5px;}
+.mod-opt-sub{font-size:8px;color:rgba(255,244,224,.35);margin-top:1px;}
+
+.login-verse{
+  font-family:'EB Garamond',serif;font-size:12px;
+  font-style:italic;color:rgba(252,232,192,.45);
+  line-height:1.8;margin-bottom:18px;
 }
 
-.mod-opt {
-  flex: 1;
-  padding: 12px 8px;
-  border-radius: 16px;
-  border: 1px solid rgba(212,150,14,0.18);
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.3s;
-  text-align: center;
+.btn-google{
+  width:100%;display:flex;align-items:center;justify-content:center;gap:11px;
+  padding:14px 20px;
+  background:linear-gradient(135deg,rgba(216,72,8,.88),rgba(200,140,12,.88));
+  border:1px solid rgba(248,216,96,.28);border-radius:14px;
+  color:white;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;
+  cursor:pointer;transition:all .3s;
+  box-shadow:0 4px 22px rgba(216,72,8,.3);letter-spacing:.3px;
+  position:relative;overflow:hidden;
 }
+.btn-google::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);transition:left .4s;}
+.btn-google:hover::after{left:100%;}
+.btn-google:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(216,72,8,.45);}
+.g-ico{width:19px;height:19px;background:white;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.g-ico svg{width:12px;height:12px;}
+.login-note{margin-top:12px;font-size:10px;color:rgba(255,244,224,.22);line-height:1.6;}
 
-.mod-opt.on {
-  border-color: rgba(212,150,14,0.5);
-  background: rgba(212,150,14,0.08);
-  box-shadow: 0 0 20px rgba(212,150,14,0.1);
+/* =====================
+   APP SHELL
+===================== */
+#app{display:none;min-height:100vh;position:relative;z-index:2;}
+
+/* =====================
+   TOP NAV
+===================== */
+.tnav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 14px;
+  background:rgba(8,1,18,.88);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(200,140,12,.1);
+  transition:all .4s;
 }
+.tnav.corp{background:rgba(4,10,28,.92);border-bottom-color:rgba(30,100,200,.16);}
 
-.mod-opt-ico { font-size: 22px; margin-bottom: 4px; }
-.mod-opt-name {
-  font-family: 'Cinzel', serif;
-  font-size: 10px;
-  color: var(--ivory);
-  font-weight: 600;
-  letter-spacing: 0.5px;
+.nav-brand{display:flex;align-items:center;gap:7px;}
+/* Tiny diya in nav */
+.nav-diya{width:26px;height:26px;flex-shrink:0;}
+.nav-brand-txt{
+  font-family:'Cinzel',serif;font-size:14px;font-weight:600;
+  background:linear-gradient(135deg,var(--gold),var(--gold3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  letter-spacing:1px;
 }
-.mod-opt-sub { font-size: 9px; color: rgba(255,248,238,0.4); margin-top: 1px; }
+.nav-brand-txt.corp-b{background:linear-gradient(135deg,#64B5F6,#C9A227);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 
-.login-divider {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 16px 0;
+.nav-r{display:flex;align-items:center;gap:7px;}
+.mod-pill{display:flex;background:rgba(255,255,255,.04);border:1px solid rgba(200,140,12,.12);border-radius:18px;padding:2px;gap:1px;}
+.mpb{padding:3px 9px;border-radius:14px;border:none;background:transparent;font-size:9px;font-weight:800;cursor:pointer;transition:all .25s;color:rgba(255,244,224,.38);letter-spacing:.3px;font-family:'Nunito',sans-serif;}
+.mpb.on{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--ink);box-shadow:0 2px 10px rgba(200,140,12,.4);}
+.mpb.corp-on{background:linear-gradient(135deg,#1E88E5,#0D47A1);color:white;box-shadow:0 2px 10px rgba(30,136,229,.4);}
+.nib{width:32px;height:32px;border-radius:50%;border:1px solid rgba(200,140,12,.18);background:rgba(200,140,12,.04);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--cream);transition:all .2s;}
+.nib:hover{background:rgba(200,140,12,.1);border-color:rgba(200,140,12,.38);}
+.nav-ava{width:32px;height:32px;border-radius:50%;border:2px solid rgba(200,140,12,.38);background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:var(--ink);cursor:pointer;overflow:hidden;box-shadow:0 0 12px rgba(200,140,12,.2);}
+.nav-ava img{width:100%;height:100%;object-fit:cover;}
+
+/* =====================
+   BOTTOM NAV
+===================== */
+.bnav{
+  position:fixed;bottom:0;left:0;right:0;z-index:200;
+  display:flex;
+  background:rgba(8,1,18,.94);
+  backdrop-filter:blur(24px);
+  border-top:1px solid rgba(200,140,12,.08);
+  padding:7px 0 12px;
+  transition:all .4s;
 }
-.login-divider::before,.login-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg,transparent,rgba(212,150,14,0.3),transparent);
-}
-.login-divider span { font-size: 16px; }
+.bnav.corp{background:rgba(4,10,28,.97);border-top-color:rgba(30,100,200,.1);}
+.ntab{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 8px;cursor:pointer;border:none;background:none;color:rgba(255,244,224,.28);transition:all .25s;font-family:'Nunito',sans-serif;}
+.ntab.on{color:var(--gold2);}
+.ntab.corp-on{color:#64B5F6;}
+.ntab-ico{font-size:19px;line-height:1;}
+.ntab-lbl{font-size:10px;font-weight:700;letter-spacing:.3px;}
 
-.login-verse {
-  font-family: 'EB Garamond', serif;
-  font-size: 13px;
-  font-style: italic;
-  color: rgba(253,240,208,0.5);
-  line-height: 1.75;
-  margin-bottom: 22px;
-}
-
-.btn-google {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 15px 22px;
-  background: linear-gradient(135deg, rgba(232,87,10,0.85), rgba(212,150,14,0.85));
-  border: 1px solid rgba(240,184,48,0.3);
-  border-radius: 14px;
-  color: white;
-  font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 4px 24px rgba(232,87,10,0.3);
-  letter-spacing: 0.3px;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-google::after {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
-  transition: left 0.4s;
-}
-
-.btn-google:hover::after { left: 100%; }
-.btn-google:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(232,87,10,0.45); }
-
-.g-icon {
-  width: 20px; height: 20px;
-  background: white;
-  border-radius: 4px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.g-icon svg { width: 13px; height: 13px; }
-
-.login-note {
-  margin-top: 14px;
-  font-size: 10px;
-  color: rgba(255,248,238,0.25);
-  line-height: 1.6;
-}
-
-/* ============================
-   MAIN APP SHELL
-============================ */
-#app {
-  display: none;
-  min-height: 100vh;
-  position: relative;
-  z-index: 2;
-}
-
-/* ============================
-   TOP NAVIGATION
-============================ */
-.top-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 200;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px;
-  background: rgba(10,1,24,0.85);
-  backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(212,150,14,0.12);
-  transition: all 0.4s;
-}
-
-.top-nav.corp { background: rgba(5,12,30,0.9); border-bottom-color: rgba(30,136,229,0.18); }
-
-.nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.nav-brand-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--gold), var(--gold3));
-  animation: dotPulse 2s ease-in-out infinite;
-  flex-shrink: 0;
-}
-@keyframes dotPulse { 0%,100%{opacity:1}50%{opacity:0.4} }
-
-.nav-brand-text {
-  font-family: 'Cinzel', serif;
-  font-size: 15px;
-  font-weight: 600;
-  background: linear-gradient(135deg, var(--gold), var(--gold3));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: 1px;
-}
-
-.nav-brand-text.corp-brand {
-  background: linear-gradient(135deg, #64B5F6, #C9A227);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.nav-right { display: flex; align-items: center; gap: 8px; }
-
-/* Module pill switcher */
-.mod-pill {
-  display: flex;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(212,150,14,0.15);
-  border-radius: 20px;
-  padding: 3px;
-  gap: 2px;
-}
-
-.mod-pill-btn {
-  padding: 4px 10px;
-  border-radius: 16px;
-  border: none;
-  background: transparent;
-  font-size: 10px;
-  font-weight: 800;
-  cursor: pointer;
-  transition: all 0.25s;
-  color: rgba(255,248,238,0.45);
-  letter-spacing: 0.3px;
-  font-family: 'Nunito', sans-serif;
-}
-
-.mod-pill-btn.on {
-  background: linear-gradient(135deg, var(--gold), var(--gold2));
-  color: var(--ink);
-  box-shadow: 0 2px 10px rgba(212,150,14,0.4);
-}
-
-.mod-pill-btn.corp-on {
-  background: linear-gradient(135deg, #1E88E5, #0D47A1);
-  color: white;
-  box-shadow: 0 2px 10px rgba(30,136,229,0.4);
-}
-
-.nav-icon-btn {
-  width: 34px; height: 34px;
-  border-radius: 50%;
-  border: 1px solid rgba(212,150,14,0.2);
-  background: rgba(212,150,14,0.05);
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px;
-  color: var(--cream);
-  transition: all 0.2s;
-}
-
-.nav-icon-btn:hover { background: rgba(212,150,14,0.12); border-color: rgba(212,150,14,0.4); }
-
-.nav-avatar {
-  width: 34px; height: 34px;
-  border-radius: 50%;
-  border: 2px solid rgba(212,150,14,0.4);
-  cursor: pointer;
-  overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Cinzel', serif;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--ink);
-  background: linear-gradient(135deg, var(--gold), var(--gold2));
-  transition: all 0.2s;
-  box-shadow: 0 0 12px rgba(212,150,14,0.2);
-}
-
-.nav-avatar img { width:100%; height:100%; object-fit:cover; }
-
-/* ============================
-   BOTTOM NAVIGATION
-============================ */
-.bottom-nav {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  z-index: 200;
-  display: flex;
-  background: rgba(10,1,24,0.92);
-  backdrop-filter: blur(24px);
-  border-top: 1px solid rgba(212,150,14,0.1);
-  padding: 8px 0 12px;
-  transition: all 0.4s;
-}
-
-.bottom-nav.corp { background: rgba(5,12,30,0.96); border-top-color: rgba(30,136,229,0.12); }
-
-.nav-tab {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  padding: 5px 8px;
-  cursor: pointer;
-  border: none;
-  background: none;
-  color: rgba(255,248,238,0.3);
-  transition: all 0.25s;
-  font-family: 'Nunito', sans-serif;
-}
-
-.nav-tab.on { color: var(--gold2); }
-.nav-tab.corp-on { color: #64B5F6; }
-.nav-tab-ico { font-size: 20px; line-height: 1; }
-.nav-tab-lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.3px; }
-
-/* ============================
+/* =====================
    PAGES
-============================ */
-.page { display: none; padding-top: 68px; padding-bottom: 84px; min-height: 100vh; }
-.page.on { display: block; }
+===================== */
+.pg{display:none;padding-top:66px;padding-bottom:82px;min-height:100vh;}
+.pg.on{display:block;}
+#homePg{background:transparent;}
 
-/* ============================
-   HOME PAGE
-============================ */
-#homePg {
-  background: transparent;
+/* =====================
+   GREETING
+===================== */
+.greet{padding:14px 16px 0;text-align:center;animation:fadeUp .6s cubic-bezier(.16,1,.3,1) both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.greet-date{font-size:10px;font-weight:700;letter-spacing:2.5px;color:var(--gold);text-transform:uppercase;margin-bottom:2px;}
+.greet-name{font-family:'EB Garamond',serif;font-size:15px;font-style:italic;color:rgba(255,244,224,.5);}
+.greet-name strong{color:var(--ivory);font-style:normal;font-weight:500;}
+
+/* =====================
+   WELLNESS BAR
+===================== */
+.wbar{display:flex;gap:6px;padding:9px 16px;overflow-x:auto;scrollbar-width:none;animation:fadeUp .6s .1s cubic-bezier(.16,1,.3,1) both;}
+.wbar::-webkit-scrollbar{display:none;}
+.wchip{flex-shrink:0;padding:8px 11px;border-radius:12px;background:rgba(200,140,12,.06);border:1px solid rgba(200,140,12,.1);text-align:center;min-width:74px;}
+.wchip-ico{font-size:16px;margin-bottom:2px;}
+.wchip-val{font-family:'Cinzel',serif;font-size:13px;color:var(--gold2);font-weight:600;line-height:1;}
+.wchip-lbl{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,244,224,.3);margin-top:2px;}
+
+/* =====================
+   SCHEDULE STRIP
+===================== */
+.sched{margin:6px 16px 0;padding:11px 13px;background:rgba(200,140,12,.04);border:1px solid rgba(200,140,12,.09);border-radius:16px;animation:fadeUp .6s .15s cubic-bezier(.16,1,.3,1) both;}
+.sched-ttl{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.sched-items{display:flex;gap:7px;}
+.si{flex:1;text-align:center;padding:8px 4px;border-radius:11px;border:1px solid rgba(200,140,12,.09);background:transparent;cursor:pointer;transition:all .25s;font-family:'Nunito',sans-serif;}
+.si.on{border-color:var(--gold);background:rgba(200,140,12,.07);}
+.si-ico{font-size:15px;margin-bottom:2px;}
+.si-time{font-size:9px;font-weight:800;color:var(--gold);}
+.si-lbl{font-size:8px;color:rgba(255,244,224,.35);margin-top:1px;}
+
+/* =====================
+   CATEGORY ROW
+===================== */
+.catrow{display:flex;gap:7px;padding:9px 16px;overflow-x:auto;scrollbar-width:none;animation:fadeUp .6s .2s cubic-bezier(.16,1,.3,1) both;}
+.catrow::-webkit-scrollbar{display:none;}
+.catbtn{flex-shrink:0;padding:5px 12px;border-radius:20px;border:1px solid rgba(200,140,12,.16);background:transparent;font-size:10px;font-weight:700;font-family:'Nunito',sans-serif;color:rgba(255,244,224,.4);cursor:pointer;transition:all .25s;}
+.catbtn.on{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--ink);border-color:transparent;box-shadow:0 3px 14px rgba(200,140,12,.35);}
+
+/* =====================
+   KRISHNA CARD — Hero
+===================== */
+.card-wrap{padding:7px 16px 10px;animation:fadeUp .7s .25s cubic-bezier(.16,1,.3,1) both;}
+.kcard{border-radius:24px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.55),0 0 0 1px rgba(200,140,12,.1);background:rgba(16,2,32,.85);backdrop-filter:blur(10px);}
+
+/* Visual panel with Krishna image + Lottie animations */
+.kvisual{position:relative;height:276px;overflow:hidden;background:var(--deep);display:flex;align-items:center;justify-content:center;}
+
+.kv-bg{position:absolute;inset:0;transition:background .8s;}
+.kv-rays{position:absolute;inset:0;background:conic-gradient(from 0deg at 50% 50%,transparent 0deg,rgba(200,140,12,.04) 18deg,transparent 36deg,rgba(224,168,32,.04) 72deg,transparent 100deg,rgba(200,140,12,.03) 155deg,transparent 180deg,rgba(224,168,32,.03) 230deg,transparent 260deg,rgba(200,140,12,.04) 310deg,transparent 340deg,transparent 360deg);animation:raysR 28s linear infinite;}
+@keyframes raysR{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+/* Aura */
+.kv-aura{position:absolute;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:auraP 4s ease-in-out infinite;pointer-events:none;z-index:1;}
+@keyframes auraP{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.65;}50%{transform:translate(-50%,-50%) scale(1.18);opacity:1;}}
+.kv-ring{position:absolute;border-radius:50%;border:1px solid rgba(200,140,12,.12);top:50%;left:50%;animation:ringRot linear infinite;z-index:1;}
+
+/* Lottie peacock on card — visible, floating */
+.card-peacock-lottie{
+  position:absolute;
+  top:8px;right:8px;
+  width:70px;height:70px;
+  z-index:3;
+  opacity:.75;
+  animation:pkCardFloat 4s ease-in-out infinite;
+  filter:drop-shadow(0 0 8px rgba(200,140,12,.5));
+}
+@keyframes pkCardFloat{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-6px) scale(1.04);}}
+
+/* Lottie diya on card — bottom left */
+.card-diya-lottie{
+  position:absolute;
+  bottom:14px;left:14px;
+  width:48px;height:48px;
+  z-index:3;
+  filter:drop-shadow(0 0 12px rgba(255,152,0,.8)) drop-shadow(0 0 24px rgba(255,100,0,.5));
+  animation:diyaFloat 3s ease-in-out infinite;
 }
 
-/* Greeting */
-.greeting {
-  padding: 16px 16px 0;
-  text-align: center;
-  animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) both;
+/* REAL KRISHNA IMAGE */
+.krishna-img{
+  position:absolute;bottom:0;left:50%;
+  transform:translateX(-50%);
+  height:92%;width:auto;max-width:100%;
+  object-fit:contain;object-position:bottom center;
+  z-index:2;
+  animation:kFloat 5s ease-in-out infinite;
+  filter:drop-shadow(0 0 28px rgba(200,140,12,.38));
+  transition:opacity .5s ease;
 }
+@keyframes kFloat{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-10px);}}
+.krishna-img.enter{animation:kEnter .65s cubic-bezier(.16,1,.3,1) both;}
+@keyframes kEnter{from{opacity:0;transform:translateX(-50%) translateY(22px) scale(.95)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
 
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(20px); }
-  to { opacity:1; transform:translateY(0); }
-}
+.kcat-badge{position:absolute;top:12px;left:12px;padding:4px 11px;border-radius:18px;background:rgba(0,0,0,.5);backdrop-filter:blur(12px);border:1px solid rgba(200,140,12,.28);font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold2);z-index:4;}
+.kscene{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-family:'EB Garamond',serif;font-size:10px;font-style:italic;color:rgba(255,244,224,.32);z-index:4;letter-spacing:1px;}
+.kvisual::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to bottom,transparent,rgba(16,2,32,.95));z-index:2;}
 
-.greeting-date {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 2.5px;
-  color: var(--gold);
-  text-transform: uppercase;
-  margin-bottom: 3px;
-}
-
-.greeting-name {
-  font-family: 'EB Garamond', serif;
-  font-size: 16px;
-  font-style: italic;
-  color: rgba(255,248,238,0.55);
-}
-
-.greeting-name strong {
-  color: var(--ivory);
-  font-style: normal;
-  font-weight: 500;
-}
-
-/* Wellness Bar */
-.wellness-bar {
-  display: flex;
-  gap: 6px;
-  padding: 10px 16px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  animation: fadeUp 0.6s 0.1s cubic-bezier(0.16,1,0.3,1) both;
-}
-.wellness-bar::-webkit-scrollbar { display: none; }
-
-.w-chip {
-  flex-shrink: 0;
-  padding: 8px 12px;
-  border-radius: 12px;
-  background: rgba(212,150,14,0.07);
-  border: 1px solid rgba(212,150,14,0.12);
-  text-align: center;
-  min-width: 76px;
-}
-
-.w-chip-ico { font-size: 17px; margin-bottom: 3px; }
-.w-chip-val {
-  font-family: 'Cinzel', serif;
-  font-size: 14px;
-  color: var(--gold2);
-  font-weight: 600;
-  line-height: 1;
-}
-.w-chip-lbl {
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: rgba(255,248,238,0.35);
-  margin-top: 2px;
-}
-
-/* Schedule */
-.sched-wrap {
-  margin: 6px 16px 0;
-  padding: 12px 14px;
-  background: rgba(212,150,14,0.04);
-  border: 1px solid rgba(212,150,14,0.1);
-  border-radius: 18px;
-  animation: fadeUp 0.6s 0.15s cubic-bezier(0.16,1,0.3,1) both;
-}
-
-.sched-title {
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 9px;
-}
-
-.sched-items { display: flex; gap: 7px; }
-
-.sched-item {
-  flex: 1;
-  text-align: center;
-  padding: 9px 5px;
-  border-radius: 12px;
-  border: 1px solid rgba(212,150,14,0.1);
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.25s;
-  font-family: 'Nunito', sans-serif;
-}
-
-.sched-item.on { border-color: var(--gold); background: rgba(212,150,14,0.08); }
-.sched-item-ico { font-size: 17px; margin-bottom: 3px; }
-.sched-item-time { font-size: 9px; font-weight: 800; color: var(--gold); }
-.sched-item-lbl { font-size: 9px; color: rgba(255,248,238,0.4); margin-top: 1px; }
-
-/* Category chips */
-.cat-row {
-  display: flex;
-  gap: 7px;
-  padding: 9px 16px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  animation: fadeUp 0.6s 0.2s cubic-bezier(0.16,1,0.3,1) both;
-}
-.cat-row::-webkit-scrollbar { display: none; }
-
-.cat-btn {
-  flex-shrink: 0;
-  padding: 5px 13px;
-  border-radius: 20px;
-  border: 1px solid rgba(212,150,14,0.18);
-  background: transparent;
-  font-size: 11px;
-  font-weight: 700;
-  font-family: 'Nunito', sans-serif;
-  color: rgba(255,248,238,0.45);
-  cursor: pointer;
-  transition: all 0.25s;
-  letter-spacing: 0.3px;
-}
-
-.cat-btn.on {
-  background: linear-gradient(135deg, var(--gold), var(--gold2));
-  color: var(--ink);
-  border-color: transparent;
-  box-shadow: 0 3px 14px rgba(212,150,14,0.35);
-}
-
-/* ============================
-   KRISHNA QUOTE CARD — The Hero
-============================ */
-.card-wrap {
-  padding: 7px 16px 10px;
-  animation: fadeUp 0.7s 0.25s cubic-bezier(0.16,1,0.3,1) both;
-}
-
-.krishna-card {
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow:
-    0 24px 64px rgba(0,0,0,0.5),
-    0 0 0 1px rgba(212,150,14,0.12),
-    0 0 80px rgba(212,150,14,0.04);
-  background: rgba(18,2,40,0.8);
-  backdrop-filter: blur(8px);
-  transition: transform 0.3s;
-}
-
-/* ==============================
-   KRISHNA IMAGE PANEL — THE STAR
-============================== */
-.card-visual {
-  position: relative;
-  height: 280px;
-  overflow: hidden;
-  background: var(--deep);
-}
-
-.card-visual-bg {
-  position: absolute;
-  inset: 0;
-  transition: background 0.8s ease;
-}
-
-/* Radial glow behind Krishna */
-.card-aura {
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  animation: auraPulse 4s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-
-@keyframes auraPulse {
-  0%,100%{ transform:translate(-50%,-50%) scale(1); opacity:0.6; }
-  50%{ transform:translate(-50%,-50%) scale(1.2); opacity:1; }
-}
-
-/* Rotating golden rings */
-.card-ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgba(212,150,14,0.15);
-  top: 50%; left: 50%;
-  animation: ringRot linear infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-@keyframes ringRot { from{transform:translate(-50%,-50%) rotate(0deg)} to{transform:translate(-50%,-50%) rotate(360deg)} }
-
-/* Light rays */
-.card-rays {
-  position: absolute;
-  inset: 0;
-  background: conic-gradient(
-    from 0deg at 50% 50%,
-    transparent 0deg,
-    rgba(212,150,14,0.04) 20deg,
-    transparent 40deg,
-    rgba(240,184,48,0.04) 80deg,
-    transparent 100deg,
-    rgba(212,150,14,0.03) 160deg,
-    transparent 180deg,
-    rgba(240,184,48,0.04) 220deg,
-    transparent 250deg,
-    rgba(212,150,14,0.03) 310deg,
-    transparent 340deg,
-    transparent 360deg
-  );
-  animation: raysRot 30s linear infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-@keyframes raysRot { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
-
-/* THE KRISHNA IMAGE */
-.krishna-img {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 95%;
-  width: auto;
-  max-width: 100%;
-  object-fit: contain;
-  object-position: bottom center;
-  z-index: 2;
-  animation: krishnaFloat 5s ease-in-out infinite;
-  filter: drop-shadow(0 0 30px rgba(212,150,14,0.35));
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-@keyframes krishnaFloat {
-  0%,100%{ transform: translateX(-50%) translateY(0); }
-  50%{ transform: translateX(-50%) translateY(-10px); }
-}
-
-.krishna-img.entering {
-  animation: imgEnter 0.6s cubic-bezier(0.16,1,0.3,1) both;
-}
-
-@keyframes imgEnter {
-  from { opacity:0; transform: translateX(-50%) translateY(20px) scale(0.96); }
-  to { opacity:1; transform: translateX(-50%) translateY(0) scale(1); }
-}
-
-/* Category badge on card */
-.card-cat-badge {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  padding: 5px 13px;
-  border-radius: 20px;
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(212,150,14,0.3);
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--gold2);
-  z-index: 3;
-}
-
-/* Scene label */
-.card-scene {
-  position: absolute;
-  bottom: 12px;
-  left: 0; right: 0;
-  text-align: center;
-  font-family: 'EB Garamond', serif;
-  font-size: 11px;
-  font-style: italic;
-  color: rgba(255,248,238,0.35);
-  z-index: 3;
-  letter-spacing: 1px;
-}
-
-/* Gradient fade at bottom of visual */
-.card-visual::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 80px;
-  background: linear-gradient(to bottom, transparent, rgba(18,2,40,0.95));
-  z-index: 2;
-}
-
-/* ============================
-   CARD BODY
-============================ */
-.card-body {
-  padding: 18px 20px 20px;
-}
-
-.card-quote-wrap {
-  position: relative;
-  padding-left: 18px;
-  margin-bottom: 14px;
-}
-
-.card-quote-wrap::before {
-  content: '\201C';
-  font-family: 'EB Garamond', serif;
-  font-size: 56px;
-  color: rgba(212,150,14,0.2);
-  position: absolute;
-  left: -8px;
-  top: -16px;
-  line-height: 1;
-}
-
-.card-quote-text {
-  font-family: 'EB Garamond', serif;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 1.6;
-  color: var(--ivory);
-  transition: opacity 0.4s, transform 0.4s;
-}
-
-.card-quote-text.changing {
-  opacity: 0;
-  transform: translateY(10px);
-}
-
-.card-quote-src {
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--gold);
-  font-weight: 700;
-  margin-top: 6px;
-}
+/* Card body */
+.kbody{padding:17px 19px 19px;}
+.kq-wrap{position:relative;padding-left:16px;margin-bottom:13px;}
+.kq-wrap::before{content:'\201C';font-family:'EB Garamond',serif;font-size:52px;color:rgba(200,140,12,.18);position:absolute;left:-8px;top:-14px;line-height:1;}
+.kq-text{font-family:'EB Garamond',serif;font-size:19px;font-weight:500;line-height:1.62;color:var(--ivory);transition:opacity .4s,transform .4s;}
+.kq-text.ch{opacity:0;transform:translateY(10px);}
+.kq-src{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-top:5px;}
 
 /* Meaning box */
-.meaning-box {
-  margin-top: 13px;
-  padding: 13px 15px;
-  background: linear-gradient(135deg, rgba(212,150,14,0.06), rgba(240,184,48,0.03));
-  border: 1px solid rgba(212,150,14,0.15);
-  border-radius: 14px;
-}
-
-.meaning-label {
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 5px;
-}
-
-.meaning-text {
-  font-family: 'EB Garamond', serif;
-  font-size: 14px;
-  font-style: italic;
-  color: rgba(253,240,208,0.75);
-  line-height: 1.7;
-}
+.mbox{margin-top:12px;padding:12px 14px;background:linear-gradient(135deg,rgba(200,140,12,.06),rgba(224,168,32,.03));border:1px solid rgba(200,140,12,.13);border-radius:13px;}
+.mbox-lbl{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.mbox-txt{font-family:'EB Garamond',serif;font-size:13px;font-style:italic;color:rgba(252,232,192,.68);line-height:1.7;}
 
 /* Krishna says */
-.krishna-says {
-  margin-top: 11px;
-  padding: 11px 14px;
-  background: linear-gradient(135deg, rgba(0,122,120,0.08), rgba(0,168,157,0.04));
-  border-left: 2px solid var(--teal);
-  border-radius: 0 12px 12px 0;
-}
+.ksays{margin-top:10px;padding:10px 13px;background:rgba(0,104,112,.07);border-left:2px solid var(--teal);border-radius:0 11px 11px 0;}
+.ks-lbl{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--peacock2);margin-bottom:3px;}
+.ks-txt{font-family:'EB Garamond',serif;font-size:13px;font-style:italic;color:rgba(252,232,192,.6);line-height:1.65;}
 
-.ks-label {
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--peacock2);
-  margin-bottom: 3px;
-}
+.kcard-div{height:1px;background:linear-gradient(90deg,transparent,rgba(200,140,12,.1),transparent);margin:13px 0;}
 
-.ks-text {
-  font-family: 'EB Garamond', serif;
-  font-size: 13px;
-  font-style: italic;
-  color: rgba(253,240,208,0.65);
-  line-height: 1.65;
-}
+.kactions{display:flex;gap:6px;}
+.kbtn{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;padding:10px 7px;border-radius:11px;border:1px solid rgba(200,140,12,.14);background:rgba(200,140,12,.03);cursor:pointer;font-size:11px;font-weight:700;font-family:'Nunito',sans-serif;color:rgba(255,244,224,.48);transition:all .2s;letter-spacing:.3px;}
+.kbtn:hover{background:rgba(200,140,12,.09);border-color:rgba(200,140,12,.32);color:var(--gold2);transform:translateY(-1px);}
+.kbtn.fav-on{background:rgba(139,26,26,.1);border-color:rgba(200,50,50,.38);color:#ff8888;}
+.kbtn.wa{background:rgba(37,211,102,.05);border-color:rgba(37,211,102,.28);color:#5dbb72;}
+.kbtn-ico{font-size:13px;}
 
-.card-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(212,150,14,0.12), transparent);
-  margin: 14px 0;
-}
-
-/* Card action buttons */
-.card-actions {
-  display: flex;
-  gap: 6px;
-}
-
-.card-btn {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  padding: 10px 7px;
-  border-radius: 12px;
-  border: 1px solid rgba(212,150,14,0.15);
-  background: rgba(212,150,14,0.04);
-  cursor: pointer;
-  font-size: 11px;
-  font-weight: 700;
-  font-family: 'Nunito', sans-serif;
-  color: rgba(255,248,238,0.55);
-  transition: all 0.2s;
-  letter-spacing: 0.3px;
-}
-
-.card-btn:hover {
-  background: rgba(212,150,14,0.1);
-  border-color: rgba(212,150,14,0.35);
-  color: var(--gold2);
-  transform: translateY(-1px);
-}
-
-.card-btn.fav-on {
-  background: rgba(139,26,26,0.1);
-  border-color: rgba(200,50,50,0.4);
-  color: #ff8080;
-}
-
-.card-btn.wa {
-  background: rgba(37,211,102,0.06);
-  border-color: rgba(37,211,102,0.3);
-  color: #5dbb72;
-}
-
-.card-btn-ico { font-size: 14px; }
-
-/* Next button */
-.next-btn {
-  width: calc(100% - 32px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 14px;
-  margin: 12px 16px 0;
-  border-radius: 16px;
-  border: none;
-  background: linear-gradient(135deg, var(--twilight), var(--blue));
-  color: var(--ivory);
-  font-family: 'Cinzel', serif;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 8px 24px rgba(45,10,90,0.4);
-  letter-spacing: 1px;
-  position: relative;
-  overflow: hidden;
-}
-
-.next-btn::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(135deg, rgba(212,150,14,0.1), rgba(240,184,48,0.06));
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.next-btn:hover::before { opacity: 1; }
-.next-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(45,10,90,0.55); }
+.next-btn{width:calc(100% - 32px);display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;margin:12px 16px 0;border-radius:16px;border:none;background:linear-gradient(135deg,var(--void),var(--blue));color:var(--ivory);font-family:'Cinzel',serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .3s;box-shadow:0 8px 24px rgba(8,1,18,.5);letter-spacing:1px;position:relative;overflow:hidden;}
+.next-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(200,140,12,.08),transparent);opacity:0;transition:opacity .3s;}
+.next-btn:hover::before{opacity:1;}
+.next-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(8,1,18,.65);}
 
 /* Notif banner */
-.notif-banner {
-  margin: 8px 16px 0;
-  padding: 11px 13px;
-  background: rgba(0,122,120,0.08);
-  border: 1px solid rgba(0,168,157,0.2);
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+.nbanner{margin:8px 16px 0;padding:10px 12px;background:rgba(0,104,112,.07);border:1px solid rgba(0,144,136,.18);border-radius:13px;display:flex;align-items:center;gap:9px;}
+.nb-txt{font-size:11px;color:rgba(255,244,224,.6);flex:1;}
+.nb-txt strong{color:var(--peacock2);display:block;font-size:9px;letter-spacing:1px;text-transform:uppercase;margin-bottom:2px;}
+.nb-btn{padding:6px 12px;border-radius:9px;border:none;background:linear-gradient(135deg,var(--teal),var(--peacock1));color:white;font-size:11px;font-weight:800;cursor:pointer;white-space:nowrap;font-family:'Nunito',sans-serif;}
+.nb-x{background:none;border:none;cursor:pointer;color:rgba(255,244,224,.3);font-size:14px;flex-shrink:0;}
 
-.nb-text { font-size: 11px; color: rgba(255,248,238,0.65); flex: 1; }
-.nb-text strong { color: var(--peacock2); display: block; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; }
-.nb-btn { padding: 6px 12px; border-radius: 9px; border: none; background: linear-gradient(135deg, var(--teal), var(--peacock1)); color: white; font-size: 11px; font-weight: 800; cursor: pointer; white-space: nowrap; font-family: 'Nunito', sans-serif; }
-.nb-close { background: none; border: none; cursor: pointer; color: rgba(255,248,238,0.4); font-size: 15px; flex-shrink: 0; }
+/* =====================
+   CORPORATE MODULE
+===================== */
+#corpPg{display:none;padding-top:66px;padding-bottom:82px;min-height:100vh;}
 
-/* ============================
-   CORPORATE KRISHNA MODULE
-============================ */
-#corpPg {
-  display: none;
-  padding-top: 68px;
-  padding-bottom: 84px;
-  min-height: 100vh;
-  background: transparent;
-}
+.corp-hdr{padding:13px 16px 0;text-align:center;}
+.corp-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 13px;border-radius:18px;background:rgba(30,136,229,.1);border:1px solid rgba(30,136,229,.22);font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#64B5F6;margin-bottom:7px;}
+.corp-date{font-size:10px;font-weight:700;letter-spacing:2px;color:#1E88E5;text-transform:uppercase;margin-bottom:2px;}
+.corp-greet{font-family:'EB Garamond',serif;font-size:14px;color:rgba(144,202,249,.55);font-style:italic;}
+.corp-greet span{color:#E3F2FD;font-style:normal;font-weight:500;}
 
-.corp-header {
-  padding: 14px 16px 0;
-  text-align: center;
-  animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) both;
-}
+.cwbar{display:flex;gap:6px;padding:9px 16px;overflow-x:auto;scrollbar-width:none;}
+.cwbar::-webkit-scrollbar{display:none;}
+.cwchip{flex-shrink:0;padding:8px 11px;border-radius:12px;background:rgba(30,136,229,.06);border:1px solid rgba(30,136,229,.12);text-align:center;min-width:74px;}
+.cwchip-ico{font-size:16px;margin-bottom:2px;}
+.cwchip-val{font-family:'Cinzel',serif;font-size:13px;color:#1E88E5;font-weight:600;line-height:1;}
+.cwchip-lbl{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(144,202,249,.35);margin-top:2px;}
 
-.corp-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 14px;
-  border-radius: 20px;
-  background: rgba(30,136,229,0.1);
-  border: 1px solid rgba(30,136,229,0.25);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: #64B5F6;
-  margin-bottom: 7px;
-}
+.csched{margin:6px 16px 0;padding:11px 13px;background:rgba(30,136,229,.04);border:1px solid rgba(30,136,229,.09);border-radius:16px;}
+.csched-ttl{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#64B5F6;margin-bottom:8px;}
+.csi-items{display:flex;gap:7px;}
+.csi{flex:1;text-align:center;padding:8px 4px;border-radius:11px;border:1px solid rgba(30,136,229,.1);cursor:pointer;transition:all .25s;font-family:'Nunito',sans-serif;}
+.csi.on{border-color:#1E88E5;background:rgba(30,136,229,.09);}
+.csi-ico{font-size:15px;margin-bottom:2px;}
+.csi-time{font-size:9px;font-weight:800;color:#1E88E5;}
+.csi-lbl{font-size:8px;color:rgba(144,202,249,.38);margin-top:1px;}
 
-.corp-date { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: #1E88E5; text-transform: uppercase; margin-bottom: 2px; }
-.corp-greet { font-family: 'EB Garamond', serif; font-size: 15px; color: rgba(144,202,249,0.6); font-style: italic; }
-.corp-greet span { color: #E3F2FD; font-style: normal; font-weight: 500; }
+.ccats{display:flex;gap:7px;padding:9px 16px;overflow-x:auto;scrollbar-width:none;}
+.ccats::-webkit-scrollbar{display:none;}
+.ccatbtn{flex-shrink:0;padding:5px 12px;border-radius:20px;border:1px solid rgba(30,136,229,.16);background:transparent;font-size:10px;font-weight:700;font-family:'Nunito',sans-serif;color:rgba(144,202,249,.45);cursor:pointer;transition:all .25s;}
+.ccatbtn.on{background:linear-gradient(135deg,#1E88E5,#0D47A1);color:white;border-color:transparent;box-shadow:0 3px 14px rgba(30,136,229,.4);}
 
-.corp-wellness {
-  display: flex;
-  gap: 6px;
-  padding: 10px 16px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.corp-wellness::-webkit-scrollbar { display: none; }
+/* Corp card */
+.ccard-wrap{padding:7px 16px 10px;}
+.ccard{border-radius:24px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.55),0 0 0 1px rgba(30,136,229,.13);background:rgba(4,10,28,.88);backdrop-filter:blur(10px);}
 
-.cw-chip {
-  flex-shrink: 0;
-  padding: 8px 11px;
-  border-radius: 12px;
-  background: rgba(30,136,229,0.07);
-  border: 1px solid rgba(30,136,229,0.14);
-  text-align: center;
-  min-width: 76px;
-}
-.cw-ico { font-size: 17px; margin-bottom: 3px; }
-.cw-val { font-family: 'Cinzel', serif; font-size: 14px; color: #1E88E5; font-weight: 600; line-height: 1; }
-.cw-lbl { font-size: 8px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(144,202,249,0.4); margin-top: 2px; }
+.cvisual{position:relative;height:256px;overflow:hidden;background:linear-gradient(135deg,#040c1c,#0a1a3a,#0c2060);display:flex;align-items:center;justify-content:center;}
+.cv-rays{position:absolute;inset:0;background:conic-gradient(from 0deg at 50% 50%,transparent 0deg,rgba(30,136,229,.04) 22deg,transparent 45deg,rgba(201,162,39,.03) 90deg,transparent 125deg,rgba(30,136,229,.03) 180deg,transparent 210deg,rgba(201,162,39,.03) 270deg,transparent 310deg,transparent 360deg);animation:raysR 22s linear infinite;}
+.cv-aura{position:absolute;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(30,136,229,.17) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);animation:auraP 4s ease-in-out infinite;z-index:1;}
 
-.corp-sched {
-  margin: 6px 16px 0;
-  padding: 11px 13px;
-  background: rgba(30,136,229,0.05);
-  border: 1px solid rgba(30,136,229,0.1);
-  border-radius: 16px;
-}
-.cs-title { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #64B5F6; margin-bottom: 8px; }
-.cs-items { display: flex; gap: 7px; }
-.cs-item { flex: 1; text-align: center; padding: 8px 4px; border-radius: 11px; border: 1px solid rgba(30,136,229,0.12); cursor: pointer; transition: all 0.2s; font-family: 'Nunito', sans-serif; }
-.cs-item.on { border-color: #1E88E5; background: rgba(30,136,229,0.1); }
-.cs-ico { font-size: 16px; margin-bottom: 2px; }
-.cs-time { font-size: 9px; font-weight: 800; color: #1E88E5; }
-.cs-lbl { font-size: 9px; color: rgba(144,202,249,0.4); margin-top: 1px; }
+/* Corp peacock + diya animations */
+.ccard-peacock{position:absolute;top:8px;right:8px;width:60px;height:60px;z-index:3;opacity:.6;animation:pkCardFloat 4s ease-in-out infinite;filter:drop-shadow(0 0 8px rgba(30,136,229,.5));}
+.ccard-diya{position:absolute;bottom:14px;left:14px;width:44px;height:44px;z-index:3;filter:drop-shadow(0 0 10px rgba(255,152,0,.7)) drop-shadow(0 0 20px rgba(255,100,0,.4));animation:diyaFloat 3s ease-in-out infinite;}
 
-.corp-cats {
-  display: flex;
-  gap: 7px;
-  padding: 9px 16px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.corp-cats::-webkit-scrollbar { display: none; }
+.ckrishna-img{position:absolute;bottom:0;left:50%;transform:translateX(-50%);height:90%;width:auto;max-width:100%;object-fit:contain;object-position:bottom center;z-index:2;animation:kFloat 5s ease-in-out infinite;filter:drop-shadow(0 0 26px rgba(30,136,229,.38)) saturate(.7) brightness(.88);transition:opacity .5s;}
+.ckrishna-img.enter{animation:kEnter .65s cubic-bezier(.16,1,.3,1) both;}
+.cvisual::after{content:'';position:absolute;bottom:0;left:0;right:0;height:70px;background:linear-gradient(to bottom,transparent,rgba(4,10,28,.95));z-index:2;}
 
-.corp-cat {
-  flex-shrink: 0;
-  padding: 5px 13px;
-  border-radius: 20px;
-  border: 1px solid rgba(30,136,229,0.18);
-  background: transparent;
-  font-size: 11px;
-  font-weight: 700;
-  font-family: 'Nunito', sans-serif;
-  color: rgba(144,202,249,0.5);
-  cursor: pointer;
-  transition: all 0.25s;
-}
+.ccat-badge{position:absolute;top:11px;left:11px;padding:4px 10px;border-radius:17px;background:rgba(30,136,229,.24);backdrop-filter:blur(12px);border:1px solid rgba(30,136,229,.38);font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#90CAF9;z-index:4;}
+.cscene{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-family:'EB Garamond',serif;font-size:10px;font-style:italic;color:rgba(144,202,249,.32);z-index:4;letter-spacing:1px;}
 
-.corp-cat.on { background: linear-gradient(135deg, #1E88E5, #0D47A1); color: white; border-color: transparent; box-shadow: 0 3px 14px rgba(30,136,229,0.4); }
+.cbody{padding:17px 19px 19px;}
+.cq-wrap{position:relative;padding-left:16px;margin-bottom:12px;}
+.cq-wrap::before{content:'\201C';font-family:'EB Garamond',serif;font-size:52px;color:rgba(30,136,229,.18);position:absolute;left:-8px;top:-13px;line-height:1;}
+.cq-txt{font-family:'EB Garamond',serif;font-size:18px;font-weight:500;line-height:1.62;color:#E3F2FD;transition:opacity .4s,transform .4s;}
+.cq-txt.ch{opacity:0;transform:translateY(10px);}
+.cq-src{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#64B5F6;font-weight:700;margin-top:5px;}
 
-/* CORP CARD */
-.corp-card-wrap {
-  padding: 7px 16px 10px;
-  animation: fadeUp 0.7s 0.25s cubic-bezier(0.16,1,0.3,1) both;
-}
+.cinsight{margin-top:11px;padding:11px 13px;background:rgba(30,136,229,.05);border:1px solid rgba(30,136,229,.13);border-radius:12px;}
+.ci-lbl{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#64B5F6;margin-bottom:4px;}
+.ci-txt{font-size:12px;color:#B3C9E8;line-height:1.65;}
+.ctags{display:flex;gap:5px;margin-top:6px;flex-wrap:wrap;}
+.ctag{padding:3px 8px;border-radius:8px;background:rgba(30,136,229,.09);font-size:9px;font-weight:700;color:#64B5F6;border:1px solid rgba(30,136,229,.18);}
 
-.corp-card {
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(30,136,229,0.15);
-  background: rgba(5,12,30,0.85);
-  backdrop-filter: blur(8px);
-}
+.gref{margin-top:9px;padding:9px 12px;background:rgba(201,162,39,.04);border-left:2px solid rgba(201,162,39,.45);border-radius:0 10px 10px 0;}
+.gref-lbl{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#C9A227;margin-bottom:3px;}
+.gref-txt{font-size:12px;color:rgba(210,178,96,.68);line-height:1.6;font-style:italic;font-family:'EB Garamond',serif;}
 
-/* Corp visual — Krishna image with corporate tone */
-.corp-visual {
-  position: relative;
-  height: 260px;
-  overflow: hidden;
-  background: linear-gradient(135deg, #050c1e, #0a1a3a, #0d2260);
-}
+.aplan{margin-top:9px;padding:9px 12px;background:rgba(0,144,136,.05);border:1px solid rgba(0,144,136,.12);border-radius:11px;}
+.ap-lbl{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--peacock2);margin-bottom:5px;}
+.ap-items{display:flex;flex-direction:column;gap:4px;}
+.ap-item{font-size:12px;color:#A8D8D4;display:flex;align-items:flex-start;gap:6px;line-height:1.5;}
+.ap-dot{width:5px;height:5px;border-radius:50%;background:var(--peacock2);flex-shrink:0;margin-top:5px;}
 
-.corp-visual-rays {
-  position: absolute;
-  inset: 0;
-  background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(30,136,229,0.04) 25deg, transparent 50deg, rgba(201,162,39,0.03) 100deg, transparent 130deg, rgba(30,136,229,0.03) 190deg, transparent 210deg, rgba(201,162,39,0.03) 280deg, transparent 310deg, transparent 360deg);
-  animation: raysRot 25s linear infinite;
-}
+.ccard-div{height:1px;background:linear-gradient(90deg,transparent,rgba(30,136,229,.1),transparent);margin:12px 0;}
+.cactions{display:flex;gap:6px;}
+.cbtn{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;padding:10px 7px;border-radius:11px;border:1px solid rgba(30,136,229,.16);background:rgba(30,136,229,.03);cursor:pointer;font-size:11px;font-weight:700;font-family:'Nunito',sans-serif;color:rgba(144,202,249,.55);transition:all .2s;}
+.cbtn:hover{background:rgba(30,136,229,.09);border-color:#1E88E5;color:#90CAF9;}
+.cbtn.cfav-on{background:rgba(201,162,39,.08);border-color:rgba(201,162,39,.38);color:#C9A227;}
+.cbtn.wa{background:rgba(37,211,102,.05);border-color:rgba(37,211,102,.26);color:#5dbb72;}
 
-.corp-aura {
-  position: absolute;
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(30,136,229,0.18) 0%, transparent 70%);
-  top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  animation: corpAuraPulse 4s ease-in-out infinite;
-  z-index: 1;
-}
+.corp-next{width:calc(100% - 32px);display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;margin:12px 16px 0;border-radius:16px;border:none;background:linear-gradient(135deg,#1E88E5,#0D47A1);color:#E3F2FD;font-family:'Cinzel',serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .3s;box-shadow:0 8px 24px rgba(30,136,229,.32);letter-spacing:1px;}
+.corp-next:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(30,136,229,.48);}
 
-@keyframes corpAuraPulse {
-  0%,100%{ transform:translate(-50%,-50%) scale(1); opacity:0.6; }
-  50%{ transform:translate(-50%,-50%) scale(1.2); opacity:1; }
-}
+/* =====================
+   FAVORITES
+===================== */
+#favPg{padding:66px 16px 82px;}
+.pg-ttl{font-family:'Cinzel',serif;font-size:20px;font-weight:600;background:linear-gradient(135deg,var(--gold),var(--gold3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:2px;}
+.pg-sub{font-family:'EB Garamond',serif;font-size:12px;font-style:italic;color:rgba(255,244,224,.35);margin-bottom:12px;}
+.ftabs{display:flex;gap:8px;margin-bottom:12px;}
+.ftab{flex:1;padding:8px;border-radius:11px;border:1px solid rgba(200,140,12,.16);background:transparent;font-size:11px;font-weight:800;cursor:pointer;text-align:center;color:rgba(255,244,224,.38);transition:all .2s;font-family:'Nunito',sans-serif;}
+.ftab.on{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--ink);border-color:transparent;}
+.ftab.corp-on{background:linear-gradient(135deg,#1E88E5,#0D47A1);color:white;border-color:transparent;}
+.fempty{text-align:center;padding:48px 16px;}
+.fempty-ico{font-size:44px;margin-bottom:11px;opacity:.28;}
+.fempty-txt{font-family:'EB Garamond',serif;font-size:14px;color:rgba(255,244,224,.32);font-style:italic;}
+.fcard{background:rgba(16,2,32,.75);border-radius:16px;border:1px solid rgba(200,140,12,.09);padding:12px;margin-bottom:8px;backdrop-filter:blur(8px);}
+.fcard.cfc{background:rgba(4,10,28,.88);border-color:rgba(30,136,229,.12);}
+.fhdr{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
+.ftag{padding:3px 9px;background:rgba(200,140,12,.09);border-radius:10px;font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--gold);}
+.ftag.corp-tag{background:rgba(30,136,229,.09);color:#64B5F6;}
+.frm{border:none;background:none;cursor:pointer;font-size:13px;color:rgba(255,244,224,.28);}
+.fqtxt{font-family:'EB Garamond',serif;font-size:14px;font-weight:500;line-height:1.5;color:var(--ivory);margin-bottom:5px;}
+.fcard.cfc .fqtxt{color:#E3F2FD;}
+.fitxt{font-size:11px;color:rgba(255,244,224,.32);line-height:1.6;padding:6px 9px;background:rgba(200,140,12,.03);border-radius:7px;margin-top:4px;}
+.fcard.cfc .fitxt{color:rgba(144,202,249,.45);background:rgba(30,136,229,.04);}
 
-.corp-krishna-img {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 92%;
-  width: auto;
-  max-width: 100%;
-  object-fit: contain;
-  object-position: bottom center;
-  z-index: 2;
-  animation: krishnaFloat 5s ease-in-out infinite;
-  filter: drop-shadow(0 0 28px rgba(30,136,229,0.4)) saturate(0.7) brightness(0.9);
-  transition: opacity 0.5s, transform 0.5s;
-}
+/* =====================
+   PROFILE
+===================== */
+#profPg{padding:66px 16px 82px;}
+.prof-hero{text-align:center;padding:22px 16px;background:rgba(200,140,12,.04);border-radius:20px;margin-bottom:13px;border:1px solid rgba(200,140,12,.09);}
+.prof-ava{width:72px;height:72px;border-radius:50%;border:3px solid rgba(200,140,12,.38);background:linear-gradient(135deg,var(--void),var(--blue));display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:24px;color:var(--gold2);font-weight:700;margin:0 auto 11px;box-shadow:0 0 0 4px rgba(200,140,12,.07),0 0 28px rgba(200,140,12,.14);overflow:hidden;}
+.prof-ava img{width:100%;height:100%;object-fit:cover;}
+.prof-nm{font-family:'Cinzel',serif;font-size:18px;font-weight:600;color:var(--ivory);margin-bottom:2px;}
+.prof-em{font-size:12px;color:rgba(255,244,224,.32);}
+.prof-stats{display:flex;gap:8px;margin-top:13px;}
+.pstat{flex:1;text-align:center;padding:9px;background:rgba(200,140,12,.04);border-radius:12px;border:1px solid rgba(200,140,12,.08);}
+.pstat-v{font-family:'Cinzel',serif;font-size:19px;color:var(--gold2);font-weight:600;}
+.pstat-l{font-size:8px;color:rgba(255,244,224,.28);text-transform:uppercase;letter-spacing:1px;margin-top:1px;}
+.sec-ttl{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:7px;padding-left:3px;margin-top:13px;}
+.setitem{display:flex;align-items:center;justify-content:space-between;padding:12px 13px;background:rgba(16,2,32,.7);border-radius:13px;border:1px solid rgba(200,140,12,.07);margin-bottom:5px;cursor:pointer;backdrop-filter:blur(8px);transition:all .2s;}
+.setitem:hover{border-color:rgba(200,140,12,.18);background:rgba(200,140,12,.03);}
+.si-l{display:flex;align-items:center;gap:10px;}
+.si-ico{font-size:18px;width:28px;text-align:center;}
+.si-nm{font-size:13px;font-weight:600;color:var(--ivory);}
+.si-sub{font-size:11px;color:rgba(255,244,224,.32);}
+.si-arr{font-size:14px;color:rgba(255,244,224,.22);}
+.tog{position:relative;width:42px;height:22px;}
+.tog input{opacity:0;width:0;height:0;}
+.tog-sl{position:absolute;inset:0;border-radius:11px;background:rgba(200,140,12,.14);cursor:pointer;transition:.3s;}
+.tog-sl::before{content:'';position:absolute;width:16px;height:16px;border-radius:50%;background:rgba(255,244,224,.38);top:3px;left:3px;transition:.3s;}
+.tog input:checked+.tog-sl{background:linear-gradient(135deg,var(--gold),var(--gold2));}
+.tog input:checked+.tog-sl::before{transform:translateX(20px);background:var(--ink);}
+.signout{width:100%;padding:13px;border-radius:13px;border:1px solid rgba(139,26,26,.28);background:rgba(139,26,26,.05);color:#ff8888;font-family:'Cinzel',serif;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;letter-spacing:.5px;transition:all .2s;}
+.signout:hover{background:rgba(139,26,26,.11);}
 
-.corp-krishna-img.entering { animation: imgEnter 0.6s cubic-bezier(0.16,1,0.3,1) both; }
-
-.corp-cat-badge {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  padding: 4px 11px;
-  border-radius: 18px;
-  background: rgba(30,136,229,0.25);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(30,136,229,0.4);
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: #90CAF9;
-  z-index: 3;
-}
-
-.corp-scene-lbl {
-  position: absolute;
-  bottom: 11px;
-  left: 0; right: 0;
-  text-align: center;
-  font-family: 'EB Garamond', serif;
-  font-size: 11px;
-  font-style: italic;
-  color: rgba(144,202,249,0.35);
-  z-index: 3;
-  letter-spacing: 1px;
-}
-
-.corp-visual::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 70px;
-  background: linear-gradient(to bottom, transparent, rgba(5,12,30,0.95));
-  z-index: 2;
-}
-
-/* Corp body */
-.corp-body { padding: 17px 19px 19px; }
-
-.corp-quote-wrap {
-  position: relative;
-  padding-left: 16px;
-  margin-bottom: 13px;
-}
-
-.corp-quote-wrap::before {
-  content: '\201C';
-  font-family: 'EB Garamond', serif;
-  font-size: 54px;
-  color: rgba(30,136,229,0.2);
-  position: absolute;
-  left: -7px; top: -14px;
-  line-height: 1;
-}
-
-.corp-q-text {
-  font-family: 'EB Garamond', serif;
-  font-size: 19px;
-  font-weight: 500;
-  line-height: 1.6;
-  color: #E3F2FD;
-  transition: opacity 0.4s, transform 0.4s;
-}
-
-.corp-q-text.changing { opacity: 0; transform: translateY(10px); }
-
-.corp-q-src {
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: #64B5F6;
-  font-weight: 700;
-  margin-top: 5px;
-}
-
-.corp-insight {
-  margin-top: 12px;
-  padding: 12px 14px;
-  background: rgba(30,136,229,0.06);
-  border: 1px solid rgba(30,136,229,0.15);
-  border-radius: 13px;
-}
-
-.corp-insight-lbl { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #64B5F6; margin-bottom: 5px; }
-.corp-insight-txt { font-size: 13px; color: #B3C9E8; line-height: 1.65; }
-
-.corp-tags { display: flex; gap: 5px; margin-top: 7px; flex-wrap: wrap; }
-.corp-tag { padding: 3px 9px; border-radius: 9px; background: rgba(30,136,229,0.1); font-size: 10px; font-weight: 700; color: #64B5F6; border: 1px solid rgba(30,136,229,0.2); }
-
-.gita-ref {
-  margin-top: 9px;
-  padding: 10px 13px;
-  background: rgba(201,162,39,0.05);
-  border-left: 2px solid rgba(201,162,39,0.5);
-  border-radius: 0 11px 11px 0;
-}
-
-.gita-ref-lbl { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #C9A227; margin-bottom: 3px; }
-.gita-ref-txt { font-size: 12px; color: rgba(212,180,100,0.75); line-height: 1.6; font-style: italic; font-family: 'EB Garamond', serif; }
-
-.action-plan {
-  margin-top: 9px;
-  padding: 10px 13px;
-  background: rgba(0,168,157,0.05);
-  border: 1px solid rgba(0,168,157,0.14);
-  border-radius: 12px;
-}
-
-.ap-lbl { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--peacock2); margin-bottom: 6px; }
-.ap-items { display: flex; flex-direction: column; gap: 4px; }
-.ap-item { font-size: 12px; color: #A8D8D4; display: flex; align-items: flex-start; gap: 6px; line-height: 1.5; }
-.ap-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--peacock2); flex-shrink: 0; margin-top: 5px; }
-
-.corp-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(30,136,229,0.12), transparent); margin: 13px 0; }
-
-.corp-actions { display: flex; gap: 6px; }
-.corp-btn {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  padding: 10px 7px;
-  border-radius: 12px;
-  border: 1px solid rgba(30,136,229,0.18);
-  background: rgba(30,136,229,0.04);
-  cursor: pointer;
-  font-size: 11px;
-  font-weight: 700;
-  font-family: 'Nunito', sans-serif;
-  color: rgba(144,202,249,0.6);
-  transition: all 0.2s;
-}
-.corp-btn:hover { background: rgba(30,136,229,0.1); border-color: #1E88E5; color: #90CAF9; }
-.corp-btn.corp-fav-on { background: rgba(201,162,39,0.09); border-color: rgba(201,162,39,0.4); color: #C9A227; }
-.corp-btn.wa { background: rgba(37,211,102,0.06); border-color: rgba(37,211,102,0.28); color: #5dbb72; }
-
-.corp-next-btn {
-  width: calc(100% - 32px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 14px;
-  margin: 12px 16px 0;
-  border-radius: 16px;
-  border: none;
-  background: linear-gradient(135deg, #1E88E5, #0D47A1);
-  color: #E3F2FD;
-  font-family: 'Cinzel', serif;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 8px 24px rgba(30,136,229,0.35);
-  letter-spacing: 1px;
-}
-.corp-next-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(30,136,229,0.5); }
-
-/* ============================
-   FAVORITES PAGE
-============================ */
-#favPg { padding: 68px 16px 84px; }
-
-.pg-title {
-  font-family: 'Cinzel', serif;
-  font-size: 20px;
-  font-weight: 600;
-  background: linear-gradient(135deg, var(--gold), var(--gold3));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 3px;
-}
-
-.pg-sub {
-  font-family: 'EB Garamond', serif;
-  font-size: 13px;
-  font-style: italic;
-  color: rgba(255,248,238,0.4);
-  margin-bottom: 13px;
-}
-
-.fav-tabs { display: flex; gap: 8px; margin-bottom: 13px; }
-
-.fav-tab {
-  flex: 1;
-  padding: 8px;
-  border-radius: 11px;
-  border: 1px solid rgba(212,150,14,0.18);
-  background: transparent;
-  font-size: 11px;
-  font-weight: 800;
-  cursor: pointer;
-  text-align: center;
-  color: rgba(255,248,238,0.4);
-  transition: all 0.2s;
-  font-family: 'Nunito', sans-serif;
-}
-
-.fav-tab.on { background: linear-gradient(135deg, var(--gold), var(--gold2)); color: var(--ink); border-color: transparent; }
-.fav-tab.corp-on { background: linear-gradient(135deg, #1E88E5, #0D47A1); color: white; border-color: transparent; }
-
-.fav-empty { text-align: center; padding: 50px 18px; }
-.fav-empty-ico { font-size: 48px; margin-bottom: 12px; opacity: 0.3; }
-.fav-empty-txt { font-family: 'EB Garamond', serif; font-size: 15px; color: rgba(255,248,238,0.35); font-style: italic; }
-
-.fav-card {
-  background: rgba(18,2,40,0.7);
-  border-radius: 17px;
-  border: 1px solid rgba(212,150,14,0.1);
-  padding: 13px;
-  margin-bottom: 8px;
-  backdrop-filter: blur(8px);
-}
-
-.fav-card.corp-card-fav {
-  background: rgba(5,12,30,0.85);
-  border-color: rgba(30,136,229,0.14);
-}
-
-.fav-hdr { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 7px; }
-.fav-tag-lbl { padding: 3px 9px; background: rgba(212,150,14,0.1); border-radius: 10px; font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); }
-.fav-tag-lbl.corp-tag { background: rgba(30,136,229,0.1); color: #64B5F6; }
-.fav-rm { border: none; background: none; cursor: pointer; font-size: 14px; color: rgba(255,248,238,0.3); }
-.fav-quote-txt { font-family: 'EB Garamond', serif; font-size: 14px; font-weight: 500; line-height: 1.5; color: var(--ivory); margin-bottom: 5px; }
-.fav-card.corp-card-fav .fav-quote-txt { color: #E3F2FD; }
-.fav-insight-txt { font-size: 11px; color: rgba(255,248,238,0.35); line-height: 1.6; padding: 6px 9px; background: rgba(212,150,14,0.04); border-radius: 7px; margin-top: 5px; }
-.fav-card.corp-card-fav .fav-insight-txt { color: rgba(144,202,249,0.5); background: rgba(30,136,229,0.05); }
-
-/* ============================
-   PROFILE PAGE
-============================ */
-#profPg { padding: 68px 16px 84px; }
-
-.prof-hero {
-  text-align: center;
-  padding: 24px 18px;
-  background: rgba(212,150,14,0.04);
-  border-radius: 22px;
-  margin-bottom: 14px;
-  border: 1px solid rgba(212,150,14,0.1);
-}
-
-.prof-ava {
-  width: 76px; height: 76px;
-  border-radius: 50%;
-  border: 3px solid rgba(212,150,14,0.4);
-  background: linear-gradient(135deg, var(--twilight), var(--blue));
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Cinzel', serif;
-  font-size: 26px; color: var(--gold2); font-weight: 700;
-  margin: 0 auto 12px;
-  box-shadow: 0 0 0 4px rgba(212,150,14,0.08), 0 0 30px rgba(212,150,14,0.15);
-  overflow: hidden;
-}
-
-.prof-ava img { width: 100%; height: 100%; object-fit: cover; }
-
-.prof-name { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 600; color: var(--ivory); margin-bottom: 2px; }
-.prof-email { font-size: 12px; color: rgba(255,248,238,0.35); }
-
-.prof-stats { display: flex; gap: 8px; margin-top: 14px; }
-.prof-stat { flex: 1; text-align: center; padding: 10px; background: rgba(212,150,14,0.05); border-radius: 13px; border: 1px solid rgba(212,150,14,0.09); }
-.prof-stat-val { font-family: 'Cinzel', serif; font-size: 20px; color: var(--gold2); font-weight: 600; }
-.prof-stat-lbl { font-size: 9px; color: rgba(255,248,238,0.3); text-transform: uppercase; letter-spacing: 1px; margin-top: 1px; }
-
-.sec-title { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; padding-left: 3px; margin-top: 14px; }
-
-.set-item {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 13px 14px;
-  background: rgba(18,2,40,0.6);
-  border-radius: 14px;
-  border: 1px solid rgba(212,150,14,0.08);
-  margin-bottom: 5px;
-  cursor: pointer;
-  backdrop-filter: blur(8px);
-  transition: all 0.2s;
-}
-.set-item:hover { border-color: rgba(212,150,14,0.2); background: rgba(212,150,14,0.04); }
-
-.set-left { display: flex; align-items: center; gap: 11px; }
-.set-ico { font-size: 18px; width: 30px; text-align: center; }
-.set-name { font-size: 13px; font-weight: 600; color: var(--ivory); }
-.set-sub { font-size: 11px; color: rgba(255,248,238,0.35); }
-.set-arrow { font-size: 14px; color: rgba(255,248,238,0.25); }
-
-.tog { position: relative; width: 44px; height: 24px; }
-.tog input { opacity: 0; width: 0; height: 0; }
-.tog-sl { position: absolute; inset: 0; border-radius: 12px; background: rgba(212,150,14,0.15); cursor: pointer; transition: .3s; }
-.tog-sl::before { content: ''; position: absolute; width: 18px; height: 18px; border-radius: 50%; background: rgba(255,248,238,0.4); top: 3px; left: 3px; transition: .3s; }
-.tog input:checked + .tog-sl { background: linear-gradient(135deg, var(--gold), var(--gold2)); }
-.tog input:checked + .tog-sl::before { transform: translateX(20px); background: var(--ink); }
-
-.signout-btn {
-  width: 100%;
-  padding: 13px;
-  border-radius: 14px;
-  border: 1px solid rgba(139,26,26,0.3);
-  background: rgba(139,26,26,0.06);
-  color: #ff8080;
-  font-family: 'Cinzel', serif;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  margin-top: 8px;
-  letter-spacing: 0.5px;
-  transition: all 0.2s;
-}
-.signout-btn:hover { background: rgba(139,26,26,0.12); }
-
-/* ============================
+/* =====================
    TOAST
-============================ */
-.toast {
-  position: fixed;
-  bottom: 92px; left: 50%;
-  transform: translateX(-50%) translateY(20px);
-  background: rgba(18,2,40,0.95);
-  color: var(--ivory);
-  padding: 10px 20px;
-  border-radius: 24px;
-  font-size: 13px;
-  font-weight: 700;
-  z-index: 10000;
-  opacity: 0;
-  transition: all 0.35s;
-  pointer-events: none;
-  white-space: nowrap;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.4);
-  border: 1px solid rgba(212,150,14,0.2);
-  font-family: 'Nunito', sans-serif;
-}
+===================== */
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(16,2,32,.97);color:var(--ivory);padding:10px 19px;border-radius:22px;font-size:13px;font-weight:700;z-index:10000;opacity:0;transition:all .35s;pointer-events:none;white-space:nowrap;box-shadow:0 8px 28px rgba(0,0,0,.45);border:1px solid rgba(200,140,12,.18);font-family:'Nunito',sans-serif;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast.ct{border-color:rgba(30,136,229,.28);}
 
-.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-.toast.corp { border-color: rgba(30,136,229,0.3); }
-
-/* ============================
+/* =====================
    RESPONSIVE
-============================ */
-@media (min-width: 640px) {
-  .card-visual { height: 340px; }
-  .krishna-card { max-width: 520px; margin: 0 auto; }
-  .corp-card { max-width: 520px; margin: 0 auto; }
-  .card-wrap { padding: 7px 20px 10px; }
-  .corp-card-wrap { padding: 7px 20px 10px; }
+===================== */
+@media(min-width:640px){
+  .kvisual,.cvisual{height:340px;}
+  .kcard,.ccard{max-width:520px;margin:0 auto;}
+  .card-wrap,.ccard-wrap{padding:7px 20px 10px;}
 }
-
-@media (prefers-reduced-motion: reduce) {
-  * { animation-duration: 0.001ms !important; }
-}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;}}
 </style>
 </head>
 <body>
 
-<!-- COSMIC BACKGROUND -->
+<!-- COSMOS -->
 <div class="cosmos">
-  <div class="cosmos-gradient"></div>
-  <div class="cosmos-mandala" style="width:900px;height:900px;animation-duration:120s;"></div>
-  <div class="cosmos-mandala" style="width:600px;height:600px;animation-duration:80s;animation-direction:reverse;"></div>
-  <div class="cosmos-mandala" style="width:300px;height:300px;animation-duration:50s;"></div>
+  <div class="cosmos-bg"></div>
+  <div class="cosmos-ring" style="width:1000px;height:1000px;animation-duration:140s;"></div>
+  <div class="cosmos-ring" style="width:680px;height:680px;animation-duration:90s;animation-direction:reverse;"></div>
+  <div class="cosmos-ring" style="width:360px;height:360px;animation-duration:55s;"></div>
 </div>
 
-<!-- LOADING -->
-<div id="loading">
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- =====================
+     LOADING
+===================== -->
+<div id="loadScreen">
   <div class="load-mandala">
     <div class="load-ring"></div>
     <div class="load-ring"></div>
     <div class="load-ring"></div>
-    <div class="load-om">ॐ</div>
+    <div class="load-ring"></div>
+    <!-- Lottie peacock in loading -->
+    <div id="loadPeacock"></div>
+    <div class="load-om" id="loadOm">ॐ</div>
   </div>
   <div class="load-title">DAILY KRISHNA</div>
   <div class="load-sub">Divine Wisdom · Sacred Path</div>
-  <div class="load-progress"><div class="load-bar"></div></div>
+  <div class="load-bar-wrap"><div class="load-bar"></div></div>
 </div>
 
-<div class="toast" id="toast"></div>
-
-<!-- ============================
+<!-- =====================
      LOGIN PAGE
-============================ -->
-<div id="loginPage">
+===================== -->
+<div id="loginPg">
   <div class="login-bg"></div>
-  <div class="login-krishna-wrap">
-    <img class="login-krishna-img"
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Krishna_as_the_Cosmic_Charioteer.jpg/800px-Krishna_as_the_Cosmic_Charioteer.jpg"
-      onerror="this.style.display='none'"
-      alt="Lord Krishna">
-  </div>
-  <div class="login-card" id="loginCard">
-    <div class="login-avatar">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Krishna_as_the_Cosmic_Charioteer.jpg/400px-Krishna_as_the_Cosmic_Charioteer.jpg"
-        onerror="this.style.display='none';this.parentElement.innerHTML='🦚'"
-        alt="Krishna">
-    </div>
+
+  <!-- Background peacock Lottie -->
+  <div class="login-peacock-bg" id="loginBgPeacock"></div>
+
+  <div class="login-card">
+    <!-- Large Lottie peacock — center focus, 160px -->
+    <div class="login-lottie-peacock" id="loginPeacock"></div>
+
     <div class="login-om">ॐ</div>
     <div class="login-title">Daily Krishna</div>
     <div class="login-tagline">Wisdom of the Bhagavad Gita</div>
-    <div class="login-module-sub">Life Wisdom · Corporate Clarity</div>
+    <div class="login-mod-sub">Life Wisdom · Corporate Clarity</div>
 
-    <div class="mod-select">
-      <div class="mod-opt on" id="lm1" onclick="selLoginMod('main')">
+    <div class="mod-sel">
+      <div class="mod-opt on" id="lm1" onclick="selMod('main')">
         <div class="mod-opt-ico">🪷</div>
-        <div class="mod-opt-name">Daily Krishna</div>
+        <div class="mod-opt-nm">Daily Krishna</div>
         <div class="mod-opt-sub">Life wisdom</div>
       </div>
-      <div class="mod-opt" id="lm2" onclick="selLoginMod('corp')">
+      <div class="mod-opt" id="lm2" onclick="selMod('corp')">
         <div class="mod-opt-ico">💼</div>
-        <div class="mod-opt-name">Corporate Krishna</div>
+        <div class="mod-opt-nm">Corporate Krishna</div>
         <div class="mod-opt-sub">Workplace wisdom</div>
       </div>
     </div>
 
-    <div class="login-divider"><span>🪔</span></div>
+    <!-- Diya Lottie in divider -->
+    <div class="login-diya-row">
+      <div class="login-diya-lottie" id="loginDiya"></div>
+    </div>
+
     <div class="login-verse" id="loginVerse">
-      "You have the right to perform your actions,<br>but never to the fruits of your actions."<br><br>
+      "You have the right to perform your actions,<br>
+      but never to the fruits of your actions."<br><br>
       — Bhagavad Gita 2.47
     </div>
 
     <button class="btn-google" onclick="signInWithGoogle()">
-      <div class="g-icon">
+      <div class="g-ico">
         <svg viewBox="0 0 24 24">
           <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
           <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -1765,285 +691,386 @@ body {
   </div>
 </div>
 
-<!-- ============================
+<!-- =====================
      MAIN APP
-============================ -->
+===================== -->
 <div id="app">
 
   <!-- TOP NAV -->
-  <nav class="top-nav" id="topNav">
+  <nav class="tnav" id="tnav">
     <div class="nav-brand">
-      <div class="nav-brand-dot"></div>
-      <div class="nav-brand-text" id="navBrandTxt">Daily Krishna</div>
+      <!-- Tiny diya in nav -->
+      <div class="nav-diya" id="navDiya"></div>
+      <div class="nav-brand-txt" id="navBrand">Daily Krishna</div>
     </div>
-    <div class="nav-right">
+    <div class="nav-r">
       <div class="mod-pill">
-        <button class="mod-pill-btn on" id="mpMain" onclick="switchMod('main')">🪷 Life</button>
-        <button class="mod-pill-btn" id="mpCorp" onclick="switchMod('corp')">💼 Corporate</button>
+        <button class="mpb on" id="mpM" onclick="swMod('main')">🪷 Life</button>
+        <button class="mpb" id="mpC" onclick="swMod('corp')">💼 Corp</button>
       </div>
-      <button class="nav-icon-btn" id="themeBtn" onclick="toggleTheme()">🌙</button>
-      <div class="nav-avatar" id="navAva" onclick="goPg('profPg')">K</div>
+      <button class="nib" id="themeBtn" onclick="toggleTheme()">🌙</button>
+      <div class="nav-ava" id="navAva" onclick="goPg('profPg')">K</div>
     </div>
   </nav>
 
-  <!-- ======== MAIN MODULE ======== -->
-
   <!-- HOME PAGE -->
-  <div class="page on" id="homePg">
-    <div class="greeting">
-      <div class="greeting-date" id="gDate"></div>
-      <div class="greeting-name">Jai Shri Krishna, <strong id="gName">Devotee</strong> 🙏</div>
+  <div class="pg on" id="homePg">
+    <div class="greet">
+      <div class="greet-date" id="gDate"></div>
+      <div class="greet-name">Jai Shri Krishna, <strong id="gName">Devotee</strong> 🙏</div>
     </div>
 
-    <div class="wellness-bar">
-      <div class="w-chip"><div class="w-chip-ico">🧘</div><div class="w-chip-val" id="wc1">1</div><div class="w-chip-lbl">Streak</div></div>
-      <div class="w-chip"><div class="w-chip-ico">📖</div><div class="w-chip-val" id="wc2">0</div><div class="w-chip-lbl">Read</div></div>
-      <div class="w-chip"><div class="w-chip-ico">🌸</div><div class="w-chip-val" id="wc3">0</div><div class="w-chip-lbl">Saved</div></div>
-      <div class="w-chip"><div class="w-chip-ico">✨</div><div class="w-chip-val">∞</div><div class="w-chip-lbl">Wisdom</div></div>
+    <div class="wbar">
+      <div class="wchip"><div class="wchip-ico">🧘</div><div class="wchip-val" id="wc1">1</div><div class="wchip-lbl">Streak</div></div>
+      <div class="wchip"><div class="wchip-ico">📖</div><div class="wchip-val" id="wc2">0</div><div class="wchip-lbl">Read</div></div>
+      <div class="wchip"><div class="wchip-ico">🌸</div><div class="wchip-val" id="wc3">0</div><div class="wchip-lbl">Saved</div></div>
+      <div class="wchip"><div class="wchip-ico">✨</div><div class="wchip-val">∞</div><div class="wchip-lbl">Wisdom</div></div>
     </div>
 
-    <div class="notif-banner" id="nBanner" style="display:none;">
-      <div class="nb-text"><strong>🔔 Daily Reminders</strong>Morning · Midday · Evening</div>
+    <div class="nbanner" id="nBan" style="display:none;">
+      <div class="nb-txt"><strong>🔔 Daily Reminders</strong>Morning · Midday · Evening</div>
       <button class="nb-btn" onclick="reqNotif()">Enable</button>
-      <button class="nb-close" onclick="document.getElementById('nBanner').style.display='none'">✕</button>
+      <button class="nb-x" onclick="document.getElementById('nBan').style.display='none'">✕</button>
     </div>
 
-    <div class="sched-wrap">
-      <div class="sched-title">🌸 Wisdom Schedule</div>
+    <div class="sched">
+      <div class="sched-ttl">🌸 Wisdom Schedule</div>
       <div class="sched-items">
-        <div class="sched-item" id="si1" onclick="loadSched('morning')"><div class="sched-item-ico">🌅</div><div class="sched-item-time">7 AM</div><div class="sched-item-lbl">Morning</div></div>
-        <div class="sched-item" id="si2" onclick="loadSched('midday')"><div class="sched-item-ico">☀️</div><div class="sched-item-time">1 PM</div><div class="sched-item-lbl">Midday</div></div>
-        <div class="sched-item" id="si3" onclick="loadSched('evening')"><div class="sched-item-ico">🌙</div><div class="sched-item-time">7 PM</div><div class="sched-item-lbl">Evening</div></div>
+        <div class="si" id="si1" onclick="loadSched('morning')"><div class="si-ico">🌅</div><div class="si-time">7 AM</div><div class="si-lbl">Morning</div></div>
+        <div class="si" id="si2" onclick="loadSched('midday')"><div class="si-ico">☀️</div><div class="si-time">1 PM</div><div class="si-lbl">Midday</div></div>
+        <div class="si" id="si3" onclick="loadSched('evening')"><div class="si-ico">🌙</div><div class="si-time">7 PM</div><div class="si-lbl">Evening</div></div>
       </div>
     </div>
 
-    <div class="cat-row">
-      <button class="cat-btn on" onclick="filtMain('All',this)">All</button>
-      <button class="cat-btn" onclick="filtMain('Peace',this)">☮️ Peace</button>
-      <button class="cat-btn" onclick="filtMain('Courage',this)">🔥 Courage</button>
-      <button class="cat-btn" onclick="filtMain('Love',this)">💛 Love</button>
-      <button class="cat-btn" onclick="filtMain('Purpose',this)">🎯 Purpose</button>
-      <button class="cat-btn" onclick="filtMain('Mind',this)">🧘 Mind</button>
-      <button class="cat-btn" onclick="filtMain('Faith',this)">🙏 Faith</button>
-      <button class="cat-btn" onclick="filtMain('Action',this)">⚡ Action</button>
+    <div class="catrow">
+      <button class="catbtn on" onclick="filtM('All',this)">All</button>
+      <button class="catbtn" onclick="filtM('Peace',this)">☮️ Peace</button>
+      <button class="catbtn" onclick="filtM('Courage',this)">🔥 Courage</button>
+      <button class="catbtn" onclick="filtM('Love',this)">💛 Love</button>
+      <button class="catbtn" onclick="filtM('Purpose',this)">🎯 Purpose</button>
+      <button class="catbtn" onclick="filtM('Mind',this)">🧘 Mind</button>
+      <button class="catbtn" onclick="filtM('Faith',this)">🙏 Faith</button>
+      <button class="catbtn" onclick="filtM('Action',this)">⚡ Action</button>
     </div>
 
-    <!-- KRISHNA QUOTE CARD -->
-    <div class="card-wrap" id="mainWrap">
-      <div class="krishna-card">
+    <!-- KRISHNA CARD with Lottie animations -->
+    <div class="card-wrap" id="mWrap">
+      <div class="kcard">
+        <div class="kvisual" id="mVis">
+          <div class="kv-bg" id="mBg"></div>
+          <div class="kv-rays"></div>
+          <div class="kv-aura" id="mAura" style="width:180px;height:180px;"></div>
+          <div class="kv-ring" style="width:220px;height:220px;animation-duration:22s;"></div>
+          <div class="kv-ring" style="width:170px;height:170px;animation-duration:16s;animation-direction:reverse;"></div>
 
-        <!-- Visual Panel with Real Krishna Image -->
-        <div class="card-visual" id="mainVisual">
-          <div class="card-visual-bg" id="mainBg"></div>
-          <div class="card-rays"></div>
-          <div class="card-aura" id="mainAura"></div>
-          <div class="card-ring" style="width:220px;height:220px;animation-duration:20s;"></div>
-          <div class="card-ring" style="width:170px;height:170px;animation-duration:14s;animation-direction:reverse;"></div>
-          <!-- Real Krishna Image -->
-          <img class="krishna-img" id="mainKrishnaImg" src="" alt="Lord Krishna" onerror="this.style.display='none'">
-          <div class="card-cat-badge" id="mainCatBadge">Peace</div>
-          <div class="card-scene" id="mainScene">Vrindavan · Peaceful Evening</div>
+          <!-- Lottie PEACOCK on card — 70px, floating -->
+          <div class="card-peacock-lottie" id="cardPeacock1"></div>
+
+          <!-- Lottie DIYA on card — bottom left, glowing -->
+          <div class="card-diya-lottie" id="cardDiya1"></div>
+
+          <!-- Real Krishna image -->
+          <img class="krishna-img" id="mKImg" src="" alt="Lord Krishna" onerror="this.style.display='none'">
+
+          <div class="kcat-badge" id="mBadge">Peace</div>
+          <div class="kscene" id="mScene">Vrindavan · Peaceful Evening</div>
         </div>
 
-        <div class="card-body">
-          <div class="card-quote-wrap">
-            <div class="card-quote-text" id="mainQText">Loading divine wisdom...</div>
-            <div class="card-quote-src" id="mainQSrc">— Bhagavad Gita</div>
+        <div class="kbody">
+          <div class="kq-wrap">
+            <div class="kq-text" id="mQTxt">Loading divine wisdom...</div>
+            <div class="kq-src" id="mQSrc">— Bhagavad Gita</div>
           </div>
-          <div class="meaning-box">
-            <div class="meaning-label">🌸 Simple Meaning</div>
-            <div class="meaning-text" id="mainMeaning"></div>
+          <div class="mbox">
+            <div class="mbox-lbl">🌸 Simple Meaning</div>
+            <div class="mbox-txt" id="mMean"></div>
           </div>
-          <div class="krishna-says">
-            <div class="ks-label">✨ Krishna Says</div>
-            <div class="ks-text" id="mainKSays"></div>
+          <div class="ksays">
+            <div class="ks-lbl">✨ Krishna Says</div>
+            <div class="ks-txt" id="mKSays"></div>
           </div>
-          <div class="card-divider"></div>
-          <div class="card-actions">
-            <button class="card-btn" id="mainFavBtn" onclick="togMainFav()"><span class="card-btn-ico">🤍</span> Save</button>
-            <button class="card-btn wa" onclick="mainWA()"><span class="card-btn-ico">💬</span> WhatsApp</button>
-            <button class="card-btn" onclick="mainShare()"><span class="card-btn-ico">📤</span> Share</button>
+          <div class="kcard-div"></div>
+          <div class="kactions">
+            <button class="kbtn" id="mFavBtn" onclick="togMFav()"><span class="kbtn-ico">🤍</span> Save</button>
+            <button class="kbtn wa" onclick="mWA()"><span class="kbtn-ico">💬</span> WhatsApp</button>
+            <button class="kbtn" onclick="mShare()"><span class="kbtn-ico">📤</span> Share</button>
           </div>
         </div>
       </div>
     </div>
-    <button class="next-btn" onclick="nextMain()">🪷 &nbsp;Next Quote &nbsp;›</button>
+    <button class="next-btn" onclick="nextM()">🪷 &nbsp;Next Quote &nbsp;›</button>
   </div>
 
   <!-- FAVORITES PAGE -->
-  <div class="page" id="favPg">
-    <div class="pg-title">My Favorites</div>
+  <div class="pg" id="favPg">
+    <div class="pg-ttl">My Favorites</div>
     <div class="pg-sub">Saved wisdom for your journey 🌸</div>
-    <div class="fav-tabs">
-      <button class="fav-tab on" onclick="swFavTab('main',this)">🪷 Life Wisdom</button>
-      <button class="fav-tab" onclick="swFavTab('corp',this)">💼 Corporate</button>
+    <div class="ftabs">
+      <button class="ftab on" onclick="swFavTab('main',this)">🪷 Life Wisdom</button>
+      <button class="ftab" onclick="swFavTab('corp',this)">💼 Corporate</button>
     </div>
     <div id="favList"></div>
   </div>
 
   <!-- PROFILE PAGE -->
-  <div class="page" id="profPg">
+  <div class="pg" id="profPg">
     <div class="prof-hero">
       <div class="prof-ava" id="profAva">K</div>
-      <div class="prof-name" id="profName">Krishna Devotee</div>
-      <div class="prof-email" id="profEmail"></div>
+      <div class="prof-nm" id="profNm">Krishna Devotee</div>
+      <div class="prof-em" id="profEm"></div>
       <div class="prof-stats">
-        <div class="prof-stat"><div class="prof-stat-val" id="ps1">1</div><div class="prof-stat-lbl">Streak</div></div>
-        <div class="prof-stat"><div class="prof-stat-val" id="ps2">0</div><div class="prof-stat-lbl">Saved</div></div>
-        <div class="prof-stat"><div class="prof-stat-val" id="ps3">0</div><div class="prof-stat-lbl">Read</div></div>
+        <div class="pstat"><div class="pstat-v" id="ps1">1</div><div class="pstat-l">Streak</div></div>
+        <div class="pstat"><div class="pstat-v" id="ps2">0</div><div class="pstat-l">Saved</div></div>
+        <div class="pstat"><div class="pstat-v" id="ps3">0</div><div class="pstat-l">Read</div></div>
       </div>
     </div>
-    <div class="sec-title">Preferences</div>
-    <div class="set-item"><div class="set-left"><div class="set-ico">🌙</div><div><div class="set-name">Dark Mode</div><div class="set-sub">Currently in divine dark theme</div></div></div><label class="tog"><input type="checkbox" id="darkTog" checked onchange="toggleTheme()"><span class="tog-sl"></span></label></div>
-    <div class="set-item" onclick="reqNotif()"><div class="set-left"><div class="set-ico">🔔</div><div><div class="set-name">Daily Reminders</div><div class="set-sub" id="notifSub">3x daily · Gita wisdom</div></div></div><div class="set-arrow">›</div></div>
-    <div class="set-item" onclick="instPWA()"><div class="set-left"><div class="set-ico">📱</div><div><div class="set-name">Install App</div><div class="set-sub">Offline · Add to home screen</div></div></div><div class="set-arrow">›</div></div>
-    <div class="sec-title">About</div>
-    <div class="set-item"><div class="set-left"><div class="set-ico">📖</div><div><div class="set-name">Daily Krishna</div><div class="set-sub">Version 5.0 · Life + Corporate</div></div></div><div class="set-arrow">›</div></div>
-    <div class="set-item" onclick="goPg('favPg')"><div class="set-left"><div class="set-ico">🌸</div><div><div class="set-name">My Favorites</div><div class="set-sub" id="favCount">0 saved</div></div></div><div class="set-arrow">›</div></div>
-    <button class="signout-btn" onclick="doLogout()">🚪 &nbsp;Sign Out</button>
+    <div class="sec-ttl">Preferences</div>
+    <div class="setitem"><div class="si-l"><div class="si-ico">🌙</div><div><div class="si-nm">Dark Mode</div><div class="si-sub">Divine dark theme</div></div></div><label class="tog"><input type="checkbox" id="darkTog" checked onchange="toggleTheme()"><span class="tog-sl"></span></label></div>
+    <div class="setitem" onclick="reqNotif()"><div class="si-l"><div class="si-ico">🔔</div><div><div class="si-nm">Daily Reminders</div><div class="si-sub" id="notifSub">3x daily · Gita wisdom</div></div></div><div class="si-arr">›</div></div>
+    <div class="setitem" onclick="instPWA()"><div class="si-l"><div class="si-ico">📱</div><div><div class="si-nm">Install App</div><div class="si-sub">Offline · Home screen</div></div></div><div class="si-arr">›</div></div>
+    <div class="sec-ttl">About</div>
+    <div class="setitem"><div class="si-l"><div class="si-ico">📖</div><div><div class="si-nm">Daily Krishna</div><div class="si-sub">Version 6.0 · Life + Corporate</div></div></div><div class="si-arr">›</div></div>
+    <div class="setitem" onclick="goPg('favPg')"><div class="si-l"><div class="si-ico">🌸</div><div><div class="si-nm">My Favorites</div><div class="si-sub" id="favCount">0 saved</div></div></div><div class="si-arr">›</div></div>
+    <button class="signout" onclick="doLogout()">🚪 &nbsp;Sign Out</button>
   </div>
 
-  <!-- ======== CORPORATE MODULE ======== -->
+  <!-- CORPORATE MODULE -->
   <div id="corpPg">
-    <div class="corp-header">
+    <div class="corp-hdr">
       <div class="corp-badge">💼 Corporate Krishna</div>
       <div class="corp-date" id="cDate"></div>
       <div class="corp-greet">Namaste, <span id="cName">Professional</span> — Krishna guides your workday 🙏</div>
     </div>
 
-    <div class="corp-wellness">
-      <div class="cw-chip"><div class="cw-ico">📈</div><div class="cw-val" id="cwc1">1</div><div class="cw-lbl">Streak</div></div>
-      <div class="cw-chip"><div class="cw-ico">🎯</div><div class="cw-val" id="cwc2">0</div><div class="cw-lbl">Read</div></div>
-      <div class="cw-chip"><div class="cw-ico">⭐</div><div class="cw-val" id="cwc3">0</div><div class="cw-lbl">Saved</div></div>
-      <div class="cw-chip"><div class="cw-ico">🔱</div><div class="cw-val">∞</div><div class="cw-lbl">Wisdom</div></div>
+    <div class="cwbar">
+      <div class="cwchip"><div class="cwchip-ico">📈</div><div class="cwchip-val" id="cwc1">1</div><div class="cwchip-lbl">Streak</div></div>
+      <div class="cwchip"><div class="cwchip-ico">🎯</div><div class="cwchip-val" id="cwc2">0</div><div class="cwchip-lbl">Read</div></div>
+      <div class="cwchip"><div class="cwchip-ico">⭐</div><div class="cwchip-val" id="cwc3">0</div><div class="cwchip-lbl">Saved</div></div>
+      <div class="cwchip"><div class="cwchip-ico">🔱</div><div class="cwchip-val">∞</div><div class="cwchip-lbl">Wisdom</div></div>
     </div>
 
-    <div class="corp-sched">
-      <div class="cs-title">📅 Corporate Schedule</div>
-      <div class="cs-items">
-        <div class="cs-item" id="cs1" onclick="loadCSched('morning')"><div class="cs-ico">🌅</div><div class="cs-time">9 AM</div><div class="cs-lbl">Pre-Meeting</div></div>
-        <div class="cs-item" id="cs2" onclick="loadCSched('midday')"><div class="cs-ico">☕</div><div class="cs-time">1 PM</div><div class="cs-lbl">Stress Break</div></div>
-        <div class="cs-item" id="cs3" onclick="loadCSched('evening')"><div class="cs-ico">📊</div><div class="cs-time">6 PM</div><div class="cs-lbl">EOD Review</div></div>
+    <div class="csched">
+      <div class="csched-ttl">📅 Corporate Schedule</div>
+      <div class="csi-items">
+        <div class="csi" id="cs1" onclick="loadCSched('morning')"><div class="csi-ico">🌅</div><div class="csi-time">9 AM</div><div class="csi-lbl">Pre-Meet</div></div>
+        <div class="csi" id="cs2" onclick="loadCSched('midday')"><div class="csi-ico">☕</div><div class="csi-time">1 PM</div><div class="csi-lbl">Stress Break</div></div>
+        <div class="csi" id="cs3" onclick="loadCSched('evening')"><div class="csi-ico">📊</div><div class="csi-time">6 PM</div><div class="csi-lbl">EOD</div></div>
       </div>
     </div>
 
-    <div class="corp-cats">
-      <button class="corp-cat on" onclick="filtCorp('All',this)">All</button>
-      <button class="corp-cat" onclick="filtCorp('Leadership',this)">👑 Leadership</button>
-      <button class="corp-cat" onclick="filtCorp('Stress',this)">🧘 Stress</button>
-      <button class="corp-cat" onclick="filtCorp('Decision',this)">⚖️ Decisions</button>
-      <button class="corp-cat" onclick="filtCorp('Team',this)">🤝 Team</button>
-      <button class="corp-cat" onclick="filtCorp('Strategy',this)">🎯 Strategy</button>
-      <button class="corp-cat" onclick="filtCorp('Ethics',this)">🌿 Ethics</button>
-      <button class="corp-cat" onclick="filtCorp('Growth',this)">📈 Growth</button>
+    <div class="ccats">
+      <button class="ccatbtn on" onclick="filtC('All',this)">All</button>
+      <button class="ccatbtn" onclick="filtC('Leadership',this)">👑 Leadership</button>
+      <button class="ccatbtn" onclick="filtC('Stress',this)">🧘 Stress</button>
+      <button class="ccatbtn" onclick="filtC('Decision',this)">⚖️ Decisions</button>
+      <button class="ccatbtn" onclick="filtC('Team',this)">🤝 Team</button>
+      <button class="ccatbtn" onclick="filtC('Strategy',this)">🎯 Strategy</button>
+      <button class="ccatbtn" onclick="filtC('Ethics',this)">🌿 Ethics</button>
+      <button class="ccatbtn" onclick="filtC('Growth',this)">📈 Growth</button>
     </div>
 
-    <div class="corp-card-wrap" id="corpWrap">
-      <div class="corp-card">
-        <div class="corp-visual" id="corpVisual">
-          <div class="corp-visual-rays"></div>
-          <div class="corp-aura"></div>
-          <img class="corp-krishna-img" id="corpKrishnaImg" src="" alt="Lord Krishna" onerror="this.style.display='none'">
-          <div class="corp-cat-badge" id="corpCatBadge">Leadership</div>
-          <div class="corp-scene-lbl" id="corpScene">Kurukshetra · Divine Guidance</div>
+    <div class="ccard-wrap" id="cWrap">
+      <div class="ccard">
+        <div class="cvisual" id="cVis">
+          <div class="cv-rays"></div>
+          <div class="cv-aura"></div>
+
+          <!-- Corp card peacock + diya Lottie -->
+          <div class="ccard-peacock" id="corpCardPeacock"></div>
+          <div class="ccard-diya" id="corpCardDiya"></div>
+
+          <img class="ckrishna-img" id="cKImg" src="" alt="Lord Krishna" onerror="this.style.display='none'">
+          <div class="ccat-badge" id="cBadge">Leadership</div>
+          <div class="cscene" id="cScene">Kurukshetra · Divine Guidance</div>
         </div>
-        <div class="corp-body">
-          <div class="corp-quote-wrap">
-            <div class="corp-q-text" id="corpQText">Loading...</div>
-            <div class="corp-q-src" id="corpQSrc">— Bhagavad Gita</div>
+
+        <div class="cbody">
+          <div class="cq-wrap">
+            <div class="cq-txt" id="cQTxt">Loading...</div>
+            <div class="cq-src" id="cQSrc">— Bhagavad Gita</div>
           </div>
-          <div class="corp-insight">
-            <div class="corp-insight-lbl">💼 Corporate Application</div>
-            <div class="corp-insight-txt" id="corpInsight"></div>
-            <div class="corp-tags" id="corpTagsEl"></div>
+          <div class="cinsight">
+            <div class="ci-lbl">💼 Corporate Application</div>
+            <div class="ci-txt" id="cInsight"></div>
+            <div class="ctags" id="cTagsEl"></div>
           </div>
-          <div class="gita-ref">
-            <div class="gita-ref-lbl">📖 Gita Reference</div>
-            <div class="gita-ref-txt" id="corpGRef"></div>
+          <div class="gref">
+            <div class="gref-lbl">📖 Gita Reference</div>
+            <div class="gref-txt" id="cGRef"></div>
           </div>
-          <div class="action-plan">
+          <div class="aplan">
             <div class="ap-lbl">✅ Today's Action Plan</div>
-            <div class="ap-items" id="corpAP"></div>
+            <div class="ap-items" id="cAP"></div>
           </div>
-          <div class="corp-divider"></div>
-          <div class="corp-actions">
-            <button class="corp-btn" id="corpFavBtn" onclick="togCorpFav()"><span>⭐</span> Save</button>
-            <button class="corp-btn wa" onclick="corpWA()"><span>💬</span> WhatsApp</button>
-            <button class="corp-btn" onclick="corpShare()"><span>📤</span> Share</button>
+          <div class="ccard-div"></div>
+          <div class="cactions">
+            <button class="cbtn" id="cFavBtn" onclick="togCFav()"><span>⭐</span> Save</button>
+            <button class="cbtn wa" onclick="cWA()"><span>💬</span> WhatsApp</button>
+            <button class="cbtn" onclick="cShare()"><span>📤</span> Share</button>
           </div>
         </div>
       </div>
     </div>
-    <button class="corp-next-btn" onclick="nextCorp()">💼 &nbsp;Next Lesson &nbsp;›</button>
+    <button class="corp-next" onclick="nextC()">💼 &nbsp;Next Lesson &nbsp;›</button>
   </div>
 
   <!-- BOTTOM NAV -->
-  <nav class="bottom-nav" id="botNav">
-    <button class="nav-tab on" id="nt1" onclick="goPg('homePg')"><div class="nav-tab-ico">🏠</div><div class="nav-tab-lbl">Home</div></button>
-    <button class="nav-tab" id="nt2" onclick="goPg('favPg')"><div class="nav-tab-ico">🤍</div><div class="nav-tab-lbl">Saved</div></button>
-    <button class="nav-tab" id="nt3" onclick="goPg('profPg')"><div class="nav-tab-ico">👤</div><div class="nav-tab-lbl">Profile</div></button>
+  <nav class="bnav" id="bnav">
+    <button class="ntab on" id="nt1" onclick="goPg('homePg')"><div class="ntab-ico">🏠</div><div class="ntab-lbl">Home</div></button>
+    <button class="ntab" id="nt2" onclick="goPg('favPg')"><div class="ntab-ico">🤍</div><div class="ntab-lbl">Saved</div></button>
+    <button class="ntab" id="nt3" onclick="goPg('profPg')"><div class="ntab-ico">👤</div><div class="ntab-lbl">Profile</div></button>
   </nav>
 
 </div><!-- /app -->
 
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+
 <script>
 // ============================================================
-// KRISHNA IMAGE LIBRARY
-// Real Wikimedia / open-source Krishna images mapped to categories
-// Each quote gets a unique, emotionally matched Krishna image
+// LOTTIE ANIMATION MANAGER
+// Uses lottie-web (loaded from CDN above)
+// Peacock + Diya integrated throughout
 // ============================================================
-const KRISHNA_IMAGES = {
-  // Flute — Peace, Love, Devotion
-  flute: [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lord_Krishna_with_Flute.jpg/400px-Lord_Krishna_with_Flute.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Krishna_playing_flute.jpg/400px-Krishna_playing_flute.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Radha_Krishna.jpg/400px-Radha_Krishna.jpg"
+
+// Lottie URLs — multiple fallbacks per animation
+const LOTTIE_URLS = {
+  peacock: [
+    "https://assets10.lottiefiles.com/packages/lf20_touohxv0.json",
+    "https://assets2.lottiefiles.com/packages/lf20_qmfs6c3i.json",
+    "https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
   ],
-  // Charioteer / Battlefield — Courage, Strategy, Leadership
-  battlefield: [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Krishna_as_the_Cosmic_Charioteer.jpg/400px-Krishna_as_the_Cosmic_Charioteer.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Krishna_Arjuna_Mahabharata.jpg/400px-Krishna_Arjuna_Mahabharata.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Battle_of_Kurukshetra.jpg/400px-Battle_of_Kurukshetra.jpg"
+  diya: [
+    "https://assets9.lottiefiles.com/packages/lf20_8gk6v9mj.json",
+    "https://assets1.lottiefiles.com/packages/lf20_jcikwtux.json",
+    "https://assets5.lottiefiles.com/packages/lf20_q5qeoo3q.json"
   ],
-  // Teaching / Gita — Wisdom, Mind, Karma
-  teaching: [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Krishna_as_the_Cosmic_Charioteer.jpg/400px-Krishna_as_the_Cosmic_Charioteer.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Krishna_Arjuna_Mahabharata.jpg/400px-Krishna_Arjuna_Mahabharata.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Bhagavad_Gita_teaching.jpg/400px-Bhagavad_Gita_teaching.jpg"
-  ],
-  // Child / Bal Krishna — Faith, Purpose, simple
-  bal: [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lord_Krishna_with_Flute.jpg/400px-Lord_Krishna_with_Flute.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Radha_Krishna.jpg/400px-Radha_Krishna.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lord_Krishna_with_Flute.jpg/400px-Lord_Krishna_with_Flute.jpg"
+  om: [
+    "https://assets2.lottiefiles.com/packages/lf20_x62chJ.json"
   ]
 };
 
-// Category → image type + bg gradient + aura color + scene
-const CAT_CONFIG = {
-  Peace:     { imgs:'flute',     bg:['#0d1840','#001830'], aura:'rgba(0,120,180,0.3)',  scene:'Vrindavan · Moonlit Evening' },
-  Mind:      { imgs:'flute',     bg:['#0d1840','#001830'], aura:'rgba(0,120,180,0.25)', scene:'Himalayan Serenity · Inner Stillness' },
-  Love:      { imgs:'flute',     bg:['#1a0a30','#0a0a30'], aura:'rgba(180,60,140,0.3)', scene:'Vrindavan · Divine Love & Radha' },
-  Faith:     { imgs:'bal',       bg:['#1a0a20','#0a0820'], aura:'rgba(160,80,220,0.3)', scene:'Vrindavan · Devotion & Grace' },
-  Purpose:   { imgs:'teaching',  bg:['#1a1000','#201000'], aura:'rgba(200,140,0,0.3)',  scene:'Gita Discourse · Sacred Purpose' },
-  Action:    { imgs:'teaching',  bg:['#0a1800','#081200'], aura:'rgba(40,160,80,0.3)',  scene:'Gita Updesh · Right Action' },
-  Courage:   { imgs:'battlefield',bg:['#300a00','#400800'],aura:'rgba(220,80,20,0.35)', scene:'Kurukshetra · Arise and Conquer' },
-  // Corp categories
-  Leadership:{ imgs:'battlefield',bg:['#050c1e','#0a1a3a'],aura:'rgba(30,136,229,0.3)', scene:'Kurukshetra · Guiding the Warrior' },
-  Stress:    { imgs:'flute',     bg:['#050c1e','#001820'], aura:'rgba(0,120,180,0.25)', scene:'Inner Stillness · Beyond Deadline' },
-  Decision:  { imgs:'teaching',  bg:['#050c1e','#0a1535'], aura:'rgba(30,100,229,0.3)', scene:'Dwarka Court · Strategic Clarity' },
-  Team:      { imgs:'flute',     bg:['#050c1e','#0a1a10'], aura:'rgba(0,140,100,0.25)', scene:'Vrindavan · United in Purpose' },
-  Strategy:  { imgs:'battlefield',bg:['#050c1e','#0a1535'],aura:'rgba(30,136,229,0.3)', scene:'Dwarka Sabha · Royal Planning' },
-  Ethics:    { imgs:'teaching',  bg:['#050c10','#081510'], aura:'rgba(0,160,120,0.25)', scene:'Gita Discourse · The Righteous Path' },
-  Growth:    { imgs:'battlefield',bg:['#080518','#0a1030'],aura:'rgba(80,30,180,0.3)',  scene:'Sunrise · Rise to Excellence' }
+// Store all Lottie instances
+const lotties = {};
+
+function loadLottie(containerId, type, loop=true, autoplay=true, urlIdx=0) {
+  const container = document.getElementById(containerId);
+  if (!container) return null;
+  if (lotties[containerId]) {
+    try { lotties[containerId].destroy(); } catch(e){}
+  }
+
+  const urls = LOTTIE_URLS[type];
+  if (!urls || !urls[urlIdx]) return null;
+
+  try {
+    const anim = lottie.loadAnimation({
+      container: container,
+      renderer: 'svg',
+      loop: loop,
+      autoplay: autoplay,
+      path: urls[urlIdx],
+      rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice',
+        progressiveLoad: true
+      }
+    });
+
+    anim.addEventListener('error', () => {
+      if (urlIdx + 1 < urls.length) {
+        loadLottie(containerId, type, loop, autoplay, urlIdx + 1);
+      } else {
+        // Fallback: show emoji
+        const fallbacks = {peacock:'🦚',diya:'🪔',om:'ॐ'};
+        container.innerHTML = `<span style="font-size:${container.style.width||'40px'};display:flex;align-items:center;justify-content:center;height:100%;">${fallbacks[type]||'✨'}</span>`;
+      }
+    });
+
+    lotties[containerId] = anim;
+    return anim;
+  } catch(e) {
+    console.warn('Lottie load error:', e);
+    if (urlIdx + 1 < urls.length) {
+      return loadLottie(containerId, type, loop, autoplay, urlIdx + 1);
+    }
+    return null;
+  }
+}
+
+// Initialize all Lottie animations
+function initLottie() {
+  // Loading screen peacock — center of mandala rings
+  loadLottie('loadPeacock', 'peacock', true, true);
+
+  // Login card — large peacock (160px, main focus)
+  loadLottie('loginPeacock', 'peacock', true, true);
+
+  // Login background peacock (subtle)
+  loadLottie('loginBgPeacock', 'peacock', true, true);
+
+  // Login diya in divider
+  loadLottie('loginDiya', 'diya', true, true);
+
+  // Nav diya (tiny, always visible)
+  loadLottie('navDiya', 'diya', true, true);
+
+  // Main card peacock (70px, top-right)
+  loadLottie('cardPeacock1', 'peacock', true, true);
+
+  // Main card diya (48px, bottom-left, glowing)
+  loadLottie('cardDiya1', 'diya', true, true);
+
+  // Corp card peacock
+  loadLottie('corpCardPeacock', 'peacock', true, true);
+
+  // Corp card diya
+  loadLottie('corpCardDiya', 'diya', true, true);
+}
+
+// ============================================================
+// KRISHNA IMAGE LIBRARY
+// Real paintings from Wikimedia + open sources
+// Mapped by category for emotional alignment
+// ============================================================
+const KIMAGES = {
+  flute: [
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lord_Krishna_with_Flute.jpg/400px-Lord_Krishna_with_Flute.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Krishna_flute_Rajasthan18th_century.jpg/400px-Krishna_flute_Rajasthan18th_century.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Radha_Krishna.jpg/400px-Radha_Krishna.jpg"
+  ],
+  battle: [
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Krishna_as_the_Cosmic_Charioteer.jpg/400px-Krishna_as_the_Cosmic_Charioteer.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Krishna_Arjuna_Mahabharata.jpg/400px-Krishna_Arjuna_Mahabharata.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Krishna_as_the_Cosmic_Charioteer.jpg/400px-Krishna_as_the_Cosmic_Charioteer.jpg"
+  ],
+  teach: [
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Krishna_Arjuna_Mahabharata.jpg/400px-Krishna_Arjuna_Mahabharata.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Krishna_as_the_Cosmic_Charioteer.jpg/400px-Krishna_as_the_Cosmic_Charioteer.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Krishna_flute_Rajasthan18th_century.jpg/400px-Krishna_flute_Rajasthan18th_century.jpg"
+  ]
 };
 
-// Get image URL for a category
-function getCatImg(cat, offset=0) {
-  const cfg = CAT_CONFIG[cat] || CAT_CONFIG['Peace'];
-  const imgs = KRISHNA_IMAGES[cfg.imgs];
+// Category config — image type, bg gradient, aura, scene
+const CATCFG = {
+  Peace:     {img:'flute', bg:['#0a1438','#001428'], aura:'rgba(0,100,160,0.32)',  scene:'Vrindavan · Moonlit Evening'},
+  Mind:      {img:'flute', bg:['#0a1438','#001428'], aura:'rgba(0,100,160,0.26)',  scene:'Himalayan Peace · Inner Stillness'},
+  Love:      {img:'flute', bg:['#160828','#0a0624'], aura:'rgba(160,50,130,0.3)',  scene:'Vrindavan · Divine Love'},
+  Faith:     {img:'flute', bg:['#120620','#0c041c'], aura:'rgba(140,70,210,0.28)', scene:'Vrindavan · Devotion & Grace'},
+  Purpose:   {img:'teach', bg:['#180e00','#1c1200'], aura:'rgba(190,130,0,0.3)',   scene:'Gita Discourse · Sacred Purpose'},
+  Action:    {img:'teach', bg:['#081400','#0a1a00'], aura:'rgba(40,150,70,0.28)',  scene:'Gita Updesh · Right Action'},
+  Courage:   {img:'battle',bg:['#280600','#380500'], aura:'rgba(210,70,15,0.35)',  scene:'Kurukshetra · Arise and Conquer'},
+  Leadership:{img:'battle',bg:['#040a1e','#081838'], aura:'rgba(30,130,220,0.3)',  scene:'Kurukshetra · Guiding the Warrior'},
+  Stress:    {img:'flute', bg:['#041018','#001420'], aura:'rgba(0,110,160,0.24)',  scene:'Inner Stillness · Beyond Deadline'},
+  Decision:  {img:'teach', bg:['#040c1e','#081430'], aura:'rgba(30,100,220,0.28)', scene:'Dwarka Court · Strategic Clarity'},
+  Team:      {img:'flute', bg:['#041018','#081810'], aura:'rgba(0,130,90,0.24)',   scene:'Vrindavan · United in Purpose'},
+  Strategy:  {img:'battle',bg:['#040c1e','#081430'], aura:'rgba(30,130,220,0.28)', scene:'Dwarka Sabha · Royal Planning'},
+  Ethics:    {img:'teach', bg:['#040c10','#080e18'], aura:'rgba(0,150,110,0.24)',  scene:'Gita Discourse · The Righteous Path'},
+  Growth:    {img:'battle',bg:['#060418','#0a0828'], aura:'rgba(70,30,160,0.28)',  scene:'Sunrise · Rise to Excellence'}
+};
+
+function getKImg(cat, offset=0) {
+  const cfg = CATCFG[cat] || CATCFG['Peace'];
+  const imgs = KIMAGES[cfg.img];
   return imgs[offset % imgs.length];
 }
 
@@ -2056,17 +1083,17 @@ const MQ = [
   {t:"Change is the law of the universe.",src:"Bhagavad Gita",c:"Peace",m:"Every ending in your life is actually a new beginning in disguise. Trust the changes — they are preparing you for something greater.",k:"Let go of what was. Something far more beautiful is already on its way to you.",s:"morning"},
   {t:"The mind is your best friend and your worst enemy.",src:"Bhagavad Gita 6.5",c:"Mind",m:"When your mind is peaceful and focused, it helps you achieve anything. When it is restless, it holds you back. You choose which mind you feed.",k:"Be kind to your mind. Talk to yourself the way you would talk to someone you deeply love.",s:"morning"},
   {t:"Whatever you believe, that is what you become.",src:"Bhagavad Gita 17.3",c:"Purpose",m:"Your beliefs shape your entire life. If you believe you are capable, you will find a way. If you believe you are limited, you will stay limited.",k:"Believe in your light, especially on the days when you cannot see it yourself.",s:"midday"},
-  {t:"Do not fear what you cannot control.",src:"Bhagavad Gita 2.14",c:"Peace",m:"Worry is energy spent on things outside your control. Use that same energy to take one good action today.",k:"Right now, in this moment, you have everything you need to take the next right step.",s:"midday"},
+  {t:"Do not fear what you cannot control. Focus on what you can do right now.",src:"Bhagavad Gita 2.14",c:"Peace",m:"Worry is energy spent on things outside your control. Use that same energy to take one good action today.",k:"Right now, in this moment, you have everything you need to take the next right step.",s:"midday"},
   {t:"It is better to walk your own path imperfectly than to follow someone else's perfectly.",src:"Bhagavad Gita 3.35",c:"Courage",m:"Stop comparing your journey to others. Your unique path — with all its stumbles — is exactly where your greatest growth lives.",k:"Your life is not a copy. It is an original. Live it that way.",s:"evening"},
   {t:"In the middle of every difficulty, a gift is hidden.",src:"Bhagavad Gita",c:"Courage",m:"Your hardest moments are your greatest teachers. Every challenge is the universe building something extraordinary in you.",k:"The lotus does not apologize for growing in the mud. Neither should you.",s:"midday"},
   {t:"When you still your mind, you find peace that nothing outside can disturb.",src:"Bhagavad Gita 6.19",c:"Mind",m:"True peace does not come from getting everything you want. It comes from a quiet mind that is no longer fighting reality.",k:"Five minutes of stillness today can change the entire direction of your day.",s:"evening"},
   {t:"Give love freely. The more you give, the more you receive.",src:"Bhagavad Gita",c:"Love",m:"Love is not a limited resource. The more kindness you offer, the more your heart expands.",k:"Be the warmth you wish someone had shown you. That warmth will come back multiplied.",s:"midday"},
   {t:"True happiness is found within, not in the things around you.",src:"Bhagavad Gita 5.21",c:"Peace",m:"No amount of money or success will make you truly happy if you have not found peace inside yourself.",k:"You already have everything you need to feel at peace. Look within.",s:"evening"},
-  {t:"Act, but do not be obsessed with the outcome.",src:"Bhagavad Gita",c:"Action",m:"When you do your best and release the rest, anxiety disappears. You did your part — now trust the universe to do its part.",k:"Plant your seeds with care and patience. Trust the rain to come.",s:"morning"},
+  {t:"Act, but do not be obsessed with the outcome.",src:"Bhagavad Gita",c:"Action",m:"When you do your best and release the rest, anxiety disappears. You did your part — now trust the universe.",k:"Plant your seeds with care and patience. Trust the rain to come.",s:"morning"},
   {t:"Whatever happened was good. Whatever is happening is good.",src:"Bhagavad Gita",c:"Faith",m:"When you trust that life is unfolding exactly as it should, the weight of worry lifts.",k:"I am writing your story. Trust the author.",s:"midday"},
   {t:"You are not the body. You are not the mind. You are the eternal witness behind them both.",src:"Bhagavad Gita 13.22",c:"Purpose",m:"Step back from your thoughts and feelings. There is a calm, wise part of you that is never overwhelmed.",k:"You are the sky, not the storm. Remember this on your darkest days.",s:"evening"},
   {t:"Even a little practice of this inner science protects you from great fear.",src:"Bhagavad Gita 2.40",c:"Faith",m:"You do not need to be perfectly spiritual to feel better. Even five minutes of gratitude or stillness today makes a real difference.",k:"Begin where you are. A small candle still lights a dark room.",s:"morning"},
-  {t:"The one who has conquered the mind has conquered the whole world.",src:"Bhagavad Gita 6.7",c:"Mind",m:"You do not need to control everything outside. Control your thoughts and reactions — and everything becomes manageable.",k:"Your greatest battlefield is within. Your greatest victory is within. Both await you.",s:"morning"},
+  {t:"The one who has conquered the mind has conquered the whole world.",src:"Bhagavad Gita 6.7",c:"Mind",m:"You do not need to control everything outside you. Control your thoughts and reactions — and everything becomes manageable.",k:"Your greatest battlefield is within. Your greatest victory is within. Both await you.",s:"morning"},
   {t:"Dedicate your life to something greater than yourself.",src:"Bhagavad Gita 3.19",c:"Purpose",m:"When you live for something bigger than personal gain, life suddenly feels full of meaning.",k:"The candle that lights others does not lose its own flame. Serve. Give. Live large.",s:"midday"},
   {t:"Keep your heart and mind pure. Everything else will follow.",src:"Bhagavad Gita 17.16",c:"Faith",m:"When your intentions are clean and your thoughts are kind, the right people naturally find their way to you.",k:"Purity of heart is the most powerful magnet in the universe.",s:"morning"},
   {t:"Steadiness in difficulty is the mark of a truly strong soul.",src:"Bhagavad Gita 2.56",c:"Courage",m:"Anyone can be positive when things are good. True character is revealed when things are hard.",k:"Every storm you survive makes you a shelter for someone else.",s:"midday"},
@@ -2078,14 +1105,14 @@ const MQ = [
   {t:"Even the wisest person acts according to their own nature.",src:"Bhagavad Gita 3.33",c:"Purpose",m:"Embrace your natural gifts. Fighting your own nature wastes the very energy you need to grow.",k:"You were made exactly as you were meant to be. Grow into that, not away from it.",s:"morning"}
 ];
 
-// CORPORATE KRISHNA QUOTES
+// CORPORATE QUOTES
 const CQ = [
   {t:"You have the right to perform your duties, but not to the fruits of your actions.",src:"Bhagavad Gita 2.47",c:"Stress",ins:"This is the antidote to workplace anxiety. Focus purely on execution quality — stress drops and performance paradoxically improves.",gr:"Krishna spoke this to Arjuna when paralyzed by fear of failure. Same principle when you're paralyzed by a quarterly target.",ap:["Define your 3 key actions today — not outcomes","After each task, release it completely","Notice how energy improves when outcomes stop defining your worth"],tags:["Stress Relief","Performance","Focus"],sc:"Kurukshetra · Freedom from Outcome",s:"morning"},
   {t:"It is better to perform one's own duties imperfectly than to master the duties of another.",src:"Bhagavad Gita 3.35",c:"Leadership",ins:"Every leader must resist micromanaging. Trust your team to own their work. Delegation is not weakness — it is wisdom.",gr:"Krishna urges Arjuna to stay true to his dharma as a warrior. Every professional has a unique dharma at work.",ap:["Identify one task you've been doing that belongs to someone else","Hand it over today with full trust","Focus your energy on what only YOU can do"],tags:["Leadership","Delegation","Trust"],sc:"Dwarka Sabha · The Art of Delegation",s:"morning"},
   {t:"The one who is not disturbed in mind even amidst the threefold miseries can achieve complete peace.",src:"Bhagavad Gita 2.56",c:"Stress",ins:"High-performing leaders maintain composure under pressure. Your calm is your greatest professional asset.",gr:"Krishna describes the sthitaprajna — person of steady wisdom. This is the blueprint for executive composure.",ap:["Before your next stressful meeting, take 3 slow deep breaths","Replace 'I am stressed' with 'I am preparing'","Practice responding instead of reacting for one full day"],tags:["Stress Management","Composure","EQ"],sc:"Battlefield · The Calm Commander",s:"midday"},
-  {t:"Perform all actions with mind concentrated on the Divine, renouncing attachment, looking on success and failure with an equal eye.",src:"Bhagavad Gita 2.48",c:"Decision",ins:"The best corporate decisions are made with equanimity — not from fear of failure or hunger for personal glory.",gr:"This verse defines Yoga as equanimity in action — samattva yoga. It is literally the description of peak professional performance.",ap:["Before today's biggest decision, ask: am I deciding from fear or from clarity?","List pros and cons without attaching your ego","Decide and release. Trust your well-considered judgment."],tags:["Decision Making","Equanimity","Leadership"],sc:"Gita Discourse · The Equal-Eyed Leader",s:"morning"},
+  {t:"Perform all actions with mind concentrated on the Divine, renouncing attachment, looking on success and failure with an equal eye.",src:"Bhagavad Gita 2.48",c:"Decision",ins:"The best corporate decisions are made with equanimity — not from fear of failure or hunger for personal glory.",gr:"This verse defines Yoga as equanimity in action — samattva yoga. It is the description of peak professional performance.",ap:["Before today's biggest decision, ask: am I deciding from fear or from clarity?","List pros and cons without ego attachment","Decide and release. Trust your well-considered judgment."],tags:["Decision Making","Equanimity","Leadership"],sc:"Gita Discourse · The Equal-Eyed Leader",s:"morning"},
   {t:"Let right deeds be your motive, not the fruit which comes from them.",src:"Bhagavad Gita",c:"Ethics",ins:"Ethical leadership is strategically superior. Purpose-driven organizations have higher retention, loyalty and long-term performance.",gr:"The Nishkama Karma doctrine — selfless action — is the Gita's answer to corrupt, outcome-obsessed leadership.",ap:["Identify one ethical shortcut you've been tempted to take","Choose the harder, right path today","Notice the self-respect that follows — that is your real performance bonus"],tags:["Ethics","Integrity","Long-term Strategy"],sc:"Gita Discourse · The Righteous Path",s:"evening"},
-  {t:"The mind is restless and very strong. But it can be controlled through constant practice and non-attachment.",src:"Bhagavad Gita 6.35",c:"Stress",ins:"Focus is a trainable skill. Professionals who invest in daily mindfulness report 40% reduction in stress.",gr:"Arjuna says controlling the mind is like controlling the wind. Krishna agrees — but says it IS possible through practice.",ap:["Schedule a 10-minute no-phone block this morning","During that time, focus on exactly one thing","Repeat daily for 30 days and track your mental clarity"],tags:["Focus","Mindfulness","Mental Wellness"],sc:"Himalayan Stillness · The Focused Mind",s:"morning"},
+  {t:"The mind is restless and very strong. But it can be controlled through constant practice and non-attachment.",src:"Bhagavad Gita 6.35",c:"Stress",ins:"Focus is a trainable skill. Professionals who invest in daily mindfulness report 40% reduction in stress.",gr:"Arjuna says controlling the mind is like controlling the wind. Krishna agrees — it IS possible through practice.",ap:["Schedule a 10-minute no-phone block this morning","During that time, focus on exactly one thing","Repeat daily for 30 days and track your mental clarity"],tags:["Focus","Mindfulness","Mental Wellness"],sc:"Himalayan Stillness · The Focused Mind",s:"morning"},
   {t:"A person can rise through the efforts of his own mind, or draw himself down.",src:"Bhagavad Gita 6.5",c:"Growth",ins:"Your internal narrative is your most powerful management tool. Leaders who practice growth-oriented self-talk consistently outperform.",gr:"Krishna identifies the mind as both the one that lifts and the one that drowns. You decide every day which version you listen to.",ap:["Write down 3 self-limiting beliefs affecting your work","Rewrite each one as a growth statement","Read them aloud every morning this week"],tags:["Growth Mindset","Self-Leadership","Performance"],sc:"Sunrise · The Rising Professional",s:"morning"},
   {t:"Strive constantly to serve the welfare of the world. By devotion to selfless work one attains the supreme goal.",src:"Bhagavad Gita 3.19",c:"Leadership",ins:"Servant leadership is ancient Gita wisdom. Leaders who serve their teams build the most enduring organizations.",gr:"Krishna describes lokasamgraha — holding the world together — as the highest calling of a leader.",ap:["Ask one team member: how can I remove an obstacle for you?","Do one act of service with no recognition expected","Measure your leadership by what you gave, not what you received"],tags:["Servant Leadership","Team Culture","Purpose"],sc:"Vrindavan · Service as Leadership",s:"midday"},
   {t:"Yoga is skill in action.",src:"Bhagavad Gita 2.50",c:"Strategy",ins:"Excellence is not about working harder — it is about working with complete mastery, awareness and presence.",gr:"Yogah karmasu kaushalam — this four-word definition of yoga is also the definition of professional mastery.",ap:["Pick one routine task you do on autopilot","Do it today with complete conscious attention","Notice the quality difference when you bring full awareness"],tags:["Excellence","Mastery","Productivity"],sc:"Gita Discourse · Mastery in Action",s:"morning"},
@@ -2095,8 +1122,8 @@ const CQ = [
   {t:"Whatever a great person does, common men and women will follow.",src:"Bhagavad Gita 3.21",c:"Leadership",ins:"You are watched more than you know. Your team learns leadership from your example, not your slides.",gr:"Krishna describes acharatvam — leadership by example. The same applies to every manager and executive.",ap:["Ask yourself: what leadership am I modeling today?","Identify one behavior you want your team to adopt","Model it visibly and consistently today"],tags:["Leadership","Culture Building","Influence"],sc:"Kurukshetra · Leadership by Example",s:"morning"},
   {t:"Fear not what is not real. What is real, always was and cannot be destroyed.",src:"Bhagavad Gita 2.16",c:"Stress",ins:"Most corporate anxiety is driven by imagined scenarios. Most of what you fear will never happen.",gr:"Krishna addresses Arjuna's fear-driven paralysis. Most professional fears are shadows, not substance.",ap:["List your top 3 current work fears","For each, ask: is this actually happening right now?","For those that aren't — release them. For those that are — act."],tags:["Stress Management","Clarity","Courage"],sc:"Kurukshetra · Dissolving the Shadow of Fear",s:"midday"},
   {t:"Do not be led by others. Awaken your own mind, amass your own experience and decide for yourself.",src:"Bhagavad Gita",c:"Decision",ins:"The most valuable professional skill today is the ability to think independently from first principles.",gr:"The Bhagavad Gita ends with Krishna saying: deliberate fully, then do as you choose. He demands independent decision-making.",ap:["Before your next major decision, turn off external input for 24 hours","Write your own analysis from scratch","Trust your conclusion — then seek input to validate, not replace"],tags:["Independent Thinking","Decision Making","Leadership"],sc:"Gita Discourse · The Sovereign Mind",s:"morning"},
-  {t:"Knowledge is better than mechanical practice. Better still is meditation. But best of all is surrendering the fruits of one's actions.",src:"Bhagavad Gita 12.12",c:"Growth",ins:"Professional evolution follows this sequence: doing, understanding, deep reflection, and finally complete non-attachment to personal outcomes.",gr:"Krishna outlines the ladder from abhyasa to jnana to dhyana to phalatyaga. Where are you on this ladder?",ap:["Assess honestly: are you working from habit, knowledge, wisdom or freedom?","Identify the next level for you","Take one concrete step toward it today"],tags:["Professional Development","Mastery","Career Growth"],sc:"Gita Discourse · The Professional Ladder",s:"evening"},
-  {t:"With purity of intention, one achieves success. With impurity of intention, one achieves failure even in success.",src:"Bhagavad Gita 17.16",c:"Ethics",ins:"Intention is the invisible foundation of professional success. Organizations built on genuine value creation endure.",gr:"Krishna's teaching on manas-tapas — purity of mind and intention — as the highest form of professional discipline.",ap:["Before your most important meeting today, check your intention","Is it to win, to serve, or to look good?","Reset it to 'how can I create the most value here?'"],tags:["Ethics","Intention","Authentic Leadership"],sc:"Gita Discourse · The Power of Pure Intention",s:"evening"},
+  {t:"Knowledge is better than mechanical practice. Better still is meditation. But best of all is surrendering the fruits of one's actions.",src:"Bhagavad Gita 12.12",c:"Growth",ins:"Professional evolution: doing → understanding → deep reflection → complete non-attachment to personal outcomes.",gr:"Krishna outlines the ladder from abhyasa to jnana to dhyana to phalatyaga. Where are you on this ladder?",ap:["Assess honestly: are you working from habit, knowledge, wisdom or freedom?","Identify the next level for you","Take one concrete step toward it today"],tags:["Professional Development","Mastery","Career Growth"],sc:"Gita Discourse · The Professional Ladder",s:"evening"},
+  {t:"With purity of intention, one achieves success. With impurity, one achieves failure even in success.",src:"Bhagavad Gita 17.16",c:"Ethics",ins:"Intention is the invisible foundation of professional success. Organizations built on genuine value creation endure.",gr:"Krishna's teaching on manas-tapas — purity of mind and intention — as the highest form of professional discipline.",ap:["Before your most important meeting today, check your intention","Is it to win, to serve, or to look good?","Reset it to: how can I create the most value here?"],tags:["Ethics","Intention","Authentic Leadership"],sc:"Gita Discourse · The Power of Pure Intention",s:"evening"},
   {t:"Arjuna, the Atman that dwells within all living beings is the same in all.",src:"Bhagavad Gita 13.28",c:"Team",ins:"When leaders recognize the common humanity in every colleague, they create psychologically safe environments where people do their best work.",gr:"This verse is the Gita's foundation of inclusive leadership. When you see sama — the same essence — in all, you treat people as people.",ap:["Have one genuine conversation today with someone you rarely speak to","Listen to understand, not to respond","Notice how the relationship shifts when you truly see them"],tags:["Inclusion","Psychological Safety","Team Trust"],sc:"Vrindavan · One in All",s:"midday"},
   {t:"The pleasure which comes from long practice leads to the end of suffering.",src:"Bhagavad Gita 18.37",c:"Growth",ins:"The most rewarding achievements require sustained effort and delayed gratification. Sattvic pleasure begins with discipline and ends with lasting fulfillment.",gr:"Krishna classifies pleasure into three types. Sattvic pleasure — from real mastery and ethical work — is the only kind without regret.",ap:["Identify your most important long-term professional goal","Define one daily discipline that will lead you there","Start it today, not tomorrow"],tags:["Long-term Thinking","Discipline","Career Strategy"],sc:"Battlefield · Playing the Long Game",s:"evening"}
 ];
@@ -2104,650 +1131,299 @@ const CQ = [
 // ============================================================
 // STATE
 // ============================================================
-let MOD = 'main';
-let mCat = 'All', cCat = 'All';
-let mIdx = 0, cIdx = 0;
-let mFavs = JSON.parse(localStorage.getItem('dk5_mf')||'[]');
-let cFavs = JSON.parse(localStorage.getItem('dk5_cf')||'[]');
-let mRead = parseInt(localStorage.getItem('dk5_mr')||'0');
-let cRead = parseInt(localStorage.getItem('dk5_cr')||'0');
-let streak = parseInt(localStorage.getItem('dk5_str')||'1');
-let deferredPrompt = null, loginMod = 'main', favTab = 'main';
-let quoteImgOffset = 0; // cycle through different images
+let MOD='main',mCat='All',cCat='All',mIdx=0,cIdx=0;
+let mFavs=JSON.parse(localStorage.getItem('dk6_mf')||'[]');
+let cFavs=JSON.parse(localStorage.getItem('dk6_cf')||'[]');
+let mRead=parseInt(localStorage.getItem('dk6_mr')||'0');
+let cRead=parseInt(localStorage.getItem('dk6_cr')||'0');
+let streak=parseInt(localStorage.getItem('dk6_str')||'1');
+let dp=null,loginMod='main',favTab='main',imgOff=0;
 
 // ============================================================
 // FIREBASE
 // ============================================================
-const FB_CFG = {
+firebase.initializeApp({
   apiKey:"AIzaSyCN2SPmQivgiKTHdfJryw8_zqkOYdgdD6I",
   authDomain:"daily-krishna-caf46.firebaseapp.com",
   projectId:"daily-krishna-caf46",
   storageBucket:"daily-krishna-caf46.firebasestorage.app",
   messagingSenderId:"710960440877",
   appId:"1:710960440877:web:f1bfe355819e3986aa7aa4"
-};
-
-firebase.initializeApp(FB_CFG);
-const auth = firebase.auth();
+});
+const auth=firebase.auth();
 
 auth.getRedirectResult().then(r=>{if(r&&r.user)onLogin(r.user);}).catch(e=>{console.error(e);hideLoad();});
 auth.onAuthStateChanged(u=>{
   if(u){onLogin(u);}
-  else{hideLoad();document.getElementById('loginPage').style.display='flex';document.getElementById('app').style.display='none';}
+  else{hideLoad();document.getElementById('loginPg').style.display='flex';document.getElementById('app').style.display='none';}
 });
 
 async function signInWithGoogle(){
   showLoad();
-  const p = new firebase.auth.GoogleAuthProvider();
-  try{
-    const r = await auth.signInWithPopup(p);
-    onLogin(r.user);
-  }catch(e){
+  const p=new firebase.auth.GoogleAuthProvider();
+  try{const r=await auth.signInWithPopup(p);onLogin(r.user);}
+  catch(e){
     if(['auth/popup-blocked','auth/popup-closed-by-user','auth/cancelled-popup-request'].includes(e.code)){
-      try{await auth.signInWithRedirect(p);}
-      catch(e2){hideLoad();showToast("Login failed 🙏");}
+      try{await auth.signInWithRedirect(p);}catch(e2){hideLoad();showToast("Login failed 🙏");}
     }else{hideLoad();showToast("Login failed: "+e.message);}
   }
 }
 
 function onLogin(u){
   hideLoad();
-  document.getElementById('loginPage').style.display='none';
+  document.getElementById('loginPg').style.display='none';
   document.getElementById('app').style.display='block';
-
-  const name = u.displayName ? u.displayName.split(' ')[0] : 'Devotee';
-  document.getElementById('gName').textContent = name;
-  document.getElementById('cName').textContent = name;
-
-  // Avatar
-  const navAva = document.getElementById('navAva');
-  const profAva = document.getElementById('profAva');
+  const nm=u.displayName?u.displayName.split(' ')[0]:'Devotee';
+  document.getElementById('gName').textContent=nm;
+  document.getElementById('cName').textContent=nm;
+  const ava=document.getElementById('navAva');
+  const pAva=document.getElementById('profAva');
   if(u.photoURL){
-    navAva.innerHTML = `<img src="${u.photoURL}" alt="avatar">`;
-    profAva.innerHTML = `<img src="${u.photoURL}" alt="avatar" style="width:100%;height:100%;object-fit:cover;">`;
-  }else{
-    navAva.textContent = name[0].toUpperCase();
-    profAva.textContent = name[0].toUpperCase();
-  }
-
-  document.getElementById('profName').textContent = u.displayName || 'Krishna Devotee';
-  document.getElementById('profEmail').textContent = u.email || '';
-
+    ava.innerHTML=`<img src="${u.photoURL}" alt="">`;
+    pAva.innerHTML=`<img src="${u.photoURL}" alt="" style="width:100%;height:100%;object-fit:cover;">`;
+  }else{ava.textContent=nm[0].toUpperCase();pAva.textContent=nm[0].toUpperCase();}
+  document.getElementById('profNm').textContent=u.displayName||'Krishna Devotee';
+  document.getElementById('profEm').textContent=u.email||'';
   initApp();
-  if(loginMod === 'corp') switchMod('corp');
+  if(loginMod==='corp')swMod('corp');
 }
 
-function doLogout(){
-  auth.signOut().then(()=>{
-    document.getElementById('loginPage').style.display='flex';
-    document.getElementById('app').style.display='none';
-    showToast("Signed out 🙏");
-  });
-}
+function doLogout(){auth.signOut().then(()=>{document.getElementById('loginPg').style.display='flex';document.getElementById('app').style.display='none';showToast("Signed out 🙏");});}
 
-function selLoginMod(m){
-  loginMod = m;
-  document.getElementById('lm1').className = 'mod-opt' + (m==='main'?' on':'');
-  document.getElementById('lm2').className = 'mod-opt' + (m==='corp'?' on':'');
-  const vs = {
-    main:`"You have the right to perform your actions,<br>but never to the fruits of your actions."<br><br>— Bhagavad Gita 2.47`,
-    corp:`"Yoga is skill in action.<br>Bring mastery and full consciousness to everything you do."<br><br>— Bhagavad Gita 2.50`
-  };
-  document.getElementById('loginVerse').innerHTML = vs[m];
+function selMod(m){
+  loginMod=m;
+  document.getElementById('lm1').className='mod-opt'+(m==='main'?' on':'');
+  document.getElementById('lm2').className='mod-opt'+(m==='corp'?' on':'');
+  const vs={main:`"You have the right to perform your actions,<br>but never to the fruits of your actions."<br><br>— Bhagavad Gita 2.47`,corp:`"Yoga is skill in action.<br>Bring mastery and full consciousness to everything you do."<br><br>— Bhagavad Gita 2.50`};
+  document.getElementById('loginVerse').innerHTML=vs[m];
 }
 
 // ============================================================
 // APP INIT
 // ============================================================
 function initApp(){
-  updateDate();
-  updateStats();
-  hlSched();
-
-  // Today's quote based on date
-  const di = new Date().getDate() % MQ.length;
-  showMainQ(MQ[di], di, true);
-  mIdx = di;
-
-  renderFavs('main');
-  updateFavCount();
-  checkNotif();
-
-  if(Notification.permission === 'default'){
-    setTimeout(()=>document.getElementById('nBanner').style.display='flex', 3000);
-  }
-
-  makeStars();
-  makeParticles();
+  updDate();updStats();hlSched();
+  const di=new Date().getDate()%MQ.length;
+  showMQ(MQ[di],di,true);mIdx=di;
+  renderFavs('main');updFC();chkNotif();
+  if(Notification.permission==='default')setTimeout(()=>document.getElementById('nBan').style.display='flex',3500);
+  mkStars();mkParticles();
 }
 
-function updateDate(){
-  const d = new Date().toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-  document.getElementById('gDate').textContent = d;
-  document.getElementById('cDate').textContent = d;
-}
-
-function updateStats(){
-  document.getElementById('wc1').textContent = streak;
-  document.getElementById('wc2').textContent = mRead;
-  document.getElementById('wc3').textContent = mFavs.length;
-  document.getElementById('cwc1').textContent = streak;
-  document.getElementById('cwc2').textContent = cRead;
-  document.getElementById('cwc3').textContent = cFavs.length;
-  document.getElementById('ps1').textContent = streak;
-  document.getElementById('ps2').textContent = mFavs.length + cFavs.length;
-  document.getElementById('ps3').textContent = mRead + cRead;
+function updDate(){const d=new Date().toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'});document.getElementById('gDate').textContent=d;document.getElementById('cDate').textContent=d;}
+function updStats(){
+  document.getElementById('wc1').textContent=streak;document.getElementById('wc2').textContent=mRead;document.getElementById('wc3').textContent=mFavs.length;
+  document.getElementById('cwc1').textContent=streak;document.getElementById('cwc2').textContent=cRead;document.getElementById('cwc3').textContent=cFavs.length;
+  document.getElementById('ps1').textContent=streak;document.getElementById('ps2').textContent=mFavs.length+cFavs.length;document.getElementById('ps3').textContent=mRead+cRead;
 }
 
 // ============================================================
 // MODULE SWITCHING
 // ============================================================
-function switchMod(m){
-  MOD = m;
-  const isMain = m === 'main';
-
-  document.getElementById('topNav').className = 'top-nav' + (isMain ? '' : ' corp');
-  document.getElementById('navBrandTxt').className = 'nav-brand-text' + (isMain ? '' : ' corp-brand');
-  document.getElementById('navBrandTxt').textContent = isMain ? 'Daily Krishna' : 'Corporate Krishna';
-  document.getElementById('botNav').className = 'bottom-nav' + (isMain ? '' : ' corp');
-
-  document.getElementById('mpMain').className = 'mod-pill-btn' + (isMain ? ' on' : '');
-  document.getElementById('mpCorp').className = 'mod-pill-btn' + (isMain ? '' : ' corp-on');
-
-  const tabs = document.querySelectorAll('.nav-tab');
-  tabs.forEach(t => t.className = 'nav-tab' + (isMain ? '' : ' corp-on').replace('corp-on',''));
-
-  if(isMain){
-    document.getElementById('corpPg').style.display = 'none';
-    goPg('homePg');
-  }else{
-    document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
-    document.getElementById('corpPg').style.display = 'block';
-    hlCorpSched();
-    const f = filteredCorp();
-    if(f.length) showCorpQ(f[0], CQ.indexOf(f[0]), true);
+function swMod(m){
+  MOD=m;const isM=m==='main';
+  document.getElementById('tnav').className='tnav'+(isM?'':' corp');
+  document.getElementById('navBrand').className='nav-brand-txt'+(isM?'':' corp-b');
+  document.getElementById('navBrand').textContent=isM?'Daily Krishna':'Corporate Krishna';
+  document.getElementById('bnav').className='bnav'+(isM?'':' corp');
+  document.getElementById('mpM').className='mpb'+(isM?' on':'');
+  document.getElementById('mpC').className='mpb'+(isM?'':' corp-on');
+  document.querySelectorAll('.ntab').forEach(t=>t.className='ntab'+(isM?'':' corp-on').replace(' corp-on',''));
+  if(isM){document.getElementById('corpPg').style.display='none';goPg('homePg');}
+  else{
+    document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+    document.getElementById('corpPg').style.display='block';
+    hlCSched();
+    const f=filtC2();if(f.length)showCQ(f[0],CQ.indexOf(f[0]),true);
   }
-  updateStats();
+  updStats();
 }
 
 // ============================================================
-// MAIN MODULE — Display Quote
+// MAIN MODULE
 // ============================================================
-function showMainQ(q, idx, instant=false){
-  if(!q) return;
-  mIdx = idx;
-
-  const cat = q.c || 'Peace';
-  const cfg = CAT_CONFIG[cat] || CAT_CONFIG['Peace'];
-
-  const imgEl = document.getElementById('mainKrishnaImg');
-  const qtEl = document.getElementById('mainQText');
-
-  if(!instant){
-    qtEl.classList.add('changing');
-    imgEl.style.opacity = '0';
-  }
-
+function showMQ(q,idx,instant=false){
+  if(!q)return;mIdx=idx;
+  const cfg=CATCFG[q.c]||CATCFG['Peace'];
+  const qtEl=document.getElementById('mQTxt');
+  const imgEl=document.getElementById('mKImg');
+  if(!instant){qtEl.classList.add('ch');imgEl.style.opacity='0';}
   setTimeout(()=>{
-    // Set text
-    qtEl.textContent = q.t;
-    document.getElementById('mainQSrc').textContent = '— ' + q.src;
-    document.getElementById('mainMeaning').textContent = q.m || '';
-    document.getElementById('mainKSays').textContent = q.k || '';
-    document.getElementById('mainCatBadge').textContent = cat;
-    document.getElementById('mainScene').textContent = cfg.scene;
-
-    // Set background
-    document.getElementById('mainBg').style.background = `linear-gradient(145deg, ${cfg.bg[0]}, ${cfg.bg[1]})`;
-
-    // Set aura color
-    document.getElementById('mainAura').style.background = `radial-gradient(circle, ${cfg.aura} 0%, transparent 70%)`;
-
-    // Set real Krishna image
-    const imgUrl = getCatImg(cat, quoteImgOffset);
-    imgEl.src = imgUrl;
-    imgEl.className = 'krishna-img entering';
-    imgEl.style.display = 'block';
-    imgEl.style.opacity = '1';
-
-    // Fav button
-    const isFav = mFavs.some(f=>f.t===q.t);
-    const fb = document.getElementById('mainFavBtn');
-    fb.innerHTML = isFav ? '<span class="card-btn-ico">❤️</span> Saved' : '<span class="card-btn-ico">🤍</span> Save';
-    fb.className = 'card-btn' + (isFav ? ' fav-on' : '');
-
-    if(!instant) qtEl.classList.remove('changing');
-
-    mRead++;
-    localStorage.setItem('dk5_mr', mRead);
-    updateStats();
-  }, instant ? 0 : 200);
+    qtEl.textContent=q.t;
+    document.getElementById('mQSrc').textContent='— '+q.src;
+    document.getElementById('mMean').textContent=q.m||'';
+    document.getElementById('mKSays').textContent=q.k||'';
+    document.getElementById('mBadge').textContent=q.c;
+    document.getElementById('mScene').textContent=cfg.scene;
+    document.getElementById('mBg').style.background=`linear-gradient(145deg,${cfg.bg[0]},${cfg.bg[1]})`;
+    document.getElementById('mAura').style.background=`radial-gradient(circle,${cfg.aura} 0%,transparent 70%)`;
+    const url=getKImg(q.c,imgOff);
+    imgEl.src=url;imgEl.className='krishna-img enter';imgEl.style.display='block';imgEl.style.opacity='1';
+    const isFav=mFavs.some(f=>f.t===q.t);
+    const fb=document.getElementById('mFavBtn');
+    fb.innerHTML=isFav?'<span class="kbtn-ico">❤️</span> Saved':'<span class="kbtn-ico">🤍</span> Save';
+    fb.className='kbtn'+(isFav?' fav-on':'');
+    if(!instant)qtEl.classList.remove('ch');
+    mRead++;localStorage.setItem('dk6_mr',mRead);updStats();
+  },instant?0:200);
 }
 
-function filteredMain(){
-  return mCat === 'All' ? MQ : MQ.filter(q=>q.c===mCat);
-}
+function filtM2(){return mCat==='All'?MQ:MQ.filter(q=>q.c===mCat);}
+function filtM(cat,el){mCat=cat;document.querySelectorAll('.catbtn').forEach(b=>b.classList.remove('on'));el.classList.add('on');const f=filtM2();if(f.length){imgOff++;animW('mWrap',()=>showMQ(f[0],MQ.indexOf(f[0])));}}
+function nextM(){const f=filtM2();const ci=f.indexOf(MQ[mIdx]);const ni=(ci+1)%f.length;imgOff++;animW('mWrap',()=>showMQ(f[ni],MQ.indexOf(f[ni])));}
 
-function filtMain(cat, el){
-  mCat = cat;
-  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('on'));
-  el.classList.add('on');
-  const f = filteredMain();
-  if(f.length){
-    quoteImgOffset = (quoteImgOffset + 1);
-    animWrap('mainWrap', ()=>showMainQ(f[0], MQ.indexOf(f[0])));
-  }
-}
+function hlSched(){const h=new Date().getHours();const t=h>=11&&h<16?'midday':h>=16?'evening':'morning';['si1','si2','si3'].forEach(id=>document.getElementById(id).classList.remove('on'));const m={morning:'si1',midday:'si2',evening:'si3'};const el=document.getElementById(m[t]);if(el)el.classList.add('on');}
+function loadSched(t){const f=MQ.filter(q=>q.s===t);if(!f.length)return;const q=f[Math.floor(Math.random()*f.length)];imgOff++;animW('mWrap',()=>showMQ(q,MQ.indexOf(q)));['si1','si2','si3'].forEach(id=>document.getElementById(id).classList.remove('on'));const m={morning:'si1',midday:'si2',evening:'si3'};const el=document.getElementById(m[t]);if(el)el.classList.add('on');showToast(t==='morning'?'🌅 Morning wisdom':t==='midday'?'☀️ Midday peace':'🌙 Evening reflection');}
 
-function nextMain(){
-  const f = filteredMain();
-  const ci = f.indexOf(MQ[mIdx]);
-  const ni = (ci + 1) % f.length;
-  quoteImgOffset++;
-  animWrap('mainWrap', ()=>showMainQ(f[ni], MQ.indexOf(f[ni])));
-}
-
-function hlSched(){
-  const h = new Date().getHours();
-  const t = h>=11&&h<16 ? 'midday' : h>=16 ? 'evening' : 'morning';
-  ['si1','si2','si3'].forEach(id=>document.getElementById(id).classList.remove('on'));
-  const m = {morning:'si1',midday:'si2',evening:'si3'};
-  const el = document.getElementById(m[t]);
-  if(el) el.classList.add('on');
-}
-
-function loadSched(t){
-  const f = MQ.filter(q=>q.s===t);
-  if(!f.length) return;
-  const q = f[Math.floor(Math.random()*f.length)];
-  quoteImgOffset++;
-  animWrap('mainWrap', ()=>showMainQ(q, MQ.indexOf(q)));
-  ['si1','si2','si3'].forEach(id=>document.getElementById(id).classList.remove('on'));
-  const m = {morning:'si1',midday:'si2',evening:'si3'};
-  const el = document.getElementById(m[t]);
-  if(el) el.classList.add('on');
-  showToast(t==='morning'?'🌅 Morning wisdom':t==='midday'?'☀️ Midday peace':'🌙 Evening reflection');
-}
-
-function togMainFav(){
-  const q = MQ[mIdx];
-  if(!q) return;
-  const i = mFavs.findIndex(f=>f.t===q.t);
-  if(i>-1){ mFavs.splice(i,1); showToast("Removed from favorites"); }
-  else { mFavs.push(q); showToast("Saved! 🌸"); }
-  localStorage.setItem('dk5_mf', JSON.stringify(mFavs));
-  showMainQ(q, mIdx, true);
-  renderFavs('main');
-  updateFavCount();
-  updateStats();
-}
-
-function mainWA(){
-  const q = MQ[mIdx];
-  if(!q) return;
-  window.open('https://wa.me/?text='+encodeURIComponent(`"${q.t}"\n\n— ${q.src}\n\n🌸 ${q.m}\n\n🪷 Daily Krishna — Bhagavad Gita Wisdom\nhttps://anchorvijju616-hash.github.io/Daily-Krishna`),'_blank');
-}
-
-function mainShare(){
-  const q = MQ[mIdx];
-  if(!q) return;
-  const t = `"${q.t}"\n\n— ${q.src}\n\n${q.m}\n\n🪷 Daily Krishna\nhttps://anchorvijju616-hash.github.io/Daily-Krishna`;
-  if(navigator.share){ navigator.share({title:'Daily Krishna',text:t}); }
-  else { navigator.clipboard.writeText(t).then(()=>showToast("Copied! 📋")); }
-}
+function togMFav(){const q=MQ[mIdx];if(!q)return;const i=mFavs.findIndex(f=>f.t===q.t);if(i>-1){mFavs.splice(i,1);showToast("Removed");}else{mFavs.push(q);showToast("Saved! 🌸");}localStorage.setItem('dk6_mf',JSON.stringify(mFavs));showMQ(q,mIdx,true);renderFavs('main');updFC();updStats();}
+function mWA(){const q=MQ[mIdx];if(!q)return;window.open('https://wa.me/?text='+encodeURIComponent(`"${q.t}"\n\n— ${q.src}\n\n🌸 ${q.m}\n\n🪷 Daily Krishna\nhttps://anchorvijju616-hash.github.io/Daily-Krishna`),'_blank');}
+function mShare(){const q=MQ[mIdx];if(!q)return;const t=`"${q.t}"\n\n— ${q.src}\n\n${q.m}\n\n🪷 Daily Krishna\nhttps://anchorvijju616-hash.github.io/Daily-Krishna`;if(navigator.share){navigator.share({title:'Daily Krishna',text:t});}else{navigator.clipboard.writeText(t).then(()=>showToast("Copied! 📋"));}}
 
 // ============================================================
-// CORPORATE MODULE — Display Quote
+// CORPORATE MODULE
 // ============================================================
-function showCorpQ(q, idx, instant=false){
-  if(!q) return;
-  cIdx = idx;
-
-  const cat = q.c || 'Leadership';
-  const cfg = CAT_CONFIG[cat] || CAT_CONFIG['Leadership'];
-
-  const imgEl = document.getElementById('corpKrishnaImg');
-  const qtEl = document.getElementById('corpQText');
-
-  if(!instant){
-    qtEl.classList.add('changing');
-    imgEl.style.opacity = '0';
-  }
-
+function showCQ(q,idx,instant=false){
+  if(!q)return;cIdx=idx;
+  const qtEl=document.getElementById('cQTxt');
+  const imgEl=document.getElementById('cKImg');
+  if(!instant){qtEl.classList.add('ch');imgEl.style.opacity='0';}
   setTimeout(()=>{
-    qtEl.textContent = q.t;
-    document.getElementById('corpQSrc').textContent = '— ' + q.src;
-    document.getElementById('corpInsight').textContent = q.ins || '';
-    document.getElementById('corpGRef').textContent = q.gr || '';
-    document.getElementById('corpCatBadge').textContent = cat;
-    document.getElementById('corpScene').textContent = q.sc || cfg.scene;
-
-    // Action plan
-    document.getElementById('corpAP').innerHTML = (q.ap||[]).map(a=>
-      `<div class="ap-item"><div class="ap-dot"></div>${a}</div>`
-    ).join('');
-
-    // Tags
-    document.getElementById('corpTagsEl').innerHTML = (q.tags||[]).map(t=>
-      `<span class="corp-tag">${t}</span>`
-    ).join('');
-
-    // Krishna image — battle/strategy pose for corporate
-    const imgUrl = getCatImg(cat, cIdx);
-    imgEl.src = imgUrl;
-    imgEl.className = 'corp-krishna-img entering';
-    imgEl.style.display = 'block';
-    imgEl.style.opacity = '1';
-
-    // Fav button
-    const isFav = cFavs.some(f=>f.t===q.t);
-    const fb = document.getElementById('corpFavBtn');
-    fb.innerHTML = isFav ? '<span>⭐</span> Saved' : '<span>⭐</span> Save';
-    fb.className = 'corp-btn' + (isFav ? ' corp-fav-on' : '');
-
-    if(!instant) qtEl.classList.remove('changing');
-
-    cRead++;
-    localStorage.setItem('dk5_cr', cRead);
-    updateStats();
-  }, instant ? 0 : 200);
+    qtEl.textContent=q.t;
+    document.getElementById('cQSrc').textContent='— '+q.src;
+    document.getElementById('cInsight').textContent=q.ins||'';
+    document.getElementById('cGRef').textContent=q.gr||'';
+    document.getElementById('cBadge').textContent=q.c;
+    document.getElementById('cScene').textContent=q.sc||'';
+    document.getElementById('cAP').innerHTML=(q.ap||[]).map(a=>`<div class="ap-item"><div class="ap-dot"></div>${a}</div>`).join('');
+    document.getElementById('cTagsEl').innerHTML=(q.tags||[]).map(t=>`<span class="ctag">${t}</span>`).join('');
+    const url=getKImg(q.c,cIdx);
+    imgEl.src=url;imgEl.className='ckrishna-img enter';imgEl.style.display='block';imgEl.style.opacity='1';
+    const isFav=cFavs.some(f=>f.t===q.t);
+    const fb=document.getElementById('cFavBtn');
+    fb.innerHTML=isFav?'<span>⭐</span> Saved':'<span>⭐</span> Save';
+    fb.className='cbtn'+(isFav?' cfav-on':'');
+    if(!instant)qtEl.classList.remove('ch');
+    cRead++;localStorage.setItem('dk6_cr',cRead);updStats();
+  },instant?0:200);
 }
 
-function filteredCorp(){
-  return cCat === 'All' ? CQ : CQ.filter(q=>q.c===cCat);
-}
+function filtC2(){return cCat==='All'?CQ:CQ.filter(q=>q.c===cCat);}
+function filtC(cat,el){cCat=cat;document.querySelectorAll('.ccatbtn').forEach(b=>b.classList.remove('on'));el.classList.add('on');const f=filtC2();if(f.length)animW('cWrap',()=>showCQ(f[0],CQ.indexOf(f[0])));}
+function nextC(){const f=filtC2();const ci=f.indexOf(CQ[cIdx]);const ni=(ci+1)%f.length;animW('cWrap',()=>showCQ(f[ni],CQ.indexOf(f[ni])));}
 
-function filtCorp(cat, el){
-  cCat = cat;
-  document.querySelectorAll('.corp-cat').forEach(b=>b.classList.remove('on'));
-  el.classList.add('on');
-  const f = filteredCorp();
-  if(f.length) animWrap('corpWrap', ()=>showCorpQ(f[0], CQ.indexOf(f[0])));
-}
+function hlCSched(){const h=new Date().getHours();const t=h>=11&&h<16?'midday':h>=16?'evening':'morning';['cs1','cs2','cs3'].forEach(id=>document.getElementById(id).classList.remove('on'));const m={morning:'cs1',midday:'cs2',evening:'cs3'};const el=document.getElementById(m[t]);if(el)el.classList.add('on');}
+function loadCSched(t){const f=CQ.filter(q=>q.s===t);if(!f.length)return;const q=f[Math.floor(Math.random()*f.length)];animW('cWrap',()=>showCQ(q,CQ.indexOf(q)));['cs1','cs2','cs3'].forEach(id=>document.getElementById(id).classList.remove('on'));const m={morning:'cs1',midday:'cs2',evening:'cs3'};const el=document.getElementById(m[t]);if(el)el.classList.add('on');showToast({morning:'🌅 Pre-meeting wisdom',midday:'☕ Midday stress relief',evening:'📊 EOD reflection'}[t]||'');}
 
-function nextCorp(){
-  const f = filteredCorp();
-  const ci = f.indexOf(CQ[cIdx]);
-  const ni = (ci+1) % f.length;
-  animWrap('corpWrap', ()=>showCorpQ(f[ni], CQ.indexOf(f[ni])));
-}
-
-function hlCorpSched(){
-  const h = new Date().getHours();
-  const t = h>=11&&h<16 ? 'midday' : h>=16 ? 'evening' : 'morning';
-  ['cs1','cs2','cs3'].forEach(id=>document.getElementById(id).classList.remove('on'));
-  const m = {morning:'cs1',midday:'cs2',evening:'cs3'};
-  const el = document.getElementById(m[t]);
-  if(el) el.classList.add('on');
-}
-
-function loadCSched(t){
-  const f = CQ.filter(q=>q.s===t);
-  if(!f.length) return;
-  const q = f[Math.floor(Math.random()*f.length)];
-  animWrap('corpWrap', ()=>showCorpQ(q, CQ.indexOf(q)));
-  ['cs1','cs2','cs3'].forEach(id=>document.getElementById(id).classList.remove('on'));
-  const m = {morning:'cs1',midday:'cs2',evening:'cs3'};
-  const el = document.getElementById(m[t]);
-  if(el) el.classList.add('on');
-  showToast({morning:'🌅 Pre-meeting wisdom',midday:'☕ Midday stress relief',evening:'📊 EOD reflection'}[t]||'');
-}
-
-function togCorpFav(){
-  const q = CQ[cIdx];
-  if(!q) return;
-  const i = cFavs.findIndex(f=>f.t===q.t);
-  if(i>-1){ cFavs.splice(i,1); showToast("Removed"); }
-  else { cFavs.push(q); showToast("Saved! 💼"); }
-  localStorage.setItem('dk5_cf', JSON.stringify(cFavs));
-  showCorpQ(q, cIdx, true);
-  renderFavs('corp');
-  updateFavCount();
-  updateStats();
-}
-
-function corpWA(){
-  const q = CQ[cIdx];
-  if(!q) return;
-  window.open('https://wa.me/?text='+encodeURIComponent(`"${q.t}"\n\n— ${q.src}\n\n💼 ${q.ins}\n\n✅ Action: ${(q.ap||[])[0]||''}\n\n💼 Corporate Krishna\nhttps://anchorvijju616-hash.github.io/Daily-Krishna`),'_blank');
-}
-
-function corpShare(){
-  const q = CQ[cIdx];
-  if(!q) return;
-  const t = `"${q.t}"\n\n— ${q.src}\n\n💼 ${q.ins}\n\n${(q.ap||[])[0]||''}\n\n💼 Corporate Krishna\nhttps://anchorvijju616-hash.github.io/Daily-Krishna`;
-  if(navigator.share){ navigator.share({title:'Corporate Krishna',text:t}); }
-  else { navigator.clipboard.writeText(t).then(()=>showToast("Copied! 📋")); }
-}
+function togCFav(){const q=CQ[cIdx];if(!q)return;const i=cFavs.findIndex(f=>f.t===q.t);if(i>-1){cFavs.splice(i,1);showToast("Removed");}else{cFavs.push(q);showToast("Saved! 💼");}localStorage.setItem('dk6_cf',JSON.stringify(cFavs));showCQ(q,cIdx,true);renderFavs('corp');updFC();updStats();}
+function cWA(){const q=CQ[cIdx];if(!q)return;window.open('https://wa.me/?text='+encodeURIComponent(`"${q.t}"\n\n— ${q.src}\n\n💼 ${q.ins}\n\n✅ ${(q.ap||[])[0]||''}\n\n💼 Corporate Krishna\nhttps://anchorvijju616-hash.github.io/Daily-Krishna`),'_blank');}
+function cShare(){const q=CQ[cIdx];if(!q)return;const t=`"${q.t}"\n\n— ${q.src}\n\n💼 ${q.ins}\n\n${(q.ap||[])[0]||''}\n\n💼 Corporate Krishna\nhttps://anchorvijju616-hash.github.io/Daily-Krishna`;if(navigator.share){navigator.share({title:'Corporate Krishna',text:t});}else{navigator.clipboard.writeText(t).then(()=>showToast("Copied! 📋"));}}
 
 // ============================================================
 // FAVORITES
 // ============================================================
-function swFavTab(tab, el){
-  favTab = tab;
-  document.querySelectorAll('.fav-tab').forEach(t=>t.classList.remove('on','corp-on'));
-  el.classList.add(tab==='main'?'on':'corp-on');
-  renderFavs(tab);
-}
-
+function swFavTab(tab,el){favTab=tab;document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('on','corp-on'));el.classList.add(tab==='main'?'on':'corp-on');renderFavs(tab);}
 function renderFavs(tab){
-  const list = document.getElementById('favList');
-  const favs = tab==='main' ? mFavs : cFavs;
-  if(!favs.length){
-    list.innerHTML = `<div class="fav-empty"><div class="fav-empty-ico">${tab==='main'?'🤍':'⭐'}</div><div class="fav-empty-txt">No saved ${tab==='main'?'life wisdom':'corporate lessons'} yet.</div></div>`;
-    return;
-  }
-  list.innerHTML = favs.map((q,i)=>{
-    const ic = tab==='corp';
-    return `<div class="fav-card ${ic?'corp-card-fav':''}">
-      <div class="fav-hdr"><span class="fav-tag-lbl ${ic?'corp-tag':''}">${q.c}</span><button class="fav-rm" onclick="rmFav('${tab}',${i})">✕</button></div>
-      <div class="fav-quote-txt">"${q.t}"</div>
-      <div class="fav-insight-txt">${ic?'💼 '+(q.ins||''):'🌸 '+(q.m||'')}</div>
-    </div>`;
-  }).join('');
+  const list=document.getElementById('favList');const favs=tab==='main'?mFavs:cFavs;
+  if(!favs.length){list.innerHTML=`<div class="fempty"><div class="fempty-ico">${tab==='main'?'🤍':'⭐'}</div><div class="fempty-txt">No saved ${tab==='main'?'life wisdom':'corporate lessons'} yet.</div></div>`;return;}
+  list.innerHTML=favs.map((q,i)=>{const ic=tab==='corp';return`<div class="fcard ${ic?'cfc':''}"><div class="fhdr"><span class="ftag ${ic?'corp-tag':''}">${q.c}</span><button class="frm" onclick="rmFav('${tab}',${i})">✕</button></div><div class="fqtxt">"${q.t}"</div><div class="fitxt">${ic?'💼 '+(q.ins||''):'🌸 '+(q.m||'')}</div></div>`;}).join('');
 }
-
-function rmFav(tab, i){
-  if(tab==='main'){ mFavs.splice(i,1); localStorage.setItem('dk5_mf',JSON.stringify(mFavs)); }
-  else { cFavs.splice(i,1); localStorage.setItem('dk5_cf',JSON.stringify(cFavs)); }
-  renderFavs(tab);
-  updateFavCount();
-  updateStats();
-  showToast("Removed");
-}
-
-function updateFavCount(){
-  const el = document.getElementById('favCount');
-  if(el) el.textContent = (mFavs.length+cFavs.length) + ' saved';
-}
+function rmFav(tab,i){if(tab==='main'){mFavs.splice(i,1);localStorage.setItem('dk6_mf',JSON.stringify(mFavs));}else{cFavs.splice(i,1);localStorage.setItem('dk6_cf',JSON.stringify(cFavs));}renderFavs(tab);updFC();updStats();showToast("Removed");}
+function updFC(){const el=document.getElementById('favCount');if(el)el.textContent=(mFavs.length+cFavs.length)+' saved';}
 
 // ============================================================
 // NAVIGATION
 // ============================================================
 function goPg(id){
-  if(MOD==='corp' && id==='homePg') return;
-  document.getElementById('corpPg').style.display = 'none';
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
-  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('on'));
+  if(MOD==='corp'&&id==='homePg')return;
+  document.getElementById('corpPg').style.display='none';
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.ntab').forEach(t=>t.classList.remove('on'));
   document.getElementById(id).classList.add('on');
-  const m = {homePg:'nt1',favPg:'nt2',profPg:'nt3'};
-  const el = document.getElementById(m[id]);
-  if(el) el.classList.add('on');
-  if(id==='favPg') renderFavs(favTab);
+  const m={homePg:'nt1',favPg:'nt2',profPg:'nt3'};
+  const el=document.getElementById(m[id]);if(el)el.classList.add('on');
+  if(id==='favPg')renderFavs(favTab);
 }
 
-function animWrap(wid, cb){
-  const w = document.getElementById(wid);
-  w.style.opacity = '0';
-  w.style.transform = 'translateY(14px)';
-  setTimeout(()=>{
-    cb();
-    w.style.transition = 'opacity .45s ease, transform .45s ease';
-    w.style.opacity = '1';
-    w.style.transform = 'translateY(0)';
-    setTimeout(()=>w.style.transition='', 450);
-  }, 180);
-}
+function animW(wid,cb){const w=document.getElementById(wid);w.style.opacity='0';w.style.transform='translateY(14px)';setTimeout(()=>{cb();w.style.transition='opacity .45s ease,transform .45s ease';w.style.opacity='1';w.style.transform='translateY(0)';setTimeout(()=>w.style.transition='',450);},175);}
 
-// ============================================================
-// THEME
-// ============================================================
-function toggleTheme(){
-  // App is already in permanent dark divine theme
-  // This just gives user a subtle lighter mode
-  document.body.style.setProperty('--ink', document.body.style.getPropertyValue('--ink') === '#1a2a3a' ? '#0a0118' : '#1a2a3a');
-  showToast("Theme updated ✨");
-}
+function toggleTheme(){showToast("Divine dark theme is optimal ✨");}
 
 // ============================================================
 // LOADING
 // ============================================================
-function showLoad(){
-  document.getElementById('loading').classList.remove('hidden');
-}
-
-function hideLoad(){
-  const l = document.getElementById('loading');
-  l.classList.add('hidden');
-}
-
-// Auto-hide loading after 2.5s
-setTimeout(hideLoad, 2500);
+function showLoad(){const l=document.getElementById('loadScreen');if(l){l.classList.remove('gone');l.style.display='flex';}}
+function hideLoad(){const l=document.getElementById('loadScreen');if(l)l.classList.add('gone');}
+setTimeout(hideLoad,3000);
 
 // ============================================================
 // NOTIFICATIONS
 // ============================================================
-function checkNotif(){
-  const el = document.getElementById('notifSub');
-  if(!el) return;
-  if(Notification.permission==='granted') el.textContent = '✅ 3 daily reminders active';
-  else if(Notification.permission==='denied') el.textContent = '❌ Blocked in browser settings';
-}
-
+function chkNotif(){const el=document.getElementById('notifSub');if(!el)return;if(Notification.permission==='granted')el.textContent='✅ 3 daily reminders active';else if(Notification.permission==='denied')el.textContent='❌ Blocked in browser settings';}
 async function reqNotif(){
-  if(!('Notification' in window)){ showToast("Not supported on this browser"); return; }
-  if(Notification.permission==='granted'){ showToast("Already enabled ✅"); schedNotifs(); return; }
-  if(Notification.permission==='denied'){ showToast("Enable in browser settings"); return; }
-  const p = await Notification.requestPermission();
-  if(p==='granted'){
-    document.getElementById('nBanner').style.display='none';
-    showToast("Daily reminders enabled! 🔔");
-    checkNotif();
-    schedNotifs();
-    setTimeout(()=>new Notification('🪷 Daily Krishna',{body:'3 daily reminders set — morning, midday & evening 🙏',icon:'https://anchorvijju616-hash.github.io/Daily-Krishna/icons/icon-192.png'}),600);
-  }else{ showToast("Not enabled"); checkNotif(); }
+  if(!('Notification' in window)){showToast("Not supported on this browser");return;}
+  if(Notification.permission==='granted'){showToast("Already enabled ✅");schedNotifs();return;}
+  if(Notification.permission==='denied'){showToast("Enable in browser settings");return;}
+  const p=await Notification.requestPermission();
+  if(p==='granted'){document.getElementById('nBan').style.display='none';showToast("Reminders enabled! 🔔");chkNotif();schedNotifs();setTimeout(()=>new Notification('🪷 Daily Krishna',{body:'3 daily reminders set — morning, midday & evening 🙏'}),600);}
+  else{showToast("Not enabled");chkNotif();}
 }
+function schedNotifs(){schedAt(7,0,'morning');schedAt(13,0,'midday');schedAt(19,0,'evening');}
+function schedAt(h,m,t){const now=new Date(),tgt=new Date();tgt.setHours(h,m,0,0);if(now>=tgt)tgt.setDate(tgt.getDate()+1);setTimeout(()=>{sendN(t);setInterval(()=>sendN(t),864e5);},tgt-now);}
+function sendN(t){if(Notification.permission!=='granted')return;const all=[...MQ,...CQ].filter(q=>q.s===t);const q=all[Math.floor(Math.random()*all.length)];const titles={morning:'🌅 Morning Wisdom',midday:'☀️ Midday Peace',evening:'🌙 Evening Reflection'};new Notification(titles[t],{body:`"${q.t.substring(0,80)}..."`});}
 
-function schedNotifs(){
-  schedAt(7,0,'morning');
-  schedAt(13,0,'midday');
-  schedAt(19,0,'evening');
-}
-
-function schedAt(h,m,t){
-  const now=new Date(), tgt=new Date();
-  tgt.setHours(h,m,0,0);
-  if(now>=tgt) tgt.setDate(tgt.getDate()+1);
-  const titles = {morning:'🌅 Morning Wisdom — Daily Krishna',midday:'☀️ Midday Peace — Daily Krishna',evening:'🌙 Evening Reflection — Daily Krishna'};
-  setTimeout(()=>{
-    sendNotif(t, titles[t]);
-    setInterval(()=>sendNotif(t, titles[t]), 864e5);
-  }, tgt-now);
-}
-
-function sendNotif(type, title){
-  if(Notification.permission!=='granted') return;
-  const all = [...MQ,...CQ].filter(q=>q.s===type);
-  const q = all[Math.floor(Math.random()*all.length)];
-  new Notification(title,{body:`"${q.t.substring(0,80)}..."`,icon:'https://anchorvijju616-hash.github.io/Daily-Krishna/icons/icon-192.png'});
-}
-
-// ============================================================
 // PWA
-// ============================================================
-window.addEventListener('beforeinstallprompt', e=>{e.preventDefault(); deferredPrompt=e;});
-function instPWA(){
-  if(deferredPrompt){
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(r=>{if(r.outcome==='accepted') showToast("App installed! 🪷"); deferredPrompt=null;});
-  }else{
-    showToast("Tap browser menu → Add to Home Screen");
-  }
-}
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;});
+function instPWA(){if(dp){dp.prompt();dp.userChoice.then(r=>{if(r.outcome==='accepted')showToast("App installed! 🪷");dp=null;});}else{showToast("Tap browser menu → Add to Home Screen");}}
 
 // ============================================================
 // TOAST
 // ============================================================
-function showToast(msg, type=''){
-  const t = document.getElementById('toast');
-  if(!t) return;
-  t.textContent = msg;
-  t.className = 'toast show' + (type ? ' '+type : '');
-  setTimeout(()=>t.className='toast', 3000);
-}
+function showToast(msg,cls=''){const t=document.getElementById('toast');if(!t)return;t.textContent=msg;t.className='toast show'+(cls?' '+cls:'');setTimeout(()=>t.className='toast',3000);}
 
 // ============================================================
-// BACKGROUND STARS & PARTICLES
+// STARS & PARTICLES
 // ============================================================
-function makeStars(){
-  const cosmos = document.querySelector('.cosmos');
-  if(!cosmos) return;
-  for(let i=0; i<80; i++){
-    const s = document.createElement('div');
-    s.className = 'cosmos-star';
-    const sz = 1 + Math.random() * 2;
-    s.style.cssText = `
-      width:${sz}px;height:${sz}px;
-      left:${Math.random()*100}%;top:${Math.random()*100}%;
-      animation-duration:${2+Math.random()*4}s;
-      animation-delay:${Math.random()*5}s;
-    `;
+function mkStars(){
+  const cosmos=document.querySelector('.cosmos');if(!cosmos)return;
+  for(let i=0;i<90;i++){
+    const s=document.createElement('div');s.className='star';
+    const sz=.8+Math.random()*2;
+    s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-duration:${2+Math.random()*5}s;animation-delay:${Math.random()*6}s;`;
     cosmos.appendChild(s);
   }
 }
 
-function makeParticles(){
-  const colors = [
-    'rgba(212,150,14,0.5)',
-    'rgba(240,184,48,0.4)',
-    'rgba(0,168,157,0.35)',
-    'rgba(255,224,128,0.4)',
-    'rgba(232,87,10,0.35)'
-  ];
-  for(let i=0; i<14; i++){
-    const p = document.createElement('div');
-    p.className = 'particle';
-    const sz = 2 + Math.random()*5;
-    p.style.cssText = `
-      width:${sz}px;height:${sz}px;
-      left:${Math.random()*100}%;
-      background:${colors[i%colors.length]};
-      animation-duration:${18+Math.random()*22}s;
-      animation-delay:${Math.random()*22}s;
-    `;
+function mkParticles(){
+  const cols=['rgba(200,140,12,.55)','rgba(224,168,32,.45)','rgba(0,144,136,.35)','rgba(248,216,96,.4)','rgba(216,72,8,.4)'];
+  for(let i=0;i<16;i++){
+    const p=document.createElement('div');p.className='fp';
+    const sz=2+Math.random()*5;
+    p.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;background:${cols[i%5]};animation-duration:${20+Math.random()*25}s;animation-delay:${Math.random()*25}s;`;
     document.body.appendChild(p);
   }
 }
 
 // ============================================================
-// SERVICE WORKER — OFFLINE SUPPORT
+// SERVICE WORKER
 // ============================================================
 if('serviceWorker' in navigator){
-  window.addEventListener('load', ()=>{
-    const sw = `
-      const C='dk-v5';
-      const F=['/Daily-Krishna/','/Daily-Krishna/index.html'];
-      self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.addAll(F))));
-      self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).catch(()=>caches.match('/Daily-Krishna/')))));
-      self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k))))));
-    `;
-    navigator.serviceWorker
-      .register(URL.createObjectURL(new Blob([sw],{type:'application/javascript'})))
-      .catch(e=>console.log('SW:',e));
+  window.addEventListener('load',()=>{
+    const sw=`const C='dk-v6';const F=['/Daily-Krishna/','/Daily-Krishna/index.html'];self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.addAll(F))));self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).catch(()=>caches.match('/Daily-Krishna/')))));self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k))))));`;
+    navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'application/javascript'}))).catch(e=>console.log(e));
   });
 }
 
-makeStars();
+// ============================================================
+// BOOT — Init Lottie FIRST, then stars
+// ============================================================
+mkStars();
+
+// Wait for Lottie CDN script to load then init
+if(typeof lottie !== 'undefined'){
+  initLottie();
+} else {
+  window.addEventListener('load', initLottie);
+}
 </script>
 </body>
 </html>

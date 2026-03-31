@@ -6,736 +6,712 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Daily Krishna">
 <meta name="theme-color" content="#FF6B1A">
-<meta name="description" content="Bhagavad Gita wisdom for corporate wellness — Daily Krishna">
 <title>Daily Krishna</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;500;600&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root {
-  --saffron:#FF6B1A;--gold:#D4A017;--gold-light:#F0C040;
-  --royal-blue:#1A3A6B;--peacock-teal:#00A89D;--maroon:#8B1A1A;
-  --cream:#FFF8EE;--white:#FFFFFF;
-  --text-dark:#2C1810;--text-mid:#5C3D2E;--text-soft:#8B6E5A;
-}
-[data-theme="dark"]{--cream:#1A1008;--white:#2A1A0A;--text-dark:#F5E6CC;--text-mid:#D4B896;--text-soft:#A08060;}
+:root{--saffron:#FF6B1A;--gold:#D4A017;--teal:#00A89D;--blue:#1A3A6B;--maroon:#8B1A1A;--cream:#FFF8EE;--white:#FFFFFF;--td:#2C1810;--tm:#5C3D2E;--ts:#8B6E5A;--cb:#0A1628;--ca:#1E88E5;--cg:#C9A227;}
+[data-theme="dark"]{--cream:#1A1008;--white:#2A1A0A;--td:#F5E6CC;--tm:#D4B896;--ts:#A08060;}
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text-dark);min-height:100vh;overflow-x:hidden;transition:background 0.4s,color 0.4s;}
-#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
-.particle{position:absolute;border-radius:50%;animation:floatP linear infinite;opacity:0;}
-@keyframes floatP{0%{transform:translateY(100vh) rotate(0deg);opacity:0;}10%{opacity:0.5;}90%{opacity:0.2;}100%{transform:translateY(-10vh) rotate(360deg);opacity:0;}}
-.loading-overlay{position:fixed;inset:0;background:linear-gradient(135deg,#0D1B3E,#1A3A6B);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity 0.6s;}
-.loading-om{font-family:'Cinzel',serif;font-size:72px;background:linear-gradient(135deg,#FF8C42,#F0C040);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:omPulse 1.5s ease-in-out infinite;}
-.loading-text{font-family:'Cormorant Garamond',serif;font-size:18px;color:rgba(245,230,204,0.6);font-style:italic;margin-top:16px;letter-spacing:3px;}
-.loading-bar{width:200px;height:2px;background:rgba(212,160,23,0.2);border-radius:2px;margin-top:24px;overflow:hidden;}
-.loading-bar-fill{height:100%;background:linear-gradient(90deg,#FF6B1A,#D4A017);border-radius:2px;animation:loadBar 2s ease-in-out infinite;}
-@keyframes loadBar{0%{width:0%;}50%{width:80%;}100%{width:100%;}}
-@keyframes omPulse{0%,100%{filter:drop-shadow(0 0 20px rgba(255,107,26,0.5));}50%{filter:drop-shadow(0 0 40px rgba(240,192,64,0.9));}}
-
+body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--td);min-height:100vh;overflow-x:hidden;transition:background 0.4s,color 0.4s;}
+#particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.pt{position:absolute;border-radius:50%;animation:fp linear infinite;opacity:0;}
+@keyframes fp{0%{transform:translateY(100vh);opacity:0;}10%{opacity:.5;}90%{opacity:.2;}100%{transform:translateY(-10vh);opacity:0;}}
+/* LOADING */
+.lo{position:fixed;inset:0;background:linear-gradient(135deg,#0D1B3E,#1A3A6B);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity .6s;}
+.lo-om{font-family:'Cinzel',serif;font-size:68px;background:linear-gradient(135deg,#FF8C42,#F0C040);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:op 1.5s ease-in-out infinite;}
+.lo-txt{font-family:'Cormorant Garamond',serif;font-size:17px;color:rgba(245,230,204,.6);font-style:italic;margin-top:14px;letter-spacing:3px;}
+.lo-bar{width:180px;height:2px;background:rgba(212,160,23,.2);border-radius:2px;margin-top:22px;overflow:hidden;}
+.lo-fill{height:100%;background:linear-gradient(90deg,#FF6B1A,#D4A017);animation:lb 2s ease-in-out infinite;}
+@keyframes lb{0%{width:0}50%{width:80%}100%{width:100%}}
+@keyframes op{0%,100%{filter:drop-shadow(0 0 18px rgba(255,107,26,.5))}50%{filter:drop-shadow(0 0 38px rgba(240,192,64,.9))}}
 /* LOGIN */
-#loginPage{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;position:relative;background:linear-gradient(135deg,#0D1B3E 0%,#1A3A6B 30%,#003344 60%,#1A0A00 100%);}
-.login-stars{position:absolute;inset:0;overflow:hidden;}
-.star{position:absolute;width:2px;height:2px;background:#F0C040;border-radius:50%;animation:twinkle ease-in-out infinite;}
-@keyframes twinkle{0%,100%{opacity:0.2;transform:scale(1);}50%{opacity:1;transform:scale(1.5);}}
-.login-card{position:relative;z-index:2;width:100%;max-width:440px;background:rgba(255,248,238,0.07);backdrop-filter:blur(24px);border:1px solid rgba(212,160,23,0.3);border-radius:32px;padding:48px 40px;text-align:center;box-shadow:0 0 80px rgba(212,160,23,0.1),0 40px 80px rgba(0,0,0,0.5);animation:cardIn 0.8s cubic-bezier(0.16,1,0.3,1) both;}
-@keyframes cardIn{from{opacity:0;transform:translateY(40px) scale(0.95);}to{opacity:1;transform:translateY(0) scale(1);}}
-.login-krishna{width:90px;height:90px;border-radius:50%;border:2px solid rgba(212,160,23,0.5);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:44px;animation:glowPulse 3s ease-in-out infinite;background:linear-gradient(135deg,rgba(26,58,107,0.5),rgba(0,51,68,0.5));}
-@keyframes glowPulse{0%,100%{box-shadow:0 0 20px rgba(212,160,23,0.3);}50%{box-shadow:0 0 50px rgba(212,160,23,0.7),0 0 80px rgba(255,107,26,0.3);}}
-.login-om{font-family:'Cinzel',serif;font-size:48px;background:linear-gradient(135deg,#FF8C42,#F0C040,#FF6B1A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;animation:omPulse 3s ease-in-out infinite;}
-.login-title{font-family:'Cinzel',serif;font-size:28px;font-weight:600;color:#F5E6CC;letter-spacing:2px;margin:8px 0 4px;}
-.login-subtitle{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(240,192,64,0.8);margin-bottom:6px;}
-.login-tagline{font-size:10px;color:rgba(245,230,204,0.4);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:24px;}
-.login-divider{display:flex;align-items:center;gap:12px;margin:18px 0;}
-.login-divider::before,.login-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(212,160,23,0.4),transparent);}
-.login-quote{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:rgba(245,230,204,0.55);line-height:1.7;margin-bottom:24px;}
-.btn-google{width:100%;display:flex;align-items:center;justify-content:center;gap:12px;padding:16px 24px;background:linear-gradient(135deg,rgba(255,107,26,0.9),rgba(212,160,23,0.9));border:1px solid rgba(240,192,64,0.4);border-radius:16px;color:#fff;font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 24px rgba(255,107,26,0.35);}
-.btn-google:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,107,26,0.5);}
-.google-icon{width:22px;height:22px;background:white;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.google-icon svg{width:15px;height:15px;}
-.login-badges{display:flex;justify-content:center;gap:10px;margin-top:14px;flex-wrap:wrap;}
-.login-badge{padding:4px 10px;border-radius:20px;border:1px solid rgba(212,160,23,0.2);font-size:10px;color:rgba(240,192,64,0.6);letter-spacing:0.5px;}
-.login-footer{margin-top:14px;font-size:11px;color:rgba(245,230,204,0.3);line-height:1.6;}
-
+#lp{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;position:relative;background:linear-gradient(135deg,#0D1B3E 0%,#1A3A6B 30%,#003344 60%,#1A0A00 100%);}
+.ls{position:absolute;inset:0;overflow:hidden;}
+.star{position:absolute;width:2px;height:2px;background:#F0C040;border-radius:50%;animation:tw ease-in-out infinite;}
+@keyframes tw{0%,100%{opacity:.2;transform:scale(1)}50%{opacity:1;transform:scale(1.5)}}
+.lc{position:relative;z-index:2;width:100%;max-width:430px;background:rgba(255,248,238,.07);backdrop-filter:blur(22px);border:1px solid rgba(212,160,23,.3);border-radius:30px;padding:40px 36px;text-align:center;box-shadow:0 0 70px rgba(212,160,23,.1),0 40px 80px rgba(0,0,0,.5);animation:ci .8s cubic-bezier(.16,1,.3,1) both;}
+@keyframes ci{from{opacity:0;transform:translateY(40px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+.lk{width:82px;height:82px;border-radius:50%;border:2px solid rgba(212,160,23,.5);margin:0 auto 13px;display:flex;align-items:center;justify-content:center;font-size:40px;animation:gp 3s ease-in-out infinite;background:linear-gradient(135deg,rgba(26,58,107,.5),rgba(0,51,68,.5));}
+@keyframes gp{0%,100%{box-shadow:0 0 18px rgba(212,160,23,.3)}50%{box-shadow:0 0 45px rgba(212,160,23,.7),0 0 70px rgba(255,107,26,.3)}}
+.l-om{font-family:'Cinzel',serif;font-size:44px;background:linear-gradient(135deg,#FF8C42,#F0C040,#FF6B1A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;animation:op 3s ease-in-out infinite;}
+.l-title{font-family:'Cinzel',serif;font-size:26px;font-weight:600;color:#F5E6CC;letter-spacing:2px;margin:7px 0 3px;}
+.l-sub{font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(240,192,64,.8);margin-bottom:4px;}
+.l-tag{font-size:10px;color:rgba(245,230,204,.4);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:20px;}
+/* Module selector */
+.ms{display:flex;gap:10px;margin-bottom:20px;}
+.mb{flex:1;padding:11px 7px;border-radius:14px;border:1px solid rgba(212,160,23,.2);background:transparent;cursor:pointer;text-align:center;transition:all .3s;}
+.mb.am{border-color:var(--saffron);background:rgba(255,107,26,.1);}
+.mb-icon{font-size:22px;margin-bottom:3px;}
+.mb-title{font-family:'Cinzel',serif;font-size:10px;color:#F5E6CC;font-weight:600;letter-spacing:.5px;}
+.mb-sub{font-size:9px;color:rgba(245,230,204,.45);margin-top:1px;}
+.ldiv{display:flex;align-items:center;gap:12px;margin:15px 0;}
+.ldiv::before,.ldiv::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(212,160,23,.4),transparent);}
+.lq{font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;color:rgba(245,230,204,.5);line-height:1.7;margin-bottom:20px;}
+.bg{width:100%;display:flex;align-items:center;justify-content:center;gap:11px;padding:15px 22px;background:linear-gradient(135deg,rgba(255,107,26,.9),rgba(212,160,23,.9));border:1px solid rgba(240,192,64,.4);border-radius:15px;color:#fff;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .3s;box-shadow:0 4px 22px rgba(255,107,26,.35);}
+.bg:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,107,26,.5);}
+.gi{width:20px;height:20px;background:white;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.gi svg{width:14px;height:14px;}
+.lf{margin-top:13px;font-size:10px;color:rgba(245,230,204,.3);}
 /* APP */
 #app{display:none;min-height:100vh;}
-.top-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:rgba(255,248,238,0.88);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,160,23,0.15);}
-[data-theme="dark"] .top-nav{background:rgba(26,16,8,0.88);}
-.nav-logo{font-family:'Cinzel',serif;font-size:17px;font-weight:600;background:linear-gradient(135deg,var(--saffron),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:1px;}
-.nav-right{display:flex;align-items:center;gap:10px;}
-.nav-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(212,160,23,0.3);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--text-dark);}
-.nav-avatar-placeholder{width:36px;height:36px;border-radius:50%;border:2px solid var(--gold);background:linear-gradient(135deg,var(--saffron),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:13px;color:white;cursor:pointer;font-weight:700;}
-.nav-avatar{width:36px;height:36px;border-radius:50%;border:2px solid var(--gold);cursor:pointer;object-fit:cover;}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;display:flex;background:rgba(255,248,238,0.93);backdrop-filter:blur(20px);border-top:1px solid rgba(212,160,23,0.15);padding:8px 0 12px;}
-[data-theme="dark"] .bottom-nav{background:rgba(26,16,8,0.93);}
-.nav-tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 8px;cursor:pointer;border:none;background:none;color:var(--text-soft);}
-.nav-tab.active{color:var(--saffron);}
-.nav-tab-icon{font-size:21px;line-height:1;}
-.nav-tab-label{font-size:10px;font-weight:700;letter-spacing:0.5px;}
-.page{display:none;padding-top:76px;padding-bottom:90px;min-height:100vh;}
-.page.active{display:block;}
-#homePage{background:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(255,107,26,0.07) 0%,transparent 60%),var(--cream);}
-
-/* GREETING */
-.home-greeting{padding:16px 20px 0;text-align:center;}
-.greeting-date{font-size:11px;font-weight:700;letter-spacing:2.5px;color:var(--saffron);text-transform:uppercase;margin-bottom:3px;}
-.greeting-name{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--text-soft);font-style:italic;}
-.greeting-name span{color:var(--text-dark);font-style:normal;font-weight:600;}
-
-/* WELLNESS STRIP */
-.wellness-strip{display:flex;gap:8px;padding:12px 16px;overflow-x:auto;scrollbar-width:none;}
-.wellness-strip::-webkit-scrollbar{display:none;}
-.wellness-card{flex-shrink:0;padding:10px 14px;border-radius:14px;background:var(--white);border:1px solid rgba(212,160,23,0.12);text-align:center;min-width:88px;box-shadow:0 2px 12px rgba(0,0,0,0.04);}
-.wellness-card-icon{font-size:20px;margin-bottom:4px;}
-.wellness-card-label{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-soft);}
-.wellness-card-val{font-family:'Cinzel',serif;font-size:15px;color:var(--saffron);font-weight:600;}
-
-/* SCHEDULE */
-.schedule-strip{margin:8px 16px 0;padding:14px 16px;background:var(--white);border:1px solid rgba(212,160,23,0.12);border-radius:18px;}
-.schedule-title{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--saffron);margin-bottom:10px;}
-.schedule-items{display:flex;gap:8px;}
-.schedule-item{flex:1;text-align:center;padding:10px 6px;border-radius:12px;border:1px solid rgba(212,160,23,0.1);background:rgba(255,107,26,0.02);cursor:pointer;transition:all 0.2s;}
-.schedule-item.active{border-color:var(--saffron);background:rgba(255,107,26,0.07);}
-.schedule-item-icon{font-size:18px;margin-bottom:3px;}
-.schedule-item-time{font-size:9px;font-weight:800;color:var(--saffron);}
-.schedule-item-label{font-size:9px;color:var(--text-soft);margin-top:2px;}
-
-/* CATEGORY */
-.category-scroll{display:flex;gap:8px;padding:10px 16px;overflow-x:auto;scrollbar-width:none;}
-.category-scroll::-webkit-scrollbar{display:none;}
-.cat-chip{flex-shrink:0;padding:6px 14px;border-radius:20px;border:1px solid rgba(212,160,23,0.2);background:transparent;font-size:12px;font-weight:700;font-family:'Nunito',sans-serif;color:var(--text-soft);cursor:pointer;transition:all 0.25s;}
-.cat-chip.active{background:linear-gradient(135deg,var(--saffron),var(--gold));color:white;border-color:transparent;box-shadow:0 4px 14px rgba(255,107,26,0.3);}
-
-/* KRISHNA QUOTE CARD */
-.quote-card-wrap{padding:8px 16px 12px;transition:opacity 0.4s,transform 0.4s;}
-.krishna-quote-card{border-radius:28px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.13),0 0 0 1px rgba(212,160,23,0.12);background:var(--white);}
-
-/* Krishna Visual */
-.krishna-visual{position:relative;height:210px;overflow:hidden;display:flex;align-items:center;justify-content:center;transition:background 0.6s;}
-.krishna-visual::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(255,255,255,0.05) 0%,transparent 70%);}
-.krishna-light-rays{position:absolute;inset:0;background:conic-gradient(from 0deg at 50% 50%,transparent 0deg,rgba(212,160,23,0.03) 30deg,transparent 60deg,rgba(255,107,26,0.03) 90deg,transparent 120deg,rgba(212,160,23,0.03) 150deg,transparent 180deg,rgba(255,107,26,0.02) 210deg,transparent 240deg,rgba(212,160,23,0.03) 270deg,transparent 300deg,rgba(255,107,26,0.02) 330deg,transparent 360deg);animation:rayRot 20s linear infinite;}
-@keyframes rayRot{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
-.krishna-aura{position:absolute;width:170px;height:170px;border-radius:50%;background:radial-gradient(circle,rgba(212,160,23,0.22) 0%,transparent 70%);animation:auraPulse 3s ease-in-out infinite;top:50%;left:50%;transform:translate(-50%,-50%);}
-@keyframes auraPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.7;}50%{transform:translate(-50%,-50%) scale(1.15);opacity:1;}}
-.krishna-aura-ring{position:absolute;width:220px;height:220px;border-radius:50%;border:1px solid rgba(212,160,23,0.12);top:50%;left:50%;transform:translate(-50%,-50%);animation:ringPulse 3s ease-in-out infinite 0.5s;}
-@keyframes ringPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.4;}50%{transform:translate(-50%,-50%) scale(1.2);opacity:0.05;}}
-.krishna-emoji{font-size:88px;position:relative;z-index:2;animation:krishnaFloat 4s ease-in-out infinite;filter:drop-shadow(0 0 24px rgba(212,160,23,0.6));}
-@keyframes krishnaFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
-.krishna-badge{position:absolute;top:13px;left:13px;padding:5px 12px;border-radius:20px;background:rgba(0,0,0,0.35);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.12);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.9);z-index:3;}
-.krishna-scene{position:absolute;bottom:11px;left:0;right:0;text-align:center;font-family:'Cormorant Garamond',serif;font-size:11px;font-style:italic;color:rgba(255,255,255,0.4);z-index:3;letter-spacing:1px;}
-
-/* Quote Body */
-.quote-body{padding:20px 22px;}
-.quote-text-wrap{position:relative;padding-left:18px;margin-bottom:14px;}
-.quote-text-wrap::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:54px;color:rgba(212,160,23,0.22);position:absolute;left:-7px;top:-14px;line-height:1;}
-.quote-text{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:500;line-height:1.6;color:var(--text-dark);}
-.quote-source{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--saffron);font-weight:700;margin-top:7px;}
-
-/* Corporate Insight */
-.insight-box{margin-top:13px;padding:13px 15px;background:linear-gradient(135deg,rgba(255,107,26,0.05),rgba(212,160,23,0.03));border:1px solid rgba(212,160,23,0.14);border-radius:14px;}
-.insight-label{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--saffron);margin-bottom:5px;}
-.insight-text{font-size:13px;color:var(--text-mid);line-height:1.65;}
-.insight-tags{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
-.insight-tag{padding:3px 9px;border-radius:10px;background:rgba(212,160,23,0.1);font-size:10px;font-weight:700;color:var(--gold);}
-
-/* Krishna Message */
-.krishna-msg{margin-top:11px;padding:11px 15px;background:linear-gradient(135deg,rgba(26,58,107,0.05),rgba(0,168,157,0.03));border-left:3px solid var(--peacock-teal);border-radius:0 12px 12px 0;}
-.krishna-msg-label{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--peacock-teal);margin-bottom:4px;}
-.krishna-msg-text{font-size:13px;color:var(--text-mid);line-height:1.6;font-style:italic;}
-
-.card-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(212,160,23,0.14),transparent);margin:15px 0;}
-.card-actions{display:flex;gap:7px;flex-wrap:wrap;}
-.action-btn{flex:1;min-width:70px;display:flex;align-items:center;justify-content:center;gap:5px;padding:11px 8px;border-radius:13px;border:1px solid rgba(212,160,23,0.18);background:transparent;cursor:pointer;font-size:11px;font-weight:700;font-family:'Nunito',sans-serif;color:var(--text-mid);transition:all 0.2s;}
-.action-btn:hover{background:rgba(212,160,23,0.08);border-color:var(--gold);color:var(--gold);transform:translateY(-1px);}
-.action-btn.fav-active{background:rgba(139,26,26,0.07);border-color:var(--maroon);color:var(--maroon);}
-.action-btn.whatsapp{background:rgba(37,211,102,0.06);border-color:#25D366;color:#25D366;}
-.action-btn-icon{font-size:15px;}
-.next-btn{width:calc(100% - 32px);display:flex;align-items:center;justify-content:center;gap:8px;padding:15px;margin:13px 16px 0;border-radius:18px;border:none;background:linear-gradient(135deg,#1A3A6B,#003344);color:#F5E6CC;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;transition:all 0.3s;box-shadow:0 8px 24px rgba(26,58,107,0.25);}
-.next-btn:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(26,58,107,0.35);}
-
-/* NOTIFICATION BANNER */
-.notif-banner{margin:10px 16px 0;padding:12px 14px;background:linear-gradient(135deg,rgba(26,58,107,0.07),rgba(0,168,157,0.05));border:1px solid rgba(0,168,157,0.18);border-radius:15px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
-.notif-banner-text{font-size:12px;color:var(--text-mid);flex:1;}
-.notif-banner-text strong{color:var(--peacock-teal);display:block;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:2px;}
-.notif-btn{padding:7px 14px;border-radius:10px;border:none;background:linear-gradient(135deg,var(--peacock-teal),#006B8A);color:white;font-size:11px;font-weight:800;cursor:pointer;white-space:nowrap;}
-.notif-close{background:none;border:none;cursor:pointer;color:var(--text-soft);font-size:16px;flex-shrink:0;padding:2px;}
-
+.tn{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:11px 15px;background:rgba(255,248,238,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,160,23,.15);transition:all .4s;}
+.tn.cn{background:rgba(10,22,40,.95);border-bottom:1px solid rgba(30,136,229,.2);}
+[data-theme="dark"] .tn{background:rgba(26,16,8,.9);}
+.nl{font-family:'Cinzel',serif;font-size:15px;font-weight:600;background:linear-gradient(135deg,var(--saffron),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:1px;}
+.nl.cnl{background:linear-gradient(135deg,#1E88E5,#C9A227);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.nr{display:flex;align-items:center;gap:8px;}
+.nb{width:32px;height:32px;border-radius:50%;border:1px solid rgba(212,160,23,.3);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--td);}
+.na{width:32px;height:32px;border-radius:50%;border:2px solid var(--gold);background:linear-gradient(135deg,var(--saffron),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:12px;color:white;cursor:pointer;font-weight:700;}
+/* Module switch */
+.msw{display:flex;background:rgba(0,0,0,.08);border-radius:18px;padding:3px;gap:2px;}
+.msb{padding:4px 9px;border-radius:14px;border:none;background:transparent;font-size:10px;font-weight:800;cursor:pointer;transition:all .25s;color:var(--ts);letter-spacing:.4px;}
+.msb.ma{background:linear-gradient(135deg,var(--saffron),var(--gold));color:white;box-shadow:0 2px 8px rgba(255,107,26,.3);}
+.msb.ca{background:linear-gradient(135deg,#1E88E5,#0D47A1);color:white;box-shadow:0 2px 8px rgba(30,136,229,.4);}
+/* BOTTOM NAV */
+.bn{position:fixed;bottom:0;left:0;right:0;z-index:100;display:flex;background:rgba(255,248,238,.93);backdrop-filter:blur(20px);border-top:1px solid rgba(212,160,23,.15);padding:7px 0 12px;transition:all .4s;}
+.bn.cbn{background:rgba(10,22,40,.96);border-top:1px solid rgba(30,136,229,.15);}
+[data-theme="dark"] .bn{background:rgba(26,16,8,.93);}
+.nt{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 8px;cursor:pointer;border:none;background:none;color:var(--ts);}
+.nt.ac{color:var(--saffron);}
+.nt.cct{color:rgba(144,202,249,.45);}
+.nt.cct.ac{color:#1E88E5;}
+.ni{font-size:20px;line-height:1;}
+.nl2{font-size:10px;font-weight:700;letter-spacing:.4px;}
+.pg{display:none;padding-top:70px;padding-bottom:86px;min-height:100vh;}
+.pg.ac{display:block;}
+/* HOME */
+#hp{background:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(255,107,26,.07) 0%,transparent 60%),var(--cream);}
+.hg{padding:13px 16px 0;text-align:center;}
+.gd{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--saffron);text-transform:uppercase;margin-bottom:2px;}
+.gn{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--ts);font-style:italic;}
+.gn span{color:var(--td);font-style:normal;font-weight:600;}
+/* Wellness */
+.ws{display:flex;gap:7px;padding:10px 16px;overflow-x:auto;scrollbar-width:none;}
+.ws::-webkit-scrollbar{display:none;}
+.wc{flex-shrink:0;padding:9px 11px;border-radius:12px;background:var(--white);border:1px solid rgba(212,160,23,.1);text-align:center;min-width:80px;}
+.wci{font-size:18px;margin-bottom:3px;}
+.wcl{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--ts);}
+.wcv{font-family:'Cinzel',serif;font-size:14px;color:var(--saffron);font-weight:600;}
+/* Schedule */
+.ss{margin:7px 16px 0;padding:11px 13px;background:var(--white);border:1px solid rgba(212,160,23,.1);border-radius:15px;}
+.st{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--saffron);margin-bottom:8px;}
+.si{display:flex;gap:7px;}
+.sc{flex:1;text-align:center;padding:8px 4px;border-radius:10px;border:1px solid rgba(212,160,23,.1);cursor:pointer;transition:all .2s;}
+.sc.ac{border-color:var(--saffron);background:rgba(255,107,26,.06);}
+.sci{font-size:16px;margin-bottom:2px;}
+.sct{font-size:9px;font-weight:800;color:var(--saffron);}
+.scl{font-size:9px;color:var(--ts);margin-top:1px;}
+/* Category */
+.cs{display:flex;gap:7px;padding:9px 16px;overflow-x:auto;scrollbar-width:none;}
+.cs::-webkit-scrollbar{display:none;}
+.cc{flex-shrink:0;padding:5px 12px;border-radius:20px;border:1px solid rgba(212,160,23,.2);background:transparent;font-size:11px;font-weight:700;font-family:'Nunito',sans-serif;color:var(--ts);cursor:pointer;transition:all .25s;}
+.cc.ac{background:linear-gradient(135deg,var(--saffron),var(--gold));color:white;border-color:transparent;box-shadow:0 3px 12px rgba(255,107,26,.3);}
+/* KRISHNA CARD */
+.qw{padding:7px 16px 10px;transition:opacity .4s,transform .4s;}
+.kc{border-radius:24px;overflow:hidden;box-shadow:0 20px 56px rgba(0,0,0,.12),0 0 0 1px rgba(212,160,23,.1);background:var(--white);}
+.kv{position:relative;height:196px;overflow:hidden;display:flex;align-items:center;justify-content:center;transition:background .6s;}
+.kv::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(255,255,255,.05) 0%,transparent 70%);}
+.lr{position:absolute;inset:0;background:conic-gradient(from 0deg at 50% 50%,transparent 0deg,rgba(212,160,23,.03) 30deg,transparent 60deg,rgba(255,107,26,.03) 90deg,transparent 120deg,rgba(212,160,23,.03) 150deg,transparent 180deg,rgba(255,107,26,.02) 210deg,transparent 240deg,rgba(212,160,23,.03) 270deg,transparent 300deg,rgba(255,107,26,.02) 330deg,transparent 360deg);animation:rr 20s linear infinite;}
+@keyframes rr{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.ka{position:absolute;width:155px;height:155px;border-radius:50%;background:radial-gradient(circle,rgba(212,160,23,.2) 0%,transparent 70%);animation:ap 3s ease-in-out infinite;top:50%;left:50%;transform:translate(-50%,-50%);}
+@keyframes ap{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.7}50%{transform:translate(-50%,-50%) scale(1.15);opacity:1}}
+.kar{position:absolute;width:205px;height:205px;border-radius:50%;border:1px solid rgba(212,160,23,.1);top:50%;left:50%;transform:translate(-50%,-50%);animation:rp 3s ease-in-out infinite .5s;}
+@keyframes rp{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.4}50%{transform:translate(-50%,-50%) scale(1.2);opacity:.05}}
+.ke{font-size:82px;position:relative;z-index:2;animation:kf 4s ease-in-out infinite;filter:drop-shadow(0 0 20px rgba(212,160,23,.6));}
+@keyframes kf{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.kb{position:absolute;top:11px;left:11px;padding:4px 10px;border-radius:18px;background:rgba(0,0,0,.35);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.9);z-index:3;}
+.ks{position:absolute;bottom:9px;left:0;right:0;text-align:center;font-family:'Cormorant Garamond',serif;font-size:11px;font-style:italic;color:rgba(255,255,255,.38);z-index:3;letter-spacing:1px;}
+/* Quote body */
+.qb{padding:17px 19px;}
+.qtw{position:relative;padding-left:15px;margin-bottom:12px;}
+.qtw::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:50px;color:rgba(212,160,23,.2);position:absolute;left:-7px;top:-12px;line-height:1;}
+.qt{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;line-height:1.6;color:var(--td);}
+.qs{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--saffron);font-weight:700;margin-top:5px;}
+/* Simple meaning */
+.sm{margin-top:11px;padding:11px 13px;background:linear-gradient(135deg,rgba(255,248,238,.8),rgba(245,230,204,.4));border:1px solid rgba(212,160,23,.16);border-radius:12px;}
+[data-theme="dark"] .sm{background:linear-gradient(135deg,rgba(42,26,10,.8),rgba(38,21,8,.6));}
+.sml{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.smt{font-size:13px;color:var(--tm);line-height:1.65;font-family:'Cormorant Garamond',serif;font-style:italic;}
+/* Krishna msg */
+.km{margin-top:9px;padding:10px 13px;background:linear-gradient(135deg,rgba(26,58,107,.05),rgba(0,168,157,.03));border-left:3px solid var(--teal);border-radius:0 11px 11px 0;}
+.kml{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:3px;}
+.kmt{font-size:13px;color:var(--tm);line-height:1.6;font-style:italic;}
+.div{height:1px;background:linear-gradient(90deg,transparent,rgba(212,160,23,.13),transparent);margin:12px 0;}
+.ac2{display:flex;gap:6px;flex-wrap:wrap;}
+.ab{flex:1;min-width:66px;display:flex;align-items:center;justify-content:center;gap:5px;padding:10px 7px;border-radius:11px;border:1px solid rgba(212,160,23,.17);background:transparent;cursor:pointer;font-size:11px;font-weight:700;font-family:'Nunito',sans-serif;color:var(--tm);transition:all .2s;}
+.ab:hover{background:rgba(212,160,23,.08);border-color:var(--gold);color:var(--gold);}
+.ab.fav-on{background:rgba(139,26,26,.07);border-color:var(--maroon);color:var(--maroon);}
+.ab.wa{background:rgba(37,211,102,.06);border-color:#25D366;color:#25D366;}
+.ai{font-size:14px;}
+.nb2{width:calc(100% - 32px);display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;margin:11px 16px 0;border-radius:16px;border:none;background:linear-gradient(135deg,#1A3A6B,#003344);color:#F5E6CC;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;transition:all .3s;box-shadow:0 7px 20px rgba(26,58,107,.25);}
+.nb2:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(26,58,107,.35);}
+/* Notif banner */
+.nbb{margin:8px 16px 0;padding:10px 12px;background:linear-gradient(135deg,rgba(26,58,107,.07),rgba(0,168,157,.05));border:1px solid rgba(0,168,157,.17);border-radius:13px;display:flex;align-items:center;justify-content:space-between;gap:9px;}
+.nbt{font-size:11px;color:var(--tm);flex:1;}
+.nbt strong{color:var(--teal);display:block;font-size:9px;letter-spacing:1px;text-transform:uppercase;margin-bottom:2px;}
+.nbtn{padding:6px 12px;border-radius:9px;border:none;background:linear-gradient(135deg,var(--teal),#006B8A);color:white;font-size:11px;font-weight:800;cursor:pointer;}
+.nc{background:none;border:none;cursor:pointer;color:var(--ts);font-size:14px;flex-shrink:0;}
+/* ===== CORPORATE MODULE ===== */
+#cp{display:none;padding-top:70px;padding-bottom:86px;min-height:100vh;background:linear-gradient(180deg,#0A1628 0%,#0D1F3C 40%,#0A1628 100%);}
+.ch{padding:14px 16px 0;text-align:center;}
+.chb{display:inline-flex;align-items:center;gap:5px;padding:4px 13px;border-radius:18px;background:rgba(30,136,229,.1);border:1px solid rgba(30,136,229,.22);font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#64B5F6;margin-bottom:8px;}
+.cd{font-size:10px;font-weight:700;letter-spacing:2px;color:#1E88E5;text-transform:uppercase;margin-bottom:2px;}
+.cg2{font-family:'Cormorant Garamond',serif;font-size:15px;color:rgba(144,202,249,.65);font-style:italic;}
+.cg2 span{color:#E3F2FD;font-style:normal;font-weight:600;}
+/* Corp wellness */
+.cws{display:flex;gap:7px;padding:10px 16px;overflow-x:auto;scrollbar-width:none;}
+.cws::-webkit-scrollbar{display:none;}
+.cwc{flex-shrink:0;padding:9px 11px;border-radius:12px;background:rgba(30,136,229,.07);border:1px solid rgba(30,136,229,.14);text-align:center;min-width:80px;}
+.cwci{font-size:18px;margin-bottom:3px;}
+.cwcl{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(144,202,249,.55);}
+.cwcv{font-family:'Cinzel',serif;font-size:14px;color:#1E88E5;font-weight:600;}
+/* Corp schedule */
+.css2{margin:7px 16px 0;padding:11px 13px;background:rgba(30,136,229,.05);border:1px solid rgba(30,136,229,.11);border-radius:15px;}
+.cst{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#64B5F6;margin-bottom:8px;}
+.csi{display:flex;gap:7px;}
+.csci{flex:1;text-align:center;padding:8px 4px;border-radius:10px;border:1px solid rgba(30,136,229,.11);cursor:pointer;transition:all .2s;}
+.csci.ac{border-color:#1E88E5;background:rgba(30,136,229,.09);}
+.cscii{font-size:16px;margin-bottom:2px;}
+.cscit{font-size:9px;font-weight:800;color:#1E88E5;}
+.cscil{font-size:9px;color:rgba(144,202,249,.45);margin-top:1px;}
+/* Corp category */
+.ccs{display:flex;gap:7px;padding:9px 16px;overflow-x:auto;scrollbar-width:none;}
+.ccs::-webkit-scrollbar{display:none;}
+.ccc{flex-shrink:0;padding:5px 12px;border-radius:20px;border:1px solid rgba(30,136,229,.18);background:transparent;font-size:11px;font-weight:700;font-family:'Nunito',sans-serif;color:rgba(144,202,249,.55);cursor:pointer;transition:all .25s;}
+.ccc.ac{background:linear-gradient(135deg,#1E88E5,#0D47A1);color:white;border-color:transparent;box-shadow:0 3px 12px rgba(30,136,229,.4);}
+/* Corp card */
+.ccw{padding:7px 16px 10px;transition:opacity .4s,transform .4s;}
+.ckc{border-radius:24px;overflow:hidden;box-shadow:0 20px 56px rgba(0,0,0,.4),0 0 0 1px rgba(30,136,229,.14);background:rgba(13,31,60,.9);}
+.cv{position:relative;height:196px;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.cvb{position:absolute;inset:0;background:linear-gradient(135deg,#0A1628,#1A237E,#0D47A1);opacity:.9;}
+.ccg{position:absolute;bottom:0;left:0;right:0;height:55px;background:linear-gradient(to top,rgba(30,136,229,.12),transparent);}
+.cka{position:absolute;width:155px;height:155px;border-radius:50%;background:radial-gradient(circle,rgba(30,136,229,.18) 0%,transparent 70%);animation:cap 3s ease-in-out infinite;top:50%;left:50%;transform:translate(-50%,-50%);}
+@keyframes cap{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.6}50%{transform:translate(-50%,-50%) scale(1.15);opacity:1}}
+.ckar{position:absolute;width:205px;height:205px;border-radius:50%;border:1px solid rgba(30,136,229,.13);top:50%;left:50%;transform:translate(-50%,-50%);animation:crp 3s ease-in-out infinite .5s;}
+@keyframes crp{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.4}50%{transform:translate(-50%,-50%) scale(1.2);opacity:.05}}
+.cke{font-size:82px;position:relative;z-index:2;animation:kf 4s ease-in-out infinite;filter:drop-shadow(0 0 20px rgba(30,136,229,.55));}
+.ckb{position:absolute;top:11px;left:11px;padding:4px 10px;border-radius:18px;background:rgba(30,136,229,.28);backdrop-filter:blur(8px);border:1px solid rgba(30,136,229,.38);font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#90CAF9;z-index:3;}
+.cks{position:absolute;bottom:9px;left:0;right:0;text-align:center;font-family:'Cormorant Garamond',serif;font-size:11px;font-style:italic;color:rgba(144,202,249,.38);z-index:3;letter-spacing:1px;}
+/* Corp body */
+.cb2{padding:17px 19px;}
+.cqw{position:relative;padding-left:15px;margin-bottom:12px;}
+.cqw::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:50px;color:rgba(30,136,229,.18);position:absolute;left:-7px;top:-12px;line-height:1;}
+.cqt{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;line-height:1.6;color:#E3F2FD;}
+.cqs{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#64B5F6;font-weight:700;margin-top:5px;}
+/* Corp insight */
+.cib{margin-top:11px;padding:12px 14px;background:rgba(30,136,229,.06);border:1px solid rgba(30,136,229,.16);border-radius:13px;}
+.cil{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#64B5F6;margin-bottom:5px;}
+.cit{font-size:13px;color:#B3C9E8;line-height:1.65;}
+.ctgs{display:flex;gap:6px;margin-top:7px;flex-wrap:wrap;}
+.ctg{padding:3px 9px;border-radius:9px;background:rgba(30,136,229,.1);font-size:10px;font-weight:700;color:#64B5F6;border:1px solid rgba(30,136,229,.18);}
+/* Gita ref */
+.grb{margin-top:9px;padding:10px 13px;background:rgba(201,162,39,.05);border-left:3px solid var(--cg);border-radius:0 10px 10px 0;}
+.grl{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--cg);margin-bottom:3px;}
+.grt{font-size:12px;color:#D4B896;line-height:1.6;font-style:italic;font-family:'Cormorant Garamond',serif;}
+/* Action plan */
+.apb{margin-top:9px;padding:10px 13px;background:rgba(0,168,157,.05);border:1px solid rgba(0,168,157,.13);border-radius:11px;}
+.apl{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:5px;}
+.api{display:flex;flex-direction:column;gap:4px;}
+.apii{font-size:12px;color:#A8D8D4;display:flex;align-items:flex-start;gap:6px;line-height:1.5;}
+.apd{width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+.cdiv{height:1px;background:linear-gradient(90deg,transparent,rgba(30,136,229,.13),transparent);margin:12px 0;}
+.cac{display:flex;gap:6px;flex-wrap:wrap;}
+.cab{flex:1;min-width:66px;display:flex;align-items:center;justify-content:center;gap:5px;padding:10px 7px;border-radius:11px;border:1px solid rgba(30,136,229,.18);background:transparent;cursor:pointer;font-size:11px;font-weight:700;font-family:'Nunito',sans-serif;color:#90CAF9;transition:all .2s;}
+.cab:hover{background:rgba(30,136,229,.09);border-color:#1E88E5;}
+.cab.cfav-on{background:rgba(201,162,39,.09);border-color:var(--cg);color:var(--cg);}
+.cab.wa{background:rgba(37,211,102,.06);border-color:#25D366;color:#25D366;}
+.cnb{width:calc(100% - 32px);display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;margin:11px 16px 0;border-radius:16px;border:none;background:linear-gradient(135deg,#1E88E5,#0D47A1);color:#E3F2FD;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;transition:all .3s;box-shadow:0 7px 20px rgba(30,136,229,.33);}
+.cnb:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(30,136,229,.43);}
 /* FAVORITES */
-#favPage{padding:76px 16px 90px;}
-.page-header{margin-bottom:16px;}
-.page-title{font-family:'Cinzel',serif;font-size:22px;font-weight:600;background:linear-gradient(135deg,var(--saffron),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.page-subtitle{font-size:13px;color:var(--text-soft);font-style:italic;font-family:'Cormorant Garamond',serif;margin-top:2px;}
-.fav-empty{text-align:center;padding:60px 20px;}
-.fav-empty-icon{font-size:56px;margin-bottom:14px;opacity:0.35;}
-.fav-empty-text{font-size:15px;color:var(--text-soft);font-style:italic;font-family:'Cormorant Garamond',serif;}
-.fav-card{background:var(--white);border-radius:20px;border:1px solid rgba(212,160,23,0.12);padding:16px;margin-bottom:10px;box-shadow:0 3px 16px rgba(0,0,0,0.05);}
-.fav-card-header{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;}
-.fav-tag{padding:3px 10px;background:rgba(255,107,26,0.1);border-radius:12px;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--saffron);}
-.fav-remove{border:none;background:none;cursor:pointer;font-size:16px;color:var(--text-soft);}
-.fav-quote{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:500;line-height:1.5;color:var(--text-dark);margin-bottom:6px;}
-.fav-insight{font-size:11px;color:var(--text-soft);line-height:1.6;padding:8px 10px;background:rgba(212,160,23,0.04);border-radius:8px;margin-top:6px;}
-
+#fvp{padding:70px 16px 86px;}
+.ph{margin-bottom:13px;}
+.ptitle{font-family:'Cinzel',serif;font-size:20px;font-weight:600;background:linear-gradient(135deg,var(--saffron),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.psub{font-size:13px;color:var(--ts);font-style:italic;font-family:'Cormorant Garamond',serif;margin-top:2px;}
+.fts{display:flex;gap:8px;margin-bottom:12px;}
+.ft{flex:1;padding:8px;border-radius:11px;border:1px solid rgba(212,160,23,.18);background:transparent;font-size:11px;font-weight:800;cursor:pointer;text-align:center;color:var(--ts);transition:all .2s;}
+.ft.ac{background:linear-gradient(135deg,var(--saffron),var(--gold));color:white;border-color:transparent;}
+.ft.cft.ac{background:linear-gradient(135deg,#1E88E5,#0D47A1);}
+.fe{text-align:center;padding:48px 18px;}
+.fei{font-size:48px;margin-bottom:12px;opacity:.35;}
+.fet{font-size:14px;color:var(--ts);font-style:italic;font-family:'Cormorant Garamond',serif;}
+.fc{background:var(--white);border-radius:17px;border:1px solid rgba(212,160,23,.11);padding:13px;margin-bottom:9px;box-shadow:0 3px 13px rgba(0,0,0,.05);}
+.fc.cfc{background:rgba(13,31,60,.95);border-color:rgba(30,136,229,.14);}
+.fch{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:7px;}
+.ftg{padding:3px 9px;background:rgba(255,107,26,.1);border-radius:10px;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--saffron);}
+.ftg.cftg{background:rgba(30,136,229,.1);color:#64B5F6;}
+.frm{border:none;background:none;cursor:pointer;font-size:14px;color:var(--ts);}
+.fq{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:500;line-height:1.5;color:var(--td);margin-bottom:5px;}
+.fc.cfc .fq{color:#E3F2FD;}
+.fi{font-size:11px;color:var(--ts);line-height:1.6;padding:6px 9px;background:rgba(212,160,23,.04);border-radius:7px;margin-top:5px;}
+.fc.cfc .fi{color:#90CAF9;background:rgba(30,136,229,.05);}
 /* PROFILE */
-#profilePage{padding:76px 16px 90px;}
-.profile-hero{text-align:center;padding:26px 20px;background:linear-gradient(135deg,rgba(26,58,107,0.06),rgba(255,107,26,0.04));border-radius:24px;margin-bottom:14px;border:1px solid rgba(212,160,23,0.1);}
-.profile-avatar-placeholder{width:78px;height:78px;border-radius:50%;border:3px solid var(--gold);background:linear-gradient(135deg,var(--saffron),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:26px;color:white;font-weight:700;margin:0 auto 12px;box-shadow:0 0 0 4px rgba(212,160,23,0.12);}
-.profile-name{font-family:'Cinzel',serif;font-size:20px;font-weight:600;color:var(--text-dark);margin-bottom:3px;}
-.profile-email{font-size:12px;color:var(--text-soft);}
-.profile-stats{display:flex;gap:10px;margin-top:14px;}
-.profile-stat{flex:1;text-align:center;padding:11px;background:rgba(212,160,23,0.05);border-radius:14px;border:1px solid rgba(212,160,23,0.1);}
-.profile-stat-val{font-family:'Cinzel',serif;font-size:21px;color:var(--saffron);font-weight:600;}
-.profile-stat-label{font-size:9px;color:var(--text-soft);text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
-.settings-section{margin-bottom:12px;}
-.settings-label{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--saffron);margin-bottom:7px;padding-left:4px;}
-.settings-item{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--white);border-radius:15px;border:1px solid rgba(212,160,23,0.08);margin-bottom:6px;cursor:pointer;transition:all 0.2s;}
-.settings-item:hover{border-color:rgba(212,160,23,0.22);}
-.settings-item-left{display:flex;align-items:center;gap:12px;}
-.settings-item-icon{font-size:19px;width:32px;text-align:center;}
-.settings-item-text{font-size:14px;font-weight:600;color:var(--text-dark);}
-.settings-item-sub{font-size:11px;color:var(--text-soft);}
-.settings-item-arrow{font-size:16px;color:var(--text-soft);}
-.toggle-switch{position:relative;width:44px;height:24px;}
-.toggle-switch input{opacity:0;width:0;height:0;}
-.toggle-slider{position:absolute;inset:0;border-radius:12px;background:rgba(212,160,23,0.2);cursor:pointer;transition:0.3s;}
-.toggle-slider::before{content:'';position:absolute;width:18px;height:18px;border-radius:50%;background:var(--text-soft);top:3px;left:3px;transition:0.3s;}
-.toggle-switch input:checked+.toggle-slider{background:linear-gradient(135deg,var(--saffron),var(--gold));}
-.toggle-switch input:checked+.toggle-slider::before{transform:translateX(20px);background:white;}
-.logout-btn{width:100%;padding:15px;border-radius:16px;border:1px solid rgba(139,26,26,0.2);background:rgba(139,26,26,0.04);color:var(--maroon);font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;}
-
+#prp{padding:70px 16px 86px;}
+.prh{text-align:center;padding:22px 18px;background:linear-gradient(135deg,rgba(26,58,107,.06),rgba(255,107,26,.04));border-radius:21px;margin-bottom:12px;border:1px solid rgba(212,160,23,.09);}
+.pra{width:72px;height:72px;border-radius:50%;border:3px solid var(--gold);background:linear-gradient(135deg,var(--saffron),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:24px;color:white;font-weight:700;margin:0 auto 10px;box-shadow:0 0 0 4px rgba(212,160,23,.1);}
+.prn{font-family:'Cinzel',serif;font-size:18px;font-weight:600;color:var(--td);margin-bottom:2px;}
+.pre{font-size:12px;color:var(--ts);}
+.prs{display:flex;gap:8px;margin-top:12px;}
+.prst{flex:1;text-align:center;padding:10px;background:rgba(212,160,23,.05);border-radius:12px;border:1px solid rgba(212,160,23,.09);}
+.prsv{font-family:'Cinzel',serif;font-size:19px;color:var(--saffron);font-weight:600;}
+.prsl{font-size:9px;color:var(--ts);text-transform:uppercase;letter-spacing:1px;margin-top:1px;}
+.sec{margin-bottom:11px;}
+.secl{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--saffron);margin-bottom:6px;padding-left:3px;}
+.si2{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--white);border-radius:13px;border:1px solid rgba(212,160,23,.07);margin-bottom:5px;cursor:pointer;}
+.sil{display:flex;align-items:center;gap:10px;}
+.sii{font-size:18px;width:30px;text-align:center;}
+.sit{font-size:13px;font-weight:600;color:var(--td);}
+.sis{font-size:11px;color:var(--ts);}
+.sia{font-size:14px;color:var(--ts);}
+.tgsw{position:relative;width:44px;height:24px;}
+.tgsw input{opacity:0;width:0;height:0;}
+.tgsl{position:absolute;inset:0;border-radius:12px;background:rgba(212,160,23,.2);cursor:pointer;transition:.3s;}
+.tgsl::before{content:'';position:absolute;width:18px;height:18px;border-radius:50%;background:var(--ts);top:3px;left:3px;transition:.3s;}
+.tgsw input:checked+.tgsl{background:linear-gradient(135deg,var(--saffron),var(--gold));}
+.tgsw input:checked+.tgsl::before{transform:translateX(20px);background:white;}
+.lob{width:100%;padding:13px;border-radius:14px;border:1px solid rgba(139,26,26,.2);background:rgba(139,26,26,.04);color:var(--maroon);font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:7px;}
 /* TOAST */
-.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);background:linear-gradient(135deg,#1A3A6B,#003344);color:#F5E6CC;padding:11px 22px;border-radius:30px;font-size:13px;font-weight:700;z-index:10000;opacity:0;transition:all 0.3s;pointer-events:none;white-space:nowrap;box-shadow:0 8px 30px rgba(0,0,0,0.25);border:1px solid rgba(212,160,23,0.2);}
+.toast{position:fixed;bottom:93px;left:50%;transform:translateX(-50%) translateY(20px);background:linear-gradient(135deg,#1A3A6B,#003344);color:#F5E6CC;padding:10px 19px;border-radius:26px;font-size:13px;font-weight:700;z-index:10000;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap;box-shadow:0 7px 26px rgba(0,0,0,.25);border:1px solid rgba(212,160,23,.18);}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast.ct{background:linear-gradient(135deg,#0D47A1,#1A237E);border-color:rgba(30,136,229,.28);}
 </style>
 </head>
 <body>
 
-<div class="loading-overlay" id="loadingOverlay">
-  <div class="loading-om">ॐ</div>
-  <div class="loading-text">Daily Krishna</div>
-  <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+<div class="lo" id="lo">
+  <div class="lo-om">ॐ</div>
+  <div class="lo-txt">Daily Krishna</div>
+  <div class="lo-bar"><div class="lo-fill"></div></div>
 </div>
-
 <div id="particles"></div>
 <div class="toast" id="toast"></div>
 
 <!-- LOGIN -->
-<div id="loginPage">
-  <div class="login-stars" id="loginStars"></div>
-  <div class="login-card">
-    <div class="login-krishna">🦚</div>
-    <div class="login-om">ॐ</div>
-    <div class="login-title">Daily Krishna</div>
-    <div class="login-subtitle">Wisdom of the Bhagavad Gita</div>
-    <div class="login-tagline">Corporate Wellness · Spiritual Clarity</div>
-    <div class="login-divider"><span>🪔</span></div>
-    <div class="login-quote">"You have the right to perform your actions, but you are not entitled to the fruits of your actions."<br><br>— Bhagavad Gita 2.47</div>
-    <button class="btn-google" onclick="signInWithGoogle()">
-      <div class="google-icon">
-        <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-      </div>
+<div id="lp">
+  <div class="ls" id="ls"></div>
+  <div class="lc">
+    <div class="lk">🦚</div>
+    <div class="l-om">ॐ</div>
+    <div class="l-title">Daily Krishna</div>
+    <div class="l-sub">Wisdom of the Bhagavad Gita</div>
+    <div class="l-tag">Life Wisdom · Corporate Clarity</div>
+    <div class="ms">
+      <div class="mb am" id="lmm" onclick="selMod('main')"><div class="mb-icon">🪷</div><div class="mb-title">Daily Krishna</div><div class="mb-sub">Life wisdom</div></div>
+      <div class="mb" id="lmc" onclick="selMod('corp')"><div class="mb-icon">💼</div><div class="mb-title">Corporate Krishna</div><div class="mb-sub">Workplace wisdom</div></div>
+    </div>
+    <div class="ldiv"><span>🪔</span></div>
+    <div class="lq" id="lq">"You have the right to do your work, but never to the fruits of your work."<br><br>— Bhagavad Gita 2.47</div>
+    <button class="bg" onclick="signInWithGoogle()">
+      <div class="gi"><svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></div>
       Continue with Google
     </button>
-    <div class="login-badges">
-      <span class="login-badge">🧘 Stress Relief</span>
-      <span class="login-badge">🎯 Focus</span>
-      <span class="login-badge">👑 Leadership</span>
-    </div>
-    <div class="login-footer">By continuing, you agree to receive daily Krishna wisdom 🙏</div>
+    <div class="lf">By continuing, you agree to receive daily Krishna wisdom 🙏</div>
   </div>
 </div>
 
-<!-- MAIN APP -->
+<!-- APP -->
 <div id="app">
-  <nav class="top-nav">
-    <div class="nav-logo">🪷 Daily Krishna</div>
-    <div class="nav-right">
-      <button class="nav-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
-      <div class="nav-avatar-placeholder" id="navAvatar" onclick="showPage('profilePage')">K</div>
+  <nav class="tn" id="tn">
+    <div class="nl" id="tnl">🪷 Daily Krishna</div>
+    <div class="nr">
+      <div class="msw">
+        <button class="msb ma" id="sm" onclick="swMod('main')">🪷 Life</button>
+        <button class="msb" id="sc" onclick="swMod('corp')">💼 Corporate</button>
+      </div>
+      <button class="nb" id="tb" onclick="toggleTheme()">🌙</button>
+      <div class="na" id="na" onclick="showPg('prp')">K</div>
     </div>
   </nav>
 
   <!-- HOME PAGE -->
-  <div class="page active" id="homePage">
-    <div class="home-greeting">
-      <div class="greeting-date" id="dateDisplay"></div>
-      <div class="greeting-name">Jai Shri Krishna, <span id="userName">Devotee</span> 🙏</div>
+  <div class="pg ac" id="hp">
+    <div class="hg"><div class="gd" id="dd"></div><div class="gn">Jai Shri Krishna, <span id="un">Devotee</span> 🙏</div></div>
+    <div class="ws">
+      <div class="wc"><div class="wci">🧘</div><div class="wcv" id="ws1">1</div><div class="wcl">Streak</div></div>
+      <div class="wc"><div class="wci">📖</div><div class="wcv" id="ws2">0</div><div class="wcl">Read</div></div>
+      <div class="wc"><div class="wci">🌸</div><div class="wcv" id="ws3">0</div><div class="wcl">Saved</div></div>
+      <div class="wc"><div class="wci">✨</div><div class="wcv">∞</div><div class="wcl">Wisdom</div></div>
     </div>
-
-    <div class="wellness-strip">
-      <div class="wellness-card"><div class="wellness-card-icon">🧘</div><div class="wellness-card-val" id="wStreak">1</div><div class="wellness-card-label">Day Streak</div></div>
-      <div class="wellness-card"><div class="wellness-card-icon">📖</div><div class="wellness-card-val" id="wRead">0</div><div class="wellness-card-label">Read Today</div></div>
-      <div class="wellness-card"><div class="wellness-card-icon">🌸</div><div class="wellness-card-val" id="wSaved">0</div><div class="wellness-card-label">Saved</div></div>
-      <div class="wellness-card"><div class="wellness-card-icon">✨</div><div class="wellness-card-val">∞</div><div class="wellness-card-label">Wisdom</div></div>
+    <div class="nbb" id="nbb" style="display:none;">
+      <div class="nbt"><strong>🔔 Daily Reminders</strong>Morning · Midday · Evening</div>
+      <button class="nbtn" onclick="reqNotif()">Enable</button>
+      <button class="nc" onclick="document.getElementById('nbb').style.display='none'">✕</button>
     </div>
-
-    <div class="notif-banner" id="notifBanner" style="display:none;">
-      <div class="notif-banner-text"><strong>🔔 Daily Reminders</strong>Get Krishna's wisdom 3x daily</div>
-      <button class="notif-btn" onclick="requestNotification()">Enable</button>
-      <button class="notif-close" onclick="document.getElementById('notifBanner').style.display='none'">✕</button>
+    <div class="ss"><div class="st">🌸 Wisdom Schedule</div><div class="si">
+      <div class="sc" id="sm1" onclick="loadSched('morning')"><div class="sci">🌅</div><div class="sct">7 AM</div><div class="scl">Morning</div></div>
+      <div class="sc" id="sm2" onclick="loadSched('midday')"><div class="sci">☀️</div><div class="sct">1 PM</div><div class="scl">Midday</div></div>
+      <div class="sc" id="sm3" onclick="loadSched('evening')"><div class="sci">🌙</div><div class="sct">7 PM</div><div class="scl">Evening</div></div>
+    </div></div>
+    <div class="cs">
+      <button class="cc ac" onclick="filtM('All',this)">All</button>
+      <button class="cc" onclick="filtM('Peace',this)">☮️ Peace</button>
+      <button class="cc" onclick="filtM('Courage',this)">🔥 Courage</button>
+      <button class="cc" onclick="filtM('Love',this)">💛 Love</button>
+      <button class="cc" onclick="filtM('Purpose',this)">🎯 Purpose</button>
+      <button class="cc" onclick="filtM('Mind',this)">🧘 Mind</button>
+      <button class="cc" onclick="filtM('Faith',this)">🙏 Faith</button>
+      <button class="cc" onclick="filtM('Action',this)">⚡ Action</button>
     </div>
-
-    <div class="schedule-strip">
-      <div class="schedule-title">📅 Today's Wisdom Schedule</div>
-      <div class="schedule-items">
-        <div class="schedule-item" id="sched-morning" onclick="loadScheduledQuote('morning')"><div class="schedule-item-icon">🌅</div><div class="schedule-item-time">7:00 AM</div><div class="schedule-item-label">Morning</div></div>
-        <div class="schedule-item" id="sched-midday" onclick="loadScheduledQuote('midday')"><div class="schedule-item-icon">☀️</div><div class="schedule-item-time">1:00 PM</div><div class="schedule-item-label">Midday</div></div>
-        <div class="schedule-item" id="sched-evening" onclick="loadScheduledQuote('evening')"><div class="schedule-item-icon">🌙</div><div class="schedule-item-time">7:00 PM</div><div class="schedule-item-label">Evening</div></div>
-      </div>
-    </div>
-
-    <div class="category-scroll">
-      <button class="cat-chip active" onclick="filterCategory('All',this)">All</button>
-      <button class="cat-chip" onclick="filterCategory('Peace',this)">☮️ Peace</button>
-      <button class="cat-chip" onclick="filterCategory('Karma',this)">⚖️ Karma</button>
-      <button class="cat-chip" onclick="filterCategory('Courage',this)">🔥 Courage</button>
-      <button class="cat-chip" onclick="filterCategory('Devotion',this)">🙏 Devotion</button>
-      <button class="cat-chip" onclick="filterCategory('Mind',this)">🧘 Mind</button>
-      <button class="cat-chip" onclick="filterCategory('Wisdom',this)">📖 Wisdom</button>
-      <button class="cat-chip" onclick="filterCategory('Duty',this)">⚔️ Duty</button>
-      <button class="cat-chip" onclick="filterCategory('Strategy',this)">👑 Strategy</button>
-    </div>
-
-    <div class="quote-card-wrap" id="quoteCardWrap">
-      <div class="krishna-quote-card">
-        <div class="krishna-visual" id="krishnaVisual">
-          <div class="krishna-light-rays"></div>
-          <div class="krishna-aura"></div>
-          <div class="krishna-aura-ring"></div>
-          <div class="krishna-emoji" id="krishnaEmoji">🪷</div>
-          <div class="krishna-badge" id="krishnaBadge">Peace</div>
-          <div class="krishna-scene" id="krishnaScene">Vrindavan · Peaceful Evening</div>
-        </div>
-        <div class="quote-body">
-          <div class="quote-text-wrap">
-            <div class="quote-text" id="quoteText">Loading divine wisdom...</div>
-            <div class="quote-source" id="quoteSource">— Bhagavad Gita</div>
-          </div>
-          <div class="insight-box">
-            <div class="insight-label">💼 Corporate Insight</div>
-            <div class="insight-text" id="insightText"></div>
-            <div class="insight-tags" id="insightTags"></div>
-          </div>
-          <div class="krishna-msg">
-            <div class="krishna-msg-label">✨ Krishna's Message</div>
-            <div class="krishna-msg-text" id="krishnaMsg"></div>
-          </div>
-          <div class="card-divider"></div>
-          <div class="card-actions">
-            <button class="action-btn" id="favBtn" onclick="toggleFavorite()"><span class="action-btn-icon">🤍</span> Save</button>
-            <button class="action-btn whatsapp" onclick="shareWhatsApp()"><span class="action-btn-icon">💬</span> WhatsApp</button>
-            <button class="action-btn" onclick="shareQuote()"><span class="action-btn-icon">📤</span> Share</button>
+    <div class="qw" id="mw">
+      <div class="kc">
+        <div class="kv" id="mv"><div class="lr"></div><div class="ka"></div><div class="kar"></div><div class="ke" id="me">🪷</div><div class="kb" id="mb">Peace</div><div class="ks" id="msc">Vrindavan · Peaceful Evening</div></div>
+        <div class="qb">
+          <div class="qtw"><div class="qt" id="mqt">Loading...</div><div class="qs" id="mqs">— Bhagavad Gita</div></div>
+          <div class="sm"><div class="sml">🌸 Simple Meaning</div><div class="smt" id="mmt"></div></div>
+          <div class="km"><div class="kml">✨ Krishna Says</div><div class="kmt" id="mkm"></div></div>
+          <div class="div"></div>
+          <div class="ac2">
+            <button class="ab" id="mfb" onclick="togMFav()"><span class="ai">🤍</span> Save</button>
+            <button class="ab wa" onclick="shareMWA()"><span class="ai">💬</span> WhatsApp</button>
+            <button class="ab" onclick="shareM()"><span class="ai">📤</span> Share</button>
           </div>
         </div>
       </div>
     </div>
-    <button class="next-btn" onclick="nextQuote()">🪷 Next Quote &nbsp;›</button>
+    <button class="nb2" onclick="nextM()">🪷 Next Quote &nbsp;›</button>
   </div>
 
   <!-- FAVORITES -->
-  <div class="page" id="favPage">
-    <div class="page-header"><div class="page-title">My Favorites</div><div class="page-subtitle">Quotes that touched your heart 🌸</div></div>
-    <div id="favList"></div>
+  <div class="pg" id="fvp">
+    <div class="ph"><div class="ptitle">My Favorites</div><div class="psub">Saved wisdom for your journey 🌸</div></div>
+    <div class="fts">
+      <button class="ft ac" onclick="swFav('main',this)">🪷 Life Wisdom</button>
+      <button class="ft cft" onclick="swFav('corp',this)">💼 Corporate</button>
+    </div>
+    <div id="fl"></div>
   </div>
 
   <!-- PROFILE -->
-  <div class="page" id="profilePage">
-    <div class="profile-hero">
-      <div class="profile-avatar-placeholder" id="profileAvatar">K</div>
-      <div class="profile-name" id="profileName">Krishna Devotee</div>
-      <div class="profile-email" id="profileEmail"></div>
-      <div class="profile-stats">
-        <div class="profile-stat"><div class="profile-stat-val" id="statStreak">1</div><div class="profile-stat-label">Day Streak</div></div>
-        <div class="profile-stat"><div class="profile-stat-val" id="statSaved">0</div><div class="profile-stat-label">Saved</div></div>
-        <div class="profile-stat"><div class="profile-stat-val" id="statRead">0</div><div class="profile-stat-label">Read</div></div>
+  <div class="pg" id="prp">
+    <div class="prh">
+      <div class="pra" id="pa">K</div>
+      <div class="prn" id="pn">Krishna Devotee</div>
+      <div class="pre" id="pe"></div>
+      <div class="prs">
+        <div class="prst"><div class="prsv" id="ps1">1</div><div class="prsl">Streak</div></div>
+        <div class="prst"><div class="prsv" id="ps2">0</div><div class="prsl">Saved</div></div>
+        <div class="prst"><div class="prsv" id="ps3">0</div><div class="prsl">Read</div></div>
       </div>
     </div>
-    <div class="settings-section">
-      <div class="settings-label">Preferences</div>
-      <div class="settings-item"><div class="settings-item-left"><div class="settings-item-icon">🌙</div><div><div class="settings-item-text">Dark Mode</div><div class="settings-item-sub">Night theme for evening reading</div></div></div><label class="toggle-switch"><input type="checkbox" id="darkToggle" onchange="toggleTheme()"><span class="toggle-slider"></span></label></div>
-      <div class="settings-item" onclick="requestNotification()"><div class="settings-item-left"><div class="settings-item-icon">🔔</div><div><div class="settings-item-text">Daily Reminders</div><div class="settings-item-sub" id="notifStatus">Morning · Midday · Evening</div></div></div><div class="settings-item-arrow">›</div></div>
-      <div class="settings-item" onclick="installPWA()"><div class="settings-item-left"><div class="settings-item-icon">📱</div><div><div class="settings-item-text">Install App</div><div class="settings-item-sub">Works offline · Add to home screen</div></div></div><div class="settings-item-arrow">›</div></div>
+    <div class="sec"><div class="secl">Preferences</div>
+      <div class="si2"><div class="sil"><div class="sii">🌙</div><div><div class="sit">Dark Mode</div><div class="sis">Night theme</div></div></div><label class="tgsw"><input type="checkbox" id="dt" onchange="toggleTheme()"><span class="tgsl"></span></label></div>
+      <div class="si2" onclick="reqNotif()"><div class="sil"><div class="sii">🔔</div><div><div class="sit">Daily Reminders</div><div class="sis" id="ns">3x daily reminders</div></div></div><div class="sia">›</div></div>
+      <div class="si2" onclick="instPWA()"><div class="sil"><div class="sii">📱</div><div><div class="sit">Install App</div><div class="sis">Works offline</div></div></div><div class="sia">›</div></div>
     </div>
-    <div class="settings-section">
-      <div class="settings-label">About</div>
-      <div class="settings-item"><div class="settings-item-left"><div class="settings-item-icon">📖</div><div><div class="settings-item-text">Daily Krishna</div><div class="settings-item-sub">Bhagavad Gita Wisdom · Version 3.0</div></div></div><div class="settings-item-arrow">›</div></div>
-      <div class="settings-item" onclick="showPage('favPage')"><div class="settings-item-left"><div class="settings-item-icon">🌸</div><div><div class="settings-item-text">My Favorites</div><div class="settings-item-sub" id="favCount">0 quotes saved</div></div></div><div class="settings-item-arrow">›</div></div>
+    <div class="sec"><div class="secl">About</div>
+      <div class="si2"><div class="sil"><div class="sii">📖</div><div><div class="sit">Daily Krishna</div><div class="sis">Version 4.0 · Life + Corporate</div></div></div><div class="sia">›</div></div>
+      <div class="si2" onclick="showPg('fvp')"><div class="sil"><div class="sii">🌸</div><div><div class="sit">My Favorites</div><div class="sis" id="fc">0 saved</div></div></div><div class="sia">›</div></div>
     </div>
-    <button class="logout-btn" onclick="signOut()">🚪 Sign Out</button>
+    <button class="lob" onclick="doSignOut()">🚪 Sign Out</button>
   </div>
 
-  <nav class="bottom-nav">
-    <button class="nav-tab active" onclick="showPage('homePage')"><div class="nav-tab-icon">🏠</div><div class="nav-tab-label">Home</div></button>
-    <button class="nav-tab" onclick="showPage('favPage')"><div class="nav-tab-icon">🤍</div><div class="nav-tab-label">Saved</div></button>
-    <button class="nav-tab" onclick="showPage('profilePage')"><div class="nav-tab-icon">👤</div><div class="nav-tab-label">Profile</div></button>
+  <!-- CORPORATE PAGE -->
+  <div id="cp">
+    <div class="ch"><div class="chb">💼 Corporate Krishna</div><div class="cd" id="cdd"></div><div class="cg2">Namaste, <span id="cun">Professional</span> — Krishna guides your workday 🙏</div></div>
+    <div class="cws">
+      <div class="cwc"><div class="cwci">📈</div><div class="cwcv" id="cws1">1</div><div class="cwcl">Streak</div></div>
+      <div class="cwc"><div class="cwci">🎯</div><div class="cwcv" id="cws2">0</div><div class="cwcl">Read</div></div>
+      <div class="cwc"><div class="cwci">⭐</div><div class="cwcv" id="cws3">0</div><div class="cwcl">Saved</div></div>
+      <div class="cwc"><div class="cwci">🔱</div><div class="cwcv">∞</div><div class="cwcl">Wisdom</div></div>
+    </div>
+    <div class="css2"><div class="cst">📅 Corporate Schedule</div><div class="csi">
+      <div class="csci" id="cs1" onclick="loadCSched('morning')"><div class="cscii">🌅</div><div class="cscit">9 AM</div><div class="cscil">Pre-Meeting</div></div>
+      <div class="csci" id="cs2" onclick="loadCSched('midday')"><div class="cscii">☕</div><div class="cscit">1 PM</div><div class="cscil">Stress Break</div></div>
+      <div class="csci" id="cs3" onclick="loadCSched('evening')"><div class="cscii">📊</div><div class="cscit">6 PM</div><div class="cscil">EOD Review</div></div>
+    </div></div>
+    <div class="ccs">
+      <button class="ccc ac" onclick="filtC('All',this)">All</button>
+      <button class="ccc" onclick="filtC('Leadership',this)">👑 Leadership</button>
+      <button class="ccc" onclick="filtC('Stress',this)">🧘 Stress</button>
+      <button class="ccc" onclick="filtC('Decision',this)">⚖️ Decisions</button>
+      <button class="ccc" onclick="filtC('Team',this)">🤝 Team</button>
+      <button class="ccc" onclick="filtC('Strategy',this)">🎯 Strategy</button>
+      <button class="ccc" onclick="filtC('Ethics',this)">🌿 Ethics</button>
+      <button class="ccc" onclick="filtC('Growth',this)">📈 Growth</button>
+    </div>
+    <div class="ccw" id="cw">
+      <div class="ckc">
+        <div class="cv"><div class="cvb"></div><div class="ccg"></div><div class="cka"></div><div class="ckar"></div><div class="cke" id="ce">💼</div><div class="ckb" id="cb">Leadership</div><div class="cks" id="csc">Kurukshetra · Strategic Guidance</div></div>
+        <div class="cb2">
+          <div class="cqw"><div class="cqt" id="cqt">Loading...</div><div class="cqs" id="cqs">— Bhagavad Gita</div></div>
+          <div class="cib"><div class="cil">💼 Corporate Application</div><div class="cit" id="ci2"></div><div class="ctgs" id="ctgs"></div></div>
+          <div class="grb"><div class="grl">📖 Gita Reference</div><div class="grt" id="cgr"></div></div>
+          <div class="apb"><div class="apl">✅ Today's Action Plan</div><div class="api" id="cap"></div></div>
+          <div class="cdiv"></div>
+          <div class="cac">
+            <button class="cab" id="cfb" onclick="togCFav()"><span class="ai">⭐</span> Save</button>
+            <button class="cab wa" onclick="shareCWA()"><span class="ai">💬</span> WhatsApp</button>
+            <button class="cab" onclick="shareC()"><span class="ai">📤</span> Share</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="cnb" onclick="nextC()">💼 Next Lesson &nbsp;›</button>
+  </div>
+
+  <nav class="bn" id="bn">
+    <button class="nt ac" id="t1" onclick="showPg('hp')"><div class="ni">🏠</div><div class="nl2">Home</div></button>
+    <button class="nt" id="t2" onclick="showPg('fvp')"><div class="ni">🤍</div><div class="nl2">Saved</div></button>
+    <button class="nt" id="t3" onclick="showPg('prp')"><div class="ni">👤</div><div class="nl2">Profile</div></button>
   </nav>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 <script>
-// ============================================================
-// KRISHNA VISUAL MAPPING SYSTEM
-// ============================================================
-const KRISHNA_VISUALS = {
-  Peace:    {emoji:'🪷', scene:'Vrindavan · Peaceful Evening by the River',    bg:['#1A3A6B','#003344']},
-  Mind:     {emoji:'🧘', scene:'Himalayan Meditation · Divine Stillness',       bg:['#1A3A6B','#003344']},
-  Courage:  {emoji:'⚔️', scene:'Kurukshetra Battlefield · Divine Charioteer',  bg:['#4A1A0A','#8B1A1A']},
-  Leadership:{emoji:'👑',scene:'Kurukshetra · Guiding the Warrior',             bg:['#4A1A0A','#8B1A1A']},
-  Karma:    {emoji:'📿', scene:'Gita Updesh · Teaching Sacred Duty',            bg:['#1A2A0A','#2A4A1A']},
-  Duty:     {emoji:'⚖️', scene:'Sacred Duty · The Path of Dharma',             bg:['#1A2A0A','#2A4A1A']},
-  Devotion: {emoji:'🙏', scene:'Vrindavan · Divine Love & Devotion',            bg:['#3A1A4A','#1A0A3A']},
-  Wisdom:   {emoji:'🔱', scene:'Gita Discourse · Timeless Wisdom',              bg:['#2A1A0A','#4A2A0A']},
-  Strategy: {emoji:'🏛️',scene:'Dwarka Sabha · Royal Court of Wisdom',          bg:['#0A1A3A','#0A2A4A']}
-};
+// VISUALS
+const MV={Peace:{e:'🪷',s:'Vrindavan · Peaceful Evening',b:['#1A3A6B','#003344']},Courage:{e:'⚔️',s:'Kurukshetra · Arise and Conquer',b:['#4A1A0A','#8B1A1A']},Love:{e:'💛',s:'Vrindavan · Divine Love',b:['#3A1A4A','#1A0A3A']},Purpose:{e:'🔱',s:'Gita Discourse · Your Sacred Path',b:['#2A1A0A','#4A2A0A']},Mind:{e:'🧘',s:'Himalayan Peace · Inner Stillness',b:['#1A3A6B','#003344']},Faith:{e:'🙏',s:'Vrindavan · Divine Devotion',b:['#3A1A4A','#2A0A4A']},Action:{e:'📿',s:'Gita Updesh · Right Action',b:['#1A2A0A','#2A4A1A']}};
+const CV={Leadership:{e:'👑',s:'Kurukshetra · Guiding with Wisdom'},Stress:{e:'🧘',s:'Inner Stillness · Beyond the Deadline'},Decision:{e:'⚖️',s:'Dwarka Court · Strategic Clarity'},Team:{e:'🤝',s:'Vrindavan · United in Purpose'},Strategy:{e:'🏛️',s:'Dwarka Sabha · Royal Planning'},Ethics:{e:'🌿',s:'Gita Discourse · Righteous Path'},Growth:{e:'📈',s:'Battlefield · Rise to Excellence'}};
 
-// ============================================================
-// QUOTES DATABASE — 50+ with Corporate Insights
-// ============================================================
-const quotes = [
-  {text:"You have the right to perform your actions, but you are not entitled to the fruits of your actions.",source:"Bhagavad Gita 2.47",category:"Karma",insight:"Focus on effort, not outcomes. This reduces workplace anxiety and decision paralysis in high-pressure corporate roles.",insightTags:["Stress Management","Productivity","Decision Making"],krishnaMsg:"Do your work with full dedication. Release the result. Your peace lies in your effort, not the outcome.",schedule:"morning"},
-  {text:"The soul is neither born, nor does it die at any time.",source:"Bhagavad Gita 2.20",category:"Devotion",insight:"You are greater than any role or title. This perspective helps professionals detach from job identity and reduce burnout.",insightTags:["Burnout Prevention","Resilience","Perspective"],krishnaMsg:"Fear nothing. You are eternal. No failure, no setback can define the infinite soul that you are.",schedule:"evening"},
-  {text:"Change is the law of the universe. You can be a millionaire or a pauper in an instant.",source:"Bhagavad Gita",category:"Wisdom",insight:"Adapt to change proactively. Agile mindset leaders embrace uncertainty as opportunity rather than threat.",insightTags:["Change Management","Agility","Leadership"],krishnaMsg:"Embrace change as a friend. Everything transforms for your growth. Resist nothing, flow with all.",schedule:"morning"},
-  {text:"The mind is restless and difficult to restrain, but it is subdued by practice.",source:"Bhagavad Gita 6.35",category:"Mind",insight:"Daily mindfulness practices calm a distracted corporate mind. Consistent meditation improves focus and decision quality.",insightTags:["Focus","Mindfulness","Mental Health"],krishnaMsg:"Your mind is your greatest tool. Train it daily and it will carry you to peaks beyond imagination.",schedule:"morning"},
-  {text:"Man is made by his belief. As he believes, so he is.",source:"Bhagavad Gita 17.3",category:"Wisdom",insight:"Mindset drives performance. Leaders who believe in growth create high-performing, innovative cultures.",insightTags:["Growth Mindset","Leadership","Performance"],krishnaMsg:"Your beliefs are your blueprint. Believe in your highest self and you will build an extraordinary life.",schedule:"midday"},
-  {text:"Arise, slay thy enemies, and enjoy a prosperous kingdom.",source:"Bhagavad Gita 2.32",category:"Courage",insight:"Face your professional challenges directly. Avoidance is the enemy of progress. Courage is a leadership skill.",insightTags:["Leadership","Courage","Decision Making"],krishnaMsg:"Arise. Your challenges are not walls — they are doorways. The brave walk through and emerge victorious.",schedule:"morning"},
-  {text:"Let right deeds be thy motive, not the fruit which comes from them.",source:"Bhagavad Gita",category:"Karma",insight:"Ethical action builds sustainable careers. Doing right regardless of reward creates trust and long-term success.",insightTags:["Ethics","Integrity","Sustainability"],krishnaMsg:"Act with righteousness. The universe rewards pure intention far beyond what calculation ever could.",schedule:"midday"},
-  {text:"When meditation is mastered, the mind is unwavering like the flame of a lamp in a windless place.",source:"Bhagavad Gita 6.19",category:"Mind",insight:"Deep focus is a competitive advantage. Leaders who meditate make calmer, clearer decisions under pressure.",insightTags:["Focus","Mindfulness","Performance"],krishnaMsg:"A still mind sees what a busy mind misses. In your silence lies your greatest strategic power.",schedule:"evening"},
-  {text:"He who has no attachments can really love others, for his love is pure and divine.",source:"Bhagavad Gita",category:"Devotion",insight:"Servant leadership stems from non-attachment to personal gain. The best leaders give without expecting returns.",insightTags:["Servant Leadership","Team Building","Empathy"],krishnaMsg:"Release your grip. When you stop clinging to outcomes, you discover the joy of giving freely.",schedule:"evening"},
-  {text:"In the middle of difficulty lies opportunity.",source:"Bhagavad Gita",category:"Courage",insight:"Reframe setbacks as data. Every crisis in your career contains the seeds of your next breakthrough.",insightTags:["Resilience","Problem Solving","Innovation"],krishnaMsg:"Every storm is followed by stillness. Your difficulty is your divine training ground. Embrace it.",schedule:"midday"},
-  {text:"Perform your obligatory duty, because action is indeed better than inaction.",source:"Bhagavad Gita 3.8",category:"Duty",insight:"Overcome procrastination by doing the work. Imperfect action beats perfect inaction in every corporate context.",insightTags:["Productivity","Accountability","Execution"],krishnaMsg:"Begin. The universe conspires to help those who move. Waiting for perfect conditions is waiting forever.",schedule:"morning"},
-  {text:"It is better to live your own destiny imperfectly than to live an imitation of somebody else's life with perfection.",source:"Bhagavad Gita 3.35",category:"Duty",insight:"Authentic leadership builds genuine trust. Stop imitating other leaders and develop your unique style.",insightTags:["Authenticity","Leadership","Personal Branding"],krishnaMsg:"Be unapologetically yourself. Your unique path, walked with heart, creates impact no imitation ever can.",schedule:"evening"},
-  {text:"Knowledge is better than mechanical practice. Better still is meditation. Best of all is to surrender the fruits of one's action.",source:"Bhagavad Gita 12.12",category:"Wisdom",insight:"Move from rote work to conscious mastery. The highest professional state is deep expertise paired with non-attachment.",insightTags:["Mastery","Wisdom","Detachment"],krishnaMsg:"Grow from doing, to knowing, to being. The highest you acts with total freedom from results.",schedule:"evening"},
-  {text:"Whatever happened, happened for the good. Whatever is happening, is happening for the good.",source:"Bhagavad Gita",category:"Peace",insight:"Radical acceptance reduces chronic workplace stress. Trust the process even during restructuring and setbacks.",insightTags:["Stress Management","Acceptance","Resilience"],krishnaMsg:"Nothing is ever wasted. Every experience is preparing you for your greatest chapter.",schedule:"midday"},
-  {text:"A gift is pure when it is given from the heart to the right person at the right time.",source:"Bhagavad Gita 17.20",category:"Devotion",insight:"Strategic generosity builds lasting professional relationships. Give your time, knowledge and skill with intention.",insightTags:["Networking","Generosity","Relationships"],krishnaMsg:"Give from abundance, not scarcity. The universe replenishes the generous heart ten times over.",schedule:"midday"},
-  {text:"Yoga is the journey of the self, through the self, to the self.",source:"Bhagavad Gita 6.20",category:"Mind",insight:"Self-awareness is the foundation of effective leadership. Invest in knowing yourself as deeply as your market.",insightTags:["Self-Awareness","Leadership","Personal Growth"],krishnaMsg:"The greatest discovery is within you. Know yourself and you will understand everything with perfect clarity.",schedule:"evening"},
-  {text:"Lust, anger and greed are the three gates to self-destructive hell.",source:"Bhagavad Gita 16.21",category:"Strategy",insight:"In negotiations and leadership, the three destroyers are impulsive desire, reactive anger and toxic greed.",insightTags:["Emotional Intelligence","Negotiation","Ethics"],krishnaMsg:"Tame these three and you tame the world. Every great leader masters their inner battlefield first.",schedule:"morning"},
-  {text:"The power of God is with you at all times through mind, senses, breathing and emotions.",source:"Bhagavad Gita",category:"Devotion",insight:"Accessing inner calm through breath connects you to your greatest resource in high-stakes situations.",insightTags:["Mindfulness","Resilience","Spiritual Wellness"],krishnaMsg:"The divine is your constant companion. In your deepest breath, in your clearest thought — I am there.",schedule:"midday"},
-  {text:"Death is as sure for that which is born, as birth is for that which is dead. Therefore grieve not for what is inevitable.",source:"Bhagavad Gita 2.27",category:"Peace",insight:"Accept project endings, team changes and career pivots gracefully. Grief over inevitable change wastes energy.",insightTags:["Acceptance","Change Management","Mental Health"],krishnaMsg:"Grieve what must be grieved, then rise. Life is a river, not a pond. Flow forward with faith.",schedule:"evening"},
-  {text:"No one who does good work will ever come to a bad end, either here or in the world to come.",source:"Bhagavad Gita 6.40",category:"Karma",insight:"Consistent ethical performance builds an indestructible professional reputation that outlasts any setback.",insightTags:["Ethics","Reputation","Long-term Thinking"],krishnaMsg:"Every seed of good you plant grows into a forest of blessings. Your good karma never sleeps.",schedule:"morning"},
-  {text:"A person can rise through the efforts of his own mind, or draw himself down.",source:"Bhagavad Gita 6.5",category:"Courage",insight:"You are the author of your career trajectory. Self-discipline is more powerful than any external mentor.",insightTags:["Self-Leadership","Discipline","Growth Mindset"],krishnaMsg:"You are your own greatest ally. Lift yourself with your thoughts, choices and daily disciplines.",schedule:"morning"},
-  {text:"The self-controlled soul, who moves amongst sense objects free from attachment or repulsion, wins eternal peace.",source:"Bhagavad Gita 2.64",category:"Peace",insight:"Emotional self-regulation — responding rather than reacting — is the hallmark of executive maturity.",insightTags:["Emotional Intelligence","Leadership","Self-Control"],krishnaMsg:"Between stimulus and response lies your power. Choose your response with wisdom and you choose your destiny.",schedule:"midday"},
-  {text:"Strive constantly to serve the welfare of the world; by devotion to selfless work one attains the supreme goal of life.",source:"Bhagavad Gita 3.19",category:"Duty",insight:"Purpose-driven companies consistently outperform. Embed service to others in your professional mission.",insightTags:["Purpose","CSR","Servant Leadership"],krishnaMsg:"Your work becomes worship when it serves something larger than yourself. That is where true fulfillment lives.",schedule:"morning"},
-  {text:"One who sees inaction in action, and action in inaction, is intelligent among men.",source:"Bhagavad Gita 4.18",category:"Strategy",insight:"Strategic leaders know when to act decisively and when to pause thoughtfully. Timing is intelligence.",insightTags:["Strategy","Timing","Executive Intelligence"],krishnaMsg:"Wisdom knows when to move and when to be still. Only the wise know which to choose.",schedule:"midday"},
-  {text:"Fear not what is not real, never was and never will be. What is real, always was and cannot be destroyed.",source:"Bhagavad Gita 2.16",category:"Peace",insight:"Most corporate fears — losing a deal, missing targets, being rejected — are impermanent. Separate real threats from imagined ones.",insightTags:["Stress Management","Clarity","Decision Making"],krishnaMsg:"Your fears are clouds passing through an unchanging sky. The real you is unshakeable and always safe.",schedule:"evening"},
-  {text:"Even if you were the most sinful of all sinners, yet you shall cross the ocean of sin by the boat of knowledge.",source:"Bhagavad Gita 4.36",category:"Devotion",insight:"Past failures do not define your professional future. Continuous learning is your greatest career redemption strategy.",insightTags:["Learning","Growth","Second Chances"],krishnaMsg:"Begin again. Knowledge is your lifeboat in any storm. It is never too late to learn your way to greatness.",schedule:"evening"},
-  {text:"Those who eat too much or eat too little, who sleep too much or sleep too little, will not succeed in meditation.",source:"Bhagavad Gita 6.16",category:"Mind",insight:"Physical balance is the foundation of peak performance. Sleep, nutrition and exercise directly impact leadership effectiveness.",insightTags:["Wellness","Performance","Work-Life Balance"],krishnaMsg:"Honour your body as the temple that carries your soul. Balance in habits creates clarity in purpose.",schedule:"midday"},
-  {text:"The disunited mind is far from wise; how can it meditate? When you know no peace, how can joy begin?",source:"Bhagavad Gita 2.66",category:"Mind",insight:"Multitasking fragments executive performance. Single-tasking with deep focus is the highest productivity strategy.",insightTags:["Focus","Deep Work","Productivity"],krishnaMsg:"A divided mind serves no master well. Unify your attention and achieve in one hour what others cannot in ten.",schedule:"morning"},
-  {text:"Reshape yourself through the power of your will, never let yourself be degraded by self-will.",source:"Bhagavad Gita 6.5",category:"Courage",insight:"Willpower and self-reinvention are learnable skills. Corporate transformation begins with personal transformation.",insightTags:["Self-Leadership","Transformation","Growth"],krishnaMsg:"You are not a finished product. You are a work of divine art, still becoming. Keep sculpting yourself.",schedule:"morning"},
-  {text:"The senses are higher than the body, the mind is higher than the senses, and intelligence is higher still.",source:"Bhagavad Gita 3.42",category:"Wisdom",insight:"Operate from your highest intelligence, not emotional impulse. The best corporate decisions come from above reaction.",insightTags:["Emotional Intelligence","Decision Making","Wisdom"],krishnaMsg:"Rise above your feelings to reach your wisdom. Then rise above your wisdom to reach your soul.",schedule:"evening"},
-  {text:"Set your heart on doing good. Do it over and over again, and you will be filled with joy.",source:"Bhagavad Gita",category:"Karma",insight:"Consistency in ethical behavior builds a professional legacy. Small acts of excellence repeated daily create extraordinary careers.",insightTags:["Consistency","Ethics","Joy"],krishnaMsg:"Goodness is a river — the more it flows, the stronger and clearer it becomes. Let it flow through all you do.",schedule:"midday"},
-  {text:"Calmness, gentleness, silence, self-restraint and purity — these are the disciplines of the mind.",source:"Bhagavad Gita 17.16",category:"Mind",insight:"Soft skills are the hardest to master and most valuable to possess. Cultivate composure as your greatest professional asset.",insightTags:["Soft Skills","EQ","Composure"],krishnaMsg:"Strength wears the face of stillness. The gentlest leaders move mountains with their quiet, unshakeable composure.",schedule:"evening"},
-  {text:"One gradually attains tranquility of mind by keeping the mind fully absorbed in the Self.",source:"Bhagavad Gita 6.25",category:"Peace",insight:"Inner stillness is the highest form of strategic preparation. Leaders who reflect perform better.",insightTags:["Mindfulness","Strategic Thinking","Performance"],krishnaMsg:"Stillness is not emptiness. It is the fullness of all possibility waiting to be expressed through you.",schedule:"evening"},
-  {text:"Those who surrender to Brahman all selfish attachments are like leaves of a lotus floating clean and dry in water.",source:"Bhagavad Gita 5.10",category:"Peace",insight:"The leader who acts without personal agenda inspires the deepest organizational loyalty.",insightTags:["Ego Management","Trust","Leadership"],krishnaMsg:"Like the lotus, be in the world but not of it. Do everything, cling to nothing. That is total freedom.",schedule:"midday"},
-  {text:"The fragrance of flowers spreads only in the direction of the wind. But the goodness of a person spreads in all directions.",source:"Bhagavad Gita",category:"Karma",insight:"A leader's character radiates outward. Your reputation travels to rooms you have never entered.",insightTags:["Reputation","Character","Influence"],krishnaMsg:"Your character is your most powerful introduction. Let it speak for you in rooms you have never entered.",schedule:"morning"},
-  {text:"Through selfless service, you will always be fruitful and find the fulfillment of your desires.",source:"Bhagavad Gita 3.10",category:"Duty",insight:"The most fulfilled professionals lead with service. Purpose and profit align when service is central to your work.",insightTags:["Purpose","Service","Fulfillment"],krishnaMsg:"Give what you most wish to receive. Serve what you most wish to see flourish. This is the sacred secret.",schedule:"midday"},
-  {text:"Do not be led by others, awaken your own mind, amass your own experience and decide for yourself.",source:"Bhagavad Gita",category:"Wisdom",insight:"Independent thinking and first-principle reasoning are rare and invaluable leadership skills. Question assumptions.",insightTags:["Critical Thinking","Independence","Innovation"],krishnaMsg:"Your own knowing is your greatest compass. Learn from all, but trust the wisdom that rises from within.",schedule:"morning"},
-  {text:"He who is temperate in his habits of eating, sleeping, working and recreation can mitigate all material pains.",source:"Bhagavad Gita 6.17",category:"Mind",insight:"Work-life integration is the goal. Sustained high performance requires strategic rest and recovery cycles.",insightTags:["Wellness","Work-Life Balance","Sustainability"],krishnaMsg:"A warrior who rests well, fights well. Honour your need for restoration — it multiplies your power.",schedule:"evening"},
-  {text:"The pleasure from senses seems like nectar at first, but is bitter as poison in the end.",source:"Bhagavad Gita 18.38",category:"Strategy",insight:"Short-term gains that compromise integrity always extract a long-term price. Ethical strategy is the most durable strategy.",insightTags:["Ethics","Long-term Thinking","Strategy"],krishnaMsg:"Choose the path that is hard at the start and sweet at the end. That is always the path of wisdom.",schedule:"morning"},
-  {text:"Curving back within myself I create again and again.",source:"Bhagavad Gita 9.8",category:"Devotion",insight:"Innovation and creativity are renewable resources when you connect with your deep inner source.",insightTags:["Creativity","Innovation","Spiritual Wellness"],krishnaMsg:"You are connected to the source of all creation. When you feel empty, go within — infinite replenishment awaits.",schedule:"midday"},
-  {text:"The Supreme God is situated in everyone's heart.",source:"Bhagavad Gita 18.61",category:"Devotion",insight:"See the potential in every team member. Great leaders recognize and activate divine capabilities in everyone they lead.",insightTags:["Team Development","Empathy","Talent Recognition"],krishnaMsg:"Every person you meet carries a spark of the divine. When you see that spark in others, you ignite your own.",schedule:"evening"},
-  {text:"Work for work's sake, not for yourself. Act but do not be attached to your actions.",source:"Bhagavad Gita",category:"Karma",insight:"When purpose drives action, performance peaks. When outcomes drive action, anxiety spikes. Do the work for its own sake.",insightTags:["Intrinsic Motivation","Productivity","Purpose"],krishnaMsg:"The artist who paints for beauty creates more than the one who paints for profit. Let your work be worship.",schedule:"morning"},
-  {text:"Knowledge is the supreme purifier.",source:"Bhagavad Gita 4.38",category:"Wisdom",insight:"Continuous learning is the most powerful antidote to career stagnation and organizational obsolescence.",insightTags:["Continuous Learning","Innovation","Growth"],krishnaMsg:"Seek knowledge with the hunger of someone who knows their greatest treasure is still undiscovered.",schedule:"morning"},
-  {text:"When you move amidst the world of sense, free from attachment and aversion alike, there comes the peace in which all sorrows end.",source:"Bhagavad Gita 2.65",category:"Peace",insight:"Equanimity — equal response to success and failure — is the rarest and most sought-after leadership quality.",insightTags:["Equanimity","Leadership","Emotional Stability"],krishnaMsg:"Neither elated by gain nor crushed by loss. This steadiness is the mark of the master and your greatest power.",schedule:"evening"},
-  {text:"A person is said to be elevated in yoga when, having renounced all material desires, he neither acts for sense gratification nor engages in fruitive activities.",source:"Bhagavad Gita 6.4",category:"Strategy",insight:"The highest strategic state is action without ego. Leaders who are detached from personal glory make the best decisions.",insightTags:["Ego Management","Strategy","Excellence"],krishnaMsg:"The purest power flows when the self steps aside and lets the divine act through you.",schedule:"midday"},
-  {text:"The Supreme Lord said: Fearlessness, purification of one's existence, cultivation of spiritual knowledge, charity, self-control — these are the transcendental qualities.",source:"Bhagavad Gita 16.1",category:"Leadership",insight:"The Gita's list of divine qualities maps perfectly to modern leadership competencies: courage, self-mastery, and generosity.",insightTags:["Leadership","Character","Executive Development"],krishnaMsg:"These divine qualities are not gifts — they are disciplines. Cultivate them daily and become undefeatable.",schedule:"morning"},
-  {text:"Perform all thy actions with mind concentrated on the Divine, renouncing attachment and looking upon success and failure with an equal eye.",source:"Bhagavad Gita 2.48",category:"Karma",insight:"Steady-state performance requires emotional neutrality to both wins and losses. This is elite professional mastery.",insightTags:["Performance","Equanimity","Mastery"],krishnaMsg:"Win or lose, give the same quality of your best. That is the path of the true professional.",schedule:"midday"},
-  {text:"The wise see that there is action in the midst of inaction and inaction in the midst of action.",source:"Bhagavad Gita 4.18",category:"Wisdom",insight:"Strategic rest, reflection and planning ARE productive actions. The wise leader knows that sometimes doing less achieves more.",insightTags:["Strategy","Reflection","Wisdom"],krishnaMsg:"The sage who rests with intention accomplishes more than the fool who busies himself endlessly.",schedule:"evening"},
-  {text:"Let a man lift himself by his own Self alone, let him not lower himself; for this Self alone is the friend of oneself, and this Self alone is the enemy of oneself.",source:"Bhagavad Gita 6.5",category:"Courage",insight:"Your internal narrative determines your trajectory. Self-talk is either your greatest coach or your worst critic.",insightTags:["Self-Leadership","Mental Strength","Growth"],krishnaMsg:"You hold the keys to your own prison and your own palace. Choose which door to open every single day.",schedule:"morning"},
-  {text:"For those who wish to climb the mountain of spiritual awareness, the path is selfless work and service. For those who have attained the summit of union with the Lord, the path is stillness and peace.",source:"Bhagavad Gita 6.3",category:"Strategy",insight:"Different stages of career require different strategies. Early career demands action; mature leadership demands wisdom.",insightTags:["Career Strategy","Leadership Evolution","Wisdom"],krishnaMsg:"Know what stage of the mountain you are on. Climb it with the right tools for that exact moment.",schedule:"evening"}
+// MAIN QUOTES — Simple life wisdom
+const MQ=[
+  {t:"You have the right to do your work, but never to the fruits of your work.",src:"Bhagavad Gita 2.47",c:"Action",m:"Just do your best every day without worrying about what you will get. When you stop chasing the result, your work becomes joyful and free.",k:"Work like it is your offering to the world. The joy is in the doing, not the getting.",s:"morning"},
+  {t:"The soul is never born nor dies at any time.",src:"Bhagavad Gita 2.20",c:"Faith",m:"You are more than your failures or your fears. Deep inside you is something that can never be hurt or destroyed.",k:"You are eternal. No loss, no heartbreak, no failure can touch the real you.",s:"evening"},
+  {t:"Change is the law of the universe. What you think of as death is actually life.",src:"Bhagavad Gita",c:"Peace",m:"Every ending in your life is actually a new beginning in disguise. Trust the changes — they are preparing you for something greater.",k:"Let go of what was. Something far more beautiful is already on its way to you.",s:"morning"},
+  {t:"The mind is your best friend and your worst enemy.",src:"Bhagavad Gita 6.5",c:"Mind",m:"When your mind is peaceful and focused, it helps you achieve anything. When it is restless, it holds you back. You choose which mind you feed.",k:"Be kind to your mind. Talk to yourself the way you would talk to someone you deeply love.",s:"morning"},
+  {t:"Whatever you believe, that is what you become.",src:"Bhagavad Gita 17.3",c:"Purpose",m:"Your beliefs shape your entire life. If you believe you are capable, you will find a way. If you believe you are limited, you will stay limited.",k:"Believe in your light, especially on the days when you cannot see it yourself.",s:"midday"},
+  {t:"Do not fear what you cannot control. Focus on what you can do right now.",src:"Bhagavad Gita 2.14",c:"Peace",m:"Worry is energy spent on things outside your control. Use that same energy to take one good action today.",k:"Right now, in this moment, you have everything you need to take the next right step.",s:"midday"},
+  {t:"It is better to walk your own path imperfectly than to follow someone else's perfectly.",src:"Bhagavad Gita 3.35",c:"Courage",m:"Stop comparing your journey to others. Your unique path — with all its stumbles — is exactly where your greatest growth lives.",k:"Your life is not a copy. It is an original. Live it that way.",s:"evening"},
+  {t:"In the middle of every difficulty, a gift is hidden.",src:"Bhagavad Gita",c:"Courage",m:"Your hardest moments are your greatest teachers. Every challenge is the universe building something extraordinary in you.",k:"The lotus does not apologize for growing in the mud. Neither should you.",s:"midday"},
+  {t:"When you still your mind, you find peace that nothing outside can disturb.",src:"Bhagavad Gita 6.19",c:"Mind",m:"True peace does not come from getting everything you want. It comes from a quiet mind that is no longer fighting reality.",k:"Five minutes of stillness today can change the entire direction of your day.",s:"evening"},
+  {t:"Give love freely. The more you give, the more you receive.",src:"Bhagavad Gita",c:"Love",m:"Love is not a limited resource. The more kindness you offer, the more your heart expands and your life fills with meaning.",k:"Be the warmth you wish someone had shown you. That warmth will come back multiplied.",s:"midday"},
+  {t:"True happiness is found within, not in the things around you.",src:"Bhagavad Gita 5.21",c:"Peace",m:"No amount of money or success will make you truly happy if you have not found peace inside yourself. Start looking inward.",k:"You already have everything you need to feel at peace. Look within.",s:"evening"},
+  {t:"Act, but do not be obsessed with the outcome. That is the secret to a free heart.",src:"Bhagavad Gita",c:"Action",m:"When you do your best and release the rest, anxiety disappears. You did your part — now trust the universe to do its part.",k:"Plant your seeds with care and patience. Trust the rain to come.",s:"morning"},
+  {t:"Whatever happened was good. Whatever is happening is good. Whatever will happen will also be good.",src:"Bhagavad Gita",c:"Faith",m:"When you trust that life is unfolding exactly as it should, the weight of worry lifts. You can finally breathe and simply live.",k:"I am writing your story. Trust the author.",s:"midday"},
+  {t:"You are not the body. You are not the mind. You are the eternal witness behind them both.",src:"Bhagavad Gita 13.22",c:"Purpose",m:"Step back from your thoughts and feelings for a moment and observe them. There is a calm, wise part of you that is never overwhelmed.",k:"You are the sky, not the storm. Remember this on your darkest days.",s:"evening"},
+  {t:"Even a little practice of this inner science protects you from great fear.",src:"Bhagavad Gita 2.40",c:"Faith",m:"You do not need to be perfectly spiritual to feel better. Even five minutes of gratitude or stillness today makes a real difference.",k:"Begin where you are. A small candle still lights a dark room.",s:"morning"},
+  {t:"The one who has conquered the mind has conquered the whole world.",src:"Bhagavad Gita 6.7",c:"Mind",m:"You do not need to control everything outside you. Control your thoughts and reactions — and everything else becomes manageable.",k:"Your greatest battlefield is within. Your greatest victory is within. Both await you.",s:"morning"},
+  {t:"Dedicate your life to something greater than yourself.",src:"Bhagavad Gita 3.19",c:"Purpose",m:"When you live for something bigger than personal gain — family, community, service — life suddenly feels full of meaning.",k:"The candle that lights others does not lose its own flame. Serve. Give. Live large.",s:"midday"},
+  {t:"Keep your heart and mind pure. Everything else will follow.",src:"Bhagavad Gita 17.16",c:"Faith",m:"When your intentions are clean and your thoughts are kind, the right people and opportunities naturally find their way to you.",k:"Purity of heart is the most powerful magnet in the universe.",s:"morning"},
+  {t:"Steadiness in difficulty is the mark of a truly strong soul.",src:"Bhagavad Gita 2.56",c:"Courage",m:"Anyone can be positive when things are good. True character is revealed when things are hard. You are building yours every day.",k:"Every storm you survive makes you a shelter for someone else.",s:"midday"},
+  {t:"There is nothing lost or wasted in a life of good effort.",src:"Bhagavad Gita 2.40",c:"Action",m:"No good effort is ever wasted, even if results are not immediate. The universe keeps careful account of your sincere work.",k:"Keep going. Your harvest is already growing beneath the surface.",s:"morning"},
+  {t:"Do good now. The ripples of goodness travel further than you will ever know.",src:"Bhagavad Gita",c:"Action",m:"Every act of kindness creates a ripple that blesses people you may never even meet.",k:"Your goodness is never wasted. Not a single drop of it.",s:"midday"},
+  {t:"The one who is not moved by happiness or sorrow has already found freedom.",src:"Bhagavad Gita 2.15",c:"Peace",m:"Real strength is not the absence of feeling. It is the ability to feel everything without being swept away.",k:"Feel it all. But let it pass through you like wind, not stay inside you like a storm.",s:"evening"},
+  {t:"Your own path, however humble, is better than the path of another, however grand.",src:"Bhagavad Gita 3.35",c:"Courage",m:"Stop measuring your life against someone else's highlight reel. Your path is uniquely yours.",k:"Walk your road with pride. No one else can walk it for you.",s:"evening"},
+  {t:"A person who is not disturbed by the flow of desires can alone achieve peace.",src:"Bhagavad Gita 2.70",c:"Mind",m:"You do not need to have everything to feel content. Peace comes when you stop chasing and start appreciating what is already here.",k:"The ocean is full and still. Be like the ocean — receive everything, need nothing.",s:"evening"},
+  {t:"Even the wisest person acts according to their own nature. Do not fight who you are.",src:"Bhagavad Gita 3.33",c:"Purpose",m:"Embrace your natural gifts. Fighting your own nature wastes the very energy you need to grow into your best self.",k:"You were made exactly as you were meant to be. Grow into that, not away from it.",s:"morning"}
 ];
 
-// ============================================================
+// CORPORATE KRISHNA QUOTES — Strictly Gita-based
+const CQ=[
+  {t:"You have the right to perform your duties, but you are not entitled to the fruits of your actions.",src:"Bhagavad Gita 2.47",c:"Stress",ins:"This is the antidote to workplace anxiety. Focus purely on execution quality rather than outcome obsession — stress drops and performance paradoxically improves.",gr:"Krishna spoke this to Arjuna when he was paralyzed by fear of failure. The same principle applies when you are paralyzed by a quarterly target.",ap:["Define your 3 key actions today — not outcomes","After each task, release it completely","Notice how energy improves when outcomes stop defining your worth"],tags:["Stress Relief","Performance","Focus"],e:"⚔️",sc:"Kurukshetra · Freedom from Outcome",s:"morning"},
+  {t:"It is better to perform one's own duties imperfectly than to master the duties of another.",src:"Bhagavad Gita 3.35",c:"Leadership",ins:"Every leader must resist micromanaging or taking over others' responsibilities. Trust your team to own their work. Delegation is not weakness — it is wisdom.",gr:"Krishna urges Arjuna to stay true to his dharma as a warrior. Every professional has a unique dharma at work.",ap:["Identify one task you've been doing that belongs to someone else","Hand it over today with full trust","Focus your energy on what only YOU can do"],tags:["Leadership","Delegation","Trust"],e:"👑",sc:"Dwarka Sabha · The Art of Delegation",s:"morning"},
+  {t:"The one who is not disturbed in mind even amidst the threefold miseries can achieve complete peace.",src:"Bhagavad Gita 2.56",c:"Stress",ins:"High-performing leaders maintain composure under pressure. Emotional regulation in crisis situations is mastery. Your calm is your greatest professional asset.",gr:"Krishna describes the sthitaprajna — the person of steady wisdom — who remains calm in all conditions. This is the blueprint for executive composure.",ap:["Before your next stressful meeting, take 3 slow deep breaths","Replace 'I am stressed' with 'I am preparing'","Practice responding instead of reacting for one full day"],tags:["Stress Management","Composure","EQ"],e:"🧘",sc:"Battlefield · The Calm Commander",s:"midday"},
+  {t:"Perform all actions with mind concentrated on the Divine, renouncing attachment and looking on success and failure with an equal eye.",src:"Bhagavad Gita 2.48",c:"Decision",ins:"The best corporate decisions are made with equanimity — not from fear of failure or hunger for personal glory. Equanimous leaders make more ethical and effective decisions.",gr:"This verse defines Yoga as equanimity in action — samattva yoga. It is literally the description of peak professional performance.",ap:["Before today's biggest decision, ask: am I deciding from fear or from clarity?","List pros and cons without attaching your ego to either side","Decide and release. Trust your well-considered judgment."],tags:["Decision Making","Equanimity","Leadership"],e:"⚖️",sc:"Gita Discourse · The Equal-Eyed Leader",s:"morning"},
+  {t:"Let right deeds be your motive, not the fruit which comes from them.",src:"Bhagavad Gita",c:"Ethics",ins:"Ethical leadership is strategically superior. Purpose-driven, ethical organizations have higher employee retention, better brand loyalty and stronger long-term performance.",gr:"The Nishkama Karma doctrine — selfless action — is the Gita's answer to corrupt, outcome-obsessed leadership that ultimately destroys trust.",ap:["Identify one ethical shortcut you've been tempted to take","Choose the harder, right path today","Notice the self-respect that follows — that is your real performance bonus"],tags:["Ethics","Integrity","Long-term Strategy"],e:"🌿",sc:"Gita Discourse · The Righteous Path",s:"evening"},
+  {t:"The mind is restless, turbulent and very strong. But it can be controlled through constant practice and non-attachment.",src:"Bhagavad Gita 6.35",c:"Stress",ins:"Focus is a trainable skill. Professionals who invest in daily mindfulness report 40% reduction in stress, improved creativity, and better interpersonal relationships at work.",gr:"Arjuna says controlling the mind is as hard as controlling the wind. Krishna agrees — but says it IS possible through abhyasa (practice) and vairagya (non-attachment).",ap:["Schedule a 10-minute no-phone block this morning","During that time, focus on exactly one thing","Repeat daily for 30 days and track your mental clarity"],tags:["Focus","Mindfulness","Mental Wellness"],e:"🧘",sc:"Himalayan Stillness · The Focused Mind",s:"morning"},
+  {t:"A person can rise through the efforts of his own mind, or draw himself down.",src:"Bhagavad Gita 6.5",c:"Growth",ins:"Your internal narrative is your most powerful management tool. Leaders who practice positive, growth-oriented self-talk consistently outperform those who don't.",gr:"Krishna identifies the mind as both the one that lifts (uddharet) and the one that drowns (avasadet). You decide every day which version you listen to.",ap:["Write down 3 self-limiting beliefs affecting your work","Rewrite each one as a growth statement","Read them aloud every morning this week"],tags:["Growth Mindset","Self-Leadership","Performance"],e:"📈",sc:"Sunrise · The Rising Professional",s:"morning"},
+  {t:"Strive constantly to serve the welfare of the world. By devotion to selfless work one attains the supreme goal.",src:"Bhagavad Gita 3.19",c:"Leadership",ins:"Servant leadership is ancient Gita wisdom. Leaders who exist to serve their teams and customers build the most enduring organizations in human history.",gr:"Krishna describes lokasamgraha — holding the world together — as the highest calling of a leader. Modern equivalents: customer obsession, employee wellbeing, community impact.",ap:["Ask one team member today: how can I remove an obstacle for you?","Do one act of service with no recognition expected","Measure your leadership by what you gave, not what you received"],tags:["Servant Leadership","Team Culture","Purpose"],e:"🤝",sc:"Vrindavan · Service as Leadership",s:"midday"},
+  {t:"Yoga is skill in action.",src:"Bhagavad Gita 2.50",c:"Strategy",ins:"Excellence is not about working harder — it is about working with complete mastery, awareness and presence. The professional who brings full consciousness to their work outperforms the one who merely puts in more hours.",gr:"Yogah karmasu kaushalam — this four-word definition of yoga is also the four-word definition of professional mastery. Bring this to every meeting, every email, every decision.",ap:["Pick one routine task you do on autopilot","Do it today with complete conscious attention","Notice the quality difference when you bring full awareness"],tags:["Excellence","Mastery","Productivity"],e:"🔱",sc:"Gita Discourse · Mastery in Action",s:"morning"},
+  {t:"One who sees inaction in action, and action in inaction, is intelligent among men.",src:"Bhagavad Gita 4.18",c:"Strategy",ins:"Strategic pausing — taking time to think, reflect and plan — IS a high-value professional activity. The best leaders know when NOT to act.",gr:"Krishna's teaching on kriya and akarma reveals that deep reflection before action often produces more results than frantic activity without thought.",ap:["Block 30 minutes today for unscheduled thinking time","Write down your biggest current work challenge","Sit with it, do not act yet. Insight will come."],tags:["Strategic Thinking","Reflection","Executive Wisdom"],e:"🏛️",sc:"Dwarka Sabha · The Thinking Leader",s:"midday"},
+  {t:"Lust, anger and greed are the three gates to self-destructive hell. Renounce these three.",src:"Bhagavad Gita 16.21",c:"Ethics",ins:"These three forces destroy corporate careers: uncontrolled desire for power, reactive anger in negotiations, and greed that compromises ethics. Master these three and your reputation becomes indestructible.",gr:"Krishna calls kama, krodha and lobha the three narakas of professional and personal life. Every corporate scandal in history traces back to one of these three.",ap:["Identify which of the three is your biggest current temptation at work","Create one clear boundary around it today","Share your commitment with one accountability partner"],tags:["Ethics","Self-Mastery","EQ"],e:"⚖️",sc:"Gita Discourse · The Three Destroyers",s:"evening"},
+  {t:"The Supreme Lord is situated in everyone's heart.",src:"Bhagavad Gita 18.61",c:"Team",ins:"Every person on your team contains untapped potential. The leader who sees the divine spark in every team member — not just the high performers — unlocks extraordinary team energy.",gr:"Krishna describes himself as Hrishikesha — the lord of the senses in every living being. The practical application: treat every colleague as if they contain hidden greatness.",ap:["Identify one underperforming team member you've been overlooking","Find one genuine strength in them today","Acknowledge that strength directly and sincerely"],tags:["Team Development","Talent Recognition","Inclusive Leadership"],e:"🤝",sc:"Vrindavan · Seeing the Divine in Every Person",s:"midday"},
+  {t:"Whatever a great person does, common men and women will follow.",src:"Bhagavad Gita 3.21",c:"Leadership",ins:"You are watched more than you know. Your team learns leadership from your example, not your slides. How you handle pressure, failure and success is your real leadership curriculum.",gr:"Krishna describes acharatvam — leadership by example. As a noble warrior, people follow Arjuna's example. The same applies to every manager and executive.",ap:["Ask yourself: what leadership am I modeling today?","Identify one behavior you want your team to adopt","Model it visibly and consistently today"],tags:["Leadership","Culture Building","Influence"],e:"👑",sc:"Kurukshetra · Leadership by Example",s:"morning"},
+  {t:"Fear not what is not real. What is real, always was and cannot be destroyed.",src:"Bhagavad Gita 2.16",c:"Stress",ins:"Most corporate anxiety is driven by imagined scenarios. The Gita's clarity: most of what you fear will never happen. Separate real threats from imagined ones.",gr:"Krishna addresses Arjuna's fear-driven paralysis with a profound truth. Fear only has power over what is real. Most professional fears are shadows, not substance.",ap:["List your top 3 current work fears","For each, ask: is this actually happening right now?","For those that aren't — release them. For those that are — act."],tags:["Stress Management","Clarity","Courage"],e:"⚔️",sc:"Kurukshetra · Dissolving the Shadow of Fear",s:"midday"},
+  {t:"Knowledge is better than mechanical practice. Better still is meditation. But best of all is surrendering the fruits of one's actions.",src:"Bhagavad Gita 12.12",c:"Growth",ins:"Professional evolution follows this sequence: doing, understanding, deep reflection, and finally complete non-attachment to personal outcomes. Most professionals stop at step two.",gr:"Krishna outlines the ladder from abhyasa to jnana to dhyana to phalatyaga. Where are you on this ladder?",ap:["Assess honestly: are you working from habit, knowledge, wisdom or freedom?","Identify the next level for you","Take one concrete step toward it today"],tags:["Professional Development","Mastery","Career Growth"],e:"📈",sc:"Gita Discourse · The Professional Ladder",s:"evening"},
+  {t:"Do not be led by others. Awaken your own mind, amass your own experience and decide for yourself.",src:"Bhagavad Gita",c:"Decision",ins:"The most valuable professional skill today is the ability to think independently from first principles. Frameworks help, but the final call must come from your own clear judgment.",gr:"The entire Bhagavad Gita ends with Krishna saying vimarshyaitad asheshena — deliberate on this fully — then: do as you choose. Krishna demands independent decision-making.",ap:["Before your next major decision, turn off external input for 24 hours","Write your own analysis from scratch","Trust your conclusion — then seek input to validate, not replace your thinking"],tags:["Independent Thinking","Decision Making","Leadership"],e:"👑",sc:"Gita Discourse · The Sovereign Mind",s:"morning"},
+  {t:"Arjuna, the Atman that dwells within all living beings is the same in all.",src:"Bhagavad Gita 13.28",c:"Team",ins:"When leaders genuinely recognize the common humanity in every colleague, they create psychologically safe, high-trust environments where people do their best work.",gr:"This verse is the Gita's foundation of inclusive leadership. When you see sama — the same essence — in all, you stop treating people as resources.",ap:["Have one genuine conversation today with someone you rarely speak to","Listen to understand, not to respond","Notice how the relationship shifts when you truly see them"],tags:["Inclusion","Psychological Safety","Team Trust"],e:"🤝",sc:"Vrindavan · One in All",s:"midday"},
+  {t:"With purity of intention, one achieves success. With impurity of intention, one achieves failure even in success.",src:"Bhagavad Gita 17.16",c:"Ethics",ins:"Intention is the invisible foundation of professional success. Organizations built on pure intention — genuine value creation, honest dealing — endure. Those built on manipulation collapse.",gr:"Krishna's teaching on manas-tapas — purity of mind and intention — as the highest form of professional discipline in Chapter 17.",ap:["Before your most important meeting today, check your intention","Is it to win, to serve, or to look good?","Reset it to 'how can I create the most value here?'"],tags:["Ethics","Intention","Authentic Leadership"],e:"🌿",sc:"Gita Discourse · The Power of Pure Intention",s:"evening"},
+  {t:"The pleasure which comes from long practice leads to the end of suffering. Such pleasure is sattvic.",src:"Bhagavad Gita 18.37",c:"Growth",ins:"The most rewarding achievements require sustained effort and delayed gratification. The Gita defines sattvic pleasure as what begins with discipline and ends with lasting fulfillment.",gr:"Krishna classifies pleasure into three types. Sattvic pleasure — from real mastery and ethical work — is the only kind that does not eventually lead to regret.",ap:["Identify your most important long-term professional goal","Define one daily discipline that will lead you there","Start it today, not tomorrow"],tags:["Long-term Thinking","Discipline","Career Strategy"],e:"📈",sc:"Battlefield · Playing the Long Game",s:"evening"}
+];
+
 // STATE
-// ============================================================
-let currentQuoteIndex = 0;
-let currentCategory = 'All';
-let favorites = JSON.parse(localStorage.getItem('dk_favorites') || '[]');
-let readToday = parseInt(localStorage.getItem('dk_read_today') || '0');
-let streak = parseInt(localStorage.getItem('dk_streak') || '1');
-let deferredPrompt = null;
+let mod='main',mCat='All',cCat='All',mIdx=0,cIdx=0;
+let mFavs=JSON.parse(localStorage.getItem('dk_mf')||'[]');
+let cFavs=JSON.parse(localStorage.getItem('dk_cf')||'[]');
+let mRead=parseInt(localStorage.getItem('dk_mr')||'0');
+let cRead=parseInt(localStorage.getItem('dk_cr')||'0');
+let streak=parseInt(localStorage.getItem('dk_str')||'1');
+let dp=null,lmod='main',curFavTab='main';
 
-// ============================================================
-// FIREBASE AUTH
-// ============================================================
-const firebaseConfig = {
-  apiKey:"AIzaSyCN2SPmQivgiKTHdfJryw8_zqkOYdgdD6I",
-  authDomain:"daily-krishna-caf46.firebaseapp.com",
-  projectId:"daily-krishna-caf46",
-  storageBucket:"daily-krishna-caf46.firebasestorage.app",
-  messagingSenderId:"710960440877",
-  appId:"1:710960440877:web:f1bfe355819e3986aa7aa4"
-};
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-
-auth.getRedirectResult().then(r=>{if(r&&r.user)onUserLoggedIn(r.user);}).catch(e=>{console.error(e);hideLoading();});
-auth.onAuthStateChanged(user=>{
-  if(user){onUserLoggedIn(user);}
-  else{hideLoading();document.getElementById('loginPage').style.display='flex';document.getElementById('app').style.display='none';}
-});
+// FIREBASE
+const fc={apiKey:"AIzaSyCN2SPmQivgiKTHdfJryw8_zqkOYdgdD6I",authDomain:"daily-krishna-caf46.firebaseapp.com",projectId:"daily-krishna-caf46",storageBucket:"daily-krishna-caf46.firebasestorage.app",messagingSenderId:"710960440877",appId:"1:710960440877:web:f1bfe355819e3986aa7aa4"};
+firebase.initializeApp(fc);
+const auth=firebase.auth();
+auth.getRedirectResult().then(r=>{if(r&&r.user)onLogin(r.user);}).catch(e=>{console.error(e);hideL();});
+auth.onAuthStateChanged(u=>{if(u){onLogin(u);}else{hideL();document.getElementById('lp').style.display='flex';document.getElementById('app').style.display='none';}});
 
 async function signInWithGoogle(){
-  const provider=new firebase.auth.GoogleAuthProvider();
-  showLoading();
-  try{const r=await auth.signInWithPopup(provider);onUserLoggedIn(r.user);}
-  catch(err){
-    if(['auth/popup-blocked','auth/popup-closed-by-user','auth/cancelled-popup-request'].includes(err.code)){
-      try{await auth.signInWithRedirect(provider);}catch(e){hideLoading();showToast("Login failed. Try again 🙏");}
-    }else{hideLoading();showToast("Login failed: "+err.message);}
-  }
+  const p=new firebase.auth.GoogleAuthProvider();showL();
+  try{const r=await auth.signInWithPopup(p);onLogin(r.user);}
+  catch(e){if(['auth/popup-blocked','auth/popup-closed-by-user','auth/cancelled-popup-request'].includes(e.code)){try{await auth.signInWithRedirect(p);}catch(e2){hideL();toast("Login failed 🙏");}}else{hideL();toast("Login failed: "+e.message);}}
 }
 
-function onUserLoggedIn(user){
-  hideLoading();
-  document.getElementById('loginPage').style.display='none';
+function onLogin(u){
+  hideL();
+  document.getElementById('lp').style.display='none';
   document.getElementById('app').style.display='block';
-  const name=user.displayName?user.displayName.split(' ')[0]:'Devotee';
-  document.getElementById('userName').textContent=name;
-  const av=document.getElementById('navAvatar');
-  if(user.photoURL){av.innerHTML='<img src="'+user.photoURL+'" class="nav-avatar"/>';}else{av.textContent=name[0].toUpperCase();}
-  document.getElementById('profileName').textContent=user.displayName||'Krishna Devotee';
-  document.getElementById('profileEmail').textContent=user.email||'';
-  document.getElementById('profileAvatar').textContent=name[0].toUpperCase();
-  initApp();
+  const n=u.displayName?u.displayName.split(' ')[0]:'Devotee';
+  document.getElementById('un').textContent=n;
+  document.getElementById('cun').textContent=n;
+  const av=document.getElementById('na');
+  if(u.photoURL){av.innerHTML='<img src="'+u.photoURL+'" style="width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid #D4A017"/>';}
+  else{av.textContent=n[0].toUpperCase();}
+  document.getElementById('pn').textContent=u.displayName||'Krishna Devotee';
+  document.getElementById('pe').textContent=u.email||'';
+  document.getElementById('pa').textContent=n[0].toUpperCase();
+  init();
+  if(lmod==='corp')swMod('corp');
 }
 
-function signOut(){auth.signOut().then(()=>{document.getElementById('loginPage').style.display='flex';document.getElementById('app').style.display='none';showToast("Signed out 🙏");});}
+function doSignOut(){auth.signOut().then(()=>{document.getElementById('lp').style.display='flex';document.getElementById('app').style.display='none';toast("Signed out 🙏");});}
 
-// ============================================================
-// APP INIT
-// ============================================================
-function initApp(){
-  updateDateDisplay();
-  updateStats();
-  highlightActiveSchedule();
-  const dayIdx=new Date().getDate()%quotes.length;
-  displayQuote(quotes[dayIdx],dayIdx);
-  currentQuoteIndex=dayIdx;
-  renderFavorites();
-  updateFavCount();
-  checkNotifStatus();
-  if(Notification.permission==='default'){setTimeout(()=>{document.getElementById('notifBanner').style.display='flex';},2000);}
-  createParticles();
+function selMod(m){lmod=m;document.getElementById('lmm').className='mb'+(m==='main'?' am':'');document.getElementById('lmc').className='mb'+(m==='corp'?' am':'');const qs={main:'"You have the right to do your work, but never to the fruits of your work."\n\n— Bhagavad Gita 2.47',corp:'"Yoga is skill in action. Bring mastery and full consciousness to everything you do."\n\n— Bhagavad Gita 2.50'};document.getElementById('lq').textContent=qs[m];}
+
+// INIT
+function init(){
+  updDate();updStats();hiSched();
+  const di=new Date().getDate()%MQ.length;
+  dispM(MQ[di],di);mIdx=di;
+  rendFavs('main');updFC();chkNotif();
+  if(Notification.permission==='default')setTimeout(()=>{document.getElementById('nbb').style.display='flex';},2500);
+  mkParts();
 }
 
-function updateDateDisplay(){
-  document.getElementById('dateDisplay').textContent=new Date().toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+function updDate(){const d=new Date().toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'});document.getElementById('dd').textContent=d;document.getElementById('cdd').textContent=d;}
+function updStats(){
+  document.getElementById('ws1').textContent=streak;document.getElementById('ws2').textContent=mRead;document.getElementById('ws3').textContent=mFavs.length;
+  document.getElementById('cws1').textContent=streak;document.getElementById('cws2').textContent=cRead;document.getElementById('cws3').textContent=cFavs.length;
+  document.getElementById('ps1').textContent=streak;document.getElementById('ps2').textContent=mFavs.length+cFavs.length;document.getElementById('ps3').textContent=mRead+cRead;
 }
 
-function updateStats(){
-  document.getElementById('wStreak').textContent=streak;
-  document.getElementById('wRead').textContent=readToday;
-  document.getElementById('wSaved').textContent=favorites.length;
-  document.getElementById('statStreak').textContent=streak;
-  document.getElementById('statSaved').textContent=favorites.length;
-  document.getElementById('statRead').textContent=readToday;
+// MODULE SWITCH
+function swMod(m){
+  mod=m;const iM=m==='main';
+  document.getElementById('tn').className='tn'+(iM?'':' cn');
+  document.getElementById('tnl').className='nl'+(iM?'':' cnl');
+  document.getElementById('tnl').textContent=iM?'🪷 Daily Krishna':'💼 Corporate Krishna';
+  document.getElementById('bn').className='bn'+(iM?'':' cbn');
+  document.getElementById('sm').className='msb'+(iM?' ma':'');
+  document.getElementById('sc').className='msb'+(iM?'':' ca');
+  document.querySelectorAll('.nt').forEach(t=>{t.className='nt'+(iM?'':' cct');});
+  if(iM){
+    document.getElementById('cp').style.display='none';
+    showPg('hp');
+  } else {
+    document.querySelectorAll('.pg').forEach(p=>p.classList.remove('ac'));
+    document.getElementById('cp').style.display='block';
+    hiCSched();
+    const f=filteredC();
+    if(f.length){dispC(f[0],CQ.indexOf(f[0]));}
+  }
+  updStats();
 }
 
-function highlightActiveSchedule(){
-  const h=new Date().getHours();
-  let active=h>=11&&h<16?'midday':h>=16?'evening':'morning';
-  document.querySelectorAll('.schedule-item').forEach(el=>el.classList.remove('active'));
-  const el=document.getElementById('sched-'+active);
-  if(el)el.classList.add('active');
+// MAIN MODULE
+function dispM(q,i){
+  if(!q)return;mIdx=i;
+  const v=MV[q.c]||MV['Peace'];
+  document.getElementById('mqt').textContent=q.t;
+  document.getElementById('mqs').textContent='— '+q.src;
+  document.getElementById('me').textContent=v.e;
+  document.getElementById('mb').textContent=q.c;
+  document.getElementById('msc').textContent=v.s;
+  document.getElementById('mv').style.background=`linear-gradient(135deg,${v.b[0]},${v.b[1]})`;
+  document.getElementById('mmt').textContent=q.m||'';
+  document.getElementById('mkm').textContent=q.k||'';
+  const iF=mFavs.some(f=>f.t===q.t);
+  const fb=document.getElementById('mfb');
+  fb.innerHTML=iF?'<span class="ai">❤️</span> Saved':'<span class="ai">🤍</span> Save';
+  fb.className='ab'+(iF?' fav-on':'');
+  mRead++;localStorage.setItem('dk_mr',mRead);updStats();
 }
 
-function loadScheduledQuote(time){
-  const tq=quotes.filter(q=>q.schedule===time);
-  if(!tq.length)return;
-  const q=tq[Math.floor(Math.random()*tq.length)];
-  animateCard(()=>displayQuote(q,quotes.indexOf(q)));
-  document.querySelectorAll('.schedule-item').forEach(el=>el.classList.remove('active'));
-  const el=document.getElementById('sched-'+time);
-  if(el)el.classList.add('active');
-  showToast(time==='morning'?'🌅 Morning wisdom':time==='midday'?'☀️ Midday relief':'🌙 Evening reflection');
+function filteredM(){return mCat==='All'?MQ:MQ.filter(q=>q.c===mCat);}
+function filtM(c,el){mCat=c;document.querySelectorAll('.cc').forEach(x=>x.classList.remove('ac'));el.classList.add('ac');const f=filteredM();if(f.length)animC('mw',()=>dispM(f[0],MQ.indexOf(f[0])));}
+function nextM(){const f=filteredM();const ci=f.indexOf(MQ[mIdx]);const ni=(ci+1)%f.length;animC('mw',()=>dispM(f[ni],MQ.indexOf(f[ni])));}
+
+function hiSched(){const h=new Date().getHours();const t=h>=11&&h<16?'midday':h>=16?'evening':'morning';['sm1','sm2','sm3'].forEach(id=>{document.getElementById(id).classList.remove('ac');});const m={morning:'sm1',midday:'sm2',evening:'sm3'};const el=document.getElementById(m[t]);if(el)el.classList.add('ac');}
+function loadSched(t){const f=MQ.filter(q=>q.s===t);if(!f.length)return;const q=f[Math.floor(Math.random()*f.length)];animC('mw',()=>dispM(q,MQ.indexOf(q)));['sm1','sm2','sm3'].forEach(id=>document.getElementById(id).classList.remove('ac'));const m={morning:'sm1',midday:'sm2',evening:'sm3'};const el=document.getElementById(m[t]);if(el)el.classList.add('ac');toast(t==='morning'?'🌅 Morning wisdom':t==='midday'?'☀️ Midday peace':'🌙 Evening reflection');}
+
+function togMFav(){const q=MQ[mIdx];if(!q)return;const i=mFavs.findIndex(f=>f.t===q.t);if(i>-1){mFavs.splice(i,1);toast("Removed");}else{mFavs.push(q);toast("Saved! 🌸");}localStorage.setItem('dk_mf',JSON.stringify(mFavs));dispM(q,mIdx);rendFavs('main');updFC();updStats();}
+function shareMWA(){const q=MQ[mIdx];if(!q)return;window.open('https://wa.me/?text='+encodeURIComponent(`"${q.t}"\n\n— ${q.src}\n\n🌸 ${q.m}\n\n🪷 Daily Krishna\nhttps://anchorvijju616-hash.github.io/Daily-Krishna`),'_blank');}
+function shareM(){const q=MQ[mIdx];if(!q)return;const t=`"${q.t}"\n\n— ${q.src}\n\n${q.m}\n\n🪷 Daily Krishna\nhttps://anchorvijju616-hash.github.io/Daily-Krishna`;if(navigator.share){navigator.share({title:'Daily Krishna',text:t});}else{navigator.clipboard.writeText(t).then(()=>toast("Copied! 📋"));}}
+
+// CORP MODULE
+function dispC(q,i){
+  if(!q)return;cIdx=i;
+  const v=CV[q.c]||CV['Leadership'];
+  document.getElementById('cqt').textContent=q.t;
+  document.getElementById('cqs').textContent='— '+q.src;
+  document.getElementById('ce').textContent=q.e||v.e||'💼';
+  document.getElementById('cb').textContent=q.c;
+  document.getElementById('csc').textContent=q.sc||v.s||'';
+  document.getElementById('ci2').textContent=q.ins||'';
+  document.getElementById('cgr').textContent=q.gr||'';
+  document.getElementById('cap').innerHTML=(q.ap||[]).map(a=>`<div class="apii"><div class="apd"></div>${a}</div>`).join('');
+  document.getElementById('ctgs').innerHTML=(q.tags||[]).map(t=>`<span class="ctg">${t}</span>`).join('');
+  const iF=cFavs.some(f=>f.t===q.t);
+  const fb=document.getElementById('cfb');
+  fb.innerHTML=iF?'<span class="ai">⭐</span> Saved':'<span class="ai">⭐</span> Save';
+  fb.className='cab'+(iF?' cfav-on':'');
+  cRead++;localStorage.setItem('dk_cr',cRead);updStats();
 }
 
-// ============================================================
-// KRISHNA VISUAL SYSTEM — Core feature
-// ============================================================
-function displayQuote(quote,index){
-  if(!quote)return;
-  currentQuoteIndex=index;
-  const cat=quote.category||'Wisdom';
-  const visual=KRISHNA_VISUALS[cat]||KRISHNA_VISUALS['Wisdom'];
+function filteredC(){return cCat==='All'?CQ:CQ.filter(q=>q.c===cCat);}
+function filtC(c,el){cCat=c;document.querySelectorAll('.ccc').forEach(x=>x.classList.remove('ac'));el.classList.add('ac');const f=filteredC();if(f.length)animC('cw',()=>dispC(f[0],CQ.indexOf(f[0])));}
+function nextC(){const f=filteredC();const ci=f.indexOf(CQ[cIdx]);const ni=(ci+1)%f.length;animC('cw',()=>dispC(f[ni],CQ.indexOf(f[ni])));}
 
-  document.getElementById('quoteText').textContent=quote.text;
-  document.getElementById('quoteSource').textContent='— '+quote.source;
-  document.getElementById('krishnaEmoji').textContent=visual.emoji;
-  document.getElementById('krishnaBadge').textContent=cat;
-  document.getElementById('krishnaScene').textContent=visual.scene;
+function hiCSched(){const h=new Date().getHours();const t=h>=11&&h<16?'midday':h>=16?'evening':'morning';['cs1','cs2','cs3'].forEach(id=>document.getElementById(id).classList.remove('ac'));const m={morning:'cs1',midday:'cs2',evening:'cs3'};const el=document.getElementById(m[t]);if(el)el.classList.add('ac');}
+function loadCSched(t){const f=CQ.filter(q=>q.s===t);if(!f.length)return;const q=f[Math.floor(Math.random()*f.length)];animC('cw',()=>dispC(q,CQ.indexOf(q)));['cs1','cs2','cs3'].forEach(id=>document.getElementById(id).classList.remove('ac'));const m={morning:'cs1',midday:'cs2',evening:'cs3'};const el=document.getElementById(m[t]);if(el)el.classList.add('ac');toast({morning:'🌅 Pre-meeting wisdom',midday:'☕ Midday stress relief',evening:'📊 End-of-day reflection'}[t],'c');}
 
-  // Dynamic gradient based on category
-  const kv=document.getElementById('krishnaVisual');
-  kv.style.background=`linear-gradient(135deg,${visual.bg[0]},${visual.bg[1]})`;
+function togCFav(){const q=CQ[cIdx];if(!q)return;const i=cFavs.findIndex(f=>f.t===q.t);if(i>-1){cFavs.splice(i,1);toast("Removed",'c');}else{cFavs.push(q);toast("Saved! 💼",'c');}localStorage.setItem('dk_cf',JSON.stringify(cFavs));dispC(q,cIdx);rendFavs('corp');updFC();updStats();}
+function shareCWA(){const q=CQ[cIdx];if(!q)return;window.open('https://wa.me/?text='+encodeURIComponent(`"${q.t}"\n\n— ${q.src}\n\n💼 ${q.ins}\n\n✅ Action: ${(q.ap||[])[0]||''}\n\n💼 Corporate Krishna\nhttps://anchorvijju616-hash.github.io/Daily-Krishna`),'_blank');}
+function shareC(){const q=CQ[cIdx];if(!q)return;const t=`"${q.t}"\n\n— ${q.src}\n\n💼 ${q.ins}\n\n✅ ${(q.ap||[])[0]||''}\n\n💼 Corporate Krishna\nhttps://anchorvijju616-hash.github.io/Daily-Krishna`;if(navigator.share){navigator.share({title:'Corporate Krishna',text:t});}else{navigator.clipboard.writeText(t).then(()=>toast("Copied! 📋",'c'));}}
 
-  document.getElementById('insightText').textContent=quote.insight||'';
-  document.getElementById('krishnaMsg').textContent=quote.krishnaMsg||'';
-  document.getElementById('insightTags').innerHTML=(quote.insightTags||[]).map(t=>`<span class="insight-tag">${t}</span>`).join('');
-
-  const isFav=favorites.some(f=>f.text===quote.text);
-  const fb=document.getElementById('favBtn');
-  fb.innerHTML=isFav?'<span class="action-btn-icon">❤️</span> Saved':'<span class="action-btn-icon">🤍</span> Save';
-  fb.className='action-btn'+(isFav?' fav-active':'');
-
-  readToday++;
-  localStorage.setItem('dk_read_today',readToday);
-  updateStats();
-}
-
-function animateCard(cb){
-  const w=document.getElementById('quoteCardWrap');
-  w.style.opacity='0';w.style.transform='translateY(20px)';
-  setTimeout(()=>{cb();w.style.transition='opacity 0.4s,transform 0.4s';w.style.opacity='1';w.style.transform='translateY(0)';setTimeout(()=>w.style.transition='',400);},180);
-}
-
-function nextQuote(){
-  const f=getFiltered();
-  const ni=(f.indexOf(quotes[currentQuoteIndex])+1)%f.length;
-  animateCard(()=>displayQuote(f[ni],quotes.indexOf(f[ni])));
-}
-
-function getFiltered(){return currentCategory==='All'?quotes:quotes.filter(q=>q.category===currentCategory);}
-
-function filterCategory(cat,el){
-  currentCategory=cat;
-  document.querySelectorAll('.cat-chip').forEach(c=>c.classList.remove('active'));
-  el.classList.add('active');
-  const f=getFiltered();
-  if(f.length>0)animateCard(()=>displayQuote(f[0],quotes.indexOf(f[0])));
-}
-
-// ============================================================
 // FAVORITES
-// ============================================================
-function toggleFavorite(){
-  const q=quotes[currentQuoteIndex];
-  if(!q)return;
-  const idx=favorites.findIndex(f=>f.text===q.text);
-  if(idx>-1){favorites.splice(idx,1);showToast("Removed from favorites");}
-  else{favorites.push(q);showToast("Saved to favorites 🙏");}
-  localStorage.setItem('dk_favorites',JSON.stringify(favorites));
-  displayQuote(q,currentQuoteIndex);
-  renderFavorites();updateFavCount();updateStats();
+function swFav(tab,el){curFavTab=tab;document.querySelectorAll('.ft').forEach(t=>t.classList.remove('ac'));el.classList.add('ac');rendFavs(tab);}
+function rendFavs(tab){
+  const list=document.getElementById('fl');const favs=tab==='main'?mFavs:cFavs;
+  if(!favs.length){const ico=tab==='main'?'🤍':'⭐';list.innerHTML=`<div class="fe"><div class="fei">${ico}</div><div class="fet">No saved ${tab==='main'?'life wisdom':'corporate lessons'} yet.</div></div>`;return;}
+  list.innerHTML=favs.map((q,i)=>{const ic=tab==='corp';return`<div class="fc ${ic?'cfc':''}"><div class="fch"><span class="ftg ${ic?'cftg':''}">${q.c}</span><button class="frm" onclick="remFav('${tab}',${i})">✕</button></div><div class="fq">"${q.t}"</div><div class="fi">${ic?'💼 '+(q.ins||''):'🌸 '+(q.m||'')}</div></div>`;}).join('');
+}
+function remFav(tab,i){if(tab==='main'){mFavs.splice(i,1);localStorage.setItem('dk_mf',JSON.stringify(mFavs));}else{cFavs.splice(i,1);localStorage.setItem('dk_cf',JSON.stringify(cFavs));}rendFavs(tab);updFC();updStats();toast("Removed");}
+function updFC(){const el=document.getElementById('fc');if(el)el.textContent=(mFavs.length+cFavs.length)+' saved';}
+
+// UI
+function showPg(id){
+  if(mod==='corp'&&id==='hp'){return;}
+  document.getElementById('cp').style.display='none';
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('ac'));
+  document.querySelectorAll('.nt').forEach(t=>t.classList.remove('ac'));
+  document.getElementById(id).classList.add('ac');
+  const m={hp:'t1',fvp:'t2',prp:'t3'};const el=document.getElementById(m[id]);if(el)el.classList.add('ac');
+  if(id==='fvp')rendFavs(curFavTab);
 }
 
-function renderFavorites(){
-  const list=document.getElementById('favList');
-  if(!favorites.length){list.innerHTML='<div class="fav-empty"><div class="fav-empty-icon">🤍</div><div class="fav-empty-text">No saved quotes yet.<br>Save a quote from the home screen!</div></div>';return;}
-  list.innerHTML=favorites.map((q,i)=>`<div class="fav-card"><div class="fav-card-header"><span class="fav-tag">${q.category}</span><button class="fav-remove" onclick="removeFav(${i})">✕</button></div><div class="fav-quote">"${q.text}"</div><div class="fav-insight">💼 ${q.insight||''}</div></div>`).join('');
-}
+function animC(wid,cb){const w=document.getElementById(wid);w.style.opacity='0';w.style.transform='translateY(16px)';setTimeout(()=>{cb();w.style.transition='opacity .4s,transform .4s';w.style.opacity='1';w.style.transform='translateY(0)';setTimeout(()=>w.style.transition='',400);},170);}
+function toggleTheme(){const d=document.body.getAttribute('data-theme')==='dark';document.body.setAttribute('data-theme',d?'':'dark');document.getElementById('tb').textContent=d?'🌙':'☀️';const t=document.getElementById('dt');if(t)t.checked=!d;}
+function showL(){const e=document.getElementById('lo');if(e){e.style.display='flex';e.style.opacity='1';}}
+function hideL(){const e=document.getElementById('lo');if(e){e.style.opacity='0';setTimeout(()=>e.style.display='none',600);}}
+function toast(msg,type='m'){const t=document.getElementById('toast');if(!t)return;t.textContent=msg;t.className='toast show'+(type==='c'?' ct':'');setTimeout(()=>t.className='toast',3000);}
 
-function removeFav(i){favorites.splice(i,1);localStorage.setItem('dk_favorites',JSON.stringify(favorites));renderFavorites();updateFavCount();updateStats();showToast("Removed");}
-function updateFavCount(){const el=document.getElementById('favCount');if(el)el.textContent=favorites.length+' quotes saved';}
-
-// ============================================================
-// SHARE
-// ============================================================
-function shareWhatsApp(){
-  const q=quotes[currentQuoteIndex];if(!q)return;
-  const t=encodeURIComponent(`"${q.text}"\n\n— ${q.source}\n\n💼 Corporate Insight: ${q.insight}\n\n🪷 Daily Krishna · Bhagavad Gita Wisdom\nhttps://anchorvijju616-hash.github.io/Daily-Krishna`);
-  window.open('https://wa.me/?text='+t,'_blank');
-}
-
-function shareQuote(){
-  const q=quotes[currentQuoteIndex];if(!q)return;
-  const t=`"${q.text}"\n\n— ${q.source}\n\n💼 ${q.insight}\n\n🪷 Daily Krishna\nhttps://anchorvijju616-hash.github.io/Daily-Krishna`;
-  if(navigator.share){navigator.share({title:'Daily Krishna',text:t});}
-  else{navigator.clipboard.writeText(t).then(()=>showToast("Copied! 📋"));}
-}
-
-// ============================================================
-// 3x DAILY NOTIFICATIONS
-// ============================================================
-function checkNotifStatus(){
-  const el=document.getElementById('notifStatus');if(!el)return;
-  if(Notification.permission==='granted')el.textContent='✅ 3 daily reminders enabled';
-  else if(Notification.permission==='denied')el.textContent='❌ Blocked in browser settings';
-  else el.textContent='Morning · Midday · Evening';
-}
-
-async function requestNotification(){
-  if(!('Notification' in window)){showToast("Not supported on this browser");return;}
-  if(Notification.permission==='granted'){showToast("Reminders already enabled ✅");scheduleAll();return;}
-  if(Notification.permission==='denied'){showToast("Enable in browser settings");return;}
+// NOTIFICATIONS
+function chkNotif(){const el=document.getElementById('ns');if(!el)return;if(Notification.permission==='granted')el.textContent='✅ 3 daily reminders active';else if(Notification.permission==='denied')el.textContent='❌ Blocked in browser settings';}
+async function reqNotif(){
+  if(!('Notification' in window)){toast("Not supported on this browser");return;}
+  if(Notification.permission==='granted'){toast("Already enabled ✅");schedNotifs();return;}
+  if(Notification.permission==='denied'){toast("Enable in browser settings");return;}
   const p=await Notification.requestPermission();
-  if(p==='granted'){
-    document.getElementById('notifBanner').style.display='none';
-    showToast("Daily reminders enabled! 🔔 Jai Shri Krishna");
-    checkNotifStatus();scheduleAll();
-    setTimeout(()=>new Notification('🪷 Daily Krishna',{body:'You will receive 3 daily wisdom reminders 🙏',icon:'https://anchorvijju616-hash.github.io/Daily-Krishna/icons/icon-192.png'}),800);
-  }else{showToast("Notifications not enabled");checkNotifStatus();}
+  if(p==='granted'){document.getElementById('nbb').style.display='none';toast("Daily reminders enabled! 🔔");chkNotif();schedNotifs();setTimeout(()=>new Notification('🪷 Daily Krishna',{body:'3 daily reminders set 🙏',icon:'https://anchorvijju616-hash.github.io/Daily-Krishna/icons/icon-192.png'}),600);}
+  else{toast("Not enabled");chkNotif();}
 }
+function schedNotifs(){schedAt(7,0,'morning');schedAt(13,0,'midday');schedAt(19,0,'evening');}
+function schedAt(h,m,t){const now=new Date(),tgt=new Date();tgt.setHours(h,m,0,0);if(now>=tgt)tgt.setDate(tgt.getDate()+1);setTimeout(()=>{sendN(t);setInterval(()=>sendN(t),864e5);},tgt-now);}
+function sendN(t){if(Notification.permission!=='granted')return;const all=[...MQ,...CQ].filter(q=>q.s===t);const q=all[Math.floor(Math.random()*all.length)];const titles={morning:'🌅 Morning Wisdom',midday:'☀️ Midday Peace',evening:'🌙 Evening Reflection'};new Notification(titles[t],{body:`"${q.t.substring(0,80)}..."`,icon:'https://anchorvijju616-hash.github.io/Daily-Krishna/icons/icon-192.png'});}
 
-function scheduleAll(){
-  scheduleAt(7,0,'morning');    // 7 AM
-  scheduleAt(13,0,'midday');    // 1 PM
-  scheduleAt(19,0,'evening');   // 7 PM
-}
+// PWA
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;});
+function instPWA(){if(dp){dp.prompt();dp.userChoice.then(r=>{if(r.outcome==='accepted')toast("App installed! 🪷");dp=null;});}else{toast("Tap browser menu → Add to Home Screen");}}
 
-function scheduleAt(hour,min,type){
-  const labels={morning:{title:'🌅 Morning Motivation'},midday:{title:'☀️ Midday Stress Relief'},evening:{title:'🌙 Evening Reflection'}};
-  const now=new Date(),target=new Date();
-  target.setHours(hour,min,0,0);
-  if(now>=target)target.setDate(target.getDate()+1);
-  setTimeout(()=>{
-    sendNotif(type,labels[type].title);
-    setInterval(()=>sendNotif(type,labels[type].title),24*60*60*1000);
-  },target-now);
-}
-
-function sendNotif(type,title){
-  if(Notification.permission!=='granted')return;
-  const qs=quotes.filter(q=>q.schedule===type);
-  const q=qs[Math.floor(Math.random()*qs.length)];
-  new Notification(title,{body:`"${q.text.substring(0,80)}..." 💼 ${(q.insightTags||[])[0]||''}`,icon:'https://anchorvijju616-hash.github.io/Daily-Krishna/icons/icon-192.png'});
-}
-
-// ============================================================
-// PWA + UI HELPERS
-// ============================================================
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
-function installPWA(){if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(r=>{if(r.outcome==='accepted')showToast("App installed! 🪷");deferredPrompt=null;});}else{showToast("Tap browser menu → 'Add to Home Screen'");}}
-
-function showPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  const m={homePage:0,favPage:1,profilePage:2};
-  const tabs=document.querySelectorAll('.nav-tab');
-  if(tabs[m[id]])tabs[m[id]].classList.add('active');
-}
-
-function toggleTheme(){
-  const d=document.body.getAttribute('data-theme')==='dark';
-  document.body.setAttribute('data-theme',d?'':'dark');
-  document.getElementById('themeBtn').textContent=d?'🌙':'☀️';
-  const t=document.getElementById('darkToggle');if(t)t.checked=!d;
-}
-
-function showLoading(){const e=document.getElementById('loadingOverlay');if(e){e.style.display='flex';e.style.opacity='1';}}
-function hideLoading(){const e=document.getElementById('loadingOverlay');if(e){e.style.opacity='0';setTimeout(()=>e.style.display='none',600);}}
-function showToast(msg){const t=document.getElementById('toast');if(!t)return;t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
-
-function createStars(){
-  const c=document.getElementById('loginStars');if(!c)return;
-  for(let i=0;i<60;i++){const s=document.createElement('div');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDuration=(2+Math.random()*4)+'s';s.style.animationDelay=(Math.random()*4)+'s';c.appendChild(s);}
-}
-
-function createParticles(){
-  const c=document.getElementById('particles');if(!c)return;
-  const colors=['rgba(212,160,23,0.4)','rgba(255,107,26,0.3)','rgba(0,168,157,0.3)','rgba(255,140,66,0.3)'];
-  for(let i=0;i<10;i++){const p=document.createElement('div');p.className='particle';const sz=3+Math.random()*5;p.style.width=sz+'px';p.style.height=sz+'px';p.style.left=Math.random()*100+'%';p.style.background=colors[Math.floor(Math.random()*colors.length)];p.style.animationDuration=(15+Math.random()*20)+'s';p.style.animationDelay=(Math.random()*20)+'s';c.appendChild(p);}
-}
+// Stars & Particles
+function mkStars(){const c=document.getElementById('ls');if(!c)return;for(let i=0;i<60;i++){const s=document.createElement('div');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDuration=(2+Math.random()*4)+'s';s.style.animationDelay=(Math.random()*4)+'s';c.appendChild(s);}}
+function mkParts(){const c=document.getElementById('particles');if(!c)return;const cols=['rgba(212,160,23,.35)','rgba(255,107,26,.25)','rgba(0,168,157,.22)','rgba(30,136,229,.18)'];for(let i=0;i<12;i++){const p=document.createElement('div');p.className='pt';const sz=3+Math.random()*5;p.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;background:${cols[i%4]};animation-duration:${15+Math.random()*20}s;animation-delay:${Math.random()*20}s;`;c.appendChild(p);}}
 
 // Service Worker
-if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>{
-    const sw=`const C='dk-v3';const F=['/Daily-Krishna/','/Daily-Krishna/index.html'];self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.addAll(F))));self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).catch(()=>caches.match('/Daily-Krishna/')))));self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k))))));`;
-    navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'application/javascript'}))).then(()=>console.log('✅ Offline active')).catch(e=>console.log('SW:',e));
-  });
-}
+if('serviceWorker' in navigator){window.addEventListener('load',()=>{const sw=`const C='dk-v4';const F=['/Daily-Krishna/','/Daily-Krishna/index.html'];self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.addAll(F))));self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).catch(()=>caches.match('/Daily-Krishna/')))));self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k))))));`;navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'application/javascript'}))).catch(e=>console.log(e));});}
 
-createStars();
+mkStars();
 </script>
 </body>
 </html>

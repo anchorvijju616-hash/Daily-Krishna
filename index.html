@@ -10,10 +10,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --saffron:#FF6B1A;--gold:#D4A017;--gold2:#F0C040;
-  --royal:#1A3A6B;--teal:#00A89D;--maroon:#8B1A1A;
-  --cream:#FFF8EE;--white:#FFFFFF;
-  --td:#2C1810;--tm:#5C3D2E;--ts:#8B6E5A;
+  --saffron:#FF6B1A;--saffron-light:#FF8C42;
+  --gold:#D4A017;--gold-light:#F0C040;
+  --royal:#1A3A6B;--teal:#00A89D;
+  --maroon:#8B1A1A;--cream:#FFF8EE;
+  --white:#FFFFFF;--td:#2C1810;--tm:#5C3D2E;--ts:#8B6E5A;
 }
 [data-theme="dark"]{--cream:#1A1008;--white:#2A1A0A;--td:#F5E6CC;--tm:#D4B896;--ts:#A08060;}
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -26,423 +27,448 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--td);min
 .lo{position:fixed;inset:0;background:linear-gradient(135deg,#0D1B3E,#1A3A6B);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity .7s;}
 .lo.gone{opacity:0;pointer-events:none;}
 .lo-om{font-family:'Cinzel',serif;font-size:64px;background:linear-gradient(135deg,#FF8C42,#F0C040);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:omG 1.5s ease-in-out infinite;}
-.lo-sub{font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(245,230,204,.6);font-style:italic;margin-top:12px;letter-spacing:3px;}
-.lo-bar{width:200px;height:2px;background:rgba(212,160,23,.2);border-radius:2px;margin-top:22px;overflow:hidden;}
-.lo-fill{height:100%;background:linear-gradient(90deg,#FF6B1A,#D4A017);animation:lbF 2.8s ease-out forwards;}
-@keyframes lbF{from{width:0}to{width:100%}}
 @keyframes omG{0%,100%{filter:drop-shadow(0 0 18px rgba(255,107,26,.6));}50%{filter:drop-shadow(0 0 38px rgba(240,192,64,1));}}
+.lo-txt{font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(245,230,204,.6);font-style:italic;margin-top:12px;letter-spacing:3px;}
+.lo-bar{width:200px;height:2px;background:rgba(212,160,23,.2);border-radius:2px;margin-top:22px;overflow:hidden;}
+.lo-fill{height:100%;background:linear-gradient(90deg,var(--saffron),var(--gold));animation:loF 2.8s ease-out forwards;}
+@keyframes loF{from{width:0}to{width:100%}}
 
-/* =========================================================
-   LOGIN — dark blue spiritual bg
-========================================================= */
+/* ============================================================
+   LOGIN PAGE
+============================================================ */
 #loginPage{
   min-height:100vh;display:flex;align-items:center;justify-content:center;
   padding:20px;position:relative;
   background:linear-gradient(160deg,#0D1B3E 0%,#1A3A6B 35%,#003344 65%,#1A0A00 100%);
 }
-.lglow{position:absolute;inset:0;
-  background:radial-gradient(ellipse 60% 50% at 25% 15%,rgba(255,107,26,.22) 0%,transparent 65%),
-  radial-gradient(ellipse 55% 65% at 75% 85%,rgba(212,160,23,.18) 0%,transparent 65%);}
-.lstars{position:absolute;inset:0;overflow:hidden;}
+.login-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 25% 15%,rgba(255,107,26,.22) 0%,transparent 65%),radial-gradient(ellipse 55% 65% at 75% 85%,rgba(212,160,23,.18) 0%,transparent 65%);}
+.lg-stars{position:absolute;inset:0;overflow:hidden;}
 .star{position:absolute;width:2px;height:2px;background:#F0C040;border-radius:50%;animation:tw ease-in-out infinite;}
 @keyframes tw{0%,100%{opacity:.2;transform:scale(1);}50%{opacity:1;transform:scale(1.6);}}
 
-.lcard{
+.login-card{
   position:relative;z-index:2;width:100%;max-width:420px;
-  background:rgba(255,248,238,.08);backdrop-filter:blur(22px);
-  border:1px solid rgba(212,160,23,.3);border-radius:32px;
+  background:rgba(255,248,238,.07);backdrop-filter:blur(22px);
+  border:1px solid rgba(212,160,23,.28);border-radius:32px;
   text-align:center;overflow:hidden;
-  box-shadow:0 0 60px rgba(212,160,23,.14),0 40px 80px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.08);
+  box-shadow:0 0 60px rgba(212,160,23,.12),0 40px 80px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.08);
   animation:cardIn .9s cubic-bezier(.16,1,.3,1) both;
+  padding-bottom:30px;
 }
 @keyframes cardIn{from{opacity:0;transform:translateY(44px) scale(.94)}to{opacity:1;transform:translateY(0) scale(1)}}
-.lcard::before{content:'';position:absolute;top:0;left:15%;width:70%;height:1px;background:linear-gradient(90deg,transparent,rgba(212,160,23,.8),transparent);}
+.login-card::before{content:'';position:absolute;top:0;left:15%;width:70%;height:1px;background:linear-gradient(90deg,transparent,rgba(212,160,23,.8),transparent);}
 
-/* =========================================================
-   PEACOCK — pure CSS, full spread, 13 feathers in arc
-   Position: TOP of login card (no external libs)
-========================================================= */
-.pk-section{
+/* ============================================================
+   PEACOCK — Pure CSS, feathers spreading from center, top of card
+============================================================ */
+.peacock-section{
   position:relative;width:100%;height:210px;
-  overflow:hidden;
-  background:linear-gradient(180deg,rgba(0,40,55,.55) 0%,rgba(0,25,40,.3) 60%,transparent 100%);
+  background:linear-gradient(180deg,rgba(0,40,60,.7) 0%,rgba(0,20,40,.4) 70%,transparent 100%);
   display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
 }
 
-/* radial glow behind peacock */
+/* Radial glow behind peacock */
 .pk-aura{
-  position:absolute;
-  width:180px;height:180px;border-radius:50%;
-  background:radial-gradient(circle,rgba(0,200,180,.18) 0%,rgba(212,160,23,.12) 40%,transparent 70%);
+  position:absolute;width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,180,160,.18) 0%,rgba(212,160,23,.12) 40%,transparent 70%);
   top:50%;left:50%;transform:translate(-50%,-50%);
-  animation:pkA 3s ease-in-out infinite;
+  animation:pkAura 3s ease-in-out infinite;
 }
-@keyframes pkA{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.6;}50%{transform:translate(-50%,-50%) scale(1.25);opacity:1;}}
+@keyframes pkAura{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.6;}50%{transform:translate(-50%,-50%) scale(1.3);opacity:1;}}
 
-/* Feather container — all 13 feathers pivot from center-bottom */
-.pk-feathers{
-  position:absolute;
-  bottom:24px;left:50%;
-  transform:translateX(-50%);
-  width:0;height:0;
+/* Peacock body container */
+.pk-body{position:relative;width:180px;height:180px;display:flex;align-items:flex-end;justify-content:center;}
+
+/* Each feather positioned from center bottom */
+.pk-feather{
+  position:absolute;bottom:38px;left:50%;
+  transform-origin:bottom center;
+  animation:featherPulse 3s ease-in-out infinite;
 }
+/* 14 feathers spread across 160° arc */
+.pk-feather:nth-child(1) {transform:translateX(-50%) rotate(-80deg);animation-delay:.00s;}
+.pk-feather:nth-child(2) {transform:translateX(-50%) rotate(-67deg);animation-delay:.07s;}
+.pk-feather:nth-child(3) {transform:translateX(-50%) rotate(-54deg);animation-delay:.14s;}
+.pk-feather:nth-child(4) {transform:translateX(-50%) rotate(-40deg);animation-delay:.21s;}
+.pk-feather:nth-child(5) {transform:translateX(-50%) rotate(-27deg);animation-delay:.28s;}
+.pk-feather:nth-child(6) {transform:translateX(-50%) rotate(-13deg);animation-delay:.35s;}
+.pk-feather:nth-child(7) {transform:translateX(-50%) rotate(  0deg);animation-delay:.42s;}
+.pk-feather:nth-child(8) {transform:translateX(-50%) rotate( 13deg);animation-delay:.35s;}
+.pk-feather:nth-child(9) {transform:translateX(-50%) rotate( 27deg);animation-delay:.28s;}
+.pk-feather:nth-child(10){transform:translateX(-50%) rotate( 40deg);animation-delay:.21s;}
+.pk-feather:nth-child(11){transform:translateX(-50%) rotate( 54deg);animation-delay:.14s;}
+.pk-feather:nth-child(12){transform:translateX(-50%) rotate( 67deg);animation-delay:.07s;}
+.pk-feather:nth-child(13){transform:translateX(-50%) rotate( 80deg);animation-delay:.00s;}
 
-/* Single feather */
-.pf{
-  position:absolute;
-  bottom:0;left:0;
-  transform-origin:0 0;
-  animation:pfGlow 2.5s ease-in-out infinite;
-}
-/* Feather angles — spread across 180° arc */
-.pf:nth-child(1) {transform:rotate(-85deg);}
-.pf:nth-child(2) {transform:rotate(-70deg);animation-delay:.1s;}
-.pf:nth-child(3) {transform:rotate(-56deg);animation-delay:.18s;}
-.pf:nth-child(4) {transform:rotate(-42deg);animation-delay:.26s;}
-.pf:nth-child(5) {transform:rotate(-28deg);animation-delay:.34s;}
-.pf:nth-child(6) {transform:rotate(-14deg);animation-delay:.42s;}
-.pf:nth-child(7) {transform:rotate(0deg);animation-delay:.5s;}
-.pf:nth-child(8) {transform:rotate(14deg);animation-delay:.42s;}
-.pf:nth-child(9) {transform:rotate(28deg);animation-delay:.34s;}
-.pf:nth-child(10){transform:rotate(42deg);animation-delay:.26s;}
-.pf:nth-child(11){transform:rotate(56deg);animation-delay:.18s;}
-.pf:nth-child(12){transform:rotate(70deg);animation-delay:.1s;}
-.pf:nth-child(13){transform:rotate(85deg);}
-
-@keyframes pfGlow{
-  0%,100%{filter:brightness(.75) saturate(.9);}
-  50%{filter:brightness(1.4) saturate(1.3) drop-shadow(0 0 5px rgba(0,210,190,.7));}
+@keyframes featherPulse{
+  0%{opacity:.55;filter:brightness(.75);}
+  50%{opacity:1;filter:brightness(1.4) drop-shadow(0 0 7px rgba(0,210,180,.9));}
+  100%{opacity:.55;filter:brightness(.75);}
 }
 
-/* Feather stem (quill) */
-.pf-stem{
-  width:3px;height:82px;
-  background:linear-gradient(to top,#1a7a1a,#38b438,#00d4b4);
+/* Feather stem */
+.pk-stem{
+  width:2.5px;height:80px;
+  background:linear-gradient(to top,#1a7a1a,#3ab43a,#00d4b0,rgba(0,212,176,.3));
   border-radius:2px;
   position:relative;
+  margin:0 auto;
 }
 
-/* Feather eye at tip */
-.pf-eye{
-  position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+/* Feather barbs on sides */
+.pk-barbs{
+  position:absolute;top:10px;left:50%;transform:translateX(-50%);
+  width:0;height:0;
+}
+.pk-barb{
+  position:absolute;top:0;left:0;
+  width:1.5px;
+  background:linear-gradient(to top,rgba(58,180,58,.5),rgba(0,212,176,.3));
+  border-radius:1px;
+  transform-origin:bottom center;
+}
+.pk-barb:nth-child(1){height:16px;transform:translateX(-50%) rotate(-32deg) translateY(18px);}
+.pk-barb:nth-child(2){height:20px;transform:translateX(-50%) rotate(-20deg) translateY(10px);}
+.pk-barb:nth-child(3){height:22px;transform:translateX(-50%) rotate(-8deg)  translateY(5px);}
+.pk-barb:nth-child(4){height:22px;transform:translateX(-50%) rotate( 8deg)  translateY(5px);}
+.pk-barb:nth-child(5){height:20px;transform:translateX(-50%) rotate( 20deg) translateY(10px);}
+.pk-barb:nth-child(6){height:16px;transform:translateX(-50%) rotate( 32deg) translateY(18px);}
+
+/* Feather eye (the iridescent circle at tip) */
+.pk-eye{
+  position:absolute;top:-14px;left:50%;transform:translateX(-50%);
   width:20px;height:20px;border-radius:50%;
-  background:radial-gradient(circle,#e8f820 0%,#00c8e8 25%,#0048b0 50%,#004820 70%,#00a020 100%);
-  border:1px solid rgba(0,220,200,.5);
-  box-shadow:0 0 6px rgba(0,210,210,.6),0 0 14px rgba(0,180,180,.3);
+  background:radial-gradient(circle,
+    #ffffff 0%,
+    #00e0d0 18%,
+    #0070c0 32%,
+    #003090 48%,
+    #00b060 64%,
+    #207020 82%,
+    #104010 100%
+  );
+  border:1px solid rgba(0,220,200,.7);
+  box-shadow:0 0 6px rgba(0,200,180,.6);
 }
 
-/* Feather barbs (left & right fronds) */
-.pf-barbs{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:28px;height:66px;}
-.pf-barb{
-  position:absolute;
-  left:50%;width:1px;height:22px;
-  background:linear-gradient(to top,rgba(56,180,56,.65),rgba(0,210,180,.4));
-  border-radius:1px;transform-origin:bottom center;
-}
-.pf-barb:nth-child(1){transform:translateX(-50%) rotate(-38deg) translateY(-4px);}
-.pf-barb:nth-child(2){transform:translateX(-50%) rotate(-24deg) translateY(-2px);}
-.pf-barb:nth-child(3){transform:translateX(-50%) rotate(-10deg) translateY(-1px);}
-.pf-barb:nth-child(4){transform:translateX(-50%) rotate(10deg) translateY(-1px);}
-.pf-barb:nth-child(5){transform:translateX(-50%) rotate(24deg) translateY(-2px);}
-.pf-barb:nth-child(6){transform:translateX(-50%) rotate(38deg) translateY(-4px);}
-
-/* Peacock bird body — floats in center */
+/* Peacock bird — sits in front of feathers */
 .pk-bird{
-  position:absolute;
-  bottom:16px;left:50%;transform:translateX(-50%);
-  font-size:68px;line-height:1;
-  z-index:4;
-  animation:pkFloat 4s ease-in-out infinite;
-  filter:drop-shadow(0 0 18px rgba(212,160,23,.65)) drop-shadow(0 0 36px rgba(0,200,180,.35));
+  position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
+  font-size:70px;z-index:5;
+  animation:pkBirdFloat 4s ease-in-out infinite;
+  filter:drop-shadow(0 0 20px rgba(212,160,23,.7)) drop-shadow(0 0 40px rgba(0,200,180,.4));
 }
-@keyframes pkFloat{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-8px);}}
+@keyframes pkBirdFloat{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-8px);}}
 
-/* =========================================================
-   DIYA LAMP — pure CSS, realistic flame
-   Position: Between peacock and OM
-========================================================= */
+/* ============================================================
+   DIYA LAMP — Pure CSS realistic flame, below peacock
+============================================================ */
 .diya-section{
-  display:flex;align-items:center;justify-content:center;
-  gap:18px;padding:4px 28px 8px;
+  display:flex;align-items:center;justify-content:center;gap:0;
+  padding:4px 30px 10px;
 }
-.diya-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(212,160,23,.38),transparent);}
+.diya-line-left{
+  flex:1;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(212,160,23,.4),rgba(212,160,23,.15));
+}
+.diya-line-right{
+  flex:1;height:1px;
+  background:linear-gradient(90deg,rgba(212,160,23,.15),rgba(212,160,23,.4),transparent);
+}
 
-.diya-wrap{
-  position:relative;width:72px;height:80px;
+.diya-lamp{
+  position:relative;width:72px;height:76px;flex-shrink:0;
   display:flex;align-items:flex-end;justify-content:center;
-  flex-shrink:0;
-  animation:diyaFl 3.2s ease-in-out infinite;
+  animation:diyaFloat 3s ease-in-out infinite;
 }
-@keyframes diyaFl{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+@keyframes diyaFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
 
-/* Diya clay bowl */
+/* The clay bowl */
 .diya-bowl{
   position:absolute;bottom:0;left:50%;transform:translateX(-50%);
-  width:52px;height:16px;
-  background:linear-gradient(180deg,#c0681a,#8c4010,#6a2c08);
-  border-radius:0 0 30px 30px;
-  box-shadow:0 4px 12px rgba(0,0,0,.4),inset 0 2px 4px rgba(255,140,50,.25);
+  width:52px;height:20px;
+  background:linear-gradient(180deg,#d07820 0%,#a05818 40%,#784010 100%);
+  border-radius:0 0 30px 30px / 0 0 20px 20px;
+  box-shadow:0 6px 14px rgba(0,0,0,.45),inset 0 2px 5px rgba(255,180,80,.3);
 }
-/* Bowl rim */
+/* Bowl lip */
 .diya-bowl::before{
   content:'';position:absolute;top:-5px;left:50%;transform:translateX(-50%);
-  width:54px;height:11px;
-  background:linear-gradient(180deg,#d47018,#b05015);
+  width:52px;height:12px;
+  background:linear-gradient(180deg,#e89030 0%,#c06820 100%);
   border-radius:50% 50% 0 0;
 }
-/* Bowl spout (diya nose) */
+/* Spout of diya */
 .diya-bowl::after{
-  content:'';position:absolute;top:-7px;right:-4px;
-  width:12px;height:10px;
-  background:linear-gradient(135deg,#c87020,#9a4012);
-  border-radius:0 4px 4px 0;
-  clip-path:polygon(0 20%,100% 0%,100% 100%,0 80%);
+  content:'';position:absolute;top:-10px;right:-8px;
+  width:18px;height:12px;
+  background:linear-gradient(135deg,#d07820,#a05818);
+  border-radius:0 8px 8px 0;
+  transform:rotate(-15deg);
 }
+
 /* Wick */
 .diya-wick{
-  position:absolute;bottom:11px;left:50%;transform:translateX(-50%);
-  width:3px;height:11px;
-  background:linear-gradient(to top,#4a2800,#7a4818);
+  position:absolute;bottom:18px;left:50%;transform:translateX(-50%);
+  width:4px;height:12px;
+  background:linear-gradient(to top,#4a2800,#8a5010,#b07020);
   border-radius:2px 2px 0 0;
+  z-index:2;
 }
+
+/* === REALISTIC FLAME === */
+.diya-flame-wrap{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  width:28px;height:46px;z-index:3;
+  filter:
+    drop-shadow(0 0 10px rgba(255,160,0,1))
+    drop-shadow(0 0 22px rgba(255,80,0,.8))
+    drop-shadow(0 0 40px rgba(255,200,0,.5));
+}
+/* Outer flame — orange */
+.flame-outer{
+  position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:26px;height:42px;
+  background:linear-gradient(to top,#ff4400 0%,#ff8800 30%,#ffcc00 65%,rgba(255,240,100,.2) 100%);
+  border-radius:50% 50% 30% 30% / 60% 60% 30% 30%;
+  transform-origin:50% 100%;
+  animation:fl-outer .8s ease-in-out infinite alternate;
+}
+@keyframes fl-outer{
+  from{transform:translateX(-50%) scaleX(1)   scaleY(1)   rotate(-2deg);}
+  to  {transform:translateX(-50%) scaleX(.82)  scaleY(1.08) rotate(2deg);}
+}
+/* Middle flame — yellow */
+.flame-mid{
+  position:absolute;bottom:2px;left:50%;transform:translateX(-50%);
+  width:16px;height:28px;
+  background:linear-gradient(to top,#ffcc00 0%,#ffee60 50%,rgba(255,255,200,.4) 100%);
+  border-radius:50% 50% 30% 30% / 60% 60% 30% 30%;
+  transform-origin:50% 100%;
+  animation:fl-mid .7s ease-in-out infinite alternate;
+}
+@keyframes fl-mid{
+  from{transform:translateX(-50%) scaleX(1)   scaleY(1)   rotate(1deg);}
+  to  {transform:translateX(-50%) scaleX(.78)  scaleY(1.12) rotate(-1.5deg);}
+}
+/* Core — white hot */
+.flame-core{
+  position:absolute;bottom:3px;left:50%;transform:translateX(-50%);
+  width:8px;height:16px;
+  background:linear-gradient(to top,#ffffff 0%,rgba(255,255,240,.7) 80%,transparent 100%);
+  border-radius:50% 50% 30% 30% / 60% 60% 30% 30%;
+  animation:fl-core .5s ease-in-out infinite alternate;
+}
+@keyframes fl-core{
+  from{transform:translateX(-50%) scaleY(1);}
+  to  {transform:translateX(-50%) scaleY(1.18);}
+}
+/* Flame glow halo */
+.flame-halo{
+  position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);
+  width:42px;height:42px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,160,0,.4) 0%,rgba(255,80,0,.2) 45%,transparent 70%);
+  animation:haloP 1.1s ease-in-out infinite;
+}
+@keyframes haloP{0%,100%{transform:translateX(-50%) scale(1);}50%{transform:translateX(-50%) scale(1.35);}}
+
 /* Floor glow */
 .diya-glow{
-  position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);
-  width:56px;height:8px;
-  background:radial-gradient(ellipse,rgba(255,130,0,.5) 0%,transparent 70%);
-  border-radius:50%;animation:fgP .9s ease-in-out infinite alternate;
+  position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);
+  width:64px;height:10px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(255,140,0,.55) 0%,transparent 70%);
+  animation:gFloor .9s ease-in-out infinite alternate;
 }
-@keyframes fgP{0%{opacity:.45;}100%{opacity:1;}}
+@keyframes gFloor{from{opacity:.5;}to{opacity:1;}}
 
-/* FLAME — layered realistic */
-.flame-wrap{
-  position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
-  width:22px;height:42px;
-}
-/* Outer flame */
-.fl-o{
-  position:absolute;bottom:0;left:50%;transform:translateX(-50%);
-  width:22px;height:40px;
-  background:linear-gradient(to top,#ff4800 0%,#ff8c00 40%,#ffc800 72%,rgba(255,240,100,.25) 100%);
-  border-radius:50% 50% 22% 22% / 60% 60% 22% 22%;
-  animation:flO .75s ease-in-out infinite alternate;
-  transform-origin:bottom center;
-  filter:drop-shadow(0 0 10px rgba(255,140,0,.9)) drop-shadow(0 0 22px rgba(255,80,0,.6));
-}
-@keyframes flO{0%{transform:translateX(-50%) scaleX(1) scaleY(1) rotate(-2deg);}100%{transform:translateX(-50%) scaleX(.82) scaleY(1.1) rotate(2.5deg);}}
-/* Inner flame */
-.fl-i{
-  position:absolute;bottom:2px;left:50%;transform:translateX(-50%);
-  width:12px;height:26px;
-  background:linear-gradient(to top,#fff8e0 0%,#ffee88 55%,rgba(255,240,120,.4) 100%);
-  border-radius:50% 50% 20% 20% / 60% 60% 20% 20%;
-  animation:flI .65s ease-in-out infinite alternate;
-  transform-origin:bottom center;
-}
-@keyframes flI{0%{transform:translateX(-50%) scaleX(1) scaleY(1) rotate(1.5deg);}100%{transform:translateX(-50%) scaleX(.78) scaleY(1.12) rotate(-1.5deg);}}
-/* Core */
-.fl-c{
-  position:absolute;bottom:2px;left:50%;transform:translateX(-50%);
-  width:6px;height:13px;
-  background:rgba(255,255,255,.96);
-  border-radius:50% 50% 20% 20% / 60% 60% 20% 20%;
-  animation:flC .5s ease-in-out infinite alternate;
-}
-@keyframes flC{0%{transform:translateX(-50%) scaleY(1);}100%{transform:translateX(-50%) scaleY(1.18);}}
-
-/* =========================================================
+/* ============================================================
    CARD CONTENT
-========================================================= */
-.lcont{padding:4px 32px 0;}
+============================================================ */
+.card-inner{padding:0 34px;}
+.login-om{font-family:'Cinzel',serif;font-size:46px;background:linear-gradient(135deg,#FF8C42,#F0C040,#FF6B1A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:6px;animation:omG 3s ease-in-out infinite;filter:drop-shadow(0 0 20px rgba(255,107,26,.5));}
+.login-title{font-family:'Cinzel',serif;font-size:26px;font-weight:600;color:#F5E6CC;letter-spacing:2px;margin-bottom:3px;}
+.login-sub{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(240,192,64,.8);margin-bottom:3px;}
+.login-tag{font-size:9px;color:rgba(255,248,238,.32);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;}
 
-.l-om{
-  font-family:'Cinzel',serif;font-size:44px;
-  background:linear-gradient(135deg,#FF8C42,#F0C040,#FF6B1A);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  line-height:1;margin-bottom:7px;
-  animation:omG 3s ease-in-out infinite;
-}
-.l-title{font-family:'Cinzel',serif;font-size:25px;font-weight:600;color:#F5E6CC;letter-spacing:2px;margin-bottom:3px;}
-.l-sub{font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(240,192,64,.8);margin-bottom:3px;}
-.l-tag{font-size:9px;color:rgba(255,248,238,.32);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;}
-
-/* Module selector */
 .mod-sel{display:flex;gap:10px;margin-bottom:16px;}
 .mod-opt{flex:1;padding:11px 7px;border-radius:14px;border:1px solid rgba(212,160,23,.2);background:transparent;cursor:pointer;text-align:center;transition:all .3s;}
 .mod-opt.on{border-color:var(--saffron);background:rgba(255,107,26,.1);}
-.mod-i{font-size:20px;margin-bottom:3px;}
-.mod-nm{font-family:'Cinzel',serif;font-size:10px;color:#F5E6CC;font-weight:600;letter-spacing:.5px;}
-.mod-s{font-size:8px;color:rgba(255,248,238,.4);margin-top:1px;}
+.mod-opt-i{font-size:21px;margin-bottom:3px;}
+.mod-opt-n{font-family:'Cinzel',serif;font-size:10px;color:#F5E6CC;font-weight:600;letter-spacing:.5px;}
+.mod-opt-s{font-size:8px;color:rgba(255,248,238,.4);margin-top:1px;}
 
-/* Lotus divider */
-.ldiv{display:flex;align-items:center;gap:10px;margin:12px 0 14px;}
-.ldiv-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(212,160,23,.32),transparent);}
-.ldiv-lotus{font-size:16px;animation:lotR 7s linear infinite;}
-@keyframes lotR{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.lotus-div{display:flex;align-items:center;gap:10px;margin:13px 0;}
+.lotus-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(212,160,23,.35),transparent);}
+.lotus-ico{font-size:17px;animation:lotusS 6s linear infinite;}
+@keyframes lotusS{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
 
-.l-verse{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:rgba(245,230,204,.5);line-height:1.8;margin-bottom:16px;}
+.login-verse{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:rgba(245,230,204,.5);line-height:1.8;margin-bottom:17px;}
 
-.btn-google{
-  width:100%;display:flex;align-items:center;justify-content:center;gap:11px;
-  padding:14px 20px;
-  background:linear-gradient(135deg,rgba(255,107,26,.9),rgba(212,160,23,.88));
-  border:1px solid rgba(240,192,64,.32);border-radius:14px;
-  color:#fff;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;
-  cursor:pointer;transition:all .3s;box-shadow:0 4px 22px rgba(255,107,26,.3);
-  position:relative;overflow:hidden;
-}
+.btn-google{width:100%;display:flex;align-items:center;justify-content:center;gap:11px;padding:15px 20px;background:linear-gradient(135deg,rgba(255,107,26,.9),rgba(212,160,23,.9));border:1px solid rgba(240,192,64,.35);border-radius:14px;color:#fff;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .3s;box-shadow:0 4px 22px rgba(255,107,26,.32);position:relative;overflow:hidden;letter-spacing:.3px;}
 .btn-google::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);transition:left .4s;}
 .btn-google:hover::after{left:100%;}
-.btn-google:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,107,26,.45);}
+.btn-google:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,107,26,.48);}
 .g-ico{width:20px;height:20px;background:white;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .g-ico svg{width:13px;height:13px;}
-.l-note{margin-top:12px;font-size:10px;color:rgba(255,248,238,.26);line-height:1.6;}
+.login-note{margin-top:11px;font-size:10px;color:rgba(255,248,238,.27);line-height:1.5;}
 
-/* Bottom decorative dots */
-.ldots{display:flex;align-items:center;justify-content:center;gap:5px;margin-top:14px;padding-bottom:2px;}
-.ldot{width:4px;height:4px;border-radius:50%;background:rgba(212,160,23,.35);}
-.ldot.lg{width:7px;height:7px;background:rgba(212,160,23,.65);}
+.card-dots{display:flex;align-items:center;justify-content:center;gap:5px;margin-top:14px;}
+.cd{width:4px;height:4px;border-radius:50%;background:rgba(212,160,23,.38);}
+.cd.big{width:7px;height:7px;background:rgba(212,160,23,.65);}
 
-/* =========================================================
+/* ============================================================
    APP SHELL
-========================================================= */
+============================================================ */
 #app{display:none;min-height:100vh;}
 
-/* TOP NAV */
 .tnav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:13px 18px;background:rgba(255,248,238,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(212,160,23,.13);transition:all .4s;}
 .tnav.corp{background:rgba(10,22,40,.92);border-bottom-color:rgba(30,136,229,.16);}
 [data-theme="dark"] .tnav{background:rgba(26,16,8,.88);}
-.nav-brand{display:flex;align-items:center;gap:7px;}
-/* Tiny inline diya in nav */
-.nav-diya{position:relative;width:22px;height:26px;flex-shrink:0;}
-.nav-diya-bowl{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:18px;height:6px;background:linear-gradient(180deg,#c0681a,#6a2c08);border-radius:0 0 12px 12px;}
-.nav-diya-flame{position:absolute;bottom:5px;left:50%;transform:translateX(-50%);width:8px;height:12px;background:linear-gradient(to top,#ff4800,#ffaa00,rgba(255,240,100,.5));border-radius:50% 50% 20% 20%/60% 60% 20% 20%;animation:flO .75s ease-in-out infinite alternate;filter:drop-shadow(0 0 4px rgba(255,140,0,.8));}
-.nav-logo{font-family:'Cinzel',serif;font-size:16px;font-weight:600;background:linear-gradient(135deg,var(--saffron),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:1px;}
+
+/* Tiny diya in nav */
+.nav-diya{position:relative;width:26px;height:26px;flex-shrink:0;}
+.nav-bowl{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:20px;height:7px;background:linear-gradient(180deg,#c8701a,#7a3808);border-radius:0 0 12px 12px;}
+.nav-flame{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);width:9px;height:14px;background:linear-gradient(to top,#ff5500,#ffaa00,rgba(255,220,80,.6));border-radius:50% 50% 20% 20%/60% 60% 20% 20%;animation:fl-outer .8s ease-in-out infinite alternate;filter:drop-shadow(0 0 4px rgba(255,140,0,.9));}
+
+.nav-brand{display:flex;align-items:center;gap:6px;}
+.nav-logo{font-family:'Cinzel',serif;font-size:17px;font-weight:600;background:linear-gradient(135deg,var(--saffron),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:1px;}
 .nav-logo.corp-l{background:linear-gradient(135deg,#64B5F6,#C9A227);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .nav-right{display:flex;align-items:center;gap:8px;}
+
 .mod-sw{display:flex;background:rgba(0,0,0,.06);border-radius:20px;padding:3px;gap:2px;}
 .msb{padding:4px 10px;border-radius:16px;border:none;background:transparent;font-size:10px;font-weight:800;cursor:pointer;transition:all .25s;color:var(--ts);font-family:'Nunito',sans-serif;}
 .msb.on{background:linear-gradient(135deg,var(--saffron),var(--gold));color:white;box-shadow:0 2px 8px rgba(255,107,26,.3);}
 .msb.corp-on{background:linear-gradient(135deg,#1E88E5,#0D47A1);color:white;}
-.nav-btn{width:34px;height:34px;border-radius:50%;border:1px solid rgba(212,160,23,.28);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--td);}
+
+.nav-btn{width:34px;height:34px;border-radius:50%;border:1px solid rgba(212,160,23,.25);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--td);}
 .nav-ava{width:34px;height:34px;border-radius:50%;border:2px solid var(--gold);background:linear-gradient(135deg,var(--saffron),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:13px;color:white;cursor:pointer;font-weight:700;overflow:hidden;}
 .nav-ava img{width:100%;height:100%;object-fit:cover;}
 
-/* BOTTOM NAV */
 .bnav{position:fixed;bottom:0;left:0;right:0;z-index:100;display:flex;background:rgba(255,248,238,.92);backdrop-filter:blur(16px);border-top:1px solid rgba(212,160,23,.12);padding:7px 0 12px;transition:all .4s;}
 .bnav.corp{background:rgba(10,22,40,.96);border-top-color:rgba(30,136,229,.12);}
 [data-theme="dark"] .bnav{background:rgba(26,16,8,.92);}
 .ntab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 8px;cursor:pointer;border:none;background:none;color:var(--ts);transition:all .25s;font-family:'Nunito',sans-serif;}
 .ntab.on{color:var(--saffron);}
 .ntab.corp-on{color:#64B5F6;}
-.ntab-i{font-size:20px;line-height:1;}
-.ntab-l{font-size:10px;font-weight:700;letter-spacing:.4px;}
+.ntab-i{font-size:21px;line-height:1;}
+.ntab-l{font-size:10px;font-weight:700;letter-spacing:.3px;}
 
-.pg{display:none;padding-top:74px;padding-bottom:86px;min-height:100vh;}
+.pg{display:none;padding-top:76px;padding-bottom:88px;min-height:100vh;}
 .pg.on{display:block;}
 
 /* HOME */
 #homePg{background:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(255,107,26,.08) 0%,transparent 60%),var(--cream);}
-.hgreet{padding:14px 18px 0;text-align:center;}
-.gdate{font-size:11px;font-weight:700;letter-spacing:2.5px;color:var(--saffron);text-transform:uppercase;margin-bottom:3px;}
-.gname{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--ts);font-style:italic;}
-.gname strong{color:var(--td);font-style:normal;font-weight:500;}
+.h-greet{padding:15px 18px 0;text-align:center;}
+.g-date{font-size:11px;font-weight:700;letter-spacing:2.5px;color:var(--saffron);text-transform:uppercase;margin-bottom:3px;}
+.g-name{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--ts);font-style:italic;}
+.g-name strong{color:var(--td);font-style:normal;font-weight:500;}
 
 .wbar{display:flex;gap:7px;padding:10px 16px;overflow-x:auto;scrollbar-width:none;}
 .wbar::-webkit-scrollbar{display:none;}
 .wc{flex-shrink:0;padding:9px 12px;border-radius:13px;background:var(--white);border:1px solid rgba(212,160,23,.1);text-align:center;min-width:80px;}
-.wc-i{font-size:18px;margin-bottom:3px;}
+.wc-i{font-size:18px;margin-bottom:2px;}
 .wc-v{font-family:'Cinzel',serif;font-size:14px;color:var(--saffron);font-weight:600;}
 .wc-l{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--ts);}
 
 .sstrip{margin:7px 16px 0;padding:11px 13px;background:var(--white);border:1px solid rgba(212,160,23,.1);border-radius:16px;}
-.sstrip-t{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--saffron);margin-bottom:8px;}
-.sstrip-r{display:flex;gap:7px;}
-.ssi{flex:1;text-align:center;padding:8px 4px;border-radius:11px;border:1px solid rgba(212,160,23,.1);cursor:pointer;transition:all .2s;font-family:'Nunito',sans-serif;}
-.ssi.on{border-color:var(--saffron);background:rgba(255,107,26,.06);}
-.ssi-i{font-size:16px;margin-bottom:2px;}
-.ssi-t{font-size:9px;font-weight:800;color:var(--saffron);}
-.ssi-l{font-size:8px;color:var(--ts);margin-top:1px;}
+.ss-t{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--saffron);margin-bottom:8px;}
+.ss-row{display:flex;gap:7px;}
+.ss-i{flex:1;text-align:center;padding:8px 4px;border-radius:10px;border:1px solid rgba(212,160,23,.1);cursor:pointer;transition:all .2s;font-family:'Nunito',sans-serif;}
+.ss-i.on{border-color:var(--saffron);background:rgba(255,107,26,.06);}
+.ss-ico{font-size:16px;margin-bottom:2px;}
+.ss-time{font-size:9px;font-weight:800;color:var(--saffron);}
+.ss-lbl{font-size:8px;color:var(--ts);margin-top:1px;}
 
 .catrow{display:flex;gap:7px;padding:9px 16px;overflow-x:auto;scrollbar-width:none;}
 .catrow::-webkit-scrollbar{display:none;}
-.catbtn{flex-shrink:0;padding:5px 12px;border-radius:20px;border:1px solid rgba(212,160,23,.18);background:transparent;font-size:11px;font-weight:700;font-family:'Nunito',sans-serif;color:var(--ts);cursor:pointer;transition:all .25s;}
+.catbtn{flex-shrink:0;padding:5px 13px;border-radius:20px;border:1px solid rgba(212,160,23,.18);background:transparent;font-size:11px;font-weight:700;font-family:'Nunito',sans-serif;color:var(--ts);cursor:pointer;transition:all .25s;}
 .catbtn.on{background:linear-gradient(135deg,var(--saffron),var(--gold));color:white;border-color:transparent;box-shadow:0 3px 12px rgba(255,107,26,.28);}
 
 /* KRISHNA CARD */
 .qwrap{padding:7px 16px 10px;animation:slideUp .6s cubic-bezier(.16,1,.3,1) both;}
 @keyframes slideUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+
 .qcard{border-radius:26px;overflow:hidden;box-shadow:0 20px 56px rgba(0,0,0,.1),0 0 0 1px rgba(212,160,23,.13);background:var(--white);}
-.qvisual{position:relative;height:268px;overflow:hidden;display:flex;align-items:center;justify-content:center;transition:background .7s;}
-.qv-rays{position:absolute;inset:0;background:conic-gradient(from 0deg at 50% 50%,transparent 0deg,rgba(212,160,23,.04) 18deg,transparent 36deg,rgba(255,107,26,.04) 88deg,transparent 118deg,rgba(212,160,23,.03) 174deg,transparent 200deg,rgba(255,107,26,.03) 258deg,transparent 288deg,transparent 360deg);animation:rR 26s linear infinite;}
+
+.qvisual{position:relative;height:270px;overflow:hidden;display:flex;align-items:center;justify-content:center;transition:background .7s;}
+.qv-rays{position:absolute;inset:0;background:conic-gradient(from 0deg at 50% 50%,transparent 0deg,rgba(212,160,23,.04) 20deg,transparent 40deg,rgba(255,107,26,.04) 88deg,transparent 118deg,rgba(212,160,23,.03) 174deg,transparent 200deg,rgba(255,107,26,.03) 258deg,transparent 288deg,transparent 360deg);animation:rR 26s linear infinite;}
 @keyframes rR{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-.qv-aura{position:absolute;width:190px;height:190px;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:qaP 4s ease-in-out infinite;}
-@keyframes qaP{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.6;}50%{transform:translate(-50%,-50%) scale(1.16);opacity:1;}}
+.qv-aura{position:absolute;width:190px;height:190px;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:qAP 4s ease-in-out infinite;}
+@keyframes qAP{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.6;}50%{transform:translate(-50%,-50%) scale(1.18);opacity:1;}}
 .qv-ring{position:absolute;border-radius:50%;border:1px solid rgba(212,160,23,.1);top:50%;left:50%;animation:rR linear infinite;}
-/* Peacock emoji on card — top right floating */
-.card-pk{position:absolute;top:10px;right:10px;z-index:4;font-size:46px;line-height:1;animation:pkFloat 4s ease-in-out infinite;filter:drop-shadow(0 0 10px rgba(212,160,23,.6));}
-/* Card diya — bottom left */
-.card-diya{position:absolute;bottom:14px;left:14px;z-index:4;}
-.cd-wrap{position:relative;width:42px;height:46px;}
-.cd-flame-wrap{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);filter:drop-shadow(0 0 9px rgba(255,140,0,.9)) drop-shadow(0 0 18px rgba(255,80,0,.55));}
-.cd-fl-o{width:16px;height:24px;background:linear-gradient(to top,#ff4800,#ffaa00,rgba(255,240,100,.3));border-radius:50% 50% 22% 22%/60% 60% 22% 22%;animation:flO .75s ease-in-out infinite alternate;}
-.cd-fl-i{position:absolute;top:4px;left:50%;transform:translateX(-50%);width:8px;height:14px;background:linear-gradient(to top,#fff8e0,rgba(255,240,120,.5));border-radius:50% 50% 20% 20%/60% 60% 20% 20%;animation:flI .65s ease-in-out infinite alternate;}
-.cd-bowl{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:36px;height:12px;background:linear-gradient(180deg,#c0681a,#6a2c08);border-radius:0 0 20px 20px;}
-.cd-bowl::before{content:'';position:absolute;top:-4px;left:50%;transform:translateX(-50%);width:36px;height:8px;background:linear-gradient(180deg,#d47018,#a84f10);border-radius:50% 50% 0 0;}
-/* Krishna image */
-.k-img{position:absolute;bottom:0;left:50%;transform:translateX(-50%);height:94%;width:auto;max-width:100%;object-fit:contain;object-position:bottom;z-index:2;animation:kF 5s ease-in-out infinite;filter:drop-shadow(0 0 28px rgba(212,160,23,.42));transition:opacity .5s;}
-@keyframes kF{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-9px);}}
+
+/* Peacock on card — top right corner, floating */
+.card-pk{position:absolute;top:10px;right:10px;z-index:5;font-size:52px;animation:pkBirdFloat 4s ease-in-out infinite;filter:drop-shadow(0 0 12px rgba(212,160,23,.65));}
+
+/* CSS Diya on card — bottom left, glowing */
+.card-diya{position:absolute;bottom:14px;left:14px;z-index:5;}
+.card-diya-inner{position:relative;width:46px;height:52px;display:flex;align-items:flex-end;justify-content:center;}
+.card-diya-bowl{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:38px;height:14px;background:linear-gradient(180deg,#c8701a,#7a3808);border-radius:0 0 20px 20px;box-shadow:0 4px 10px rgba(0,0,0,.35);}
+.card-diya-bowl::before{content:'';position:absolute;top:-4px;left:50%;transform:translateX(-50%);width:38px;height:9px;background:linear-gradient(180deg,#e08020,#c05010);border-radius:50% 50% 0 0;}
+.card-flame-wrap{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);filter:drop-shadow(0 0 8px rgba(255,140,0,.9)) drop-shadow(0 0 18px rgba(255,80,0,.6));}
+.c-fl-o{width:18px;height:28px;background:linear-gradient(to top,#ff5500,#ffaa00,rgba(255,220,80,.4));border-radius:50% 50% 20% 20%/60% 60% 20% 20%;animation:fl-outer .8s ease-in-out infinite alternate;}
+.c-fl-i{position:absolute;top:4px;left:50%;transform:translateX(-50%);width:9px;height:16px;background:linear-gradient(to top,#fff,rgba(255,240,100,.6));border-radius:50% 50% 20% 20%/60% 60% 20% 20%;animation:fl-mid .7s ease-in-out infinite alternate;}
+
+.k-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:2;animation:kFloat 5s ease-in-out infinite;filter:brightness(1.05) saturate(1.1);transition:opacity .5s ease;}
+@keyframes kFloat{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-9px);}}
 .k-img.en{animation:kEn .65s cubic-bezier(.16,1,.3,1) both;}
 @keyframes kEn{from{opacity:0;transform:translateX(-50%) translateY(20px) scale(.95);}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1);}}
-.qvisual::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to bottom,transparent,rgba(13,34,68,.95));z-index:2;}
-.qcat-badge{position:absolute;top:12px;left:12px;padding:4px 11px;border-radius:18px;background:rgba(255,107,26,.22);border:1px solid rgba(255,107,26,.3);font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,140,66,.95);z-index:3;}
-.qscene{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-family:'Cormorant Garamond',serif;font-size:10px;font-style:italic;color:rgba(255,248,238,.32);z-index:3;letter-spacing:1px;}
+
+.qvisual::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.1) 0%,transparent 35%,rgba(13,34,68,.65) 72%,rgba(13,34,68,.95) 100%);z-index:3;pointer-events:none;}
+.qcat-badge{position:absolute;top:12px;left:12px;padding:4px 11px;border-radius:18px;background:rgba(255,107,26,.22);border:1px solid rgba(255,107,26,.32);font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,140,66,.95);z-index:5;}
+.qscene{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-family:'Cormorant Garamond',serif;font-size:10px;font-style:italic;color:rgba(255,248,238,.55);z-index:5;letter-spacing:1px;}
 
 .qbody{padding:18px 20px 20px;}
 .qq-wrap{position:relative;padding-left:16px;margin-bottom:12px;}
-.qq-wrap::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:54px;color:rgba(212,160,23,.2);position:absolute;left:-8px;top:-14px;line-height:1;}
+.qq-wrap::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:52px;color:rgba(212,160,23,.2);position:absolute;left:-8px;top:-13px;line-height:1;}
 .qq-txt{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:500;line-height:1.62;color:var(--td);transition:opacity .4s,transform .4s;}
 .qq-txt.ch{opacity:0;transform:translateY(8px);}
 .qq-src{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--saffron);font-weight:700;margin-top:5px;}
-.smbox{margin-top:12px;padding:12px 14px;background:linear-gradient(135deg,rgba(255,248,238,.8),rgba(245,230,204,.5));border:1px solid rgba(212,160,23,.18);border-radius:13px;}
+
+.smbox{margin-top:12px;padding:12px 14px;background:linear-gradient(135deg,rgba(255,248,238,.8),rgba(245,230,204,.5));border:1px solid rgba(212,160,23,.17);border-radius:13px;}
 [data-theme="dark"] .smbox{background:linear-gradient(135deg,rgba(42,26,10,.8),rgba(38,21,8,.6));}
 .sm-l{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
 .sm-t{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--tm);line-height:1.68;}
+
 .kmsg{margin-top:10px;padding:10px 13px;background:rgba(26,58,107,.05);border-left:3px solid var(--teal);border-radius:0 11px 11px 0;}
 .km-l{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:3px;}
 .km-t{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--tm);line-height:1.65;}
-.qdiv{height:1px;background:linear-gradient(90deg,transparent,rgba(212,160,23,.15),transparent);margin:13px 0;}
+
+.qdiv{height:1px;background:linear-gradient(90deg,transparent,rgba(212,160,23,.14),transparent);margin:13px 0;}
 .qactions{display:flex;gap:6px;flex-wrap:wrap;}
-.qbtn{flex:1;min-width:68px;display:flex;align-items:center;justify-content:center;gap:5px;padding:10px 7px;border-radius:12px;border:1px solid rgba(212,160,23,.18);background:transparent;cursor:pointer;font-size:11px;font-weight:700;font-family:'Nunito',sans-serif;color:var(--tm);transition:all .2s;}
+.qbtn{flex:1;min-width:68px;display:flex;align-items:center;justify-content:center;gap:5px;padding:10px 7px;border-radius:12px;border:1px solid rgba(212,160,23,.17);background:transparent;cursor:pointer;font-size:11px;font-weight:700;font-family:'Nunito',sans-serif;color:var(--tm);transition:all .2s;}
 .qbtn:hover{background:rgba(212,160,23,.08);border-color:var(--gold);color:var(--gold);}
 .qbtn.fav-on{background:rgba(139,26,26,.07);border-color:var(--maroon);color:var(--maroon);}
 .qbtn.wa{background:rgba(37,211,102,.06);border-color:#25D366;color:#25D366;}
+
 .next-btn{width:calc(100% - 32px);display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;margin:12px 16px 0;border-radius:17px;border:none;background:linear-gradient(135deg,#1A3A6B,#003344);color:#F5E6CC;font-family:'Cinzel',serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .3s;box-shadow:0 7px 22px rgba(26,58,107,.22);letter-spacing:.5px;position:relative;overflow:hidden;}
 .next-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.07),transparent);transition:left .4s;}
 .next-btn:hover::before{left:100%;}
 .next-btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(26,58,107,.3);}
-.nbanner{margin:8px 16px 0;padding:10px 13px;background:rgba(26,58,107,.07);border:1px solid rgba(0,168,157,.17);border-radius:14px;display:flex;align-items:center;gap:9px;}
+
+.nbanner{margin:8px 16px 0;padding:11px 13px;background:rgba(26,58,107,.07);border:1px solid rgba(0,168,157,.17);border-radius:14px;display:flex;align-items:center;gap:9px;}
 .nb-t{font-size:11px;color:var(--tm);flex:1;}
 .nb-t strong{color:var(--teal);display:block;font-size:9px;letter-spacing:1px;text-transform:uppercase;margin-bottom:2px;}
 .nb-btn{padding:6px 12px;border-radius:9px;border:none;background:linear-gradient(135deg,var(--teal),#006B8A);color:white;font-size:11px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;}
 .nb-x{background:none;border:none;cursor:pointer;color:var(--ts);font-size:14px;flex-shrink:0;}
 
-/* CORPORATE */
-#corpPg{display:none;padding-top:74px;padding-bottom:86px;min-height:100vh;background:linear-gradient(180deg,#0A1628 0%,#0D1F3C 40%,#0A1628 100%);}
+/* CORP */
+#corpPg{display:none;padding-top:76px;padding-bottom:88px;min-height:100vh;background:linear-gradient(180deg,#0A1628 0%,#0D1F3C 40%,#0A1628 100%);}
 .corp-hdr{padding:13px 16px 0;text-align:center;}
-.corp-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 13px;border-radius:18px;background:rgba(30,136,229,.1);border:1px solid rgba(30,136,229,.22);font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#64B5F6;margin-bottom:6px;}
+.corp-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 13px;border-radius:18px;background:rgba(30,136,229,.1);border:1px solid rgba(30,136,229,.22);font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#64B5F6;margin-bottom:7px;}
 .corp-date{font-size:10px;font-weight:700;letter-spacing:2px;color:#1E88E5;text-transform:uppercase;margin-bottom:2px;}
 .corp-greet{font-family:'Cormorant Garamond',serif;font-size:14px;color:rgba(144,202,249,.6);font-style:italic;}
 .corp-greet span{color:#E3F2FD;font-style:normal;font-weight:500;}
 .cwbar{display:flex;gap:7px;padding:10px 16px;overflow-x:auto;scrollbar-width:none;}
 .cwbar::-webkit-scrollbar{display:none;}
 .cwc{flex-shrink:0;padding:9px 12px;border-radius:13px;background:rgba(30,136,229,.07);border:1px solid rgba(30,136,229,.12);text-align:center;min-width:80px;}
-.cwc-i{font-size:17px;margin-bottom:3px;}
+.cwc-i{font-size:17px;margin-bottom:2px;}
 .cwc-v{font-family:'Cinzel',serif;font-size:14px;color:#1E88E5;font-weight:600;}
 .cwc-l{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(144,202,249,.38);}
 .csched{margin:7px 16px 0;padding:11px 13px;background:rgba(30,136,229,.04);border:1px solid rgba(30,136,229,.1);border-radius:16px;}
 .cst{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#64B5F6;margin-bottom:8px;}
-.csi-r{display:flex;gap:7px;}
+.csi-row{display:flex;gap:7px;}
 .csi{flex:1;text-align:center;padding:8px 4px;border-radius:10px;border:1px solid rgba(30,136,229,.1);cursor:pointer;transition:all .2s;font-family:'Nunito',sans-serif;}
 .csi.on{border-color:#1E88E5;background:rgba(30,136,229,.1);}
 .csi-i{font-size:15px;margin-bottom:2px;}
@@ -454,26 +480,26 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--td);min
 .ccat.on{background:linear-gradient(135deg,#1E88E5,#0D47A1);color:white;border-color:transparent;box-shadow:0 3px 12px rgba(30,136,229,.38);}
 .cc-wrap{padding:7px 16px 10px;}
 .ccard{border-radius:26px;overflow:hidden;box-shadow:0 20px 56px rgba(0,0,0,.5),0 0 0 1px rgba(30,136,229,.13);background:rgba(5,12,30,.88);}
-.cvisual{position:relative;height:250px;overflow:hidden;background:linear-gradient(135deg,#050c1e,#0a1a3a,#0d2260);display:flex;align-items:center;justify-content:center;}
+.cvisual{position:relative;height:252px;overflow:hidden;background:linear-gradient(135deg,#050c1e,#0a1a3a,#0d2260);display:flex;align-items:center;justify-content:center;}
 .cv-rays{position:absolute;inset:0;background:conic-gradient(from 0deg at 50% 50%,transparent 0deg,rgba(30,136,229,.04) 25deg,transparent 50deg,rgba(201,162,39,.03) 100deg,transparent 130deg,rgba(30,136,229,.03) 190deg,transparent 215deg,rgba(201,162,39,.03) 280deg,transparent 310deg,transparent 360deg);animation:rR 22s linear infinite;}
-.cv-aura{position:absolute;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(30,136,229,.18) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);animation:qaP 4s ease-in-out infinite;}
-.cv-pk{position:absolute;top:10px;right:10px;z-index:4;font-size:42px;line-height:1;animation:pkFloat 4s ease-in-out infinite;filter:drop-shadow(0 0 8px rgba(30,136,229,.6));}
+.cv-aura{position:absolute;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(30,136,229,.18) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);animation:qAP 4s ease-in-out infinite;}
+.cv-pk{position:absolute;top:10px;right:10px;z-index:4;font-size:48px;animation:pkBirdFloat 4s ease-in-out infinite;filter:drop-shadow(0 0 10px rgba(30,136,229,.65));}
 .cv-diya{position:absolute;bottom:14px;left:14px;z-index:4;}
-.ck-img{position:absolute;bottom:0;left:50%;transform:translateX(-50%);height:90%;width:auto;max-width:100%;object-fit:contain;object-position:bottom;z-index:2;animation:kF 5s ease-in-out infinite;filter:drop-shadow(0 0 24px rgba(30,136,229,.42)) saturate(.75) brightness(.88);transition:opacity .5s;}
+.ck-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:2;animation:kFloat 5s ease-in-out infinite;filter:saturate(.75) brightness(.88);transition:opacity .5s ease;}
 .ck-img.en{animation:kEn .65s cubic-bezier(.16,1,.3,1) both;}
 .cvisual::after{content:'';position:absolute;bottom:0;left:0;right:0;height:70px;background:linear-gradient(to bottom,transparent,rgba(5,12,30,.95));z-index:2;}
 .cc-badge{position:absolute;top:11px;left:11px;padding:4px 10px;border-radius:17px;background:rgba(30,136,229,.25);backdrop-filter:blur(8px);border:1px solid rgba(30,136,229,.4);font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#90CAF9;z-index:3;}
 .cc-scene{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-family:'Cormorant Garamond',serif;font-size:10px;font-style:italic;color:rgba(144,202,249,.32);z-index:3;letter-spacing:1px;}
-.cbody{padding:16px 19px 18px;}
+.cbody{padding:17px 19px 19px;}
 .cq-wrap{position:relative;padding-left:15px;margin-bottom:12px;}
 .cq-wrap::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:52px;color:rgba(30,136,229,.18);position:absolute;left:-7px;top:-13px;line-height:1;}
 .cq-txt{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;line-height:1.62;color:#E3F2FD;transition:opacity .4s,transform .4s;}
 .cq-txt.ch{opacity:0;transform:translateY(8px);}
 .cq-src{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#64B5F6;font-weight:700;margin-top:5px;}
-.ci-box{margin-top:11px;padding:11px 13px;background:rgba(30,136,229,.06);border:1px solid rgba(30,136,229,.13);border-radius:12px;}
-.ci-l{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#64B5F6;margin-bottom:4px;}
+.ci-box{margin-top:12px;padding:12px 14px;background:rgba(30,136,229,.06);border:1px solid rgba(30,136,229,.14);border-radius:13px;}
+.ci-l{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#64B5F6;margin-bottom:5px;}
 .ci-t{font-size:13px;color:#B3C9E8;line-height:1.65;}
-.ctags{display:flex;gap:5px;margin-top:6px;flex-wrap:wrap;}
+.ctags{display:flex;gap:5px;margin-top:7px;flex-wrap:wrap;}
 .ctag{padding:3px 9px;border-radius:9px;background:rgba(30,136,229,.1);font-size:10px;font-weight:700;color:#64B5F6;border:1px solid rgba(30,136,229,.2);}
 .gref{margin-top:9px;padding:10px 13px;background:rgba(201,162,39,.05);border-left:2px solid rgba(201,162,39,.5);border-radius:0 11px 11px 0;}
 .gr-l{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#C9A227;margin-bottom:3px;}
@@ -493,7 +519,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--td);min
 .cnext:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(30,136,229,.48);}
 
 /* FAV */
-#favPg{padding:74px 16px 86px;}
+#favPg{padding:76px 16px 88px;}
 .pg-t{font-family:'Cinzel',serif;font-size:20px;font-weight:600;background:linear-gradient(135deg,var(--saffron),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:2px;}
 .pg-s{font-size:13px;color:var(--ts);font-style:italic;font-family:'Cormorant Garamond',serif;margin-bottom:12px;}
 .ftabs{display:flex;gap:8px;margin-bottom:12px;}
@@ -501,7 +527,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--td);min
 .ftab.on{background:linear-gradient(135deg,var(--saffron),var(--gold));color:white;border-color:transparent;}
 .ftab.corp-on{background:linear-gradient(135deg,#1E88E5,#0D47A1);color:white;border-color:transparent;}
 .fempty{text-align:center;padding:48px 16px;}
-.fempty-i{font-size:48px;margin-bottom:12px;opacity:.3;}
+.fempty-i{font-size:48px;margin-bottom:11px;opacity:.3;}
 .fempty-t{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--ts);font-style:italic;}
 .fcard{background:var(--white);border-radius:17px;border:1px solid rgba(212,160,23,.11);padding:13px;margin-bottom:8px;}
 .fcard.cfc{background:rgba(5,12,30,.9);border-color:rgba(30,136,229,.13);}
@@ -515,7 +541,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--td);min
 .fcard.cfc .fit{color:rgba(144,202,249,.5);background:rgba(30,136,229,.05);}
 
 /* PROFILE */
-#profPg{padding:74px 16px 86px;}
+#profPg{padding:76px 16px 88px;}
 .prof-hero{text-align:center;padding:22px 16px;background:linear-gradient(135deg,rgba(26,58,107,.06),rgba(255,107,26,.04));border-radius:22px;margin-bottom:13px;border:1px solid rgba(212,160,23,.09);}
 .prof-ava{width:72px;height:72px;border-radius:50%;border:3px solid var(--gold);background:linear-gradient(135deg,var(--saffron),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:24px;color:white;font-weight:700;margin:0 auto 11px;box-shadow:0 0 0 4px rgba(212,160,23,.1);overflow:hidden;}
 .prof-ava img{width:100%;height:100%;object-fit:cover;}
@@ -542,8 +568,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--td);min
 .logout-btn{width:100%;padding:13px;border-radius:14px;border:1px solid rgba(139,26,26,.2);background:rgba(139,26,26,.05);color:var(--maroon);font-family:'Cinzel',serif;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;letter-spacing:.5px;transition:all .2s;}
 .logout-btn:hover{background:rgba(139,26,26,.1);}
 
-/* TOAST */
-.toast{position:fixed;bottom:92px;left:50%;transform:translateX(-50%) translateY(20px);background:linear-gradient(135deg,#1A3A6B,#003344);color:#F5E6CC;padding:10px 20px;border-radius:26px;font-size:13px;font-weight:700;z-index:10000;opacity:0;transition:all .35s;pointer-events:none;white-space:nowrap;box-shadow:0 8px 28px rgba(0,0,0,.25);border:1px solid rgba(212,160,23,.2);font-family:'Nunito',sans-serif;}
+.toast{position:fixed;bottom:94px;left:50%;transform:translateX(-50%) translateY(20px);background:linear-gradient(135deg,#1A3A6B,#003344);color:#F5E6CC;padding:10px 20px;border-radius:26px;font-size:13px;font-weight:700;z-index:10000;opacity:0;transition:all .35s;pointer-events:none;white-space:nowrap;box-shadow:0 8px 28px rgba(0,0,0,.25);border:1px solid rgba(212,160,23,.2);font-family:'Nunito',sans-serif;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 .toast.ct{border-color:rgba(30,136,229,.28);}
 
@@ -559,85 +584,86 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--td);min
 <!-- LOADING -->
 <div class="lo" id="loadScreen">
   <div class="lo-om">ॐ</div>
-  <div class="lo-sub">Daily Krishna</div>
+  <div class="lo-txt">Daily Krishna</div>
   <div class="lo-bar"><div class="lo-fill"></div></div>
 </div>
 
-<!-- =========================================================
+<!-- ============================================================
      LOGIN PAGE
-========================================================= -->
+============================================================ -->
 <div id="loginPage">
-  <div class="lglow"></div>
-  <div class="lstars" id="lstars"></div>
+  <div class="login-bg"></div>
+  <div class="lg-stars" id="lgStars"></div>
 
-  <div class="lcard">
+  <div class="login-card">
 
-    <!-- ===== PEACOCK — 13 CSS feathers spreading open ===== -->
-    <div class="pk-section">
+    <!-- ===== PEACOCK — Top of card, CSS feathers spreading ===== -->
+    <div class="peacock-section">
       <div class="pk-aura"></div>
-      <div class="pk-feathers">
+      <div class="pk-body">
         <!-- 13 feathers, each with stem + barbs + eye -->
-        <div class="pf"><div class="pf-stem"><div class="pf-barbs"><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div></div></div><div class="pf-eye"></div></div>
-        <div class="pf"><div class="pf-stem"><div class="pf-barbs"><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div></div></div><div class="pf-eye"></div></div>
-        <div class="pf"><div class="pf-stem"><div class="pf-barbs"><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div></div></div><div class="pf-eye"></div></div>
-        <div class="pf"><div class="pf-stem"><div class="pf-barbs"><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div></div></div><div class="pf-eye"></div></div>
-        <div class="pf"><div class="pf-stem"><div class="pf-barbs"><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div></div></div><div class="pf-eye"></div></div>
-        <div class="pf"><div class="pf-stem"><div class="pf-barbs"><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div></div></div><div class="pf-eye"></div></div>
-        <div class="pf"><div class="pf-stem"><div class="pf-barbs"><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div></div></div><div class="pf-eye"></div></div>
-        <div class="pf"><div class="pf-stem"><div class="pf-barbs"><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div></div></div><div class="pf-eye"></div></div>
-        <div class="pf"><div class="pf-stem"><div class="pf-barbs"><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div></div></div><div class="pf-eye"></div></div>
-        <div class="pf"><div class="pf-stem"><div class="pf-barbs"><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div></div></div><div class="pf-eye"></div></div>
-        <div class="pf"><div class="pf-stem"><div class="pf-barbs"><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div></div></div><div class="pf-eye"></div></div>
-        <div class="pf"><div class="pf-stem"><div class="pf-barbs"><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div></div></div><div class="pf-eye"></div></div>
-        <div class="pf"><div class="pf-stem"><div class="pf-barbs"><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div><div class="pf-barb"></div></div></div><div class="pf-eye"></div></div>
+        <div class="pk-feather"><div class="pk-stem"><div class="pk-barbs"><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div></div></div><div class="pk-eye"></div></div>
+        <div class="pk-feather"><div class="pk-stem"><div class="pk-barbs"><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div></div></div><div class="pk-eye"></div></div>
+        <div class="pk-feather"><div class="pk-stem"><div class="pk-barbs"><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div></div></div><div class="pk-eye"></div></div>
+        <div class="pk-feather"><div class="pk-stem"><div class="pk-barbs"><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div></div></div><div class="pk-eye"></div></div>
+        <div class="pk-feather"><div class="pk-stem"><div class="pk-barbs"><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div></div></div><div class="pk-eye"></div></div>
+        <div class="pk-feather"><div class="pk-stem"><div class="pk-barbs"><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div></div></div><div class="pk-eye"></div></div>
+        <div class="pk-feather"><div class="pk-stem"><div class="pk-barbs"><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div></div></div><div class="pk-eye"></div></div>
+        <div class="pk-feather"><div class="pk-stem"><div class="pk-barbs"><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div></div></div><div class="pk-eye"></div></div>
+        <div class="pk-feather"><div class="pk-stem"><div class="pk-barbs"><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div></div></div><div class="pk-eye"></div></div>
+        <div class="pk-feather"><div class="pk-stem"><div class="pk-barbs"><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div></div></div><div class="pk-eye"></div></div>
+        <div class="pk-feather"><div class="pk-stem"><div class="pk-barbs"><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div></div></div><div class="pk-eye"></div></div>
+        <div class="pk-feather"><div class="pk-stem"><div class="pk-barbs"><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div></div></div><div class="pk-eye"></div></div>
+        <div class="pk-feather"><div class="pk-stem"><div class="pk-barbs"><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div><div class="pk-barb"></div></div></div><div class="pk-eye"></div></div>
+        <!-- Peacock bird in front -->
+        <div class="pk-bird">🦚</div>
       </div>
-      <!-- Peacock emoji floats in center -->
-      <div class="pk-bird">🦚</div>
     </div>
 
-    <!-- ===== DIYA LAMP — CSS flickering flame ===== -->
+    <!-- ===== DIYA LAMP — Below peacock, above OM ===== -->
     <div class="diya-section">
-      <div class="diya-line"></div>
-      <div class="diya-wrap">
-        <div class="flame-wrap">
-          <div class="fl-o"></div>
-          <div class="fl-i"></div>
-          <div class="fl-c"></div>
+      <div class="diya-line-left"></div>
+      <div class="diya-lamp">
+        <div class="diya-flame-wrap">
+          <div class="flame-halo"></div>
+          <div class="flame-outer"></div>
+          <div class="flame-mid"></div>
+          <div class="flame-core"></div>
         </div>
         <div class="diya-wick"></div>
         <div class="diya-bowl"></div>
         <div class="diya-glow"></div>
       </div>
-      <div class="diya-line"></div>
+      <div class="diya-line-right"></div>
     </div>
 
-    <!-- ===== CARD CONTENT ===== -->
-    <div class="lcont">
-      <div class="l-om">ॐ</div>
-      <div class="l-title">Daily Krishna</div>
-      <div class="l-sub">Wisdom of the Bhagavad Gita</div>
-      <div class="l-tag">Life Wisdom · Corporate Clarity</div>
+    <!-- ===== CONTENT ===== -->
+    <div class="card-inner">
+      <div class="login-om">ॐ</div>
+      <div class="login-title">Daily Krishna</div>
+      <div class="login-sub">Wisdom of the Bhagavad Gita</div>
+      <div class="login-tag">Life Wisdom · Corporate Clarity</div>
 
       <div class="mod-sel">
         <div class="mod-opt on" id="lm1" onclick="selMod('main')">
-          <div class="mod-i">🪷</div>
-          <div class="mod-nm">Daily Krishna</div>
-          <div class="mod-s">Life wisdom</div>
+          <div class="mod-opt-i">🪷</div>
+          <div class="mod-opt-n">Daily Krishna</div>
+          <div class="mod-opt-s">Life wisdom</div>
         </div>
         <div class="mod-opt" id="lm2" onclick="selMod('corp')">
-          <div class="mod-i">💼</div>
-          <div class="mod-nm">Corporate Krishna</div>
-          <div class="mod-s">Workplace wisdom</div>
+          <div class="mod-opt-i">💼</div>
+          <div class="mod-opt-n">Corporate Krishna</div>
+          <div class="mod-opt-s">Workplace wisdom</div>
         </div>
       </div>
 
-      <div class="ldiv">
-        <div class="ldiv-line"></div>
-        <div class="ldiv-lotus">🪷</div>
-        <div class="ldiv-line"></div>
+      <div class="lotus-div">
+        <div class="lotus-line"></div>
+        <div class="lotus-ico">🪷</div>
+        <div class="lotus-line"></div>
       </div>
 
-      <div class="l-verse" id="lverse">
+      <div class="login-verse" id="loginVerse">
         "You have the right to perform your actions,<br>
         but you are not entitled to the fruits of your actions."<br><br>
         — Bhagavad Gita 2.47
@@ -654,20 +680,22 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--td);min
         </div>
         Continue with Google
       </button>
-      <div class="l-note">By continuing, you agree to receive daily Krishna wisdom 🙏</div>
-      <div class="ldots"><div class="ldot"></div><div class="ldot"></div><div class="ldot lg"></div><div class="ldot"></div><div class="ldot"></div></div>
+      <div class="login-note">By continuing, you agree to receive daily Krishna wisdom 🙏</div>
+
+      <div class="card-dots">
+        <div class="cd"></div><div class="cd"></div>
+        <div class="cd big"></div>
+        <div class="cd"></div><div class="cd"></div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- =========================================================
-     MAIN APP
-========================================================= -->
+<!-- APP -->
 <div id="app">
-
   <nav class="tnav" id="tnav">
     <div class="nav-brand">
-      <div class="nav-diya"><div class="nav-diya-bowl"></div><div class="nav-diya-flame"></div></div>
+      <div class="nav-diya"><div class="nav-bowl"></div><div class="nav-flame"></div></div>
       <div class="nav-logo" id="navLogo">Daily Krishna</div>
     </div>
     <div class="nav-right">
@@ -682,9 +710,9 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--td);min
 
   <!-- HOME -->
   <div class="pg on" id="homePg">
-    <div class="hgreet">
-      <div class="gdate" id="gDate"></div>
-      <div class="gname">Jai Shri Krishna, <strong id="gName">Devotee</strong> 🙏</div>
+    <div class="h-greet">
+      <div class="g-date" id="gDate"></div>
+      <div class="g-name">Jai Shri Krishna, <strong id="gName">Devotee</strong> 🙏</div>
     </div>
     <div class="wbar">
       <div class="wc"><div class="wc-i">🧘</div><div class="wc-v" id="wc1">1</div><div class="wc-l">Streak</div></div>
@@ -698,11 +726,11 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--td);min
       <button class="nb-x" onclick="document.getElementById('nBan').style.display='none'">✕</button>
     </div>
     <div class="sstrip">
-      <div class="sstrip-t">🌸 Wisdom Schedule</div>
-      <div class="sstrip-r">
-        <div class="ssi" id="si1" onclick="loadSched('morning')"><div class="ssi-i">🌅</div><div class="ssi-t">7 AM</div><div class="ssi-l">Morning</div></div>
-        <div class="ssi" id="si2" onclick="loadSched('midday')"><div class="ssi-i">☀️</div><div class="ssi-t">1 PM</div><div class="ssi-l">Midday</div></div>
-        <div class="ssi" id="si3" onclick="loadSched('evening')"><div class="ssi-i">🌙</div><div class="ssi-t">7 PM</div><div class="ssi-l">Evening</div></div>
+      <div class="ss-t">🌸 Wisdom Schedule</div>
+      <div class="ss-row">
+        <div class="ss-i" id="si1" onclick="loadSched('morning')"><div class="ss-ico">🌅</div><div class="ss-time">7 AM</div><div class="ss-lbl">Morning</div></div>
+        <div class="ss-i" id="si2" onclick="loadSched('midday')"><div class="ss-ico">☀️</div><div class="ss-time">1 PM</div><div class="ss-lbl">Midday</div></div>
+        <div class="ss-i" id="si3" onclick="loadSched('evening')"><div class="ss-ico">🌙</div><div class="ss-time">7 PM</div><div class="ss-lbl">Evening</div></div>
       </div>
     </div>
     <div class="catrow">
@@ -722,11 +750,16 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--td);min
           <div class="qv-aura"></div>
           <div class="qv-ring" style="width:220px;height:220px;animation-duration:22s;"></div>
           <div class="qv-ring" style="width:170px;height:170px;animation-duration:16s;animation-direction:reverse;"></div>
+          <!-- Peacock on card -->
           <div class="card-pk">🦚</div>
+          <!-- CSS Diya on card -->
           <div class="card-diya">
-            <div class="cd-wrap">
-              <div class="cd-flame-wrap"><div class="cd-fl-o"></div><div class="cd-fl-i"></div></div>
-              <div class="cd-bowl"></div>
+            <div class="card-diya-inner">
+              <div class="card-flame-wrap">
+                <div class="c-fl-o"></div>
+                <div class="c-fl-i"></div>
+              </div>
+              <div class="card-diya-bowl"></div>
             </div>
           </div>
           <img class="k-img" id="mKImg" src="" alt="Lord Krishna" onerror="this.style.display='none'">
@@ -734,9 +767,18 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--td);min
           <div class="qscene" id="mScene">Vrindavan · Peaceful Evening</div>
         </div>
         <div class="qbody">
-          <div class="qq-wrap"><div class="qq-txt" id="mQTxt">Loading divine wisdom...</div><div class="qq-src" id="mQSrc">— Bhagavad Gita</div></div>
-          <div class="smbox"><div class="sm-l">🌸 Simple Meaning</div><div class="sm-t" id="mMean"></div></div>
-          <div class="kmsg"><div class="km-l">✨ Krishna Says</div><div class="km-t" id="mKSays"></div></div>
+          <div class="qq-wrap">
+            <div class="qq-txt" id="mQTxt">Loading divine wisdom...</div>
+            <div class="qq-src" id="mQSrc">— Bhagavad Gita</div>
+          </div>
+          <div class="smbox">
+            <div class="sm-l">🌸 Simple Meaning</div>
+            <div class="sm-t" id="mMean"></div>
+          </div>
+          <div class="kmsg">
+            <div class="km-l">✨ Krishna Says</div>
+            <div class="km-t" id="mKSays"></div>
+          </div>
           <div class="qdiv"></div>
           <div class="qactions">
             <button class="qbtn" id="mFavBtn" onclick="togMFav()"><span>🤍</span> Save</button>
@@ -749,6 +791,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--td);min
     <button class="next-btn" onclick="nextM()">🪷 &nbsp;Next Quote &nbsp;›</button>
   </div>
 
+  <!-- FAVORITES -->
   <div class="pg" id="favPg">
     <div class="pg-t">My Favorites</div>
     <div class="pg-s">Saved wisdom for your journey 🌸</div>
@@ -759,6 +802,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--td);min
     <div id="favList"></div>
   </div>
 
+  <!-- PROFILE -->
   <div class="pg" id="profPg">
     <div class="prof-hero">
       <div class="prof-ava" id="profAva">K</div>
@@ -771,7 +815,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--td);min
       </div>
     </div>
     <div class="sec-t">Preferences</div>
-    <div class="seti"><div class="seti-l"><div class="seti-i">🌙</div><div><div class="seti-n">Dark Mode</div><div class="seti-s">Switch to night theme</div></div></div><label class="tog"><input type="checkbox" id="darkTog" onchange="toggleTheme()"><span class="tog-sl"></span></label></div>
+    <div class="seti"><div class="seti-l"><div class="seti-i">🌙</div><div><div class="seti-n">Dark Mode</div><div class="seti-s">Night theme</div></div></div><label class="tog"><input type="checkbox" id="darkTog" onchange="toggleTheme()"><span class="tog-sl"></span></label></div>
     <div class="seti" onclick="reqNotif()"><div class="seti-l"><div class="seti-i">🔔</div><div><div class="seti-n">Daily Reminders</div><div class="seti-s" id="notifSub">3x daily · Gita wisdom</div></div></div><div class="seti-a">›</div></div>
     <div class="seti" onclick="instPWA()"><div class="seti-l"><div class="seti-i">📱</div><div><div class="seti-n">Install App</div><div class="seti-s">Offline · Home screen</div></div></div><div class="seti-a">›</div></div>
     <div class="sec-t">About</div>
@@ -795,7 +839,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--td);min
     </div>
     <div class="csched">
       <div class="cst">📅 Corporate Schedule</div>
-      <div class="csi-r">
+      <div class="csi-row">
         <div class="csi" id="cs1" onclick="loadCSched('morning')"><div class="csi-i">🌅</div><div class="csi-t">9 AM</div><div class="csi-l">Pre-Meet</div></div>
         <div class="csi" id="cs2" onclick="loadCSched('midday')"><div class="csi-i">☕</div><div class="csi-t">1 PM</div><div class="csi-l">Stress Break</div></div>
         <div class="csi" id="cs3" onclick="loadCSched('evening')"><div class="csi-i">📊</div><div class="csi-t">6 PM</div><div class="csi-l">EOD</div></div>
@@ -817,9 +861,9 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--td);min
           <div class="cv-rays"></div><div class="cv-aura"></div>
           <div class="cv-pk">🦚</div>
           <div class="cv-diya">
-            <div class="cd-wrap">
-              <div class="cd-flame-wrap"><div class="cd-fl-o"></div><div class="cd-fl-i"></div></div>
-              <div class="cd-bowl"></div>
+            <div class="card-diya-inner">
+              <div class="card-flame-wrap"><div class="c-fl-o"></div><div class="c-fl-i"></div></div>
+              <div class="card-diya-bowl"></div>
             </div>
           </div>
           <img class="ck-img" id="cKImg" src="" alt="Lord Krishna" onerror="this.style.display='none'">
@@ -853,15 +897,75 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--td);min
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 <script>
-// Krishna images
-const KIMGS={flute:["https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lord_Krishna_with_Flute.jpg/400px-Lord_Krishna_with_Flute.jpg","https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Radha_Krishna.jpg/400px-Radha_Krishna.jpg","https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Krishna_flute_Rajasthan18th_century.jpg/400px-Krishna_flute_Rajasthan18th_century.jpg"],battle:["https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Krishna_as_the_Cosmic_Charioteer.jpg/400px-Krishna_as_the_Cosmic_Charioteer.jpg","https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Krishna_Arjuna_Mahabharata.jpg/400px-Krishna_Arjuna_Mahabharata.jpg"],teach:["https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Krishna_Arjuna_Mahabharata.jpg/400px-Krishna_Arjuna_Mahabharata.jpg","https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Krishna_as_the_Cosmic_Charioteer.jpg/400px-Krishna_as_the_Cosmic_Charioteer.jpg"]};
-const CATCFG={Peace:{img:'flute',bg:'linear-gradient(135deg,#1A3A6B,#003344,#0D2244)',scene:'Vrindavan · Moonlit Evening'},Mind:{img:'flute',bg:'linear-gradient(135deg,#1A3A6B,#003344)',scene:'Himalayan Peace · Inner Stillness'},Love:{img:'flute',bg:'linear-gradient(135deg,#2A0A3A,#0A0A2A)',scene:'Vrindavan · Divine Love'},Faith:{img:'flute',bg:'linear-gradient(135deg,#1A0A2A,#0A0820)',scene:'Vrindavan · Devotion & Grace'},Purpose:{img:'teach',bg:'linear-gradient(135deg,#1A1000,#201800)',scene:'Gita Discourse · Sacred Purpose'},Action:{img:'teach',bg:'linear-gradient(135deg,#0A1A00,#081400)',scene:'Gita Updesh · Right Action'},Courage:{img:'battle',bg:'linear-gradient(135deg,#300A00,#400800)',scene:'Kurukshetra · Arise and Conquer'},Leadership:{img:'battle',bg:'linear-gradient(135deg,#050c1e,#0a1a3a)',scene:'Kurukshetra · Guiding the Warrior'},Stress:{img:'flute',bg:'linear-gradient(135deg,#040c18,#001420)',scene:'Inner Stillness · Beyond Deadline'},Decision:{img:'teach',bg:'linear-gradient(135deg,#040c1e,#081430)',scene:'Dwarka Court · Strategic Clarity'},Team:{img:'flute',bg:'linear-gradient(135deg,#040c18,#081810)',scene:'Vrindavan · United in Purpose'},Strategy:{img:'battle',bg:'linear-gradient(135deg,#040c1e,#081430)',scene:'Dwarka Sabha · Royal Planning'},Ethics:{img:'teach',bg:'linear-gradient(135deg,#040c10,#080e18)',scene:'Gita Discourse · The Righteous Path'},Growth:{img:'battle',bg:'linear-gradient(135deg,#060418,#0a0828)',scene:'Sunrise · Rise to Excellence'}};
-function getImg(cat,off=0){const cfg=CATCFG[cat]||CATCFG['Peace'];return KIMGS[cfg.img][off%KIMGS[cfg.img].length];}
+const KIMGS={
+  flute:["https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lord_Krishna_with_Flute.jpg/400px-Lord_Krishna_with_Flute.jpg","https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Radha_Krishna.jpg/400px-Radha_Krishna.jpg","https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Krishna_flute_Rajasthan18th_century.jpg/400px-Krishna_flute_Rajasthan18th_century.jpg"],
+  battle:["https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Krishna_as_the_Cosmic_Charioteer.jpg/400px-Krishna_as_the_Cosmic_Charioteer.jpg","https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Krishna_Arjuna_Mahabharata.jpg/400px-Krishna_Arjuna_Mahabharata.jpg","https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Krishna_as_the_Cosmic_Charioteer.jpg/400px-Krishna_as_the_Cosmic_Charioteer.jpg"],
+  teach:["https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Krishna_Arjuna_Mahabharata.jpg/400px-Krishna_Arjuna_Mahabharata.jpg","https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Krishna_as_the_Cosmic_Charioteer.jpg/400px-Krishna_as_the_Cosmic_Charioteer.jpg","https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lord_Krishna_with_Flute.jpg/400px-Lord_Krishna_with_Flute.jpg"]
+};
+const CATCFG={
+  Peace:{img:'flute',bg:'linear-gradient(135deg,#1A3A6B,#003344,#0D2244)',scene:'Vrindavan · Moonlit Evening'},
+  Mind:{img:'flute',bg:'linear-gradient(135deg,#1A3A6B,#003344)',scene:'Himalayan Peace · Inner Stillness'},
+  Love:{img:'flute',bg:'linear-gradient(135deg,#2A0A3A,#0A0A2A)',scene:'Vrindavan · Divine Love'},
+  Faith:{img:'flute',bg:'linear-gradient(135deg,#1A0A2A,#0A0820)',scene:'Vrindavan · Devotion & Grace'},
+  Purpose:{img:'teach',bg:'linear-gradient(135deg,#1A1000,#201800)',scene:'Gita Discourse · Sacred Purpose'},
+  Action:{img:'teach',bg:'linear-gradient(135deg,#0A1A00,#081400)',scene:'Gita Updesh · Right Action'},
+  Courage:{img:'battle',bg:'linear-gradient(135deg,#300A00,#400800)',scene:'Kurukshetra · Arise and Conquer'},
+  Leadership:{img:'battle',bg:'linear-gradient(135deg,#050c1e,#0a1a3a)',scene:'Kurukshetra · Guiding the Warrior'},
+  Stress:{img:'flute',bg:'linear-gradient(135deg,#040c18,#001420)',scene:'Inner Stillness · Beyond Deadline'},
+  Decision:{img:'teach',bg:'linear-gradient(135deg,#040c1e,#081430)',scene:'Dwarka Court · Strategic Clarity'},
+  Team:{img:'flute',bg:'linear-gradient(135deg,#040c18,#081810)',scene:'Vrindavan · United in Purpose'},
+  Strategy:{img:'battle',bg:'linear-gradient(135deg,#040c1e,#081430)',scene:'Dwarka Sabha · Royal Planning'},
+  Ethics:{img:'teach',bg:'linear-gradient(135deg,#040c10,#080e18)',scene:'Gita Discourse · The Righteous Path'},
+  Growth:{img:'battle',bg:'linear-gradient(135deg,#060418,#0a0828)',scene:'Sunrise · Rise to Excellence'}
+};
+function getImg(cat,off=0){const cfg=CATCFG[cat]||CATCFG['Peace'];const arr=KIMGS[cfg.img];return arr[off%arr.length];}
 
-const MQ=[{t:"You have the right to do your work, but never to the fruits of your work.",src:"Bhagavad Gita 2.47",c:"Action",m:"Just do your best every day without worrying about what you will get. When you stop chasing the result, your work becomes joyful and free.",k:"Work like it is your offering to the world. The joy is in the doing, not the getting.",s:"morning"},{t:"The soul is never born nor dies at any time.",src:"Bhagavad Gita 2.20",c:"Faith",m:"You are more than your failures or your fears. Deep inside you is something that can never be hurt or destroyed.",k:"You are eternal. No loss, no heartbreak, no failure can touch the real you.",s:"evening"},{t:"Change is the law of the universe.",src:"Bhagavad Gita",c:"Peace",m:"Every ending in your life is actually a new beginning in disguise. Trust the changes — they are preparing you for something greater.",k:"Let go of what was. Something far more beautiful is already on its way to you.",s:"morning"},{t:"The mind is your best friend and your worst enemy.",src:"Bhagavad Gita 6.5",c:"Mind",m:"When your mind is peaceful and focused, it helps you achieve anything. When it is restless, it holds you back. You choose which mind you feed.",k:"Be kind to your mind. Talk to yourself the way you would talk to someone you deeply love.",s:"morning"},{t:"Whatever you believe, that is what you become.",src:"Bhagavad Gita 17.3",c:"Purpose",m:"Your beliefs shape your entire life. If you believe you are capable, you will find a way. If you believe you are limited, you will stay limited.",k:"Believe in your light, especially on the days when you cannot see it yourself.",s:"midday"},{t:"Do not fear what you cannot control. Focus on what you can do right now.",src:"Bhagavad Gita 2.14",c:"Peace",m:"Worry is energy spent on things outside your control. Use that same energy to take one good action today.",k:"Right now, in this moment, you have everything you need to take the next right step.",s:"midday"},{t:"It is better to walk your own path imperfectly than to follow someone else's perfectly.",src:"Bhagavad Gita 3.35",c:"Courage",m:"Stop comparing your journey to others. Your unique path — with all its stumbles — is exactly where your greatest growth lives.",k:"Your life is not a copy. It is an original. Live it that way.",s:"evening"},{t:"In the middle of every difficulty, a gift is hidden.",src:"Bhagavad Gita",c:"Courage",m:"Your hardest moments are your greatest teachers. Every challenge is the universe building something extraordinary in you.",k:"The lotus does not apologize for growing in the mud. Neither should you.",s:"midday"},{t:"When you still your mind, you find peace that nothing outside can disturb.",src:"Bhagavad Gita 6.19",c:"Mind",m:"True peace does not come from getting everything you want. It comes from a quiet mind that is no longer fighting reality.",k:"Five minutes of stillness today can change the entire direction of your day.",s:"evening"},{t:"Give love freely. The more you give, the more you receive.",src:"Bhagavad Gita",c:"Love",m:"Love is not a limited resource. The more kindness you offer, the more your heart expands.",k:"Be the warmth you wish someone had shown you. That warmth will come back multiplied.",s:"midday"},{t:"True happiness is found within, not in the things around you.",src:"Bhagavad Gita 5.21",c:"Peace",m:"No amount of money or success will make you truly happy if you have not found peace inside yourself.",k:"You already have everything you need to feel at peace. Look within.",s:"evening"},{t:"Act, but do not be obsessed with the outcome.",src:"Bhagavad Gita",c:"Action",m:"When you do your best and release the rest, anxiety disappears. You did your part — now trust the universe.",k:"Plant your seeds with care and patience. Trust the rain to come.",s:"morning"},{t:"Whatever happened was good. Whatever is happening is good.",src:"Bhagavad Gita",c:"Faith",m:"When you trust that life is unfolding exactly as it should, the weight of worry lifts.",k:"I am writing your story. Trust the author.",s:"midday"},{t:"You are not the body. You are not the mind. You are the eternal witness behind them both.",src:"Bhagavad Gita 13.22",c:"Purpose",m:"Step back from your thoughts and feelings. There is a calm, wise part of you that is never overwhelmed.",k:"You are the sky, not the storm. Remember this on your darkest days.",s:"evening"},{t:"Even a little practice of this inner science protects you from great fear.",src:"Bhagavad Gita 2.40",c:"Faith",m:"You do not need to be perfectly spiritual to feel better. Even five minutes of gratitude or stillness today makes a real difference.",k:"Begin where you are. A small candle still lights a dark room.",s:"morning"},{t:"The one who has conquered the mind has conquered the whole world.",src:"Bhagavad Gita 6.7",c:"Mind",m:"You do not need to control everything outside you. Control your thoughts and reactions — and everything becomes manageable.",k:"Your greatest battlefield is within. Your greatest victory is within. Both await you.",s:"morning"},{t:"Dedicate your life to something greater than yourself.",src:"Bhagavad Gita 3.19",c:"Purpose",m:"When you live for something bigger than personal gain, life suddenly feels full of meaning.",k:"The candle that lights others does not lose its own flame. Serve. Give. Live large.",s:"midday"},{t:"Keep your heart and mind pure. Everything else will follow.",src:"Bhagavad Gita 17.16",c:"Faith",m:"When your intentions are clean and your thoughts are kind, the right people naturally find their way to you.",k:"Purity of heart is the most powerful magnet in the universe.",s:"morning"},{t:"Steadiness in difficulty is the mark of a truly strong soul.",src:"Bhagavad Gita 2.56",c:"Courage",m:"Anyone can be positive when things are good. True character is revealed when things are hard.",k:"Every storm you survive makes you a shelter for someone else.",s:"midday"},{t:"There is nothing lost or wasted in a life of good effort.",src:"Bhagavad Gita 2.40",c:"Action",m:"No good effort is ever wasted, even if results are not immediate.",k:"Keep going. Your harvest is already growing beneath the surface.",s:"morning"},{t:"Do good now. The ripples of goodness travel further than you will ever know.",src:"Bhagavad Gita",c:"Action",m:"Every act of kindness creates a ripple that blesses people you may never even meet.",k:"Your goodness is never wasted. Not a single drop of it.",s:"midday"},{t:"The one who is not moved by happiness or sorrow has already found freedom.",src:"Bhagavad Gita 2.15",c:"Peace",m:"Real strength is not the absence of feeling. It is the ability to feel everything without being swept away.",k:"Feel it all. But let it pass through you like wind, not stay inside you like a storm.",s:"evening"},{t:"A person who is not disturbed by the flow of desires can alone achieve peace.",src:"Bhagavad Gita 2.70",c:"Mind",m:"Peace comes when you stop chasing and start appreciating what is already here.",k:"The ocean is full and still. Be like the ocean — receive everything, need nothing.",s:"evening"},{t:"Your own path, however humble, is better than another's however grand.",src:"Bhagavad Gita 3.35",c:"Courage",m:"Stop measuring your life against someone else's highlight reel. Your path is uniquely yours.",k:"Walk your road with pride. No one else can walk it for you.",s:"evening"},{t:"Even the wisest person acts according to their own nature.",src:"Bhagavad Gita 3.33",c:"Purpose",m:"Embrace your natural gifts. Fighting your own nature wastes the very energy you need to grow.",k:"You were made exactly as you were meant to be. Grow into that, not away from it.",s:"morning"}];
+const MQ=[
+  {t:"You have the right to do your work, but never to the fruits of your work.",src:"Bhagavad Gita 2.47",c:"Action",m:"Just do your best every day without worrying about what you will get. When you stop chasing the result, your work becomes joyful and free.",k:"Work like it is your offering to the world. The joy is in the doing, not the getting.",s:"morning"},
+  {t:"The soul is never born nor dies at any time.",src:"Bhagavad Gita 2.20",c:"Faith",m:"You are more than your failures or your fears. Deep inside you is something that can never be hurt or destroyed.",k:"You are eternal. No loss, no heartbreak, no failure can touch the real you.",s:"evening"},
+  {t:"Change is the law of the universe.",src:"Bhagavad Gita",c:"Peace",m:"Every ending in your life is actually a new beginning in disguise. Trust the changes — they are preparing you for something greater.",k:"Let go of what was. Something far more beautiful is already on its way to you.",s:"morning"},
+  {t:"The mind is your best friend and your worst enemy.",src:"Bhagavad Gita 6.5",c:"Mind",m:"When your mind is peaceful and focused, it helps you achieve anything. When it is restless, it holds you back. You choose which mind you feed.",k:"Be kind to your mind. Talk to yourself the way you would talk to someone you deeply love.",s:"morning"},
+  {t:"Whatever you believe, that is what you become.",src:"Bhagavad Gita 17.3",c:"Purpose",m:"Your beliefs shape your entire life. If you believe you are capable, you will find a way. If you believe you are limited, you will stay limited.",k:"Believe in your light, especially on the days when you cannot see it yourself.",s:"midday"},
+  {t:"Do not fear what you cannot control. Focus on what you can do right now.",src:"Bhagavad Gita 2.14",c:"Peace",m:"Worry is energy spent on things outside your control. Use that same energy to take one good action today.",k:"Right now, in this moment, you have everything you need to take the next right step.",s:"midday"},
+  {t:"It is better to walk your own path imperfectly than to follow someone else's perfectly.",src:"Bhagavad Gita 3.35",c:"Courage",m:"Stop comparing your journey to others. Your unique path — with all its stumbles — is exactly where your greatest growth lives.",k:"Your life is not a copy. It is an original. Live it that way.",s:"evening"},
+  {t:"In the middle of every difficulty, a gift is hidden.",src:"Bhagavad Gita",c:"Courage",m:"Your hardest moments are your greatest teachers. Every challenge is the universe building something extraordinary in you.",k:"The lotus does not apologize for growing in the mud. Neither should you.",s:"midday"},
+  {t:"When you still your mind, you find peace that nothing outside can disturb.",src:"Bhagavad Gita 6.19",c:"Mind",m:"True peace does not come from getting everything you want. It comes from a quiet mind that is no longer fighting reality.",k:"Five minutes of stillness today can change the entire direction of your day.",s:"evening"},
+  {t:"Give love freely. The more you give, the more you receive.",src:"Bhagavad Gita",c:"Love",m:"Love is not a limited resource. The more kindness you offer, the more your heart expands.",k:"Be the warmth you wish someone had shown you. That warmth will come back multiplied.",s:"midday"},
+  {t:"True happiness is found within, not in the things around you.",src:"Bhagavad Gita 5.21",c:"Peace",m:"No amount of money or success will make you truly happy if you have not found peace inside yourself.",k:"You already have everything you need to feel at peace. Look within.",s:"evening"},
+  {t:"Act, but do not be obsessed with the outcome.",src:"Bhagavad Gita",c:"Action",m:"When you do your best and release the rest, anxiety disappears. You did your part — now trust the universe.",k:"Plant your seeds with care and patience. Trust the rain to come.",s:"morning"},
+  {t:"Whatever happened was good. Whatever is happening is good.",src:"Bhagavad Gita",c:"Faith",m:"When you trust that life is unfolding exactly as it should, the weight of worry lifts.",k:"I am writing your story. Trust the author.",s:"midday"},
+  {t:"You are not the body. You are not the mind. You are the eternal witness behind them both.",src:"Bhagavad Gita 13.22",c:"Purpose",m:"Step back from your thoughts and feelings. There is a calm, wise part of you that is never overwhelmed.",k:"You are the sky, not the storm. Remember this on your darkest days.",s:"evening"},
+  {t:"Even a little practice of this inner science protects you from great fear.",src:"Bhagavad Gita 2.40",c:"Faith",m:"You do not need to be perfectly spiritual to feel better. Even five minutes of gratitude or stillness today makes a real difference.",k:"Begin where you are. A small candle still lights a dark room.",s:"morning"},
+  {t:"The one who has conquered the mind has conquered the whole world.",src:"Bhagavad Gita 6.7",c:"Mind",m:"You do not need to control everything outside you. Control your thoughts and reactions — and everything becomes manageable.",k:"Your greatest battlefield is within. Your greatest victory is within. Both await you.",s:"morning"},
+  {t:"Dedicate your life to something greater than yourself.",src:"Bhagavad Gita 3.19",c:"Purpose",m:"When you live for something bigger than personal gain, life suddenly feels full of meaning.",k:"The candle that lights others does not lose its own flame. Serve. Give. Live large.",s:"midday"},
+  {t:"Keep your heart and mind pure. Everything else will follow.",src:"Bhagavad Gita 17.16",c:"Faith",m:"When your intentions are clean and your thoughts are kind, the right people naturally find their way to you.",k:"Purity of heart is the most powerful magnet in the universe.",s:"morning"},
+  {t:"Steadiness in difficulty is the mark of a truly strong soul.",src:"Bhagavad Gita 2.56",c:"Courage",m:"Anyone can be positive when things are good. True character is revealed when things are hard.",k:"Every storm you survive makes you a shelter for someone else.",s:"midday"},
+  {t:"There is nothing lost or wasted in a life of good effort.",src:"Bhagavad Gita 2.40",c:"Action",m:"No good effort is ever wasted, even if results are not immediate.",k:"Keep going. Your harvest is already growing beneath the surface.",s:"morning"},
+  {t:"Do good now. The ripples of goodness travel further than you will ever know.",src:"Bhagavad Gita",c:"Action",m:"Every act of kindness creates a ripple that blesses people you may never even meet.",k:"Your goodness is never wasted. Not a single drop of it.",s:"midday"},
+  {t:"The one who is not moved by happiness or sorrow has already found freedom.",src:"Bhagavad Gita 2.15",c:"Peace",m:"Real strength is not the absence of feeling. It is the ability to feel everything without being swept away.",k:"Feel it all. But let it pass through you like wind, not stay inside you like a storm.",s:"evening"},
+  {t:"A person who is not disturbed by the flow of desires can alone achieve peace.",src:"Bhagavad Gita 2.70",c:"Mind",m:"Peace comes when you stop chasing and start appreciating what is already here.",k:"The ocean is full and still. Be like the ocean — receive everything, need nothing.",s:"evening"},
+  {t:"Your own path, however humble, is better than another's however grand.",src:"Bhagavad Gita 3.35",c:"Courage",m:"Stop measuring your life against someone else's highlight reel. Your path is uniquely yours.",k:"Walk your road with pride. No one else can walk it for you.",s:"evening"},
+  {t:"Even the wisest person acts according to their own nature.",src:"Bhagavad Gita 3.33",c:"Purpose",m:"Embrace your natural gifts. Fighting your own nature wastes the very energy you need to grow.",k:"You were made exactly as you were meant to be. Grow into that, not away from it.",s:"morning"}
+];
 
-const CQ=[{t:"You have the right to perform your duties, but not to the fruits of your actions.",src:"Bhagavad Gita 2.47",c:"Stress",ins:"This is the antidote to workplace anxiety. Focus purely on execution quality — stress drops and performance paradoxically improves.",gr:"Krishna spoke this to Arjuna when paralyzed by fear of failure. Same principle when you're paralyzed by a quarterly target.",ap:["Define your 3 key actions today — not outcomes","After each task, release it completely","Notice how energy improves when outcomes stop defining your worth"],tags:["Stress Relief","Performance","Focus"],sc:"Kurukshetra · Freedom from Outcome",s:"morning"},{t:"It is better to perform one's own duties imperfectly than to master the duties of another.",src:"Bhagavad Gita 3.35",c:"Leadership",ins:"Every leader must resist micromanaging. Trust your team to own their work. Delegation is wisdom, not weakness.",gr:"Krishna urges Arjuna to stay true to his dharma as a warrior. Every professional has a unique dharma at work.",ap:["Identify one task you've been doing that belongs to someone else","Hand it over today with full trust","Focus your energy on what only YOU can do"],tags:["Leadership","Delegation","Trust"],sc:"Dwarka Sabha · The Art of Delegation",s:"morning"},{t:"The one who is not disturbed in mind even amidst the threefold miseries can achieve complete peace.",src:"Bhagavad Gita 2.56",c:"Stress",ins:"High-performing leaders maintain composure under pressure. Your calm is your greatest professional asset.",gr:"Krishna describes the sthitaprajna — person of steady wisdom. This is the blueprint for executive composure.",ap:["Before your next stressful meeting, take 3 slow deep breaths","Replace 'I am stressed' with 'I am preparing'","Practice responding instead of reacting for one full day"],tags:["Stress Management","Composure","EQ"],sc:"Battlefield · The Calm Commander",s:"midday"},{t:"Perform all actions renouncing attachment and looking on success and failure with an equal eye.",src:"Bhagavad Gita 2.48",c:"Decision",ins:"The best corporate decisions are made with equanimity — not from fear of failure or hunger for personal glory.",gr:"This verse defines Yoga as equanimity in action — samattva yoga. The description of peak professional performance.",ap:["Before today's biggest decision, ask: am I deciding from fear or from clarity?","List pros and cons without ego attachment","Decide and release. Trust your judgment."],tags:["Decision Making","Equanimity","Leadership"],sc:"Gita Discourse · The Equal-Eyed Leader",s:"morning"},{t:"Let right deeds be your motive, not the fruit which comes from them.",src:"Bhagavad Gita",c:"Ethics",ins:"Ethical leadership is strategically superior. Purpose-driven organizations have higher retention, loyalty and long-term performance.",gr:"The Nishkama Karma doctrine — selfless action — is the Gita's answer to corrupt, outcome-obsessed leadership.",ap:["Identify one ethical shortcut you've been tempted to take","Choose the harder, right path today","Notice the self-respect that follows — that is your real performance bonus"],tags:["Ethics","Integrity","Long-term Strategy"],sc:"Gita Discourse · The Righteous Path",s:"evening"},{t:"Yoga is skill in action.",src:"Bhagavad Gita 2.50",c:"Strategy",ins:"Excellence is not about working harder — it is about working with complete mastery, awareness and presence.",gr:"Yogah karmasu kaushalam — this four-word definition of yoga is also the definition of professional mastery.",ap:["Pick one routine task you do on autopilot","Do it today with complete conscious attention","Notice the quality difference when you bring full awareness"],tags:["Excellence","Mastery","Productivity"],sc:"Gita Discourse · Mastery in Action",s:"morning"},{t:"A person can rise through the efforts of his own mind, or draw himself down.",src:"Bhagavad Gita 6.5",c:"Growth",ins:"Your internal narrative is your most powerful management tool. Leaders who practice growth-oriented self-talk consistently outperform.",gr:"Krishna identifies the mind as both the one that lifts and the one that drowns.",ap:["Write down 3 self-limiting beliefs affecting your work","Rewrite each one as a growth statement","Read them aloud every morning this week"],tags:["Growth Mindset","Self-Leadership","Performance"],sc:"Sunrise · The Rising Professional",s:"morning"},{t:"Strive constantly to serve the welfare of the world.",src:"Bhagavad Gita 3.19",c:"Leadership",ins:"Servant leadership is ancient Gita wisdom. Leaders who serve their teams build the most enduring organizations.",gr:"Krishna describes lokasamgraha — holding the world together — as the highest calling of a leader.",ap:["Ask one team member: how can I remove an obstacle for you?","Do one act of service with no recognition expected","Measure your leadership by what you gave, not what you received"],tags:["Servant Leadership","Team Culture","Purpose"],sc:"Vrindavan · Service as Leadership",s:"midday"},{t:"The Supreme Lord is situated in everyone's heart.",src:"Bhagavad Gita 18.61",c:"Team",ins:"Every person on your team contains untapped potential. The leader who sees the divine spark in every member unlocks extraordinary team energy.",gr:"Treat every colleague as if they contain hidden greatness, because they do.",ap:["Identify one underperforming team member you've been overlooking","Find one genuine strength in them today","Acknowledge that strength directly and sincerely"],tags:["Team Development","Talent Recognition","Inclusive Leadership"],sc:"Vrindavan · Seeing the Divine in Every Person",s:"midday"},{t:"Fear not what is not real. What is real, always was and cannot be destroyed.",src:"Bhagavad Gita 2.16",c:"Stress",ins:"Most corporate anxiety is driven by imagined scenarios. Most of what you fear will never happen.",gr:"Krishna addresses Arjuna's fear-driven paralysis. Most professional fears are shadows, not substance.",ap:["List your top 3 current work fears","For each, ask: is this actually happening right now?","For those that aren't — release them. For those that are — act."],tags:["Stress Management","Clarity","Courage"],sc:"Kurukshetra · Dissolving the Shadow of Fear",s:"midday"},{t:"Whatever a great person does, common men and women will follow.",src:"Bhagavad Gita 3.21",c:"Leadership",ins:"You are watched more than you know. Your team learns leadership from your example, not your slides.",gr:"Krishna describes acharatvam — leadership by example.",ap:["Ask yourself: what leadership am I modeling today?","Identify one behavior you want your team to adopt","Model it visibly and consistently today"],tags:["Leadership","Culture Building","Influence"],sc:"Kurukshetra · Leadership by Example",s:"morning"},{t:"Do not be led by others. Awaken your own mind and decide for yourself.",src:"Bhagavad Gita",c:"Decision",ins:"The most valuable professional skill today is the ability to think independently from first principles.",gr:"The Bhagavad Gita ends with Krishna saying: deliberate fully, then do as you choose.",ap:["Before your next major decision, turn off external input for 24 hours","Write your own analysis from scratch","Trust your conclusion — then seek input to validate"],tags:["Independent Thinking","Decision Making","Leadership"],sc:"Gita Discourse · The Sovereign Mind",s:"morning"},{t:"Knowledge is better than mechanical practice. Better still is meditation.",src:"Bhagavad Gita 12.12",c:"Growth",ins:"Professional evolution: doing → understanding → deep reflection → complete non-attachment to personal outcomes.",gr:"Krishna outlines the ladder from abhyasa to jnana to dhyana to phalatyaga.",ap:["Assess honestly: are you working from habit, knowledge, wisdom or freedom?","Identify the next level for you","Take one concrete step toward it today"],tags:["Professional Development","Mastery","Career Growth"],sc:"Gita Discourse · The Professional Ladder",s:"evening"},{t:"With purity of intention, one achieves success.",src:"Bhagavad Gita 17.16",c:"Ethics",ins:"Intention is the invisible foundation of professional success. Organizations built on genuine value creation endure.",gr:"Krishna's teaching on manas-tapas — purity of mind and intention.",ap:["Before your most important meeting today, check your intention","Is it to win, to serve, or to look good?","Reset it to: how can I create the most value here?"],tags:["Ethics","Intention","Authentic Leadership"],sc:"Gita Discourse · The Power of Pure Intention",s:"evening"}];
+const CQ=[
+  {t:"You have the right to perform your duties, but not to the fruits of your actions.",src:"Bhagavad Gita 2.47",c:"Stress",ins:"This is the antidote to workplace anxiety. Focus purely on execution quality — stress drops and performance paradoxically improves.",gr:"Krishna spoke this to Arjuna when paralyzed by fear of failure. Same principle when you're paralyzed by a quarterly target.",ap:["Define your 3 key actions today — not outcomes","After each task, release it completely","Notice how energy improves when outcomes stop defining your worth"],tags:["Stress Relief","Performance","Focus"],sc:"Kurukshetra · Freedom from Outcome",s:"morning"},
+  {t:"It is better to perform one's own duties imperfectly than to master the duties of another.",src:"Bhagavad Gita 3.35",c:"Leadership",ins:"Every leader must resist micromanaging. Trust your team to own their work. Delegation is wisdom, not weakness.",gr:"Krishna urges Arjuna to stay true to his dharma as a warrior. Every professional has a unique dharma at work.",ap:["Identify one task you've been doing that belongs to someone else","Hand it over today with full trust","Focus your energy on what only YOU can do"],tags:["Leadership","Delegation","Trust"],sc:"Dwarka Sabha · The Art of Delegation",s:"morning"},
+  {t:"The one who is not disturbed in mind even amidst the threefold miseries can achieve complete peace.",src:"Bhagavad Gita 2.56",c:"Stress",ins:"High-performing leaders maintain composure under pressure. Your calm is your greatest professional asset.",gr:"Krishna describes the sthitaprajna — person of steady wisdom. This is the blueprint for executive composure.",ap:["Before your next stressful meeting, take 3 slow deep breaths","Replace 'I am stressed' with 'I am preparing'","Practice responding instead of reacting for one full day"],tags:["Stress Management","Composure","EQ"],sc:"Battlefield · The Calm Commander",s:"midday"},
+  {t:"Yoga is skill in action.",src:"Bhagavad Gita 2.50",c:"Strategy",ins:"Excellence is not about working harder — it is about working with complete mastery, awareness and presence.",gr:"Yogah karmasu kaushalam — this four-word definition of yoga is also the definition of professional mastery.",ap:["Pick one routine task you do on autopilot","Do it today with complete conscious attention","Notice the quality difference when you bring full awareness"],tags:["Excellence","Mastery","Productivity"],sc:"Gita Discourse · Mastery in Action",s:"morning"},
+  {t:"Let right deeds be your motive, not the fruit which comes from them.",src:"Bhagavad Gita",c:"Ethics",ins:"Ethical leadership is strategically superior. Purpose-driven organizations have higher retention, loyalty and long-term performance.",gr:"The Nishkama Karma doctrine — selfless action — is the Gita's answer to corrupt, outcome-obsessed leadership.",ap:["Identify one ethical shortcut you've been tempted to take","Choose the harder, right path today","Notice the self-respect that follows"],tags:["Ethics","Integrity","Long-term Strategy"],sc:"Gita Discourse · The Righteous Path",s:"evening"},
+  {t:"A person can rise through the efforts of his own mind, or draw himself down.",src:"Bhagavad Gita 6.5",c:"Growth",ins:"Your internal narrative is your most powerful management tool. Leaders who practice growth-oriented self-talk consistently outperform.",gr:"Krishna identifies the mind as both the one that lifts and the one that drowns.",ap:["Write down 3 self-limiting beliefs affecting your work","Rewrite each one as a growth statement","Read them aloud every morning this week"],tags:["Growth Mindset","Self-Leadership","Performance"],sc:"Sunrise · The Rising Professional",s:"morning"},
+  {t:"Strive constantly to serve the welfare of the world.",src:"Bhagavad Gita 3.19",c:"Leadership",ins:"Servant leadership is ancient Gita wisdom. Leaders who serve their teams build the most enduring organizations.",gr:"Krishna describes lokasamgraha — holding the world together — as the highest calling of a leader.",ap:["Ask one team member: how can I remove an obstacle for you?","Do one act of service with no recognition expected","Measure your leadership by what you gave, not what you received"],tags:["Servant Leadership","Team Culture","Purpose"],sc:"Vrindavan · Service as Leadership",s:"midday"},
+  {t:"The Supreme Lord is situated in everyone's heart.",src:"Bhagavad Gita 18.61",c:"Team",ins:"Every person on your team contains untapped potential. The leader who sees the divine spark in every member unlocks extraordinary team energy.",gr:"Treat every colleague as if they contain hidden greatness, because they do.",ap:["Identify one underperforming team member you've been overlooking","Find one genuine strength in them today","Acknowledge that strength directly and sincerely"],tags:["Team Development","Talent Recognition","Inclusive Leadership"],sc:"Vrindavan · Seeing the Divine in Every Person",s:"midday"},
+  {t:"Fear not what is not real. What is real, always was and cannot be destroyed.",src:"Bhagavad Gita 2.16",c:"Stress",ins:"Most corporate anxiety is driven by imagined scenarios. Most of what you fear will never happen.",gr:"Krishna addresses Arjuna's fear-driven paralysis. Most professional fears are shadows, not substance.",ap:["List your top 3 current work fears","For each, ask: is this actually happening right now?","For those that aren't — release them. For those that are — act."],tags:["Stress Management","Clarity","Courage"],sc:"Kurukshetra · Dissolving the Shadow of Fear",s:"midday"},
+  {t:"Whatever a great person does, common men and women will follow.",src:"Bhagavad Gita 3.21",c:"Leadership",ins:"You are watched more than you know. Your team learns leadership from your example, not your slides.",gr:"Krishna describes acharatvam — leadership by example.",ap:["Ask yourself: what leadership am I modeling today?","Identify one behavior you want your team to adopt","Model it visibly and consistently today"],tags:["Leadership","Culture Building","Influence"],sc:"Kurukshetra · Leadership by Example",s:"morning"},
+  {t:"Do not be led by others. Awaken your own mind and decide for yourself.",src:"Bhagavad Gita",c:"Decision",ins:"The most valuable professional skill today is the ability to think independently from first principles.",gr:"The Bhagavad Gita ends with Krishna saying: deliberate fully, then do as you choose.",ap:["Before your next major decision, turn off external input for 24 hours","Write your own analysis from scratch","Trust your conclusion — then seek input to validate"],tags:["Independent Thinking","Decision Making","Leadership"],sc:"Gita Discourse · The Sovereign Mind",s:"morning"},
+  {t:"With purity of intention, one achieves success.",src:"Bhagavad Gita 17.16",c:"Ethics",ins:"Intention is the invisible foundation of professional success. Organizations built on genuine value creation endure.",gr:"Krishna's teaching on manas-tapas — purity of mind and intention.",ap:["Before your most important meeting today, check your intention","Is it to win, to serve, or to look good?","Reset it to: how can I create the most value here?"],tags:["Ethics","Intention","Authentic Leadership"],sc:"Gita Discourse · The Power of Pure Intention",s:"evening"},
+  {t:"The mind is restless and very strong. But it can be controlled through constant practice and non-attachment.",src:"Bhagavad Gita 6.35",c:"Stress",ins:"Focus is a trainable skill. Professionals who invest in daily mindfulness report 40% reduction in stress.",gr:"Arjuna says controlling the mind is like controlling the wind. Krishna agrees — it IS possible through practice.",ap:["Schedule a 10-minute no-phone block this morning","During that time, focus on exactly one thing","Repeat daily for 30 days and track your mental clarity"],tags:["Focus","Mindfulness","Mental Wellness"],sc:"Himalayan Stillness · The Focused Mind",s:"morning"},
+  {t:"Knowledge is better than mechanical practice. Better still is meditation.",src:"Bhagavad Gita 12.12",c:"Growth",ins:"Professional evolution: doing → understanding → deep reflection → complete non-attachment to personal outcomes.",gr:"Krishna outlines the ladder from abhyasa to jnana to dhyana to phalatyaga.",ap:["Assess honestly: are you working from habit, knowledge, wisdom or freedom?","Identify the next level for you","Take one concrete step toward it today"],tags:["Professional Development","Mastery","Career Growth"],sc:"Gita Discourse · The Professional Ladder",s:"evening"}
+];
 
+// STATE
 let MOD='main',mCat='All',cCat='All',mIdx=0,cIdx=0;
 let mFavs=JSON.parse(localStorage.getItem('dk8_mf')||'[]');
 let cFavs=JSON.parse(localStorage.getItem('dk8_cf')||'[]');
@@ -870,12 +974,17 @@ let cRead=parseInt(localStorage.getItem('dk8_cr')||'0');
 let streak=parseInt(localStorage.getItem('dk8_str')||'1');
 let dp=null,loginMod='main',favTab='main',imgOff=0;
 
+// FIREBASE
 firebase.initializeApp({apiKey:"AIzaSyCN2SPmQivgiKTHdfJryw8_zqkOYdgdD6I",authDomain:"daily-krishna-caf46.firebaseapp.com",projectId:"daily-krishna-caf46",storageBucket:"daily-krishna-caf46.firebasestorage.app",messagingSenderId:"710960440877",appId:"1:710960440877:web:f1bfe355819e3986aa7aa4"});
 const auth=firebase.auth();
 auth.getRedirectResult().then(r=>{if(r&&r.user)onLogin(r.user);}).catch(e=>{console.error(e);hideLoad();});
 auth.onAuthStateChanged(u=>{if(u){onLogin(u);}else{hideLoad();document.getElementById('loginPage').style.display='flex';document.getElementById('app').style.display='none';}});
 
-async function signInWithGoogle(){showLoad();const p=new firebase.auth.GoogleAuthProvider();try{const r=await auth.signInWithPopup(p);onLogin(r.user);}catch(e){if(['auth/popup-blocked','auth/popup-closed-by-user','auth/cancelled-popup-request'].includes(e.code)){try{await auth.signInWithRedirect(p);}catch(e2){hideLoad();showToast("Login failed 🙏");}}else{hideLoad();showToast("Login failed: "+e.message);}}}
+async function signInWithGoogle(){
+  showLoad();const p=new firebase.auth.GoogleAuthProvider();
+  try{const r=await auth.signInWithPopup(p);onLogin(r.user);}
+  catch(e){if(['auth/popup-blocked','auth/popup-closed-by-user','auth/cancelled-popup-request'].includes(e.code)){try{await auth.signInWithRedirect(p);}catch(e2){hideLoad();showToast("Login failed 🙏");}}else{hideLoad();showToast("Login failed: "+e.message);}}
+}
 
 function onLogin(u){
   hideLoad();
@@ -883,23 +992,62 @@ function onLogin(u){
   document.getElementById('app').style.display='block';
   const nm=u.displayName?u.displayName.split(' ')[0]:'Devotee';
   document.getElementById('gName').textContent=nm;document.getElementById('cName').textContent=nm;
-  const ava=document.getElementById('navAva'),pAva=document.getElementById('profAva');
+  const ava=document.getElementById('navAva');const pAva=document.getElementById('profAva');
   if(u.photoURL){ava.innerHTML=`<img src="${u.photoURL}" alt="">`;pAva.innerHTML=`<img src="${u.photoURL}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;}
   else{ava.textContent=nm[0].toUpperCase();pAva.textContent=nm[0].toUpperCase();}
   document.getElementById('profNm').textContent=u.displayName||'Krishna Devotee';
   document.getElementById('profEm').textContent=u.email||'';
   initApp();if(loginMod==='corp')swMod('corp');
 }
+
 function doLogout(){auth.signOut().then(()=>{document.getElementById('loginPage').style.display='flex';document.getElementById('app').style.display='none';showToast("Signed out 🙏");});}
-function selMod(m){loginMod=m;document.getElementById('lm1').className='mod-opt'+(m==='main'?' on':'');document.getElementById('lm2').className='mod-opt'+(m==='corp'?' on':'');document.getElementById('lverse').innerHTML=m==='main'?'"You have the right to perform your actions,<br>but you are not entitled to the fruits of your actions."<br><br>— Bhagavad Gita 2.47':'"Yoga is skill in action.<br>Bring mastery and full consciousness to everything you do."<br><br>— Bhagavad Gita 2.50';}
+function selMod(m){loginMod=m;document.getElementById('lm1').className='mod-opt'+(m==='main'?' on':'');document.getElementById('lm2').className='mod-opt'+(m==='corp'?' on':'');document.getElementById('loginVerse').innerHTML=m==='main'?`"You have the right to perform your actions,<br>but you are not entitled to the fruits of your actions."<br><br>— Bhagavad Gita 2.47`:`"Yoga is skill in action.<br>Bring mastery and full consciousness to everything you do."<br><br>— Bhagavad Gita 2.50`;}
 
 function initApp(){updDate();updStats();hlSched();const di=new Date().getDate()%MQ.length;showMQ(MQ[di],di,true);mIdx=di;renderFavs('main');updFC();chkNotif();if(Notification.permission==='default')setTimeout(()=>document.getElementById('nBan').style.display='flex',3000);mkParticles();}
 function updDate(){const d=new Date().toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'});document.getElementById('gDate').textContent=d;document.getElementById('cDate').textContent=d;}
 function updStats(){document.getElementById('wc1').textContent=streak;document.getElementById('wc2').textContent=mRead;document.getElementById('wc3').textContent=mFavs.length;document.getElementById('cwc1').textContent=streak;document.getElementById('cwc2').textContent=cRead;document.getElementById('cwc3').textContent=cFavs.length;document.getElementById('ps1').textContent=streak;document.getElementById('ps2').textContent=mFavs.length+cFavs.length;document.getElementById('ps3').textContent=mRead+cRead;}
 
-function swMod(m){MOD=m;const isM=m==='main';document.getElementById('tnav').className='tnav'+(isM?'':' corp');document.getElementById('navLogo').className='nav-logo'+(isM?'':' corp-l');document.getElementById('navLogo').textContent=isM?'Daily Krishna':'Corporate Krishna';document.getElementById('bnav').className='bnav'+(isM?'':' corp');document.getElementById('msM').className='msb'+(isM?' on':'');document.getElementById('msC').className='msb'+(isM?'':' corp-on');document.querySelectorAll('.ntab').forEach(t=>t.className='ntab');if(isM){document.getElementById('corpPg').style.display='none';goPg('homePg');}else{document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));document.getElementById('corpPg').style.display='block';hlCSched();const f=filtC2();if(f.length)showCQ(f[0],CQ.indexOf(f[0]),true);}updStats();}
+function swMod(m){MOD=m;const isM=m==='main';document.getElementById('tnav').className='tnav'+(isM?'':' corp');document.getElementById('navLogo').className='nav-logo'+(isM?'':' corp-l');document.getElementById('navLogo').textContent=isM?'Daily Krishna':'Corporate Krishna';document.getElementById('bnav').className='bnav'+(isM?'':' corp');document.getElementById('msM').className='msb'+(isM?' on':'');document.getElementById('msC').className='msb'+(isM?'':' corp-on');document.querySelectorAll('.ntab').forEach(t=>{t.classList.remove('on','corp-on');});if(isM){document.getElementById('corpPg').style.display='none';goPg('homePg');}else{document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));document.getElementById('corpPg').style.display='block';hlCSched();const f=filtC2();if(f.length)showCQ(f[0],CQ.indexOf(f[0]),true);}updStats();}
 
-function showMQ(q,idx,instant=false){if(!q)return;mIdx=idx;const cfg=CATCFG[q.c]||CATCFG['Peace'];const qtEl=document.getElementById('mQTxt'),imgEl=document.getElementById('mKImg');if(!instant){qtEl.classList.add('ch');imgEl.style.opacity='0';}setTimeout(()=>{qtEl.textContent=q.t;document.getElementById('mQSrc').textContent='— '+q.src;document.getElementById('mMean').textContent=q.m||'';document.getElementById('mKSays').textContent=q.k||'';document.getElementById('mBadge').textContent=q.c;document.getElementById('mScene').textContent=cfg.scene;document.getElementById('mVis').style.background=cfg.bg;imgEl.src=getImg(q.c,imgOff);imgEl.className='k-img en';imgEl.style.display='block';imgEl.style.opacity='1';const isFav=mFavs.some(f=>f.t===q.t);const fb=document.getElementById('mFavBtn');fb.innerHTML=isFav?'<span>❤️</span> Saved':'<span>🤍</span> Save';fb.className='qbtn'+(isFav?' fav-on':'');if(!instant)qtEl.classList.remove('ch');mRead++;localStorage.setItem('dk8_mr',mRead);updStats();},instant?0:200);}
+// ---- MAIN QUOTE DISPLAY + KRISHNA IMAGE ----
+function showMQ(q,idx,instant=false){
+  if(!q)return;mIdx=idx;
+  const cfg=CATCFG[q.c]||CATCFG['Peace'];
+  const qtEl=document.getElementById('mQTxt');
+  const imgEl=document.getElementById('mKImg');
+  if(!instant){qtEl.classList.add('ch');imgEl.style.opacity='0';}
+  setTimeout(()=>{
+    // Set text
+    qtEl.textContent=q.t;
+    document.getElementById('mQSrc').textContent='— '+q.src;
+    document.getElementById('mMean').textContent=q.m||'';
+    document.getElementById('mKSays').textContent=q.k||'';
+    document.getElementById('mBadge').textContent=q.c;
+    document.getElementById('mScene').textContent=cfg.scene;
+    // Set blue panel background
+    document.getElementById('mVis').style.background=cfg.bg;
+    // === SET KRISHNA IMAGE ===
+    const url=getImg(q.c,imgOff);
+    imgEl.src=url;
+    imgEl.style.display='block';
+    imgEl.style.opacity='1';
+    imgEl.className='k-img en';
+    imgEl.onerror=function(){
+      // Try alternate image on error
+      const fallbacks=['https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Krishna_as_the_Cosmic_Charioteer.jpg/400px-Krishna_as_the_Cosmic_Charioteer.jpg','https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Krishna_Arjuna_Mahabharata.jpg/400px-Krishna_Arjuna_Mahabharata.jpg','https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lord_Krishna_with_Flute.jpg/400px-Lord_Krishna_with_Flute.jpg'];
+      const tried=parseInt(this.dataset.tried||'0');
+      if(tried<fallbacks.length){this.dataset.tried=tried+1;this.src=fallbacks[tried];}
+      else{this.style.display='none';}
+    };
+    // Fav button
+    const isFav=mFavs.some(f=>f.t===q.t);
+    const fb=document.getElementById('mFavBtn');
+    fb.innerHTML=isFav?'<span>❤️</span> Saved':'<span>🤍</span> Save';
+    fb.className='qbtn'+(isFav?' fav-on':'');
+    if(!instant)qtEl.classList.remove('ch');
+    mRead++;localStorage.setItem('dk8_mr',mRead);updStats();
+  },instant?0:200);
+}
 
 function filtM2(){return mCat==='All'?MQ:MQ.filter(q=>q.c===mCat);}
 function filtM(cat,el){mCat=cat;document.querySelectorAll('.catbtn').forEach(b=>b.classList.remove('on'));el.classList.add('on');const f=filtM2();if(f.length){imgOff++;animW('mWrap',()=>showMQ(f[0],MQ.indexOf(f[0])));}}
@@ -907,10 +1055,44 @@ function nextM(){const f=filtM2();const ci=f.indexOf(MQ[mIdx]);const ni=(ci+1)%f
 function hlSched(){const h=new Date().getHours();const t=h>=11&&h<16?'midday':h>=16?'evening':'morning';['si1','si2','si3'].forEach(id=>document.getElementById(id).classList.remove('on'));document.getElementById({morning:'si1',midday:'si2',evening:'si3'}[t]).classList.add('on');}
 function loadSched(t){const f=MQ.filter(q=>q.s===t);if(!f.length)return;const q=f[Math.floor(Math.random()*f.length)];imgOff++;animW('mWrap',()=>showMQ(q,MQ.indexOf(q)));['si1','si2','si3'].forEach(id=>document.getElementById(id).classList.remove('on'));document.getElementById({morning:'si1',midday:'si2',evening:'si3'}[t]).classList.add('on');showToast(t==='morning'?'🌅 Morning wisdom':t==='midday'?'☀️ Midday peace':'🌙 Evening reflection');}
 function togMFav(){const q=MQ[mIdx];if(!q)return;const i=mFavs.findIndex(f=>f.t===q.t);if(i>-1){mFavs.splice(i,1);showToast("Removed");}else{mFavs.push(q);showToast("Saved! 🌸");}localStorage.setItem('dk8_mf',JSON.stringify(mFavs));showMQ(q,mIdx,true);renderFavs('main');updFC();updStats();}
-function mWA(){const q=MQ[mIdx];if(!q)return;window.open('https://wa.me/?text='+encodeURIComponent(`"${q.t}"\n\n— ${q.src}\n\n🌸 ${q.m}\n\n🪷 Daily Krishna\nhttps://anchorvijju616-hash.github.io/Daily-Krishna`),'_blank');}
-function mShare(){const q=MQ[mIdx];if(!q)return;const t=`"${q.t}"\n\n— ${q.src}\n\n${q.m}\n\n🪷 Daily Krishna\nhttps://anchorvijju616-hash.github.io/Daily-Krishna`;if(navigator.share){navigator.share({title:'Daily Krishna',text:t});}else{navigator.clipboard.writeText(t).then(()=>showToast("Copied! 📋"));}}
+function mWA(){const q=MQ[mIdx];if(!q)return;window.open('https://wa.me/?text='+encodeURIComponent('"'+q.t+'"\n\n— '+q.src+'\n\n🌸 '+q.m+'\n\n🪷 Daily Krishna\nhttps://anchorvijju616-hash.github.io/Daily-Krishna'),'_blank');}
+function mShare(){const q=MQ[mIdx];if(!q)return;const t='"'+q.t+'"\n\n— '+q.src+'\n\n'+q.m+'\n\n🪷 Daily Krishna\nhttps://anchorvijju616-hash.github.io/Daily-Krishna';if(navigator.share){navigator.share({title:'Daily Krishna',text:t});}else{navigator.clipboard.writeText(t).then(()=>showToast("Copied! 📋"));}}
 
-function showCQ(q,idx,instant=false){if(!q)return;cIdx=idx;const qtEl=document.getElementById('cQTxt'),imgEl=document.getElementById('cKImg');if(!instant){qtEl.classList.add('ch');imgEl.style.opacity='0';}setTimeout(()=>{qtEl.textContent=q.t;document.getElementById('cQSrc').textContent='— '+q.src;document.getElementById('cIns').textContent=q.ins||'';document.getElementById('cGRef').textContent=q.gr||'';document.getElementById('cBadge').textContent=q.c;document.getElementById('cScene').textContent=q.sc||'';document.getElementById('cAP').innerHTML=(q.ap||[]).map(a=>`<div class="ap-row"><div class="ap-dot"></div>${a}</div>`).join('');document.getElementById('cTagsEl').innerHTML=(q.tags||[]).map(t=>`<span class="ctag">${t}</span>`).join('');imgEl.src=getImg(q.c,cIdx);imgEl.className='ck-img en';imgEl.style.display='block';imgEl.style.opacity='1';const isFav=cFavs.some(f=>f.t===q.t);const fb=document.getElementById('cFavBtn');fb.innerHTML=isFav?'<span>⭐</span> Saved':'<span>⭐</span> Save';fb.className='cbtn'+(isFav?' cfav':'');if(!instant)qtEl.classList.remove('ch');cRead++;localStorage.setItem('dk8_cr',cRead);updStats();},instant?0:200);}
+// ---- CORPORATE QUOTE DISPLAY + KRISHNA IMAGE ----
+function showCQ(q,idx,instant=false){
+  if(!q)return;cIdx=idx;
+  const qtEl=document.getElementById('cQTxt');
+  const imgEl=document.getElementById('cKImg');
+  if(!instant){qtEl.classList.add('ch');imgEl.style.opacity='0';}
+  setTimeout(()=>{
+    qtEl.textContent=q.t;
+    document.getElementById('cQSrc').textContent='— '+q.src;
+    document.getElementById('cIns').textContent=q.ins||'';
+    document.getElementById('cGRef').textContent=q.gr||'';
+    document.getElementById('cBadge').textContent=q.c;
+    document.getElementById('cScene').textContent=q.sc||'';
+    document.getElementById('cAP').innerHTML=(q.ap||[]).map(a=>'<div class="ap-row"><div class="ap-dot"></div>'+a+'</div>').join('');
+    document.getElementById('cTagsEl').innerHTML=(q.tags||[]).map(t=>'<span class="ctag">'+t+'</span>').join('');
+    // === SET KRISHNA IMAGE ===
+    const url=getImg(q.c,cIdx);
+    imgEl.src=url;
+    imgEl.style.display='block';
+    imgEl.style.opacity='1';
+    imgEl.className='ck-img en';
+    imgEl.onerror=function(){
+      const fallbacks=['https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Krishna_as_the_Cosmic_Charioteer.jpg/400px-Krishna_as_the_Cosmic_Charioteer.jpg','https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Krishna_Arjuna_Mahabharata.jpg/400px-Krishna_Arjuna_Mahabharata.jpg'];
+      const tried=parseInt(this.dataset.tried||'0');
+      if(tried<fallbacks.length){this.dataset.tried=tried+1;this.src=fallbacks[tried];}
+      else{this.style.display='none';}
+    };
+    const isFav=cFavs.some(f=>f.t===q.t);
+    const fb=document.getElementById('cFavBtn');
+    fb.innerHTML=isFav?'<span>⭐</span> Saved':'<span>⭐</span> Save';
+    fb.className='cbtn'+(isFav?' cfav':'');
+    if(!instant)qtEl.classList.remove('ch');
+    cRead++;localStorage.setItem('dk8_cr',cRead);updStats();
+  },instant?0:200);
+}
 
 function filtC2(){return cCat==='All'?CQ:CQ.filter(q=>q.c===cCat);}
 function filtC(cat,el){cCat=cat;document.querySelectorAll('.ccat').forEach(b=>b.classList.remove('on'));el.classList.add('on');const f=filtC2();if(f.length)animW('cWrap',()=>showCQ(f[0],CQ.indexOf(f[0])));}
@@ -918,30 +1100,42 @@ function nextC(){const f=filtC2();const ci=f.indexOf(CQ[cIdx]);const ni=(ci+1)%f
 function hlCSched(){const h=new Date().getHours();const t=h>=11&&h<16?'midday':h>=16?'evening':'morning';['cs1','cs2','cs3'].forEach(id=>document.getElementById(id).classList.remove('on'));document.getElementById({morning:'cs1',midday:'cs2',evening:'cs3'}[t]).classList.add('on');}
 function loadCSched(t){const f=CQ.filter(q=>q.s===t);if(!f.length)return;const q=f[Math.floor(Math.random()*f.length)];animW('cWrap',()=>showCQ(q,CQ.indexOf(q)));['cs1','cs2','cs3'].forEach(id=>document.getElementById(id).classList.remove('on'));document.getElementById({morning:'cs1',midday:'cs2',evening:'cs3'}[t]).classList.add('on');showToast({morning:'🌅 Pre-meeting wisdom',midday:'☕ Midday stress relief',evening:'📊 EOD reflection'}[t]||'');}
 function togCFav(){const q=CQ[cIdx];if(!q)return;const i=cFavs.findIndex(f=>f.t===q.t);if(i>-1){cFavs.splice(i,1);showToast("Removed");}else{cFavs.push(q);showToast("Saved! 💼");}localStorage.setItem('dk8_cf',JSON.stringify(cFavs));showCQ(q,cIdx,true);renderFavs('corp');updFC();updStats();}
-function cWA(){const q=CQ[cIdx];if(!q)return;window.open('https://wa.me/?text='+encodeURIComponent(`"${q.t}"\n\n— ${q.src}\n\n💼 ${q.ins}\n\n✅ ${(q.ap||[])[0]||''}\n\n💼 Corporate Krishna\nhttps://anchorvijju616-hash.github.io/Daily-Krishna`),'_blank');}
-function cShare(){const q=CQ[cIdx];if(!q)return;const t=`"${q.t}"\n\n— ${q.src}\n\n💼 ${q.ins}\n\n${(q.ap||[])[0]||''}\n\n💼 Corporate Krishna\nhttps://anchorvijju616-hash.github.io/Daily-Krishna`;if(navigator.share){navigator.share({title:'Corporate Krishna',text:t});}else{navigator.clipboard.writeText(t).then(()=>showToast("Copied! 📋"));}}
+function cWA(){const q=CQ[cIdx];if(!q)return;window.open('https://wa.me/?text='+encodeURIComponent('"'+q.t+'"\n\n— '+q.src+'\n\n💼 '+q.ins+'\n\n✅ '+((q.ap||[])[0]||'')+'\n\n💼 Corporate Krishna\nhttps://anchorvijju616-hash.github.io/Daily-Krishna'),'_blank');}
+function cShare(){const q=CQ[cIdx];if(!q)return;const t='"'+q.t+'"\n\n— '+q.src+'\n\n💼 '+q.ins+'\n\n'+((q.ap||[])[0]||'')+'\n\n💼 Corporate Krishna\nhttps://anchorvijju616-hash.github.io/Daily-Krishna';if(navigator.share){navigator.share({title:'Corporate Krishna',text:t});}else{navigator.clipboard.writeText(t).then(()=>showToast("Copied! 📋"));}}
 
+// ---- FAVORITES ----
 function swFavTab(tab,el){favTab=tab;document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('on','corp-on'));el.classList.add(tab==='main'?'on':'corp-on');renderFavs(tab);}
-function renderFavs(tab){const list=document.getElementById('favList');const favs=tab==='main'?mFavs:cFavs;if(!favs.length){list.innerHTML=`<div class="fempty"><div class="fempty-i">${tab==='main'?'🤍':'⭐'}</div><div class="fempty-t">No saved ${tab==='main'?'life wisdom':'corporate lessons'} yet.</div></div>`;return;}list.innerHTML=favs.map((q,i)=>{const ic=tab==='corp';return`<div class="fcard ${ic?'cfc':''}"><div class="fhdr"><span class="ftag ${ic?'ct':''}">${q.c}</span><button class="frm" onclick="rmFav('${tab}',${i})">✕</button></div><div class="fqt">"${q.t}"</div><div class="fit">${ic?'💼 '+(q.ins||''):'🌸 '+(q.m||'')}</div></div>`;}).join('');}
+function renderFavs(tab){const list=document.getElementById('favList');const favs=tab==='main'?mFavs:cFavs;if(!favs.length){list.innerHTML='<div class="fempty"><div class="fempty-i">'+(tab==='main'?'🤍':'⭐')+'</div><div class="fempty-t">No saved '+(tab==='main'?'life wisdom':'corporate lessons')+' yet.</div></div>';return;}list.innerHTML=favs.map((q,i)=>{const ic=tab==='corp';return'<div class="fcard '+(ic?'cfc':'')+'"><div class="fhdr"><span class="ftag '+(ic?'ct':'')+'">'+(q.c||'')+'</span><button class="frm" onclick="rmFav(\''+tab+'\','+i+')">✕</button></div><div class="fqt">"'+q.t+'"</div><div class="fit">'+(ic?'💼 '+(q.ins||''):'🌸 '+(q.m||''))+'</div></div>';}).join('');}
 function rmFav(tab,i){if(tab==='main'){mFavs.splice(i,1);localStorage.setItem('dk8_mf',JSON.stringify(mFavs));}else{cFavs.splice(i,1);localStorage.setItem('dk8_cf',JSON.stringify(cFavs));}renderFavs(tab);updFC();updStats();showToast("Removed");}
 function updFC(){const el=document.getElementById('favCount');if(el)el.textContent=(mFavs.length+cFavs.length)+' saved';}
 
-function goPg(id){if(MOD==='corp'&&id==='homePg')return;document.getElementById('corpPg').style.display='none';document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));document.querySelectorAll('.ntab').forEach(t=>t.classList.remove('on'));document.getElementById(id).classList.add('on');const m={homePg:'nt1',favPg:'nt2',profPg:'nt3'};const el=document.getElementById(m[id]);if(el)el.classList.add('on');if(id==='favPg')renderFavs(favTab);}
+// ---- NAV ----
+function goPg(id){if(MOD==='corp'&&id==='homePg')return;document.getElementById('corpPg').style.display='none';document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));document.querySelectorAll('.ntab').forEach(t=>t.classList.remove('on','corp-on'));document.getElementById(id).classList.add('on');const m={homePg:'nt1',favPg:'nt2',profPg:'nt3'};const el=document.getElementById(m[id]);if(el)el.classList.add('on');if(id==='favPg')renderFavs(favTab);}
 function animW(wid,cb){const w=document.getElementById(wid);w.style.opacity='0';w.style.transform='translateY(14px)';setTimeout(()=>{cb();w.style.transition='opacity .45s ease,transform .45s ease';w.style.opacity='1';w.style.transform='translateY(0)';setTimeout(()=>w.style.transition='',450);},175);}
 function toggleTheme(){const d=document.body.getAttribute('data-theme')==='dark';document.body.setAttribute('data-theme',d?'':'dark');document.getElementById('themeBtn').textContent=d?'🌙':'☀️';const t=document.getElementById('darkTog');if(t)t.checked=!d;}
-function showLoad(){document.getElementById('loadScreen').classList.remove('gone');}
-function hideLoad(){document.getElementById('loadScreen').classList.add('gone');}
+
+// ---- LOADING ----
+function showLoad(){const l=document.getElementById('loadScreen');if(l){l.classList.remove('gone');}}
+function hideLoad(){const l=document.getElementById('loadScreen');if(l)l.classList.add('gone');}
 setTimeout(hideLoad,3200);
+
+// ---- NOTIFICATIONS ----
 function chkNotif(){const el=document.getElementById('notifSub');if(!el)return;if(Notification.permission==='granted')el.textContent='✅ 3 daily reminders active';else if(Notification.permission==='denied')el.textContent='❌ Blocked in browser settings';}
 async function reqNotif(){if(!('Notification' in window)){showToast("Not supported");return;}if(Notification.permission==='granted'){showToast("Already enabled ✅");return;}if(Notification.permission==='denied'){showToast("Enable in browser settings");return;}const p=await Notification.requestPermission();if(p==='granted'){document.getElementById('nBan').style.display='none';showToast("Reminders enabled! 🔔");chkNotif();}else{showToast("Not enabled");chkNotif();}}
+
+// ---- PWA ----
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;});
 function instPWA(){if(dp){dp.prompt();dp.userChoice.then(r=>{if(r.outcome==='accepted')showToast("App installed! 🪷");dp=null;});}else{showToast("Tap browser menu → Add to Home Screen");}}
+
+// ---- TOAST ----
 function showToast(msg,cls=''){const t=document.getElementById('toast');if(!t)return;t.textContent=msg;t.className='toast show'+(cls?' '+cls:'');setTimeout(()=>t.className='toast',3000);}
 
-function mkStars(){const ls=document.getElementById('lstars');if(!ls)return;for(let i=0;i<65;i++){const s=document.createElement('div');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDuration=(2+Math.random()*4)+'s';s.style.animationDelay=(Math.random()*4)+'s';ls.appendChild(s);}}
-function mkParticles(){const colors=['rgba(212,160,23,.5)','rgba(255,107,26,.4)','rgba(0,168,157,.35)','rgba(255,140,66,.4)'];for(let i=0;i<14;i++){const p=document.createElement('div');p.className='pt';const sz=3+Math.random()*5;p.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;background:${colors[i%4]};animation-duration:${16+Math.random()*22}s;animation-delay:${Math.random()*22}s;`;document.getElementById('particles').appendChild(p);}}
+// ---- STARS & PARTICLES ----
+function mkStars(){const ls=document.getElementById('lgStars');if(!ls)return;for(let i=0;i<65;i++){const s=document.createElement('div');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDuration=(2+Math.random()*4)+'s';s.style.animationDelay=(Math.random()*4)+'s';ls.appendChild(s);}}
+function mkParticles(){const colors=['rgba(212,160,23,0.5)','rgba(255,107,26,0.4)','rgba(0,168,157,0.35)','rgba(255,140,66,0.4)'];for(let i=0;i<14;i++){const p=document.createElement('div');p.className='pt';const sz=3+Math.random()*5;p.style.cssText='width:'+sz+'px;height:'+sz+'px;left:'+Math.random()*100+'%;background:'+colors[i%4]+';animation-duration:'+(16+Math.random()*22)+'s;animation-delay:'+(Math.random()*22)+'s;';document.getElementById('particles').appendChild(p);}}
 
-if('serviceWorker' in navigator){window.addEventListener('load',()=>{const sw=`const C='dk-v8';const F=['/Daily-Krishna/','/Daily-Krishna/index.html'];self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.addAll(F))));self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).catch(()=>caches.match('/Daily-Krishna/')))));self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k))))));`;navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'application/javascript'}))).catch(e=>console.log(e));});}
+// ---- SERVICE WORKER ----
+if('serviceWorker' in navigator){window.addEventListener('load',()=>{const sw="const C='dk-v8';const F=['/Daily-Krishna/','/Daily-Krishna/index.html'];self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.addAll(F))));self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).catch(()=>caches.match('/Daily-Krishna/')))));self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k))))));";navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'application/javascript'}))).catch(e=>console.log(e));});}
 
 mkStars();
 </script>

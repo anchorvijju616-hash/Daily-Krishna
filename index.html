@@ -784,7 +784,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--td);min
               <div class="card-diya-bowl"></div>
             </div>
           </div>
-          <img class="k-img" id="mKImg" src="" alt="Lord Krishna" onerror="this.style.display='none'">
+          <img class="k-img" id="mKImg" src="" alt="Lord Krishna" crossorigin="anonymous" referrerpolicy="no-referrer">
           <div class="qcat-badge" id="mBadge">Peace</div>
           <div class="qscene" id="mScene">Vrindavan · Peaceful Evening</div>
         </div>
@@ -888,7 +888,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--td);min
               <div class="card-diya-bowl"></div>
             </div>
           </div>
-          <img class="ck-img" id="cKImg" src="" alt="Lord Krishna" onerror="this.style.display='none'">
+          <img class="ck-img" id="cKImg" src="" alt="Lord Krishna" crossorigin="anonymous" referrerpolicy="no-referrer">
           <div class="cc-badge" id="cBadge">Leadership</div>
           <div class="cc-scene" id="cScene">Kurukshetra · Divine Guidance</div>
         </div>
@@ -920,9 +920,21 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--td);min
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 <script>
 const KIMGS={
-  flute:["https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lord_Krishna_with_Flute.jpg/400px-Lord_Krishna_with_Flute.jpg","https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Radha_Krishna.jpg/400px-Radha_Krishna.jpg","https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Krishna_flute_Rajasthan18th_century.jpg/400px-Krishna_flute_Rajasthan18th_century.jpg"],
-  battle:["https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Krishna_as_the_Cosmic_Charioteer.jpg/400px-Krishna_as_the_Cosmic_Charioteer.jpg","https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Krishna_Arjuna_Mahabharata.jpg/400px-Krishna_Arjuna_Mahabharata.jpg","https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Krishna_as_the_Cosmic_Charioteer.jpg/400px-Krishna_as_the_Cosmic_Charioteer.jpg"],
-  teach:["https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Krishna_Arjuna_Mahabharata.jpg/400px-Krishna_Arjuna_Mahabharata.jpg","https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Krishna_as_the_Cosmic_Charioteer.jpg/400px-Krishna_as_the_Cosmic_Charioteer.jpg","https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lord_Krishna_with_Flute.jpg/400px-Lord_Krishna_with_Flute.jpg"]
+  flute:[
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Lord_Krishna_with_Flute.jpg",
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Radha_Krishna.jpg",
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Krishna_flute_Rajasthan18th_century.jpg"
+  ],
+  battle:[
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Krishna_as_the_Cosmic_Charioteer.jpg",
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Krishna_Arjuna_Mahabharata.jpg",
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Krishna_as_the_Cosmic_Charioteer.jpg"
+  ],
+  teach:[
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Krishna_Arjuna_Mahabharata.jpg",
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Krishna_as_the_Cosmic_Charioteer.jpg",
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Lord_Krishna_with_Flute.jpg"
+  ]
 };
 const CATCFG={
   Peace:{img:'flute',bg:'linear-gradient(135deg,#1A3A6B,#003344,#0D2244)',scene:'Vrindavan · Moonlit Evening'},
@@ -1054,12 +1066,18 @@ function showMQ(q,idx,instant=false){
     imgEl.style.display='block';
     imgEl.style.opacity='1';
     imgEl.className='k-img en';
+    imgEl.dataset.tried='0';
     imgEl.onerror=function(){
-      // Try alternate image on error
-      const fallbacks=['https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Krishna_as_the_Cosmic_Charioteer.jpg/400px-Krishna_as_the_Cosmic_Charioteer.jpg','https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Krishna_Arjuna_Mahabharata.jpg/400px-Krishna_Arjuna_Mahabharata.jpg','https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lord_Krishna_with_Flute.jpg/400px-Lord_Krishna_with_Flute.jpg'];
-      const tried=parseInt(this.dataset.tried||'0');
-      if(tried<fallbacks.length){this.dataset.tried=tried+1;this.src=fallbacks[tried];}
-      else{this.style.display='none';}
+      const allSrcs=[
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Lord_Krishna_with_Flute.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lord_Krishna_with_Flute.jpg/400px-Lord_Krishna_with_Flute.jpg',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Krishna_as_the_Cosmic_Charioteer.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Krishna_as_the_Cosmic_Charioteer.jpg/400px-Krishna_as_the_Cosmic_Charioteer.jpg',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Krishna_Arjuna_Mahabharata.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Krishna_Arjuna_Mahabharata.jpg/400px-Krishna_Arjuna_Mahabharata.jpg'
+      ];
+      const n=parseInt(this.dataset.tried||'0');
+      if(n<allSrcs.length){this.dataset.tried=n+1;this.src=allSrcs[n];}
     };
     // Fav button
     const isFav=mFavs.some(f=>f.t===q.t);
@@ -1101,11 +1119,18 @@ function showCQ(q,idx,instant=false){
     imgEl.style.display='block';
     imgEl.style.opacity='1';
     imgEl.className='ck-img en';
+    imgEl.dataset.tried='0';
     imgEl.onerror=function(){
-      const fallbacks=['https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Krishna_as_the_Cosmic_Charioteer.jpg/400px-Krishna_as_the_Cosmic_Charioteer.jpg','https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Krishna_Arjuna_Mahabharata.jpg/400px-Krishna_Arjuna_Mahabharata.jpg'];
-      const tried=parseInt(this.dataset.tried||'0');
-      if(tried<fallbacks.length){this.dataset.tried=tried+1;this.src=fallbacks[tried];}
-      else{this.style.display='none';}
+      const allSrcs=[
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Krishna_as_the_Cosmic_Charioteer.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Krishna_as_the_Cosmic_Charioteer.jpg/400px-Krishna_as_the_Cosmic_Charioteer.jpg',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Lord_Krishna_with_Flute.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lord_Krishna_with_Flute.jpg/400px-Lord_Krishna_with_Flute.jpg',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Krishna_Arjuna_Mahabharata.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Krishna_Arjuna_Mahabharata.jpg/400px-Krishna_Arjuna_Mahabharata.jpg'
+      ];
+      const n=parseInt(this.dataset.tried||'0');
+      if(n<allSrcs.length){this.dataset.tried=n+1;this.src=allSrcs[n];}
     };
     const isFav=cFavs.some(f=>f.t===q.t);
     const fb=document.getElementById('cFavBtn');
